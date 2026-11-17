@@ -18,7 +18,7 @@ input,textarea,select{font:inherit;color:#eef0f6;background:#0c101c;border:1px s
 #top{display:flex;justify-content:space-between;gap:6px;padding:5px 8px;font-size:12.5px;background:#141a2c;border-bottom:1px solid #2c3654;white-space:nowrap;padding-top:max(5px,env(safe-area-inset-top))}
 #top span{overflow:hidden;text-overflow:ellipsis}#hloc{flex:1}#hgold{color:#f3d36b}
 #cvwrap{position:relative;flex:0 0 auto;background:#000;display:flex;justify-content:center;overflow:hidden}
-#cv{display:block;image-rendering:pixelated}
+#cv{display:block;image-rendering:pixelated;touch-action:none;-webkit-touch-callout:none}
 #banner{position:absolute;left:0;right:0;top:8px;text-align:center;pointer-events:none;font-weight:700;text-shadow:0 0 6px #000,0 0 3px #000;opacity:0;transition:opacity .4s}
 #banner.on{opacity:1}
 #pstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px 6px;background:#101524}
@@ -27,12 +27,17 @@ input,textarea,select{font:inherit;color:#eef0f6;background:#0c101c;border:1px s
 .pm.dead{opacity:.45}.pm.low b{color:#ffb14a}
 .bar{height:5px;background:#060912;border-radius:3px;overflow:hidden;margin:2px 0}
 .bar i{display:block;height:100%;background:#46c46a}.bar.mp i{background:#4a9bea}.bar.ex i{background:#d6b23e}.bar.en i{background:#e0564d}
-#ctrl{flex:1;display:flex;align-items:center;justify-content:space-between;padding:6px 14px;min-height:150px;padding-bottom:max(6px,env(safe-area-inset-bottom))}
-#pad{position:relative;width:150px;height:150px;flex:0 0 150px}
-#pad button{position:absolute;width:50px;height:50px;border-radius:10px;border:1px solid #46527a;background:#1d2540;font-size:20px;color:#cfd6ea;touch-action:none}
-#pad button:active,#pad button.on{background:#3b4a7c}
-.pu{left:50px;top:0}.pd{left:50px;top:100px}.pl{left:0;top:50px}.pr{left:100px;top:50px}
-#btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(170px,46vw)}
+#ctrl{flex:1;display:flex;align-items:stretch;justify-content:space-between;gap:8px;padding:6px 10px;min-height:150px;padding-bottom:max(6px,env(safe-area-inset-bottom));--ps:176px;--bw:160px}
+#ctrl.swap{flex-direction:row-reverse}
+#padz{flex:1 1 0;min-width:0;display:flex;align-items:center;justify-content:center;touch-action:none;-webkit-touch-callout:none}
+#pad{position:relative;width:var(--ps);height:var(--ps);flex:0 0 var(--ps);border-radius:27%;background:radial-gradient(circle at 50% 50%,#1c2440 0,#141a2e 62%,#10152a 100%);border:1px solid #303a5c;touch-action:none}
+#pad button{position:absolute;width:34%;height:34%;padding:0;border-radius:22%;border:1px solid #5a6896;background:#27315a;font-size:calc(var(--ps)*.15);line-height:1;color:#e3e8f8;touch-action:none}
+#pad button.on{background:#5a70c4;border-color:#c3ceff;color:#fff}
+#pad i{position:absolute;left:38%;top:38%;width:24%;height:24%;border-radius:50%;background:#1a2140;border:1px solid #3a466e;pointer-events:none}
+.pu{left:33%;top:2.5%}.pd{left:33%;top:63.5%}.pl{left:2.5%;top:33%}.pr{left:63.5%;top:33%}
+#btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:var(--bw);flex:0 0 var(--bw);align-self:center}
+#bAct{grid-column:1/3;height:64px!important;font-size:16px!important;background:#4a3c16!important;border-color:#a08a3c!important}
+#ctrl.narrow #btns button{font-size:12px}#ctrl.narrow #bAct{font-size:15px!important}
 #btns button{height:52px;border-radius:12px;border:1px solid #6a5a2a;background:#3a3016;color:#f6e7b0;font-weight:700;font-size:13px;white-space:nowrap;padding:0 2px}
 #btns button:active{background:#5a4a22}#bAct{grid-column:span 2;background:#16402c!important;border-color:#2f7a55!important;color:#c8f5dd!important}
 #screen{position:absolute;inset:0;background:#0b0e18;overflow-y:auto;z-index:10;-webkit-overflow-scrolling:touch}
@@ -96,7 +101,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}table.t td,table.t th
 #top{grid-column:1/3}#cvwrap{grid-column:1;grid-row:2/4;align-items:flex-start}
 #pstrip{grid-column:2;grid-row:2;grid-template-columns:1fr 1fr;align-content:start}
 #ctrl{grid-column:2;grid-row:3;min-height:0;padding:2px 10px}
-#pad{transform:scale(.86);transform-origin:left center}#btns{width:150px}#btns button{height:44px}
+#btns button{height:44px}#bAct{height:50px!important}
 }
 /* ドット絵 */
 .ic{display:inline-block;vertical-align:middle;image-rendering:pixelated;margin:-4px 3px -2px 0;border-radius:3px}
@@ -169,7 +174,7 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}table.t td,table.t th
   <div id="cvwrap"><canvas id="cv" width="352" height="352"></canvas><div id="banner"></div></div>
   <div id="pstrip"></div>
   <div id="ctrl">
-    <div id="pad"><button class="pu" data-d="0,-1">▲</button><button class="pl" data-d="-1,0">◀</button><button class="pr" data-d="1,0">▶</button><button class="pd" data-d="0,1">▼</button></div>
+    <div id="padz"><div id="pad"><button class="pu" data-d="0,-1">▲</button><button class="pl" data-d="-1,0">◀</button><button class="pr" data-d="1,0">▶</button><button class="pd" data-d="0,1">▼</button><i></i></div></div>
     <div id="btns"><button id="bMenu">メニュー</button><button id="bMap">地図</button><button id="bAct">行動</button></div>
   </div>
   <div id="screen" class="hidden"></div>
@@ -1554,22 +1559,24 @@ function give(id, n = 1) { if (!item(id)) return; G.inv[id] = (G.inv[id] || 0) +
 function take(id, n = 1) { if ((G.inv[id] || 0) < n) return false; G.inv[id] -= n; if (G.inv[id] <= 0) delete G.inv[id]; return true; }
 function addGold(n) { G.gold = Math.max(0, Math.floor(G.gold + n)); if (n > 0) G.stat.earn += n; }
 function st(c) {
-  const m = jobOf(c).mod, b = c.base, e = { atk: 0, def: 0, int: 0, agi: 0, luk: 0, hp: 0, mp: 0 };
+  const m = jobOf(c).mod, b = c.base, rm = Race.mul(c), e = { atk: 0, def: 0, int: 0, agi: 0, luk: 0, hp: 0, mp: 0 };
   for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it) for (const k in e) e[k] += it[k] || 0; }
-  const f = (v, i) => Math.floor(v * (1 + 0.1 * m[i]));
+  const f = (v, i) => Math.floor(v * (1 + 0.1 * m[i]) * rm[i]);
   const r = { mhp: Math.max(1, f(b.hp, 0) + e.hp), mmp: Math.max(0, f(b.mp, 1) + e.mp), str: f(b.str, 2), vit: f(b.vit, 3), agi: Math.max(1, f(b.agi, 4) + e.agi), int: Math.max(1, f(b.int, 5) + e.int), luk: Math.max(1, f(b.luk, 6) + e.luk) };
   r.luk = Math.floor(r.luk * (1 + pasC(c, 'luk') / 100));
   r.atk = Math.max(1, r.str + e.atk + (c.kind === 'monster' ? Math.floor(c.lv * 1.6) : 0));
   r.def = Math.max(0, r.vit + e.def + (c.kind === 'monster' ? Math.floor(c.lv * 1.4) : 0));
   if (G && G.food) { if (G.food.k === 'atk') r.atk = Math.floor(r.atk * (1 + G.food.v / 100)); if (G.food.k === 'def') r.def = Math.floor(r.def * (1 + G.food.v / 100)); }
+  const tb = Race.time(c); if (tb !== 1) { r.atk = Math.max(1, Math.floor(r.atk * tb)); r.agi = Math.max(1, Math.floor(r.agi * tb)); r.int = Math.max(1, Math.floor(r.int * tb)); }
   return r;
 }
-function pasC(c, k) { let v = (jobOf(c).pas || {})[k] || 0; for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it && typeof it.sp[k] === 'number') v += it.sp[k]; } return v; }
+function pasC(c, k) { let v = ((jobOf(c).pas || {})[k] || 0) + Race.pas(c, k); for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it && typeof it.sp[k] === 'number') v += it.sp[k]; } return v; }
 function pas(k) { let v = 0; P().forEach(c => { const x = pasC(c, k); if (Math.abs(x) > Math.abs(v)) v = x; }); if (G.food && G.food.k === k) v += G.food.v; if (typeof Wear !== 'undefined') v += Wear.pas(k); return v; }
 const needExp = lv => Math.floor(6 * Math.pow(lv, 2.4) + 12 * lv);
 function newChar(o) {
   const c = { id: G.cid++, name: o.name, emoji: o.emoji || '🧑', sex: o.sex || 'x', kind: o.kind || 'human', mon: o.mon || null, pers: o.pers || 'honest', lv: 1, exp: 0, base: {}, hp: 1, mp: 0,
     job: o.job || 'commoner', jobs: {}, skills: [], eq: { w: null, s: null, h: null, b: null, a: null }, tactic: o.tactic || 'balance', st: {}, dead: false, aff: o.aff || 0, reb: 0, comp: o.comp || null };
+  if (o.race && typeof RACE !== 'undefined' && RACE[o.race] && c.kind !== 'monster') c.race = o.race;
   STATS.forEach((s, i) => c.base[s] = BASE0[i] + Math.random() * 2);
   if (c.kind === 'monster') { const m = DB.mons[c.mon]; if (m) c.skills = m.skills.filter(s => DB.skills[s] && !['call', 'run'].includes(s)); }
   else { c.jobs[c.job] = { lv: 1, p: 0 }; learnJobSkills(c); }
@@ -1621,7 +1628,7 @@ function parseCond(s) { const m = String(s).match(/^(\w+)\s*(>=|<=)?\s*(-?\d+)?$
 function condOk(s, c) { const p = parseCond(s); if (!p) return true; const v = condVal(p.k, c); return p.op === '<=' ? v <= p.v : v >= p.v; }
 function condText(s) { const p = parseCond(s); if (!p) return s; if (p.k === 'ship' || p.k === 'clear') return COND_JP[p.k]; return (COND_JP[p.k] || p.k) + ' ' + fmt(p.v).replace('-', '−') + (p.op === '<=' ? '以下' : '以上'); }
 function canJob(c, j) {
-  if (c.kind === 'monster') return false;
+  if (c.kind === 'monster') return false; if (c.fj === j.id) return true;
   for (const grp of j.req) if (!grp.some(id => jobLv(c, id) >= REQLV)) return false;
   for (const cd of j.cond) if (!condOk(cd, c)) return false;
   return true;
@@ -1748,7 +1755,7 @@ function addRep(n, v) { G.rep[n] = Math.max(0, (G.rep[n] || 0) + v); }
 function addKarma(v) { G.karma = clamp(G.karma + v, -100, 100); }
 function cargoUsed() { let n = 0; for (const k in G.inv) { const it = item(k); if (it && it.type === 'trade') n += G.inv[k]; } return n; }
 const cargoCap = () => 10 + G.wagon * 20 + (G.hasShip ? 60 : 0);
-function buyPrice(it) { return Math.max(1, Math.ceil(it.price * (1 - clamp(pas('disc'), 0, 60) / 100) * (typeof Edict !== 'undefined' && Edict.has('trade') ? .9 : 1))); }
+function buyPrice(it) { return Math.max(1, Math.ceil(it.price * (1 - clamp(pas('disc'), 0, 60) / 100) * (typeof Edict !== 'undefined' && Edict.has('trade') ? .9 : 1) * Race.disc())); }
 function sellPrice(it) { return Math.floor(it.price * (it.type === 'book' ? 0.2 : 0.5) * (1 + clamp(pas('sell'), 0, 60) / 100)); }
 
 /* ===================== ドット絵エンジン ===================== */
@@ -2232,10 +2239,12 @@ function lookOf(c) { if (c.look) return c.look; return randLook(c.sex || 'x', mu
 function catOf(c) { const j = DB.jobs[c.job]; return j && OUTFIT[j.cat] ? j.cat : 'C'; }
 function facePix(L, cat, nohat) {
   const g = new Pix(24); g.k = 1;
-  const sk = SKINS[L.sk % SKINS.length], hc = HAIRC[L.hc % HAIRC.length], of = OUTFIT[cat] || OUTFIT.C, oc = of[0], hat = nohat ? '' : of[1], hs = L.hs % HAIR_N, cx = 12, long = hs === 2 || hs === 9;
+  const sk = SKINS[L.sk % SKINS.length], hc = HAIRC[L.hc % HAIRC.length], of = OUTFIT[cat] || OUTFIT.C, oc = of[0], hat = nohat ? '' : of[1], hs = L.hs % HAIR_N, cx = 12, rf = L.rf || {}, long = !rf.bald && (hs === 2 || hs === 9);
+  if (rf.wing) g.part(P => raceWingF(P, rf, cx));
   // 後ろ髪・フード
   g.part(P => {
     if (hat === 'hood') { P.E(cx, 11.4, 9, 10, oc); return; }
+    if (rf.bald) return;
     if (long) { P.E(cx, 11.6, 8.4, 8.8, hc, { f: 1 }); P.B(4, 12, 16, 10, hc, { f: 1 }); }
     else if (hs === 4) P.E(cx, 12.4, 8.3, 8, hc, { f: 1 });
     else if (hs === 3) P.T([17.6, 5.6, 21, 8.6, 20.6, 16.6], 2.2, 1, hc);
@@ -2251,11 +2260,12 @@ function facePix(L, cat, nohat) {
   });
   g.part(P => P.B(10, 16.6, 4, 3.4, sk, { f: 1 }));
   // 頭
-  g.part(P => { sym(s => P.E(cx + s * 6.7, 12.6, 1.3, 1.9, sk, { f: 2 })); P.E(cx, 11.4, 6.6, 7.2, sk); });
+  g.part(P => { if (rf.ear === 'elf') sym(s => P.P([cx + s * 5.4, 9.8, cx + s * 11.6, 7, cx + s * 6, 14.4], sk, 2)); else if (rf.ear === 'fin') sym(s => P.P([cx + s * 5.4, 9, cx + s * 10.8, 7.4, cx + s * 9, 11, cx + s * 10.8, 14.6, cx + s * 5.6, 14.6], sk, 3)); else if (!rf.ear) sym(s => P.E(cx + s * 6.7, 12.6, 1.3, 1.9, sk, { f: 2 })); P.E(cx, 11.4, 6.6, 7.2, sk); });
   // 顔
-  const ey = 11, ec = EYEC[L.ey % EYEC.length], W = 0xffffff;
-  [7, 14].forEach(x => { g.px(x, ey, INK, 3, 1); g.px(x, ey + 1, ec, 2, 2); g.px(x + 2, ey + 1, INK, 1, 2); g.px(x, ey + 1, W, 1, 1); });
-  if (L.sex !== 'f') { g.px(7, ey - 2, hc[0], 3, 1); g.px(14, ey - 2, hc[0], 3, 1); }
+  const ey = 11, ec = rf.eyec != null ? rf.eyec : EYEC[L.ey % EYEC.length], W = 0xffffff;
+  if (rf.eye1) { g.px(9, ey - 1, INK, 6, 1); g.px(9, ey, W, 6, 3); g.px(11, ey, ec, 3, 3); g.px(12, ey + 1, INK, 1, 1); g.px(9, ey + 3, sk[1], 6, 1); g.px(8, ey, INK, 1, 3); g.px(15, ey, INK, 1, 3); }
+  else [7, 14].forEach(x => { g.px(x, ey, INK, 3, 1); g.px(x, ey + 1, ec, 2, 2); g.px(x + 2, ey + 1, INK, 1, 2); g.px(x, ey + 1, W, 1, 1); });
+  if (rf.eye1) g.px(9, ey - 3, hc[0], 6, 1); else if (L.sex !== 'f' && !rf.bald) { g.px(7, ey - 2, hc[0], 3, 1); g.px(14, ey - 2, hc[0], 3, 1); }
   g.px(12, 14, sk[1], 1, 2); g.px(11, 17, 0xb85050, 2, 1); if (L.ex !== 3) g.px(13, 16, sk[1], 1, 1);
   if (L.ex === 4) { g.px(7, 15, 0xf2a0a0, 2, 1); g.px(15, 15, 0xf2a0a0, 2, 1); }
   if (L.ex === 1) g.part(P => { P.E(cx, 17, 5.2, 3.6, hc, { clip: (x, y) => y > 15.4 && !(y < 18 && Math.abs(x - cx) < 1.6) }); });
@@ -2263,7 +2273,7 @@ function facePix(L, cat, nohat) {
   if (L.ex === 3) { g.L(6, 8, 9, 15, 0xc04848, 1); }
   if (L.ex === 5) { g.px(13, ey - 1, INK, 5, 4); g.L(5, 8, 19, 10, INK, 1); }
   // 前髪
-  if (hat !== 'hood' && hat !== 'helm') g.part(P => {
+  if (hat !== 'hood' && hat !== 'helm' && !rf.bald) g.part(P => {
     const cap = yb => P.E(cx, 7.6, 7.3, 5.3, hc, { clip: (x, y) => y < yb });
     if (hs === 5) P.E(cx, 8, 6.9, 4.7, hc, { f: 1, clip: (x, y) => y < 7.4 });
     else if (hs === 6) { P.E(cx, 8, 6.9, 4.5, hc, { f: 1, clip: (x, y) => y < 6.2 }); P.B(10.4, .6, 3.2, 8, hc); }
@@ -2294,6 +2304,7 @@ function facePix(L, cat, nohat) {
     else if (hat === 'hood') P.E(cx, 10.6, 8.8, 9.6, oc, { clip: (x, y) => ((x - cx) / 6.1) ** 2 + ((y - 12.2) / 6.7) ** 2 > 1 });
     else if (hat === 'crown') { P.B(6.4, 4.4, 11.2, 2.6, CK.gold); [-1, 0, 1].forEach(i => P.P([cx + i * 4.4 - 1.7, 4.6, cx + i * 4.4, 1, cx + i * 4.4 + 1.7, 4.6], CK.gold, 3)); P.px(11.4, 5, 0xe03050, 1.4, 1.4); }
   });
+  if (L.rf) raceFace(g, rf, sk, hc, cx);
   return g;
 }
 /* ---- 歩行ドット(16×16) dir: 0下 1左 2右 3上 ---- */
@@ -2301,7 +2312,7 @@ function walkPix(o, dir, fr) {
   const g = new Pix(16); g.k = 1;
   const sk = SKINS[(o.sk || 0) % SKINS.length], hc = HAIRC[(o.hc || 0) % HAIRC.length], oc = o.oc || OUTFIT.C[0], hat = o.hat || '', robe = o.robe, hs = (o.hs || 0) % HAIR_N, lg = o.lg || K(222, 22, 30), bt = K(28, 40, 20);
   const long = hs === 2 || hs === 9 || hs === 4 || hs === 7, f = fr ? 1 : 0, side = dir === 1 || dir === 2, up = dir === 3;
-  const hcol = hat === 'hood' ? oc : hat === 'helm' ? CK.sil : hs === 5 ? [hc[0], hc[1], sk[1], sk[1], sk[2]] : hc;
+  const rf = o.rf || null, hcol = hat === 'hood' ? oc : hat === 'helm' ? CK.sil : rf && rf.bald ? sk : hs === 5 ? [hc[0], hc[1], sk[1], sk[1], sk[2]] : hc;
   const capc = { bandana: K(212, 58, 42), cap: K(130, 46, 36), feather: K(108, 46, 34), beret: K(350, 62, 44), pelt: K(28, 42, 34) }[hat];
   g.part(P => {
     const S = (x, y, c, w, h) => P.px(x, y, c, w || 1, h || 1);
@@ -2320,7 +2331,7 @@ function walkPix(o, dir, fr) {
         S(5, 1, hcol[3], 6, 1); S(4, 2, hcol[2], 8, 2); S(4, 4, hcol[2], 1, 1); S(11, 4, hcol[1], 1, 1); if (hs !== 5 && hs !== 6) { S(5, 4, hcol[2], 1, 1); S(10, 4, hcol[2], 1, 1); }
         if (long || hat === 'hood') { S(4, 5, hcol[1], 1, 3); S(11, 5, hcol[1], 1, 3); }
         if (hs === 7) { S(3, 4, hcol[2], 1, 5); S(12, 4, hcol[2], 1, 5); } if (hs === 6) { S(7, 0, hcol[2], 2, 2); S(4, 2, sk[2], 2, 2); S(10, 2, sk[2], 2, 2); }
-        S(6, 5, INK, 1, 2); S(9, 5, INK, 1, 2); S(5, 7, sk[1], 6, 1);
+        if (rf && rf.eye1) S(7, 5, INK, 2, 2); else { S(6, 5, INK, 1, 2); S(9, 5, INK, 1, 2); } S(5, 7, sk[1], 6, 1);
         if (o.beard) { S(5, 6, o.beard, 1, 2); S(10, 6, o.beard, 1, 2); S(6, 7, o.beard, 4, 1); }
       }
     } else {
@@ -2344,9 +2355,79 @@ function walkPix(o, dir, fr) {
     else if (hat === 'goggles') { S(4, 3, K(28, 40, 26)[2], 8, 1); if (!up) { S(side ? 5 : 6, 3, 0x7fd8f0, 1, 1); if (!side) S(9, 3, 0x7fd8f0, 1, 1); } }
     else if (capc) { S(5, 1, capc[3], 6, 1); S(4, 2, capc[2], 8, 1); if (hat === 'cap' || hat === 'feather') S(side ? 3 : 4, 3, capc[1], side ? 6 : 8, 1); if (hat === 'feather') S(10, 0, CK.red[2], 1, 2); if (hat === 'pelt') { S(4, 0, capc[2], 1, 2); S(11, 0, capc[2], 1, 2); } }
     if (o.item === 'spear') { S(side ? 4 : 12, 2, 0xc8c8d8, 1, 2); S(side ? 4 : 12, 4, 0x7a5a36, 1, 10); }
+    if (rf) { const oy = rf.small ? 2 : rf.top ? 1 : 0; if (oy) raceRows(P, oy); raceWalk(S, rf, sk, hcol, side, up, f, oy); }
   });
   if (dir === 2) { const m = new Pix(16); m.k = 1; m.blit(g, 0, 0, true); return m; }
   return g;
+}
+/* ---- 種族の見た目(耳・角・翼・しっぽ など)---- */
+const WINGC = { feather: 0xf4f4fa, brown: 0xa07848, black: 0x3a3440, bat: 0x54406a, fairy: 0xbfeaf2 };
+function raceWingF(P, rf, cx) {
+  const c = WINGC[rf.wing] || WINGC.feather;
+  if (rf.wing === 'bat') sym(s => P.P([cx + s * 6, 17, cx + s * 12.4, 9.6, cx + s * 11.6, 15, cx + s * 12.2, 20, cx + s * 9.6, 18.6, cx + s * 8, 22], c));
+  else if (rf.wing === 'fairy') sym(s => { P.E(cx + s * 10, 12.6, 2.4, 5, c, { f: 3 }); P.E(cx + s * 10.2, 19.6, 1.9, 3, c, { f: 2 }); });
+  else sym(s => { P.P([cx + s * 6, 16, cx + s * 12.4, 8.6, cx + s * 12, 22.6, cx + s * 7, 22], c); P.L(cx + s * 9.6, 13, cx + s * 9.4, 21, darkc(c), 1); });
+}
+function raceFace(g, rf, sk, hc, cx) {
+  const fur = rf.fur ? hc : sk, bone = CK.bone, W = 0xf6f2e6, pink = 0xf0a8b0, e = rf.ear, h = rf.horn;
+  g.part(P => {
+    if (e === 'cat') sym(s => { P.P([cx + s * 2.4, 5, cx + s * 6.4, -1.6, cx + s * 8.2, 5.8], fur, 3); P.P([cx + s * 4.6, 4.4, cx + s * 6.2, 1.2, cx + s * 7, 4.8], pink); });
+    else if (e === 'fox') sym(s => { P.P([cx + s * 2, 5.2, cx + s * 7, -2.8, cx + s * 8.6, 6.2], fur, 3); P.P([cx + s * 5, 4, cx + s * 6.8, -.2, cx + s * 7.4, 4.6], 0xfaf4e8); });
+    else if (e === 'rabbit') sym(s => { P.E(cx + s * 3.6, 1.4, 1.8, 5.2, fur); P.E(cx + s * 3.6, 1.8, .7, 3.6, pink, { f: 2 }); });
+    else if (e === 'round') sym(s => { P.E(cx + s * 6.2, 3.8, 2.7, 2.7, fur); P.E(cx + s * 6.2, 4.1, 1.2, 1.2, pink, { f: 2 }); });
+    else if (e === 'dog') sym(s => P.P([cx + s * 4.4, 3.8, cx + s * 8.4, 4, cx + s * 9.6, 10.6, cx + s * 6.8, 9], fur, 1));
+    if (h === 2) sym(s => P.T([cx + s * 4.4, 5, cx + s * 6.6, 2, cx + s * 6, -1.2], 1.3, .5, bone));
+    else if (h === 1) P.P([cx - 1.7, 5.2, cx, -1.2, cx + 1.7, 5.2], bone, 3);
+    else if (h === 'antler') sym(s => { P.T([cx + s * 3.4, 5, cx + s * 5.6, 1.2, cx + s * 4.8, -1.6], .9, .5, K(30, 38, 62)); P.T([cx + s * 5.2, 2.2, cx + s * 8.4, .4], .7, .4, K(30, 38, 62)); });
+    else if (h === 'big') sym(s => P.T([cx + s * 5.4, 6.2, cx + s * 10, 5.6, cx + s * 11.2, 1.2], 1.6, .6, bone));
+    if (rf.halo) P.E(cx, 1.2, 5.2, 1.5, CK.gold, { f: 3, clip: (x, y) => ((x - cx) / 3.4) ** 2 + ((y - 1.2) / .5) ** 2 > 1 });
+    if (rf.leaf) P.P([cx - 1.4, 4.8, cx + 3.4, -.6, cx + 4.8, 3.6], K(112, 55, 44), 3);
+    if (rf.cap === 'mush') { P.E(cx, 5.2, 10.6, 5.6, K(4, 70, 52), { clip: (x, y) => y < 8.4 }); [[-5.4, 4.2], [0, 1.8], [5.2, 4.6]].forEach(([dx, y]) => P.E(cx + dx, y, 1.4, 1.1, 0xfaf6ea, { f: 2 })); }
+    if (rf.dish) P.E(cx, 3.4, 4.4, 1.5, K(196, 42, 82), { f: 3 });
+    if (rf.fin1) P.P([cx - 2.4, 5, cx + 1.4, -1.8, cx + 3.4, 5], sk, 3);
+    if (rf.flame) [-1, 0, 1].forEach(i => P.P([cx + i * 4 - 2, 4.6, cx + i * 4.4, -1.4 + Math.abs(i) * 1.6, cx + i * 4 + 2, 4.6], K(34, 95, 58), 3));
+  });
+  if (rf.muzzle) { g.part(P => P.E(cx, 15.9, 3.1, 2.3, rf.muzzle === 1 ? 0xfaf2e4 : rf.muzzle, { f: 2 })); g.px(11, 14, INK, 2, 1); g.px(11, 17, 0xb85050, 2, 1); }
+  if (rf.beak) g.part(P => P.P([cx - 1.9, 13.2, cx + 1.9, 13.2, cx, 17.4], K(42, 88, 56), 2));
+  if (rf.nose) g.part(P => P.E(cx, 14.6, 1.5, 2.2, K(4, 70, 46), { f: 2 }));
+  if (rf.tusk) { g.px(9, 16, W, 1, 2); g.px(14, 16, W, 1, 2); }
+  if (rf.fang) { g.px(10, 18, W, 1, 1); g.px(13, 18, W, 1, 1); }
+  if (rf.gem) { g.px(11, 7, rf.gem, 2, 2); g.px(11, 7, 0xffffff, 1, 1); }
+  if (rf.metal) { g.px(5, 14, 0x5a6270, 1, 1); g.px(18, 14, 0x5a6270, 1, 1); g.L(6, 18, 17, 18, 0x6a7280, 1); }
+  if (rf.scale) { [[7, 8], [16, 8], [6, 15], [17, 15]].forEach(([x, y]) => g.px(x, y, sk[1], 1, 1)); }
+}
+// 行をずらして、頭の上のすき間を作る(小さな種族は胴と足も詰める)
+function raceRows(P, oy) {
+  const w = P.w, src = P.p.slice(), map = oy === 2 ? [-1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 14, 15] : [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  for (let y = 0; y < 16; y++) for (let x = 0; x < w; x++) P.p[y * w + x] = map[y] < 0 ? -1 : src[map[y] * w + x];
+}
+function raceWalk(S, rf, sk, hcol, side, up, f, oy) {
+  const fur = rf.fur ? hcol : sk, bone = CK.bone[3], W = 0xf6f2e6, e = rf.ear, h = rf.horn, Y = oy, ty = 8 + oy, front = !side && !up;
+  if (rf.wing) { const c = WINGC[rf.wing] || WINGC.feather, d = darkc(c); if (side) { S(10, ty - 1, c, 3, 3); S(12, ty - 2, c, 2, 1); S(12, ty + 1, d, 1, 1); } else if (up) { S(2, ty - 1, c, 3, 4); S(11, ty - 1, c, 3, 4); S(1, ty - 2, c, 2, 2); S(13, ty - 2, c, 2, 2); S(4, ty + 2, d, 1, 1); S(11, ty + 2, d, 1, 1); } else { S(2, ty, c, 2, 2); S(1, ty - 1, c, 2, 1); S(12, ty, c, 2, 2); S(13, ty - 1, c, 2, 1); } }
+  if (e === 'elf' || e === 'fin') { const c = sk[3]; if (side) { S(8, 4 + oy, c, 2, 1); S(9, 3 + oy, c, 1, 1); } else { S(3, 4 + oy, c, 1, 1); S(12, 4 + oy, c, 1, 1); S(2, 3 + oy, c, 1, 1); S(13, 3 + oy, c, 1, 1); } }
+  else if (e === 'cat' || e === 'fox') { if (side) { S(6, Y, fur[2], 2, 1); S(9, Y, fur[2], 2, 1); if (oy) { S(6, Y - 1, fur[3], 1, 1); S(10, Y - 1, fur[3], 1, 1); } } else { S(4, Y, fur[2], 2, 1); S(10, Y, fur[2], 2, 1); S(4, Y + 1, fur[3], 1, 1); S(11, Y + 1, fur[3], 1, 1); if (oy) { S(4, Y - 1, fur[3], 1, 1); S(11, Y - 1, fur[3], 1, 1); } } }
+  else if (e === 'rabbit') { if (side) { S(7, Y - 1, fur[3], 1, 2); S(9, Y - 1, fur[2], 1, 2); } else { S(5, Y - 1, fur[3], 1, 2); S(10, Y - 1, fur[3], 1, 2); } }
+  else if (e === 'round') { if (side) { S(6, Y, fur[2], 2, 1); S(10, Y, fur[2], 2, 1); } else { S(3, Y, fur[2], 2, 2); S(11, Y, fur[2], 2, 2); } }
+  else if (e === 'dog') { if (side) S(9, Y + 2, fur[1], 2, 3); else { S(3, Y + 2, fur[1], 1, 3); S(12, Y + 2, fur[1], 1, 3); } }
+  if (h === 2) { if (side) { S(6, Y, bone, 1, 1); S(9, Y, bone, 1, 1); } else { S(4, Y, bone, 1, 1); S(11, Y, bone, 1, 1); if (oy) { S(4, Y - 1, bone, 1, 1); S(11, Y - 1, bone, 1, 1); } } }
+  else if (h === 1) { S(side ? 6 : 7, Y, bone, 2, 1); if (oy) S(side ? 6 : 7, Y - 1, bone, 1, 1); }
+  else if (h === 'antler') { const c = 0xc8a878; if (side) { S(7, Y, c, 1, 1); S(6, Y - 1, c, 3, 1); } else { S(4, Y, c, 1, 1); S(3, Y - 1, c, 2, 1); S(11, Y, c, 1, 1); S(11, Y - 1, c, 2, 1); } }
+  else if (h === 'big') { if (side) { S(5, Y, bone, 2, 1); S(4, Y - 1, bone, 1, 1); } else { S(3, Y, bone, 2, 1); S(2, Y - 1, bone, 1, 1); S(11, Y, bone, 2, 1); S(13, Y - 1, bone, 1, 1); } }
+  if (rf.halo) S(5, Y - 1, CK.gold[3], 6, 1);
+  if (rf.leaf) { S(8, Y, 0x4f9a3e, 2, 1); if (oy) S(9, Y - 1, 0x6fbf52, 1, 1); }
+  if (rf.cap === 'mush') { const c = K(4, 70, 52); S(4, Y, c[3], 8, 1); S(3, Y + 1, c[2], 10, 2); S(5, Y + 1, W, 1, 1); S(9, Y + 1, W, 2, 1); S(7, Y, W, 1, 1); }
+  if (rf.dish) S(6, Y + 1, 0xbfe2ee, 4, 1);
+  if (rf.fin1) S(7, Y, sk[3], 2, 1);
+  if (rf.flame) { S(5, Y, 0xffb030, 1, 1); S(7, Y, 0xffd040, 2, 1); S(10, Y, 0xffb030, 1, 1); }
+  if (rf.tail) { const c = rf.tail === 1 ? fur[2] : rf.tail, y = rf.small ? 12 : 11 + oy; if (side) { S(11, y, c, 2, 1); S(12, y - 1, c, 1, 1); } else if (up) S(7, y, c, 2, 2); }
+  if (front) {
+    if (rf.muzzle) S(7, 6 + oy, rf.muzzle === 1 ? 0xfaf2e4 : rf.muzzle, 2, 1);
+    if (rf.beak) S(7, 6 + oy, 0xf0c030, 2, 1);
+    if (rf.nose) S(7, 6 + oy, 0xc03030, 2, 1);
+    if (rf.tusk) { S(6, 7 + oy, W, 1, 1); S(9, 7 + oy, W, 1, 1); }
+    if (rf.eyec != null && !rf.eye1) { S(6, 5 + oy, rf.eyec, 1, 2); S(9, 5 + oy, rf.eyec, 1, 2); }
+    if (rf.gem) S(7, 3 + oy, rf.gem, 2, 1);
+  } else if (side) { if (rf.beak || rf.nose) S(3, 6 + oy, rf.beak ? 0xf0c030 : 0xc03030, 2, 1); if (rf.eyec != null) S(5, 5 + oy, rf.eyec, 1, 2); }
 }
 // 町の人たち
 function npcLook(seed, kind) {
@@ -3115,7 +3196,7 @@ const World = {
     this.reveal(); stepEffects(); await Field.step(dx, dy);
     if ((t === 8 || t === 22) && G.veh === 'foot') P().forEach(c => { if (!c.dead) c.hp = Math.max(1, c.hp - Math.max(1, Math.floor(st(c).mhp * (t === 22 ? .04 : .02)))); });
     if (t === 17 && G.veh === 'foot') P().forEach(c => { if (!c.dead) c.hp = Math.min(st(c).mhp, c.hp + Math.max(1, Math.floor(st(c).mhp * .03))); });
-    const nn = W.nat[i]; if (G.lastNat !== nn && !isWater(t)) { if (G.lastNat !== undefined) { const N2 = W.nations[nn]; HUD.banner(`${N2.name}に入った(魔物Lv${TIERLV[N2.tier] + G.worldLv * 15}〜)`); } G.lastNat = nn; }
+    const nn = W.nat[i]; if (G.lastNat !== nn && !isWater(t)) { if (G.lastNat !== undefined) { const N2 = W.nations[nn]; HUD.banner(`🚩 国境を越えた:${N2.name}(魔物Lv${TIERLV[N2.tier] + G.worldLv * 15}〜)`); } G.lastNat = nn; }
     HUD.update();
     if (G.news && G.news.length) { const n = G.news; G.news = []; await say(n); }
     const s = W.at.get(i);
@@ -3764,11 +3845,11 @@ const TownMap = {
   // 「行動」ボタン
   async action() {
     const s = this.site(), o = [{ l: '🔍 目の前を調べる・話す', v: 'look' }];
-    if (!G.tm.in) { o.push({ l: '📋 施設の一覧(歩かずに入る)', v: 'list' }); o.push({ l: '🌙 盗みを働く', v: 'crime' }); if (s.type !== 'village') o.push({ l: '🧵 仕立て屋へ行く', v: 'tail', sub: '服や髪を染める' }); if (s.type === 'capital') o.push({ l: '🏛️ 博物館へ行く', v: 'mus', sub: `展示 ${Relic.shown()}/${RELICS.length}` }); if (BlackMarket.isOpen(s)) o.push({ l: '🌙 闇市をのぞく', v: 'bm', sub: '夜のあいだだけ。骨董と、わけありの品' }); }
+    if (!G.tm.in) { o.push({ l: '📋 施設の一覧(歩かずに入る)', v: 'list' }); if (Race.home(s)) o.push({ l: '🤝 里の者を旅にさそう', v: 'rrec', sub: RACE[Race.home(s)].name + 'を仲間にできる' }); o.push({ l: '🌙 盗みを働く', v: 'crime' }); if (s.type !== 'village') o.push({ l: '🧵 仕立て屋へ行く', v: 'tail', sub: '服や髪を染める' }); if (s.type === 'capital') o.push({ l: '🏛️ 博物館へ行く', v: 'mus', sub: `展示 ${Relic.shown()}/${RELICS.length}` }); if (BlackMarket.isOpen(s)) o.push({ l: '🌙 闇市をのぞく', v: 'bm', sub: '夜のあいだだけ。骨董と、わけありの品' }); }
     o.push({ l: '💬 仲間と話す', v: 'chat' }); o.push({ l: G.tm.in ? '🚪 城を出る' : '🚪 町を出る', v: 'out' });
     const a = await ask(`${Field.locName()}<small>・${timeStr()}</small>`, o, { cancel: '閉じる' });
     if (a === 'look') { const x = G.tm.x + DIRV[Field.dir][0], y = G.tm.y + DIRV[Field.dir][1], n = this.cur.npcs.find(q => q.x === x && q.y === y); if (n) await this.talk(n); else if (!(await this.bump(x, y))) await say('とくに変わったものはない。'); }
-    else if (a === 'list') Town.open(s); else if (a === 'crime') await Crime.menu(s); else if (a === 'bm') BlackMarket.open(s); else if (a === 'mus') Relic.open(); else if (a === 'tail') Tailor.open(); else if (a === 'chat') await Menu.chat(); else if (a === 'out') await this.exit('out');
+    else if (a === 'list') Town.open(s); else if (a === 'rrec') Race.recruit(s); else if (a === 'crime') await Crime.menu(s); else if (a === 'bm') BlackMarket.open(s); else if (a === 'mus') Relic.open(); else if (a === 'tail') Tailor.open(); else if (a === 'chat') await Menu.chat(); else if (a === 'out') await this.exit('out');
     if (G) Field.draw();
   }
 };
@@ -3793,12 +3874,12 @@ function mkEnemy(id, o) {
   u.buf = {}; u.fx = {}; u.ten = 0; return u;
 }
 function mkAlly(c) {
-  const s = st(c), u = { side: 'A', c, name: c.name, emoji: c.emoji, fam: 'humanoid', lv: c.lv, s: { mhp: s.mhp, mmp: s.mmp, atk: s.atk, def: s.def, agi: s.agi, int: s.int, luk: s.luk }, skills: c.skills, res: {}, st: c.st, buf: {}, fx: {}, ten: 0 };
+  const s = st(c), u = { side: 'A', c, name: c.name, emoji: c.emoji, fam: 'humanoid', lv: c.lv, s: { mhp: s.mhp, mmp: s.mmp, atk: s.atk, def: s.def, agi: s.agi, int: s.int, luk: s.luk }, skills: c.skills, res: Race.res(c), st: c.st, buf: {}, fx: {}, ten: 0 };
   Object.defineProperty(u, 'hp', { get() { return c.hp; }, set(v) { c.hp = v; } });
   Object.defineProperty(u, 'mp', { get() { return c.mp; }, set(v) { c.mp = v; } });
   Object.defineProperty(u, 'dead', { get() { return c.dead; }, set(v) { c.dead = v; } });
   u.cursed = Object.values(c.eq).some(k => { const it = k && item(k); return it && it.sp.cursed; });
-  u.imm = Object.values(c.eq).map(k => { const it = k && item(k); return it && it.sp.im; }).filter(Boolean);
+  u.imm = Object.values(c.eq).map(k => { const it = k && item(k); return it && it.sp.im; }).filter(Boolean).concat(Race.imm(c));
   return u;
 }
 const Battle = {
@@ -3859,6 +3940,7 @@ const Battle = {
       for (const k in u.buf) if (--u.buf[k].t <= 0) delete u.buf[k];
       for (const k in u.fx) if (--u.fx[k] <= 0) delete u.fx[k];
       if (u.fx.regen) { const h = Math.floor(u.s.mhp * .1); u.hp = Math.min(u.s.mhp, u.hp + h); }
+      if (u.side === 'A' && u.c) { const rg = Race.regen(u.c); if (rg && u.hp > 0 && u.hp < u.s.mhp) u.hp = Math.min(u.s.mhp, u.hp + Math.max(1, Math.floor(u.s.mhp * rg / 100))); }
       if (u.st.poison) { const d = Math.max(1, Math.floor(u.s.mhp * (u.boss ? .03 : .08))); u.hp = Math.max(u.side === 'A' ? 1 : 0, u.hp - d); await this.log(`${u.name}は毒で ${d} のダメージ!`, 'dm'); if (u.hp <= 0) await this.kill(u, null); }
       ['silence', 'blind'].forEach(k => { if (u.st[k] && u.st[k] < 90 && --u.st[k] <= 0) delete u.st[k]; });
     }
@@ -4276,10 +4358,11 @@ const Menu = {
     let idx = i;
     UI.open(s => {
       const all = allChars(); s.head('つよさ'); const c = Menu.charTabs(s, idx, k => idx = k, all), m = st(c), j = jobOf(c), jr = c.jobs[c.job];
-      s.card(`${ic(c, 48)}<b style="font-size:17px">${esc(c.name)}</b> <span class="tag">${SEX_JP[c.sex] || ''}</span><span class="tag">${(PERS[c.pers] || PERS.honest)[0]}</span>${c.reb ? '<span class="tag">転生' + c.reb + '回</span>' : ''}<br>` +
+      s.card(`${ic(c, 48)}<b style="font-size:17px">${esc(c.name)}</b> <span class="tag">${SEX_JP[c.sex] || ''}</span><span class="tag">${(PERS[c.pers] || PERS.honest)[0]}</span>${c.kind !== 'monster' ? '<span class="tag">' + Race.name(c) + '</span>' : ''}${c.reb ? '<span class="tag">転生' + c.reb + '回</span>' : ''}<br>` +
         `${c.kind === 'monster' ? jobName(c) + '(魔物)' : `${JOBCAT[j.cat][1]} ${j.name} ★${jr ? jr.lv : 1}${jr && jr.lv >= 10 ? '(極)' : ''}`}・Lv ${c.lv}<br>` +
         `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで ' + Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier] - jr.p)) + '戦' : ''}</small>`);
       s.card(`<div class="kv"><span>HP<b>${c.hp} / ${m.mhp}</b></span><span>MP<b>${c.mp} / ${m.mmp}</b></span><span>こうげき力<b>${m.atk}</b></span><span>しゅび力<b>${m.def}</b></span><span>ちから<b>${m.str}</b></span><span>みのまもり<b>${m.vit}</b></span><span>すばやさ<b>${m.agi}</b></span><span>かしこさ<b>${m.int}</b></span><span>うん<b>${m.luk}</b></span><span>極めた職<b>${masters(c)}</b></span></div>`);
+      if (c.kind !== 'monster') { const R = Race.of(c); s.card(`<b>種族:${R.emoji} ${R.name}</b> <small>${RACE_GRP[R.grp][0]}</small><br><small>${R.d}<br>${Race.traits(R)}</small>`); }
       s.card('<b>そうび</b><br>' + Object.keys(SLOT_JP).map(k => `<small>${SLOT_JP[k]}:</small> ${c.eq[k] && item(c.eq[k]) ? esc(item(c.eq[k]).name) : '<span class="note">なし</span>'}`).join('<br>'));
       const ps = Object.keys(j.pas || {}).filter(k => PAS_JP[k]).map(k => `<span class="tag">${PAS_JP[k]}${j.pas[k] > 0 ? '+' : ''}${j.pas[k]}%</span>`).join('');
       if (ps) s.card('<b>職業の特性</b><br>' + ps);
@@ -4356,9 +4439,10 @@ const Menu = {
     const inP = G.party.includes(c.id), i = G.party.indexOf(c.id), opts = [{ l: '作戦を変える', v: 'tac', sub: 'いま:' + TACTIC_JP[c.tactic] }];
     if (inP && i > 0) opts.push({ l: '前へ出す', v: 'up' }); if (inP && i < G.party.length - 1) opts.push({ l: '後ろへ下げる', v: 'down' });
     if (inP && c.id !== G.hero && G.party.length > 1) opts.push({ l: '控えにまわす', v: 'out' }); if (!inP) opts.push({ l: 'パーティに入れる', v: 'in', dis: G.party.length >= 4 });
-    opts.push({ l: 'つよさを見る', v: 'st' }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
+    opts.push({ l: 'つよさを見る', v: 'st' }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id === G.hero && c.race === undefined) opts.push({ l: '🧬 種族を選ぶ(1回だけ)', v: 'race', sub: 'まだ種族を決めていない(いまは人間)' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
     const a = await ask(`${ic(c)} <b>${esc(c.name)}</b> Lv${c.lv} ${jobName(c)}`, opts, { cancel: 1 });
-    if (a === 'look') { const L = await askLook(c.sex, catOf(c), lookOf(c)); if (L) c.look = L; }
+    if (a === 'look') { Race.ctx = Race.id(c); const L = await askLook(c.sex, catOf(c), lookOf(c)); Race.ctx = null; if (L) c.look = L; }
+    if (a === 'race') { const r = await Race.choose(false); if (r && await yn(`${c.name}の種族を <b>${RACE[r].name}</b> にしますか?\n<small>あとから変えられません。</small>`)) { c.race = r; fixEquip(c); c.hp = Math.min(c.hp, st(c).mhp); c.mp = Math.min(c.mp, st(c).mmp); HUD.update(); await say(`${c.name}は <b>${RACE[r].name}</b> として生きていくことにした。`); } }
     if (a === 'tac') { const ks = Object.keys(TACTIC_JP), t = await ask('作戦を選んでください', ks.map(k => TACTIC_JP[k]), { cancel: 1 }); if (t >= 0) c.tactic = ks[t]; }
     else if (a === 'up') { G.party.splice(i, 1); G.party.splice(i - 1, 0, c.id); } else if (a === 'down') { G.party.splice(i, 1); G.party.splice(i + 1, 0, c.id); }
     else if (a === 'out') { G.party.splice(i, 1); G.reserve.push(c.id); } else if (a === 'in') { if (Oath.has('solo')) toast('一人旅の誓いを立てている'); else { G.reserve.splice(G.reserve.indexOf(c.id), 1); G.party.push(c.id); } }
@@ -4419,19 +4503,23 @@ const Menu = {
       const x0 = clamp(G.x - (span >> 1), 0, S - span), y0 = clamp(G.y - (span >> 1), 0, S - span), cv = el('canvas', 'mapc'); cv.width = cv.height = n * px; s.add(cv);
       const x = cv.getContext('2d');
       if (x) {
-        x.fillStyle = '#05070d'; x.fillRect(0, 0, cv.width, cv.height);
+        x.fillStyle = '#05070d'; x.fillRect(0, 0, cv.width, cv.height); const rep = new Int32Array(n * n).fill(-1), natOn = G.opts.natmap !== false;
         for (let cy = 0; cy < n; cy++) for (let cx = 0; cx < n; cx++) {
           const tx = x0 + cx * step, ty = y0 + cy * step; let i = ty * S + tx, ok = World.seen(i);
           if (!ok && step > 1) for (let dy = 0; dy < step && !ok; dy++) for (let dx = 0; dx < step; dx++) { const j = (ty + dy) * S + tx + dx; if (tx + dx < S && ty + dy < S && World.seen(j)) { ok = true; i = j; break; } }
-          if (ok) { x.fillStyle = TER_COL[W.t[i]]; x.fillRect(cx * px, cy * px, px, px); }
+          if (ok) { x.fillStyle = TER_COL[W.t[i]]; x.fillRect(cx * px, cy * px, px, px); rep[cy * n + cx] = i; }
         }
+        Border.labels = []; if (natOn) Border.map(x, { n, px, rep, S, step });
         const P2 = (wx, wy) => [(wx - x0) / step * px, (wy - y0) / step * px], ms = Math.max(3, px * 1.3);
         W.sites.forEach(t => { if (!G.vis[t.id] && !World.seen(t.y * S + t.x)) return; if (t.x < x0 || t.y < y0 || t.x >= x0 + span || t.y >= y0 + span) return; const [mx, my] = P2(t.x, t.y), r = t.type === 'capital' ? ms * 1.5 : ms; x.fillStyle = t.type === 'dungeon' ? (G.ds[t.id] && G.ds[t.id].clear ? '#a05a5a' : '#ff5a5a') : t.type === 'shrine' ? '#7fe0ff' : '#fff'; x.fillRect(mx - r / 2, my - r / 2, r + px, r + px); if (px > 1) { x.strokeStyle = '#000'; x.strokeRect(mx - r / 2, my - r / 2, r + px, r + px); } });
         if (G.ship) { const [mx, my] = P2(G.ship.x, G.ship.y); x.fillStyle = '#ffd24a'; x.fillRect(mx - 2, my - 2, 4 + px, 4 + px); }
         More.mapMarks(x, P2, (wx, wy) => wx >= x0 && wy >= y0 && wx < x0 + span && wy < y0 + span, px);
+        if (natOn) Border.names(x, cv.width);
         const [hx, hy] = P2(G.x, G.y); x.strokeStyle = '#ff3bd0'; x.lineWidth = 2; x.strokeRect(hx - 4, hy - 4, 8 + px, 8 + px);
       }
       s.p(`<small>□白:町 <span class="bad">■赤</span>:迷宮(暗い赤は踏破済み) <span style="color:#7fe0ff">■水色</span>:祠 <span style="color:#ffd24a">■黄</span>:船 <span style="color:#ff3bd0">□桃</span>:現在地 <span style="color:#ffe14a">?</span>:噂の場所(だいたい) <span style="color:#ffe14a">!</span>:行けば何かある <span style="color:#ff9a3a">×</span>:宝の地図の入口 <span style="color:#ff7ad0">☠</span>:宿敵。歩いた場所のまわりだけ表示される。${big ? `<br>この世界は${S}×${S}マス。いま表示しているのは${span}マス四方。` : ''}</small>`);
+      { const lg = G.opts.natmap !== false ? Border.legend() : ''; if (lg) s.p(`<small>国の色:${lg} <span style="color:#fff">━</span>白い線が国境</small>`); }
+      s.btn('🚩 国ごとの色分けと国境線:' + (G.opts.natmap !== false ? 'ON' : 'OFF'), () => { G.opts.natmap = G.opts.natmap === false; }, { cls: G.opts.natmap !== false ? 'ok' : '' });
       s.btn('🗒️ 噂・宝の地図・宿敵を見る', () => More.notes(0));
       s.h('知っている場所'); const i0 = G.y * S + G.x;
       W.nations.forEach(N => { const ls = W.sites.filter(t => t.nation === N.id && (G.vis[t.id] || World.seen(t.y * S + t.x))); if (!ls.length) return; s.card(`<b style="color:${N.color}">${N.name}</b> <small>危険度${N.tier + 1}</small><br>` + ls.map(t => `${siteIcon(t)} ${esc(t.name)} <small>${t.kind !== undefined ? '[' + DSZ[DKIND[t.kind].sz][1] + '] ' : ''}${dirText(t.x - G.x, t.y - G.y)}${G.vis[t.id] ? '' : '・未訪問'}${G.ds[t.id] && G.ds[t.id].clear ? '・踏破' : ''}</small>`).join('<br>')); });
@@ -4451,6 +4539,8 @@ const Menu = {
       s.btn('戦闘をおまかせで進める:' + (G.opts.auto ? 'ON' : 'OFF'), () => { G.opts.auto = !G.opts.auto; }, { sub: 'ONにすると全員が作戦どおりに自動で戦い、勝利メッセージも省略されます(レベル上げ向き)', cls: G.opts.auto ? 'ok' : '' });
       s.btn('オートセーブ:' + (G.opts.autosave ? 'ON' : 'OFF'), () => { if (G.hard) { toast('ハードコアでは常にONです'); return; } G.opts.autosave = !G.opts.autosave; }, { sub: '町に入った時・宿屋・ボス撃破時に自動で記録します', cls: G.opts.autosave ? 'ok' : '' });
       s.btn('天気の演出(雨・雪・霧など):' + (G.opts.wxfx !== false ? 'ON' : 'OFF'), () => { G.opts.wxfx = G.opts.wxfx === false; }, { sub: 'OFFにすると、雨つぶや雷の光などを描かなくなります(天気の効果そのものは変わりません)', cls: G.opts.wxfx !== false ? 'ok' : '' });
+      s.btn('歩く画面の国境線:' + (G.opts.border !== false ? 'ON' : 'OFF'), () => { G.opts.border = G.opts.border === false; Field.draw(); }, { sub: '国と国の境目に、それぞれの国の色の線を引きます。画面上の地名にも、近くの国の名前が出ます', cls: G.opts.border !== false ? 'ok' : '' });
+      Ctl.settings(s);
       s.h('あそびかた'); s.btn('📘 説明を読む', () => Title.help());
     });
   }
@@ -4531,10 +4621,11 @@ const Town = {
     UI.open(sc => {
       const N = W.nations[s.nation], night = hour() >= 20 || hour() < 6;
       sc.head(`${SITE_ICON[s.type]} ${esc(s.name)}`, fmt(G.gold) + 'G');
-      sc.p(`<small style="color:${N.color}">${N.name}</small> <small>${dateStr()} ${timeStr()}${night ? '・夜は多くの店が閉まっている' : ''}</small>`);
+      sc.p(`<small style="color:${N.color}">${N.name}</small> <small>${dateStr()} ${timeStr()}${night ? '・夜は多くの店が閉まっている' : ''}</small>`); sc.p(Race.townLine(s));
       sc.grid(2);
       s.fac.forEach(f => { const cl = night && !NIGHT_OPEN.includes(f); sc.btn(`${FAC[f][0]} ${FAC[f][1]}`, () => Town.go(f, s), { dis: cl, sub: cl ? '閉店中' : '' }); });
       if (G.home && G.home.town === s.id) sc.btn('🏡 自宅', () => Home.open(s), { cls: 'ok' });
+      if (Race.home(s)) sc.btn(`🤝 里の者を旅にさそう`, () => Race.recruit(s), { cls: 'ok', sub: RACE[Race.home(s)].name + 'を仲間に' });
       sc.end(); sc.h('そのほか'); sc.grid(2);
       sc.btn('💬 人と話す', () => Town.talk(s)); sc.btn('🔍 町を探索', () => Town.search(s));
       sc.btn('🌙 盗みを働く', () => Crime.menu(s)); sc.btn('📋 メニュー', () => Menu.open());
@@ -4713,8 +4804,8 @@ const Tavern = {
     UI.open(sc => {
       sc.head('🍺 酒場', fmt(G.gold) + 'G'); sc.p('にぎやかな声と、酒の匂い。冒険者たちが仲間を探している。');
       sc.h('仲間を探す'); const full = allChars().length >= 16;
-      Tavern.uniques(s).forEach(c => sc.btn(`${ic(c)} ${esc(c.name)} <span class="tag">名のある冒険者</span>`, () => Tavern.hire(Object.assign({ key: c.id, comp: c.id }, c)), { r: fmt(c.fee) + 'G', sub: `Lv${c.lv} ${DB.jobs[c.job] ? DB.jobs[c.job].name : ''}・${PERS[c.pers][0]}<br>${esc(c.bio)}`, dis: G.gold < c.fee || full }));
-      Tavern.hires(s).forEach(h => sc.btn(`${ic(h)} ${h.name}`, () => Tavern.hire(h), { r: fmt(h.fee) + 'G', sub: `Lv${h.lv} ${DB.jobs[h.job].name}・${PERS[h.pers][0]}`, dis: G.gold < h.fee || full }));
+      Tavern.uniques(s).forEach(c => sc.btn(`${ic(c)} ${esc(c.name)} <span class="tag">名のある冒険者</span>`, () => Tavern.hire(Object.assign({ key: c.id, comp: c.id }, c)), { r: fmt(c.fee) + 'G', sub: `Lv${c.lv} ${RACE[c.race] ? RACE[c.race].name + 'の' : ''}${DB.jobs[c.job] ? DB.jobs[c.job].name : ''}・${PERS[c.pers][0]}<br>${esc(c.bio)}`, dis: G.gold < c.fee || full }));
+      Tavern.hires(s).forEach(h => sc.btn(`${ic(h)} ${h.name}`, () => Tavern.hire(h), { r: fmt(h.fee) + 'G', sub: `Lv${h.lv} ${RACE[h.race] ? RACE[h.race].name + 'の' : ''}${DB.jobs[h.job].name}・${PERS[h.pers][0]}`, dis: G.gold < h.fee || full }));
       if (full) sc.p('<span class="note">仲間がいっぱいだ(最大16人)。</span>');
       sc.h('ひと息つく');
       sc.btn('噂話を聞く(10G)', async () => { G.gold -= 10; addMin(20); const q = chance(75) ? Rumor.hear(s, true) : null; if (q) await say(`🍺 酒場のマスター\n「${q}」\n<small>(噂メモに書きとめた。地図に印がついた)</small>`); else await Town.talk(s); }, { dis: G.gold < 10, sub: '知らない場所・埋もれた宝・宿敵の居場所' });
@@ -4728,7 +4819,7 @@ const Tavern = {
   },
   async hire(h) {
     if (!(await yn(`${ic(h)} <b>${h.name}</b>を ${fmt(h.fee)}G で仲間にしますか?`))) return;
-    G.gold -= h.fee; G.hires[h.key] = 1; const c = newChar({ name: h.name, emoji: h.emoji, sex: h.sex, job: DB.jobs[h.job] ? h.job : 'commoner', lv: h.lv, pers: h.pers, comp: h.comp || null, tactic: 'balance' });
+    G.gold -= h.fee; G.hires[h.key] = 1; const c = newChar({ name: h.name, emoji: h.emoji, sex: h.sex, job: DB.jobs[h.job] ? h.job : 'commoner', lv: h.lv, pers: h.pers, comp: h.comp || null, tactic: 'balance', race: h.race });
     const sg = starterGear(c, clamp(eqTier(h.lv) - 1, 0, 11)); if (sg[0]) c.eq.w = sg[0]; if (sg[1]) c.eq.b = sg[1]; fullHeal(c);
     if (G.party.length < (Oath.has('solo') ? 1 : 4)) G.party.push(c.id); else G.reserve.push(c.id);
     await say(`${h.name}が仲間に加わった!` + (G.party.includes(c.id) ? '\n<small>仲間は「作戦」に従って自分で戦う。メニュー→仲間・作戦で「めいれいする」にすれば、自分で指示できる。</small>' : '\n<small>(控えに入った)</small>'));
@@ -4892,7 +4983,7 @@ const Home = {
       if (H.work) sc.btn('🔨 工房で鍛冶をする', () => Smith.open(null));
       if (H.gift > 0 && sp) sc.btn(`🎁 ${esc(sp.name)}からの差し入れ(${H.gift})`, async () => { const out = []; for (let i = 0; i < H.gift; i++) { const id = pick(['stew', 'steak', 'fruitpie', 'herb2', 'herbtea', 'bread']); give(id); out.push(item(id).name); } H.gift = 0; await say(`「旅の役に立ててね。」\n${out.join('、')}をもらった!`); }, { cls: 'pri' });
       if (G.flags.kid && !G.kids.length) sc.btn('👶 赤ちゃんに会う', async () => { const n = await askText('子供が生まれた!名前をつけてあげよう', 'ルル', 8); G.kids.push({ name: n || 'ルル', born: G.flags.kid }); await say(`${n || 'ルル'}は すやすやと眠っている……。\n<small>(120日たつと、一緒に旅ができるようになる)</small>`); }, { cls: 'pri' });
-      G.kids.forEach(kd => { if (kd.joined) return; const d = G.day - kd.born; sc.btn(`🧒 ${esc(kd.name)}`, async () => { if (d < 120) { await say(`${kd.name}は 元気に育っている。\n<small>(旅に出られるまで あと${120 - d}日)</small>`); return; } if (allChars().length >= 16) { toast('仲間がいっぱいだ'); return; } if (await yn(`${kd.name}「ぼくも一緒に行きたい!」\n旅に連れていきますか?`)) { kd.joined = true; const c = newChar({ name: kd.name, emoji: '🧒', sex: 'x', job: 'commoner', lv: 1, pers: 'brave' }); STATS.forEach(k => c.base[k] += 4); c.reb = 1; fullHeal(c); G.reserve.push(c.id); await say(`${kd.name}が仲間に加わった!\n<small>(親の才能を受け継ぎ、成長が早い。控えに入った)</small>`); } }, { sub: d < 120 ? `生後${d}日` : '旅に出られる' }); });
+      G.kids.forEach(kd => { if (kd.joined) return; const d = G.day - kd.born; sc.btn(`🧒 ${esc(kd.name)}`, async () => { if (d < 120) { await say(`${kd.name}は 元気に育っている。\n<small>(旅に出られるまで あと${120 - d}日)</small>`); return; } if (allChars().length >= 16) { toast('仲間がいっぱいだ'); return; } if (await yn(`${kd.name}「ぼくも一緒に行きたい!」\n旅に連れていきますか?`)) { kd.joined = true; const c = newChar({ name: kd.name, emoji: '🧒', sex: 'x', job: 'commoner', lv: 1, pers: 'brave', race: Race.id(hero()) }); STATS.forEach(k => c.base[k] += 4); c.reb = 1; fullHeal(c); G.reserve.push(c.id); await say(`${kd.name}が仲間に加わった!\n<small>(親の才能を受け継ぎ、成長が早い。控えに入った)</small>`); } }, { sub: d < 120 ? `生後${d}日` : '旅に出られる' }); });
     });
   },
   store() {
@@ -5599,7 +5690,7 @@ const Poi = {
       cand.push({ w: (p.pk === 'den' ? (tavern ? 2 : .6) : 1.3) * (1 - d / R * .7), f: () => { const dw = Rumor.dir(p.x - s.x, p.y - s.y), far = Rumor.far(d), ter = Rumor.ter(p.x, p.y); Rumor.add({ k: 'poi', sid: p.id, x: p.x, y: p.y, t: p.pk === 'den' ? `${ter}の「ぬし」のねぐら` : p.pk === 'stele' ? `${ter}に立つ古代の石碑` : `絶景「${p.name}」` });
         return p.pk === 'den' ? `<b>${dw}</b>、${far}の${ter}には「ぬし」がいる。山のような大きさで、見た者はみな逃げ帰ったそうだ。` : p.pk === 'stele' ? `<b>${dw}</b>、${far}の${ter}に、だれにも読めない文字の刻まれた石碑が立っているよ。` : `<b>${dw}</b>、${far}に、それは見事な景色の場所があるんだ。一生に一度は見ておくといい。`; } }); });
   },
-  mapMarks(mark) { this.all.forEach(p => { if (!World.seen(p.y * W.S + p.x)) return; const d = this.done(p); mark(p.x, p.y, { den: '主', stele: '碑', vista: '景', grave: '墓' }[p.pk], d ? '#7f8a99' : { den: '#ff6b5a', stele: '#6ad8c8', vista: '#9be36a', grave: '#d8d0c0' }[p.pk]); }); },
+  mapMarks(mark) { this.all.forEach(p => { const ch0 = { den: '主', stele: '碑', vista: '景', grave: '墓' }[p.pk]; if (!ch0 || !World.seen(p.y * W.S + p.x)) return; const d = this.done(p); mark(p.x, p.y, ch0, d ? '#7f8a99' : { den: '#ff6b5a', stele: '#6ad8c8', vista: '#9be36a', grave: '#d8d0c0' }[p.pk]); }); },
   sprites() { return []; },
   async step() { return false; }
 };
@@ -6611,6 +6702,243 @@ const More7 = { boot() { Realm.reg(); Purify.apply(); Crest._s = null; }, day() 
   More2.notesExtra = function (s) { s.btn('🚩 旗印をえがく', () => Crest.open(), { sub: '一行の紋章(冒険者カードと船の帆に出る)' }); n0.call(this, s); const ed = Edict.text(); s.card(`📕 伝承の本 ${Lore.count()}/${LORE.length}・🧙 解いた謎 ${Object.keys(G.riddle).length}/${Poi.all.filter(p => p.pk === 'sage').length}・🌀 制した異界 ${Poi.all.filter(p => p.pk === 'gate' && Poi.done(p)).length}/3・🌱 清めた土地 ${Object.keys(G.pure).length}<br>🎲 すごろくのあがり ${G.stat.sugo || 0}回・🏁 魔物かけっこの的中 ${G.stat.mrace || 0}回・🤝 和解した仲間 ${G.stat.recon || 0}人` + (ed ? '<br>' + ed : '') + (G.fief ? `<br>🏰 領地:${W.byId[G.fief.town] ? W.byId[G.fief.town].name : ''}(人口${fmt(G.fief.pop)})` : '') + (G.gone.length ? `<br>💔 去っていった仲間:${G.gone.map(o => G.chars[o.id] ? G.chars[o.id].name : '').filter(Boolean).join('、')}` : '')); if (Lore.count()) { s.h('伝承の本'); s.card(LORE.map((t, i) => G.lore[i] ? t : '').filter(Boolean).join('<br><br>')); } };
 }
 
+/* ===================== 種族(52種)・種族ごとの特性・町の住民・種族の里 ===================== */
+const RACE_GRP = { H: ['人間系', '🧑'], F: ['妖精・森系', '🧝'], B: ['獣人系', '🐾'], S: ['鱗・水系', '🐉'], G: ['巨人・鬼系', '👹'], X: ['精霊・異形系', '✨'] };
+const RACE = {}, RACES = [];
+// id, 名前, 系統, 絵文字, 能力補正%(HP,MP,力,守,速,賢,運), { pas 特性, res 属性の受けやすさ, im 無効, tm [夜%,昼%], regen, 見た目(sk/sks/hc/f), d 説明, say ひとこと }
+function defRace(id, name, grp, emoji, mp, o) { const R = Object.assign({ id, name, grp, emoji, mp, m: mp.map(v => 1 + v / 100), pas: {}, res: {}, im: [], f: null }, o); if (R.sk) { R.ski = SKINS.length; SKINS.push(K(R.sk[0], R.sk[1], R.sk[2])); } RACE[id] = R; RACES.push(R); }
+// --- 人間系 ---
+defRace('human', '人間', 'H', '🧑', [0, 0, 0, 0, 0, 0, 0], { pas: { exp: 5 }, d: 'いちばん数が多く、どんな職にもなじむ。苦手がなく、経験を積むのが早い。', say: '旅の人かい。どこの国も、いまは魔物の話でもちきりさ。' });
+defRace('highland', '山岳の民', 'H', '⛰️', [10, -5, 8, 8, -5, -8, 0], { pas: { gather: 10 }, res: { ea: .85 }, sks: [1, 2], d: '岩山に暮らす頑健な民。体が強く、採掘がうまい。', say: '山の空気はうまいだろう。足腰が弱いと、ここでは暮らせんよ。' });
+defRace('nomad', '草原の民', 'H', '🐎', [0, 0, 4, -4, 12, -4, 2], { pas: { enc: -10, amb: 8 }, sks: [1, 2, 3], d: '草原を渡り歩く民。足が速く、不意を突かれにくい。', say: '風の向きで、明日の天気も魔物の気配もわかるものさ。' });
+defRace('sea', '海の民', 'H', '⚓', [4, 0, 2, 0, 4, 0, 2], { pas: { fish: 20, trade: 8 }, res: { ic: .9 }, sks: [1, 2, 3], d: '船と魚で生きる民。釣りと商いにたけている。', say: '潮のにおいがしない土地じゃ、どうも落ち着かなくてね。' });
+defRace('sand', '砂の民', 'H', '🏜️', [0, 4, 0, 6, 4, 0, -2], { pas: { disc: 5 }, res: { fi: .8, ic: 1.15 }, sks: [2, 3], hc: [3, 0, 4], d: '砂漠を行く隊商の民。暑さに強く、値切りがうまい。', say: '水と塩と、うまい取り引き。旅に要るのはそれだけさ。' });
+defRace('snow', '雪国の民', 'H', '❄️', [8, 0, 4, 6, -6, 0, 0], { res: { ic: .75, fi: 1.15 }, sks: [0, 4], hc: [1, 4, 0, 5], d: '氷の国の民。寒さに強く、しんぼう強い。', say: 'これくらいの寒さ、春みたいなものだよ。' });
+defRace('halfelf', 'ハーフエルフ', 'H', '🌿', [-2, 8, -2, -2, 4, 8, 0], { pas: { mag: 5 }, sks: [0, 4, 1], f: { ear: 'elf' }, d: '人とエルフの血を引く民。魔法の素養と器用さをあわせ持つ。', say: '森でも町でも暮らせる。……どちらでも、少しだけよそ者だけどね。' });
+// --- 妖精・森系 ---
+defRace('elf', 'エルフ', 'F', '🧝', [-10, 20, -8, -10, 10, 18, 0], { pas: { mag: 10, mpc: 8 }, res: { wi: .85, da: 1.15 }, sks: [0, 4], hc: [1, 4, 7, 0], f: { ear: 'elf' }, d: '森に暮らす長命の民。魔力と賢さにすぐれるが、打たれ弱い。', say: '木々の声が聞こえるかい? 人の子には、少しむずかしいかな。' });
+defRace('darkelf', '闇エルフ', 'F', '🌑', [-8, 12, 2, -8, 14, 10, -4], { pas: { crit: 8, eva: 5 }, res: { da: .8, li: 1.2 }, tm: [8, 0], sk: [265, 18, 46], hc: [4, 3, 8], f: { ear: 'elf' }, d: '地の底の森に暮らすエルフ。夜に強く、急所を突くのがうまい。', say: '日の光はまぶしすぎる。……夜になったら、また話そう。' });
+defRace('dwarf', 'ドワーフ', 'F', '⛏️', [15, -12, 12, 15, -15, -6, 0], { pas: { craft: 20, gather: 15 }, res: { ea: .8, fi: .9 }, sks: [1, 2], hc: [0, 2, 9, 3], f: { small: 1, beard: 1 }, d: '山の地下に暮らす職人の民。頑丈で、鍛冶と採掘の名手。足は遅い。', say: 'いい鉱石は、たたけば音でわかる。おまえさんの剣は……まあまあじゃな。' });
+defRace('halfling', 'ハーフリング', 'F', '🍀', [-10, 0, -12, -6, 16, 2, 25], { pas: { eva: 8, steal: 10 }, sks: [0, 1, 4], hc: [0, 1, 2, 9], f: { small: 1 }, d: '陽気で食いしんぼうな小さな民。すばしっこく、とにかく運がいい。', say: 'やあ、大きい人!二度目の朝ごはんは もうすませたかい?' });
+defRace('gnome', 'ノーム', 'F', '🔧', [-12, 10, -12, -4, 4, 16, 10], { pas: { craft: 15, mpc: 5 }, sks: [0, 1], hc: [4, 5, 6, 9], f: { small: 1, ear: 'elf' }, d: '土の下で暮らす、発明好きの小さな民。手先が器用で頭がいい。', say: 'ちょっと待って、いま歯車がひとつ足りないんだ。……あ、ポケットにあった。' });
+defRace('fairy', '妖精', 'F', '🧚', [-25, 30, -22, -18, 25, 20, 10], { pas: { eva: 15, mpr: 2 }, res: { wi: .8 }, sks: [4, 0], hc: [1, 6, 5, 7, 8], f: { small: 1, wing: 'fairy' }, d: '花から生まれた小さな民。とても非力だが、魔力とすばやさは随一。', say: 'ねえねえ、あなたの頭の上、とまってもいい?' });
+defRace('dryad', '樹の民', 'F', '🌳', [10, 10, -5, 5, -12, 5, 0], { pas: { heal: 15, hpr: 2 }, res: { ea: .8, fi: 1.35 }, sk: [95, 30, 62], hc: [7], f: { leaf: 1 }, d: '木から生まれた民。癒やしの力を持ち、歩くだけで傷がふさがる。火が苦手。', say: '急がなくていいのよ。木は百年かけて育つのだから。' });
+defRace('mushroom', 'きのこの民', 'F', '🍄', [5, 5, -8, 5, -10, 5, 10], { im: ['poison', 'sleep'], res: { fi: 1.25, ea: .9 }, sk: [40, 30, 86], hc: [4, 0], f: { cap: 'mush', small: 1 }, d: '森の奥の、しめった里に暮らす民。毒と眠りがまったく効かない。', say: '……じめじめして、いい日だね。晴れの日は、ちょっと苦手。' });
+defRace('kobold', 'コボルト', 'F', '🪙', [-8, 0, -8, -4, 10, 0, 20], { pas: { gold: 15, gather: 10 }, sk: [28, 30, 52], f: { small: 1, ear: 'dog', muzzle: 1, tail: 1 }, d: '鉱山に住みつく、小さな犬顔の民。金目のものを見つけるのがうまい。', say: 'くんくん……おまえ、ポケットに金貨のにおいがするぞ。' });
+// --- 獣人系 ---
+defRace('cat', '猫人', 'B', '🐱', [-5, 0, -2, -8, 18, 0, 10], { pas: { crit: 10, eva: 8 }, tm: [5, 0], sk: [32, 45, 68], f: { ear: 'cat', tail: 1, muzzle: 1 }, d: 'しなやかで気まぐれな民。身のこなしが軽く、会心の一撃が出やすい。', say: 'ひなたぼっこの邪魔をしないなら、いてもいいにゃ。' });
+defRace('wolf', '狼人', 'B', '🐺', [5, -8, 12, 0, 10, -8, -2], { pas: { amb: 12, phys: 5 }, tm: [8, 0], sk: [220, 8, 58], hc: [4, 3, 0], f: { ear: 'cat', tail: 1, muzzle: 1 }, d: '群れで狩りをする誇り高い民。先手を取るのがうまく、夜に強い。', say: '群れは裏切らない。おまえの群れは、信用できるやつらか?' });
+defRace('fox', '狐人', 'B', '🦊', [-6, 14, -6, -6, 10, 12, 6], { pas: { mag: 8, disc: 5 }, sk: [26, 78, 58], f: { ear: 'fox', tail: 1, muzzle: 1 }, d: '化かすのが得意な、かしこい民。魔法と駆け引きにすぐれる。', say: 'だましてなんかいませんよ。……ほんのちょっと、お得に見せただけで。' });
+defRace('rabbit', '兎人', 'B', '🐰', [-8, 4, -8, -8, 24, 0, 12], { pas: { eva: 12, enc: -10 }, sk: [30, 20, 90], f: { ear: 'rabbit', top: 1, muzzle: 0xf6c8c8 }, d: '耳のいい、とてもすばやい民。危険をいち早く察して身をかわす。', say: 'しっ……。いま、三つ先の丘で何かが動いたわ。' });
+defRace('bear', '熊人', 'B', '🐻', [22, -10, 16, 10, -16, -10, 0], { pas: { phys: 8, gather: 8 }, res: { ic: .85 }, sk: [24, 45, 36], f: { ear: 'round', muzzle: 0xd8b890 }, d: '大きな体の、のんびりした民。力と体力はずばぬけているが、動きは遅い。', say: 'はちみつ、持ってないか? ……そうか。ざんねんだ。' });
+defRace('lion', '獅子人', 'B', '🦁', [10, -6, 15, 5, 2, -8, 0], { pas: { phys: 10, crit: 5 }, sk: [38, 62, 60], hc: [0, 9, 2], f: { ear: 'round', muzzle: 1, tail: 1 }, d: '草原の王を名乗る、勇ましい民。正面からの力くらべに強い。', say: '強い者には敬意を払う。それが我らのならわしだ。' });
+defRace('mouse', '鼠人', 'B', '🐭', [-15, 0, -14, -10, 20, 6, 22], { pas: { steal: 15, eva: 10 }, sk: [220, 6, 66], f: { ear: 'round', small: 1, tail: 0xe8a8a8, muzzle: 1 }, d: '町のすみで たくましく生きる小さな民。すばしっこく、手くせが悪い。', say: 'チーズのにおい……じゃなかった。なんの用だい、でかいの。' });
+defRace('bird', '翼人', 'B', '🦅', [-8, 4, 0, -10, 20, 4, 2], { pas: { eva: 10, amb: 10 }, res: { wi: .7, th: 1.25 }, sks: [0, 1, 2], f: { wing: 'brown' }, d: '背に翼を持つ、高い崖の民。風のように速いが、体は軽くもろい。', say: '地面を歩くのは、どうも性に合わないね。' });
+defRace('bat', '蝙蝠人', 'B', '🦇', [-6, 6, 0, -6, 14, 4, 0], { pas: { eva: 8 }, res: { da: .85, li: 1.2 }, tm: [15, -8], sk: [270, 14, 40], f: { ear: 'cat', wing: 'bat', fang: 1 }, d: '洞窟に暮らす夜の民。夜はめっぽう強いが、昼は少し力が出ない。', say: 'ふあぁ……。昼間に起こさないでくれよ。' });
+defRace('deer', '鹿人', 'B', '🦌', [0, 8, -4, -2, 14, 4, 2], { pas: { heal: 10, enc: -10 }, sk: [28, 45, 62], f: { horn: 'antler', top: 1, muzzle: 1 }, d: '森の奥でひっそり暮らす、おだやかな民。癒やしの技と足の速さを持つ。', say: '森の中では、静かに歩いてくださいね。' });
+defRace('bull', '牛人', 'B', '🐂', [25, -12, 18, 12, -14, -12, -2], { pas: { phys: 10 }, sk: [20, 40, 40], f: { horn: 'big', top: 1, muzzle: 0xd8b0a0 }, d: '大きな角を持つ力自慢の民。体力と腕力は一級品。細かいことは苦手。', say: '考えるより、まず押す。たいていは、それでうまくいく。' });
+defRace('monkey', '猿人', 'B', '🐒', [0, -4, 4, -4, 16, 2, 6], { pas: { steal: 10, crit: 6 }, sk: [24, 40, 50], f: { tail: 1, muzzle: 0xe8c8a0 }, d: '木の上で暮らす身軽な民。手先が器用で、いたずら好き。', say: 'ウキッ。そのバナナ……じゃなくて その剣、ちょっと見せてくれよ。' });
+// --- 鱗・水系 ---
+defRace('lizard', '蜥蜴人', 'S', '🦎', [10, -6, 10, 12, 2, -10, -4], { pas: { phys: 5 }, im: ['poison'], res: { ea: .85, ic: 1.2 }, sk: [110, 40, 42], f: { bald: 1, tail: 1, scale: 1 }, d: '硬いうろこに守られた沼の戦士。毒が効かないが、寒さに弱い。', say: 'シュー……。日なたの岩ほど、いいものはない。' });
+defRace('dragon', '竜人', 'S', '🐲', [15, 5, 14, 10, -8, 6, -10], { res: { fi: .6, th: .9, ic: 1.25 }, sk: [2, 58, 44], f: { horn: 2, tail: 1, scale: 1 }, d: '竜の血を引く誇り高い民。力も魔力も強く、炎をものともしない。', say: '我らは竜の末裔。……火を吹けるのかって? 聞くな。' });
+defRace('merfolk', '人魚の民', 'S', '🧜', [-4, 18, -6, -6, 6, 14, 4], { pas: { fish: 15, heal: 8 }, res: { ic: .7, fi: .8, th: 1.4 }, sk: [190, 45, 74], hc: [5, 7, 6, 4], f: { ear: 'fin' }, d: '海の底の都から来た民。水と癒やしの魔法にたけるが、雷に弱い。', say: '陸の上は、体が重くてたいへん。でも、歌は陸のほうが響くのよ。' });
+defRace('frog', '蛙人', 'S', '🐸', [0, 6, -4, 0, 16, 2, 6], { pas: { eva: 8 }, im: ['poison'], res: { ea: .9, ic: 1.2, th: 1.2 }, sk: [95, 55, 52], f: { bald: 1 }, d: '沼地に暮らす、のんきな民。よく跳ねて攻撃をかわす。毒が効かない。', say: 'ケロ。雨の日は、いい日。晴れの日は、まあまあの日。' });
+defRace('turtle', '亀人', 'S', '🐢', [20, 0, 0, 30, -30, 4, 0], { res: { fi: .9, ic: .9, ea: .9 }, sk: [75, 35, 48], f: { bald: 1, beak: 1 }, d: 'こうらを背負った長生きの民。とにかく硬いが、とにかく遅い。', say: '急いでも……いいことは……ないよ。……まあ、座りなさい。' });
+defRace('snake', '蛇人', 'S', '🐍', [0, 8, 2, -4, 10, 10, -4], { pas: { crit: 6, mag: 5 }, im: ['poison'], res: { ic: 1.25 }, sk: [70, 45, 62], hc: [3, 7, 8], f: { scale: 1, fang: 1 }, d: '知恵と毒をあやつる、古い民。毒が効かず、急所を見ぬく。', say: 'そう警戒しなさんな。かみついたりは……しませんよ。' });
+defRace('shark', '鮫人', 'S', '🦈', [12, -10, 16, 4, 6, -10, -4], { pas: { phys: 8, crit: 6, fish: 10 }, res: { ic: .85, th: 1.3 }, sk: [210, 22, 58], f: { bald: 1, fin1: 1, fang: 1 }, d: '荒海の狩人。力が強く、するどい一撃を放つ。雷に弱い。', say: 'においでわかるぜ。お前、けっこう戦ってきたな。' });
+defRace('kappa', '河童', 'S', '🥒', [0, 6, 2, 6, 6, 2, 4], { pas: { heal: 8, fish: 15 }, res: { ic: .85, fi: 1.2 }, sk: [125, 42, 50], f: { bald: 1, dish: 1, beak: 1 }, d: '川のほとりに暮らす、相撲と薬づくりの好きな民。乾きと火が苦手。', say: 'きゅうり、あるかい? ないなら 相撲でもとるかい?' });
+// --- 巨人・鬼系 ---
+defRace('ogre', 'オーガ', 'G', '💪', [25, -18, 24, 8, -10, -18, -4], { pas: { phys: 12 }, sk: [18, 45, 56], f: { horn: 2, tusk: 1 }, d: '山あいに暮らす怪力の民。腕力は随一だが、魔法はからきし。', say: 'オレ、むずかしい話、わからん。でも、力仕事なら まかせろ。' });
+defRace('goblin', 'ゴブリン', 'G', '💰', [-10, 0, -6, -8, 16, 2, 14], { pas: { steal: 12, gold: 10, eva: 5 }, tm: [5, 0], sk: [95, 42, 48], f: { ear: 'elf', small: 1 }, d: 'ずるがしこく、すばしっこい小さな民。金もうけと逃げ足が自慢。', say: 'キシシ。いい品があるよ。出どころは 聞かないほうがいい。' });
+defRace('orc', 'オーク', 'G', '🪓', [18, -12, 16, 8, -4, -14, -4], { pas: { phys: 8 }, sk: [100, 20, 46], f: { tusk: 1, ear: 'elf' }, d: 'たくましい体の戦士の民。荒っぽいが、仲間には義理がたい。', say: '飯と、寝床と、いい戦。それがあれば文句はねえ。' });
+defRace('troll', 'トロル', 'G', '🪨', [30, -15, 14, 6, -20, -15, 0], { pas: { hpr: 4 }, regen: 5, res: { ea: .85, fi: 1.3 }, sk: [160, 12, 52], f: { tusk: 1, bald: 1 }, d: '傷がみるみるふさがる、岩のような民。戦いのあいだも体力が戻る。火に弱い。', say: '……うご。……きず、ねてれば、なおる。' });
+defRace('giant', '巨人', 'G', '🗿', [35, -10, 22, 10, -22, -10, -8], { pas: { phys: 10, eva: -8 }, sks: [1, 2], d: '山のように大きな民。体力と力はけたはずれだが、的が大きく、よく当たる。', say: 'おっと、足もとに気をつけてくれ。……わしのほうが、か。すまんすまん。' });
+defRace('cyclops', '一つ目の民', 'G', '👁️', [15, -8, 16, 4, -8, -6, 0], { pas: { crit: 15, craft: 10 }, sks: [1, 2, 4], f: { eye1: 1, horn: 1 }, d: '大きな一つ目で ねらいをさだめる鍛冶の民。会心の一撃がとても出やすい。', say: '目はひとつで足りる。よそ見をせずにすむからな。' });
+defRace('oni', '鬼人', 'G', '👹', [15, -6, 18, 6, 0, -8, -6], { pas: { phys: 10, crit: 5 }, res: { fi: .85, li: 1.15 }, sk: [2, 65, 52], hc: [3, 4, 1], f: { horn: 2, tusk: 1 }, d: '赤い肌と角を持つ、東の山の武人の民。酒と力くらべを好む。', say: 'がはは!まずは一杯、話はそれからだ!' });
+defRace('tengu', '天狗', 'G', '👺', [-4, 8, 4, -6, 16, 8, -2], { pas: { eva: 8, mag: 5 }, res: { wi: .7 }, sk: [4, 55, 56], hc: [4, 3], f: { wing: 'black', nose: 1 }, d: '山奥で修行にあけくれる民。風をあやつり、身のこなしが軽い。', say: '修行が足りんな。……まあ、わしもまだ道半ばじゃが。' });
+// --- 精霊・異形系 ---
+defRace('angel', '天翼の民', 'X', '😇', [-6, 14, -6, -4, 6, 10, 6], { pas: { heal: 15 }, res: { li: .6, da: 1.4 }, sks: [4, 0], hc: [1, 4], f: { wing: 'feather', halo: 1, top: 1 }, d: '雲の上の里から降りてきた民。癒やしの力が強く、光に守られるが、闇に弱い。', say: '地上は にぎやかですね。雲の上は、少し静かすぎるのです。' });
+defRace('demon', '魔族', 'X', '😈', [0, 14, 6, -6, 4, 14, -10], { pas: { mag: 12 }, res: { da: .6, fi: .9, li: 1.4 }, sk: [282, 30, 56], hc: [3, 8, 4], f: { horn: 2, wing: 'bat', tail: 0x6a3a7a }, d: '魔王に従わず、人里で暮らすことを選んだ魔の民。魔法にすぐれるが、光に弱い。', say: '魔王の手先? 冗談じゃない。あんなのと一緒にしないでくれ。' });
+defRace('night', '夜の一族', 'X', '🌙', [0, 8, 6, -4, 10, 8, -6], { pas: { crit: 8 }, res: { da: .7, li: 1.5 }, tm: [20, -12], sk: [240, 10, 84], hc: [3, 4, 8], f: { fang: 1, eyec: 0xc23434 }, d: '夜にだけ本当の力を出す、青白い肌の民。夜はとても強く、昼は弱い。', say: '……こんばんは。ええ、昼でも「こんばんは」と言うのが、うちの流儀で。' });
+defRace('construct', 'からくり人', 'X', '⚙️', [10, -40, 8, 20, -8, 4, -10], { pas: { craft: 10 }, im: ['poison', 'sleep', 'conf'], res: { ea: .9, th: 1.4 }, sk: [210, 10, 62], f: { bald: 1, metal: 1, eyec: 0xffd23a }, d: '古代の技で作られた、心を持つ機械じかけの民。毒・眠り・混乱が効かない。魔力はとぼしい。', say: 'ピ……ガ……。ワタシ ハ 元気 デス。油 ヲ 少シ ワケテ モラエマスカ。' });
+defRace('flame', '炎の民', 'X', '🔥', [-4, 8, 8, -8, 8, 8, -2], { pas: { mag: 8 }, res: { fi: .3, ic: 1.6 }, sk: [16, 80, 60], hc: [9, 2], f: { flame: 1 }, d: '火山のふもとで生まれた、燃える髪の民。炎はほとんど効かないが、氷に弱い。', say: '熱いって? これでも今日は ぬるいほうだよ。' });
+defRace('frost', '氷の民', 'X', '🧊', [4, 8, -4, 8, -6, 8, 0], { pas: { mpc: 8 }, res: { ic: .3, fi: 1.6 }, sk: [200, 45, 82], hc: [4, 5], d: '万年雪の谷に暮らす、冷たい肌の民。氷はほとんど効かないが、炎に弱い。', say: '……近くに寄ると、冷えますよ。' });
+defRace('crystal', '晶の民', 'X', '💎', [0, 10, -6, 18, -10, 10, 6], { pas: { gold: 8 }, res: { li: .8, da: .8, th: .8, ea: 1.3 }, sk: [175, 35, 80], hc: [4, 5, 8], f: { gem: 0x50c8ff }, d: '体が鉱石でできた、きらめく民。硬く、多くの魔法をはじくが、大地の力に弱い。', say: '光にかざすと、きれいでしょう。……割らないでくださいね。' });
+defRace('shadow', '影の民', 'X', '🌫️', [-10, 6, -2, -12, 18, 6, 6], { pas: { eva: 15, steal: 10, enc: -15 }, res: { da: .6, li: 1.5 }, tm: [10, 0], sk: [255, 14, 30], hc: [3, 8], f: { eyec: 0xf4f4ff }, d: '影から生まれた、気配のうすい民。魔物に見つかりにくく、攻撃もすりぬける。光に弱い。', say: '……いつからそこにいたか、って? ずっと いましたよ。' });
+
+// 国ごとの住民:[いちばん多い種族, その割合, 人間の割合, よく見かける種族の候補]
+const NAT_RACE = [
+  ['human', 60, 0, ['halfling', 'nomad', 'rabbit', 'cat', 'deer', 'lion', 'highland']],
+  ['elf', 38, 18, ['dryad', 'fairy', 'halfelf', 'mushroom', 'deer', 'fox', 'wolf']],
+  ['dwarf', 38, 18, ['highland', 'gnome', 'kobold', 'cyclops', 'goblin', 'bear']],
+  ['sand', 42, 16, ['lizard', 'snake', 'cat', 'flame', 'fox', 'nomad']],
+  ['snow', 42, 16, ['frost', 'bear', 'wolf', 'giant', 'troll', 'rabbit']],
+  ['sea', 38, 20, ['merfolk', 'shark', 'frog', 'turtle', 'kappa', 'bird']],
+  ['human', 44, 0, ['oni', 'tengu', 'kappa', 'fox', 'cat', 'snake', 'monkey']],
+  ['human', 36, 0, ['halfelf', 'gnome', 'crystal', 'construct', 'angel', 'fairy', 'elf', 'night']],
+  ['demon', 16, 8, ['orc', 'goblin', 'ogre', 'troll', 'shadow', 'bat', 'night', 'darkelf', 'bull']]
+];
+const ONE7 = [1, 1, 1, 1, 1, 1, 1], ST_JP2 = { poison: '毒', sleep: '眠り', conf: '混乱', para: '麻痺', blind: '目つぶし', silence: '封印', curse: '呪い', death: '即死' };
+const NPC_JP = { m: '住民', f: '住民', x: '住民', old: '長老', kid: '子ども', guard: '兵士', merchant: '商人', sailor: '船乗り', maid: '侍女', priest: '神官', nun: 'シスター', smith: '鍛冶師', queen: '王妃' };
+const Race = {
+  ctx: null, homes: null, _key: '', _nat: {}, _pop: {}, _site: null,
+  id(c) { return c && c.kind !== 'monster' && c.race && RACE[c.race] ? c.race : 'human'; },
+  of(c) { return RACE[this.id(c)]; },
+  name(c) { return this.of(c).name; },
+  /* ---- 能力・特性 ---- */
+  mul(c) { return c && c.kind === 'monster' ? ONE7 : this.of(c).m; },
+  pas(c, k) { return c && c.kind === 'monster' ? 0 : this.of(c).pas[k] || 0; },
+  time(c) { if (!c || c.kind === 'monster' || !G) return 1; const t = this.of(c).tm; if (!t) return 1; return 1 + (isNight() ? t[0] : t[1]) / 100; },
+  res(c) { return c && c.kind !== 'monster' ? Object.assign({}, this.of(c).res) : {}; },
+  imm(c) { return c && c.kind !== 'monster' ? this.of(c).im : []; },
+  regen(c) { return c && c.kind !== 'monster' ? this.of(c).regen || 0 : 0; },
+  /* ---- 見た目 ---- */
+  look(L, id, sex) { const R = RACE[id]; if (!R || id === 'human') return L; if (R.ski != null) L.sk = R.ski; else if (R.sks) L.sk = R.sks[(L.sk || 0) % R.sks.length]; if (R.hc) L.hc = R.hc[(L.hc || 0) % R.hc.length]; if (R.f) { L.rf = R.f; if (R.f.beard && (sex || L.sex) === 'm') L.ex = 1; } return L; },
+  dress(o, id, sex) { const R = RACE[id]; if (!R || id === 'human') return o; if (R.ski != null) o.sk = R.ski; else if (R.sks) o.sk = R.sks[(o.sk || 0) % R.sks.length]; if (R.hc) o.hc = R.hc[(o.hc || 0) % R.hc.length]; if (R.f) { o.rf = R.f; if (R.f.beard && sex === 'm') o.beard = HAIRC[(o.hc || 0) % HAIRC.length][1]; } o.key = (o.key || '') + '~' + id; return o; },
+  icon(R, px) { return ic({ name: 'race:' + R.id, sex: R.id === 'fairy' || R.id === 'merfolk' || R.id === 'dryad' ? 'f' : 'm', race: R.id, job: 'commoner' }, px || 24); },
+  /* ---- 説明文 ---- */
+  short(R) { const a = []; R.mp.forEach((v, i) => { if (v >= 10) a.push(STAT_JP[STATS[i]] + (v >= 20 ? '◎' : '○')); }); R.mp.forEach((v, i) => { if (v <= -10) a.push(STAT_JP[STATS[i]] + (v <= -20 ? '✕' : '△')); }); const ps = Object.keys(R.pas).filter(k => PAS_JP[k]).slice(0, 2).map(k => PAS_JP[k] + (R.pas[k] > 0 ? '+' : '') + R.pas[k] + '%'); if (R.im.length) ps.push(R.im.map(k => ST_JP2[k] || k).join('・') + '無効'); if (R.tm) ps.push('夜に強い'); if (R.regen) ps.push('戦闘中に回復'); return (a.join(' ') || '平均的') + (ps.length ? '/' + ps.join('・') : ''); },
+  traits(R) {
+    const a = [], sgn = v => (v > 0 ? '+' : '') + v + '%', st = R.mp.map((v, i) => v ? `${STAT_JP[STATS[i]]}${sgn(v)}` : '').filter(Boolean).join(' ');
+    a.push('【能力】' + (st || '補正なし(苦手がない)'));
+    const ps = Object.keys(R.pas).filter(k => PAS_JP[k]).map(k => PAS_JP[k] + sgn(R.pas[k])); if (ps.length) a.push('【特性】' + ps.join('、'));
+    const rs = Object.keys(R.res).filter(k => R.res[k] < 1).map(k => `${ELEM[k]}${Math.round((1 - R.res[k]) * 100)}%減`), wk = Object.keys(R.res).filter(k => R.res[k] > 1).map(k => `${ELEM[k]}${Math.round((R.res[k] - 1) * 100)}%増`);
+    if (rs.length) a.push('【耐性】' + rs.join('、')); if (wk.length) a.push('【弱点】' + wk.join('、'));
+    if (R.im.length) a.push('【無効】' + R.im.map(k => ST_JP2[k] || k).join('・'));
+    if (R.tm) a.push('【昼と夜】夜は攻撃・すばやさ・かしこさ' + sgn(R.tm[0]) + (R.tm[1] ? '、昼は' + sgn(R.tm[1]) : ''));
+    if (R.regen) a.push(`【再生】戦闘中、毎ターンHPが${R.regen}%回復`);
+    return a.join('<br>');
+  },
+  /* ---- 種族えらび(系統 → 種族 → 確認)---- */
+  async choose(first) {
+    const gs = Object.keys(RACE_GRP);
+    for (; ;) {
+      const gi = await ask(`${first ? '種族を選んでください。' : 'どの種族にしますか?'}<small>(全${RACES.length}種。種族ごとに能力と特性がちがう。あとから変えられない)</small>`, gs.map(g => { const ls = RACES.filter(r => r.grp === g); return { l: `${RACE_GRP[g][1]} ${RACE_GRP[g][0]}`, sub: `${ls.length}種:` + ls.slice(0, 7).map(r => r.name).join('・') + (ls.length > 7 ? ' ほか' : '') }; }), { cancel: 1 });
+      if (gi < 0) return null; const ls = RACES.filter(r => r.grp === gs[gi]);
+      for (; ;) {
+        const ri = await ask(`${RACE_GRP[gs[gi]][1]} <b>${RACE_GRP[gs[gi]][0]}</b><small>(${ls.length}種)</small>`, ls.map(R => ({ l: `${this.icon(R)} ${R.name}`, sub: this.short(R) })), { cancel: '系統を選びなおす' }); if (ri < 0) break;
+        const R = ls[ri], a = await ask(`${this.icon(R, 48)} <b>${R.name}</b> <small>${RACE_GRP[R.grp][0]}</small>\n${R.d}\n<small>${this.traits(R)}</small>`, ['この種族にする'], { cancel: 'ほかの種族にする' }); if (a === 0) return R.id;
+      }
+    }
+  },
+  /* ---- 世界:国ごとの住民・町の住民・種族の里 ---- */
+  ensure() { const k = W ? W.seed + ':' + W.sites.length : ''; if (this._key !== k || !this.homes) this.build(); },
+  build() {
+    this._key = W ? W.seed + ':' + W.sites.length : ''; this.homes = {}; this._nat = {}; this._pop = {}; if (!W || !W.sites) return;
+    const vs = W.sites.filter(s => s.type === 'village' && s.nation !== 8), first = vs.find(s => s.nation === 0) || vs[0], r = mulberry(hstr(W.seed + ':racehome'));
+    const order = RACES.filter(x => x.id !== 'human' && x.id !== 'halfling').map(x => x.id); for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t; }
+    order.splice(Math.min(order.length, 9), 0, 'halfling'); let k = 0;
+    const rest = vs.filter(s => s !== first).map(s => [hstr(W.seed + ':sr:' + s.id), s]).sort((x, y) => x[0] - y[0]).map(x => x[1]), want = Math.min(rest.length, Math.max(Math.ceil(vs.length * .42), Math.min(order.length, Math.floor(vs.length * .6))) - (first ? 1 : 0));
+    if (first) this.homes[first.id] = 'halfling';
+    rest.slice(0, Math.max(0, want)).forEach(s => { let id = order[k++ % order.length]; if (first && id === 'halfling' && k <= order.length) id = order[k++ % order.length]; this.homes[s.id] = id; });
+  },
+  home(s) { this.ensure(); return s ? this.homes[s.id] || null : null; },
+  homeSites() { this.ensure(); return W.sites.filter(s => this.homes[s.id]); },
+  nation(n) {
+    this.ensure(); if (this._nat[n]) return this._nat[n];
+    const r = mulberry(hstr(W.seed + ':racenat:' + n)), all = RACES.filter(x => x.id !== 'human'), take = (ls, used) => { const c = ls.filter(x => !used.includes(x.id)); return c[Math.floor(r() * c.length)].id; };
+    const T = NAT_RACE[n] || ['human', 46, 0, all.map(x => x.id)], u = ['human', T[0]], pool = T[3].map(id => RACE[id]).filter(Boolean), p = [[T[0], T[1]]]; if (T[0] !== 'human') p.push(['human', T[2]]);
+    const o = 100 - T[1] - T[2], k = n === 8 ? 6 : 3, w = n === 8 ? [1, 1, 1, 1, 1, 1] : [.42, .33, .25];
+    for (let i = 0; i < k; i++) { const src = i < k - 1 || n === 8 ? pool : all, c = src.filter(x => !u.includes(x.id)); if (!c.length) break; const id = c[Math.floor(r() * c.length)].id; u.push(id); p.push([id, o * w[i] / w.reduce((x, y) => x + y, 0)]); }
+    return this._nat[n] = this.norm(p);
+  },
+  norm(p) { const t = p.reduce((a, x) => a + x[1], 0) || 1; return p.map(x => [x[0], x[1] * 100 / t]).sort((a, b) => b[1] - a[1]); },
+  pop(s) {
+    this.ensure(); if (this._pop[s.id]) return this._pop[s.id]; const h = this.homes[s.id]; let p;
+    if (h) p = [[h, 100]];
+    else {
+      p = this.nation(s.nation).map(x => x.slice()); const r = mulberry(hstr(W.seed + ':pop:' + s.id));
+      if (s.type === 'capital') { const all = RACES.filter(x => !p.some(q => q[0] === x.id)); for (let i = 0; i < 3 && all.length; i++) p.push([all.splice(Math.floor(r() * all.length), 1)[0].id, 5]); }
+      else if (p.length > 1) p[1 + Math.floor(r() * (p.length - 1))][1] *= s.type === 'village' ? 3 : 1.8;
+      p = this.norm(p);
+    }
+    return this._pop[s.id] = p;
+  },
+  pickFrom(p, u) { let t = u * p.reduce((a, x) => a + x[1], 0); for (const x of p) { t -= x[1]; if (t < 0) return x[0]; } return p[0][0]; },
+  npcRace(s, seed, kind) { const p = this.pop(s); if (kind === 'king' || kind === 'queen' || kind === 'minister') return p[0][0]; return this.pickFrom(p, (hstr('nr' + W.seed + s.id + ':' + seed + kind) % 10007) / 10007); },
+  compRace(id) { if (hstr('cr' + id) % 100 < 45) return 'human'; const o = RACES.filter(x => x.id !== 'human'); return o[hstr('cq' + id) % o.length].id; },
+  popText(s, n) { return this.pop(s).slice(0, n || 4).map(x => `${RACE[x[0]].name} ${Math.max(1, Math.round(x[1]))}%`).join('・'); },
+  townLine(s) { const h = this.home(s); if (h) { const R = RACE[h], same = G && hero() && this.id(hero()) === h; return `<small>${R.emoji} ここは <b>${R.name}だけが暮らす里</b>。「里の者を旅にさそう」で、${R.name}を仲間にできる。${same ? '<span class="good">同族のよしみで、店の値段が1割引き。</span>' : ''}</small>`; } return `<small>👥 住民:${this.popText(s, s.type === 'capital' ? 6 : 4)}</small>`; },
+  recruit(s) {
+    const R = RACE[this.home(s)];
+    UI.open(sc => {
+      sc.head(`${R.emoji} ${R.name}の里`, fmt(G.gold) + 'G'); sc.p(`旅に出たがっている里の者に、声をかけられる。<small>(顔ぶれは数日ごとに変わる)</small>`); const full = allChars().length >= 16, hs = Tavern.hires(s);
+      hs.forEach(h => sc.btn(`${ic(h)} ${h.name}`, () => Tavern.hire(h), { r: fmt(h.fee) + 'G', sub: `Lv${h.lv} ${R.name}の${DB.jobs[h.job].name}・${PERS[h.pers][0]}`, dis: G.gold < h.fee || full }));
+      if (!hs.length) sc.p('<span class="note">いまは、旅に出たがっている者はいないようだ。数日たったら また来よう。</span>'); if (full) sc.p('<span class="note">仲間がいっぱいだ(最大16人)。</span>');
+      sc.h(`${R.name}とは`); sc.card(`${this.icon(R, 48)}<small>${R.d}<br>${this.traits(R)}</small>`);
+    });
+  },
+  disc() { if (!G || !G.tm || !hero()) return 1; const s = W.byId[G.tm.id], h = s && this.home(s); return h && h === this.id(hero()) ? .9 : 1; },
+  /* 近くの種族の里の話 */
+  nearHome(s) { const ls = this.homeSites().filter(v => v !== s).map(v => [Math.hypot(v.x - s.x, v.y - s.y), v]).sort((a, b) => a[0] - b[0]).slice(0, 3); if (!ls.length) return null; const v = ls[rnd(ls.length)][1]; return `${v.name}は、${RACE[this.homes[v.id]].name}だけが暮らす里だよ。ここから${Rumor.dir(v.x - s.x, v.y - s.y)}の方角、${Rumor.far(Math.hypot(v.x - s.x, v.y - s.y))}さ。`; },
+  line(R, s, n) { const h = this.home(s), same = this.id(hero()) === R.id, a = [R.say, R.say]; if (h) a.push(`ここは${R.name}の里。よその人はめずらしいから、みんな見てるでしょう。気にしないで。`, `${R.name}を仲間にしたいなら、里の酒場をのぞいてごらん。`); if (same) a.push('おや、同族じゃないか。旅は大変だろう、ゆっくりしておいき。'); else if (!h) a.push(`この${s.type === 'village' ? '村' : '町'}には、${this.popText(s, 3).replace(/ \d+%/g, '')}が多く暮らしているよ。`); return pick(a); },
+  /* 手帳「探索」:種族の里の一覧 */
+  notes(s) { const hs = this.homeSites(); if (!hs.length) return; const seen = hs.filter(v => G.vis[v.id]); s.h(`🏘️ 種族の里(訪れた ${seen.length} / ${hs.length})`); if (!seen.length) s.p('<small>ひとつの種族だけが暮らす村。町の人の話に、ときどき出てくる。</small>'); else s.card(seen.map(v => `${RACE[this.homes[v.id]].emoji} <b>${RACE[this.homes[v.id]].name}の里</b> ${esc(v.name)}<small>(${W.nations[v.nation].short})</small>`).join('<br>')); }
+};
+/* ---- 絵:顔と歩行ドットに種族を反映 ---- */
+{ const f0 = Gfx.faceKey; Gfx.faceKey = function (c) { const r = Race.id(c); return f0.call(this, c) + (r !== 'human' ? '.' + r : ''); }; }
+Gfx.facePixOf = function (c) { return facePix(Race.look(Object.assign({ sex: c.sex }, lookOf(c)), Race.id(c)), catOf(c)); };
+{ const f0 = Gfx.walkObj; Gfx.walkObj = function (c) { const o = f0.call(this, c), r = Race.id(c); return r !== 'human' ? Race.dress(o, r, c.sex) : o; }; }
+{ const f0 = Gfx.lookURL; Gfx.lookURL = function (L, sex, cat) { return f0.call(this, Race.ctx ? Race.look(Object.assign({ sex }, L), Race.ctx) : L, sex, cat); }; }
+/* ---- 町:住民に種族をつける ---- */
+['gen', 'genCastle'].forEach(k => { const f0 = TownMap[k]; TownMap[k] = function (s, ...a) { const p = Race._site; Race._site = s; try { return f0.call(this, s, ...a); } finally { Race._site = p; } }; });
+{ const f0 = TownMap.npc; TownMap.npc = function (M, x, y, kind, seed, st) { const n0 = M.npcs.length; f0.call(this, M, x, y, kind, seed, st); const n = M.npcs[n0], s = Race._site; if (n && s && s.id !== undefined) { n.race = Race.npcRace(s, seed, kind); if (n.race !== 'human' && n.o) Race.dress(n.o, n.race, ['f', 'maid', 'nun', 'queen'].includes(kind) ? 'f' : kind === 'kid' ? 'k' : kind === 'x' ? (seed & 1 ? 'm' : 'f') : 'm'); } }; }
+{ const f0 = TownMap.talk; TownMap.talk = async function (n) {
+  const R = RACE[n.race], s = this.site(), plain = !['king', 'minister', 'queen'].includes(n.k) && !G.tm.in;
+  if (plain && R && n.race !== 'human' && chance(45)) { addMin(5); await say(`${R.emoji} ${R.name}の${NPC_JP[n.k] || '住民'}\n「${Race.line(R, s, n)}」`); return; }
+  if (plain && n.k !== 'guard' && n.k !== 'kid' && chance(14)) { const t = Race.nearHome(s); if (t) { addMin(5); await say(`${(R || RACE.human).emoji} ${(R || RACE.human).name}の${NPC_JP[n.k] || '住民'}\n「${t}」`); return; } }
+  return f0.call(this, n);
+}; }
+{ const f0 = TownMap.enter; TownMap.enter = function (s, from, quiet) { const r = f0.call(this, s, from, quiet); if (!quiet && s) { const h = Race.home(s); if (h) toast(`${RACE[h].emoji} ${RACE[h].name}の里`); } return r; }; }
+/* ---- 酒場:その町の住民にあわせた種族の冒険者 ---- */
+{ const f0 = Tavern.hires; Tavern.hires = function (s) { const out = f0.call(this, s), p = Race.pop(s); out.forEach(h => { h.race = Race.pickFrom(p, (hstr('hr' + h.key) % 10007) / 10007); }); return out; }; }
+{ const f0 = Tavern.uniques; Tavern.uniques = function (s) { return f0.call(this, s).map(c => c.race ? c : Object.assign({}, c, { race: Race.compRace(c.id) })); }; }
+/* ---- 手帳・起動 ---- */
+{ const f0 = More2.notesExtra; More2.notesExtra = function (s) { f0.call(this, s); Race.notes(s); }; }
+{ const f0 = More2.boot; More2.boot = function () { f0.call(this); Race.build(); }; }
+
+/* ===================== 国境をわかりやすく(フィールドの境界線・地図の色分け・国名) ===================== */
+const Border = {
+  _c: {},
+  rgb(n) { if (this._c[n]) return this._c[n]; const h = (W.nations[n] && W.nations[n].color) || '#cccccc', v = parseInt(h.slice(1), 16); return this._c[n] = [(v >> 16) & 255, (v >> 8) & 255, v & 255]; },
+  rgba(n, a, k) { const c = this.rgb(n), f = k || 1; return `rgba(${Math.min(255, Math.round(c[0] * f))},${Math.min(255, Math.round(c[1] * f))},${Math.min(255, Math.round(c[2] * f))},${a})`; },
+  on() { return !G || !G.opts || G.opts.border !== false; },
+  /* フィールド:国がちがう陸のマスどうしの境目に、国の色の帯と破線を引く(自分の側は自分の国の色) */
+  tile(c, x, y, sx, sy) {
+    const S = W.S; if (x < 0 || y < 0 || x >= S || y >= S) return; const i = y * S + x; if (!TER_K[W.t[i]]) return; const n = W.nat[i];
+    for (let k = 0; k < 4; k++) {
+      const dx = k === 1 ? 1 : k === 3 ? -1 : 0, dy = k === 0 ? -1 : k === 2 ? 1 : 0, nx = x + dx, ny = y + dy; if (nx < 0 || ny < 0 || nx >= S || ny >= S) continue; const j = ny * S + nx; if (W.nat[j] === n || !TER_K[W.t[j]]) continue;
+      const hz = dy !== 0, ph = ((hz ? x : y) & 1) * 4;
+      c.fillStyle = this.rgba(n, .3, 1.15); if (hz) c.fillRect(sx, dy < 0 ? sy : sy + 11, 16, 5); else c.fillRect(dx < 0 ? sx : sx + 11, sy, 5, 16);
+      c.fillStyle = 'rgba(10,10,20,.8)'; if (hz) c.fillRect(sx, dy < 0 ? sy : sy + 15, 16, 1); else c.fillRect(dx < 0 ? sx : sx + 15, sy, 1, 16);
+      c.fillStyle = this.rgba(n, 1, 1.3);
+      for (let d = -4 + ph; d < 16; d += 8) { const a = Math.max(0, d), b = Math.min(16, d + 5); if (b <= a) continue; if (hz) c.fillRect(sx + a, dy < 0 ? sy + 1 : sy + 13, b - a, 2); else c.fillRect(dx < 0 ? sx + 1 : sx + 13, sy + a, 2, b - a); }
+    }
+  },
+  /* いちばん近い、となりの国(国境から r マス以内のとき) */
+  near(r) { const S = W.S, n = W.nat[G.y * S + G.x]; let best = null, bd = 99; for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) { const x = G.x + dx, y = G.y + dy; if (x < 0 || y < 0 || x >= S || y >= S) continue; const j = y * S + x; if (W.nat[j] === n || !TER_K[W.t[j]]) continue; const d = Math.abs(dx) + Math.abs(dy); if (d < bd) { bd = d; best = W.nat[j]; } } return best; },
+  /* 地図:国ごとの色・国境線・国名 */
+  map(x, o) {
+    const { n, px, rep, S, step } = o, sum = {}, lw = px >= 3 ? 2 : 1;
+    for (let cy = 0; cy < n; cy++) for (let cx = 0; cx < n; cx++) { const i = rep[cy * n + cx]; if (i < 0 || !TER_K[W.t[i]]) continue; const a = W.nat[i]; x.fillStyle = this.rgba(a, .3); x.fillRect(cx * px, cy * px, px, px); const q = sum[a] || (sum[a] = [0, 0, 0]); q[0] += cx; q[1] += cy; q[2]++; }
+    for (let cy = 0; cy < n; cy++) for (let cx = 0; cx < n; cx++) {
+      const i = rep[cy * n + cx]; if (i < 0 || !TER_K[W.t[i]]) continue; const a = W.nat[i];
+      if (cx + 1 < n) { const j = rep[cy * n + cx + 1]; if (j >= 0 && TER_K[W.t[j]] && W.nat[j] !== a) { const X = (cx + 1) * px; x.fillStyle = 'rgba(0,0,0,.6)'; x.fillRect(X - lw, cy * px, lw * 2, px); x.fillStyle = '#fff'; x.fillRect(X - Math.ceil(lw / 2), cy * px, lw, px); } }
+      if (cy + 1 < n) { const j = rep[(cy + 1) * n + cx]; if (j >= 0 && TER_K[W.t[j]] && W.nat[j] !== a) { const Y = (cy + 1) * px; x.fillStyle = 'rgba(0,0,0,.6)'; x.fillRect(cx * px, Y - lw, px, lw * 2); x.fillStyle = '#fff'; x.fillRect(cx * px, Y - Math.ceil(lw / 2), px, lw); } }
+    }
+    this.labels = Object.keys(sum).filter(k => sum[k][2] * step * step >= 30).map(k => ({ n: +k, x: sum[k][0] / sum[k][2] * px, y: sum[k][1] / sum[k][2] * px, cnt: sum[k][2] }));
+  },
+  names(x, w) {
+    (this.labels || []).forEach(L => { const N = W.nations[L.n], t = N.short, fs = clamp(Math.round(w / 30), 10, 15); x.font = `bold ${fs}px sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; const tw = x.measureText(t).width, px2 = clamp(L.x, tw / 2 + 4, w - tw / 2 - 4), py = clamp(L.y, fs, w - fs);
+      x.fillStyle = 'rgba(8,10,18,.72)'; x.fillRect(px2 - tw / 2 - 4, py - fs / 2 - 3, tw + 8, fs + 6); x.fillStyle = this.rgba(L.n, 1, 1.45); x.fillRect(px2 - tw / 2 - 4, py + fs / 2 + 1, tw + 8, 2); x.fillStyle = '#fff'; x.fillText(t, px2, py + 1); });
+    x.textAlign = 'start'; x.textBaseline = 'alphabetic';
+  },
+  legend() { const seen = {}; (this.labels || []).forEach(L => seen[L.n] = 1); const ls = W.nations.filter(N => seen[N.id]); return ls.length ? ls.map(N => `<span style="color:${this.rgba(N.id, 1, 1.45)}">■</span>${N.short}`).join(' ') : ''; }
+};
+{ const f0 = World.tile; World.tile = function (c, x, y, sx, sy, fr) { f0.call(this, c, x, y, sx, sy, fr); if (Border.on()) Border.tile(c, x, y, sx, sy); }; }
+/* 画面上の地名:国境のそばでは、となりの国の名前も出す */
+{ const f0 = Field.locName; Field.locName = function () { const t = f0.call(this); if (!G || G.tm || G.dun || !W) return t; const o = Border.near(3); return o === null ? t : `${t} ⇄${W.nations[o].short}`; }; }
+
 /* ===================== 依頼台帳(報酬つきの依頼 約2,000件) ===================== */
 // いつでも進められる依頼の一覧。条件を満たしたら、冒険者ギルドで報告すると報酬がもらえる。
 const LED_CAT = [['h', '討伐'], ['f', '系統'], ['d', '迷宮'], ['v', '探訪'], ['n', '納品'], ['c', '収集'], ['j', '修行'], ['x', '探索'], ['k', '国'], ['r', '記録']];
@@ -6690,6 +7018,142 @@ const Ledger = {
     });
   }
 };
+
+/* ===================== 操作(スライドできる十字パッド・画面タッチ移動・自動歩行) ===================== */
+/* 設定は端末ごとに覚える(セーブデータとは別) */
+const CTL_KEY = 'tl_ctl';
+const Ctl = {
+  o: { size: 1, swap: 0, touch: 1, vib: 1 },
+  dir: null, src: null, pid: null, timer: null, last: 0, pend: null, moved: false,
+  aw: 0, mark: null, dn: 0, hold: null, drag: false, p0: null, pl: null,
+  load() { try { const d = JSON.parse(localStorage.getItem(CTL_KEY) || 'null'); if (d && typeof d === 'object') ['size', 'swap', 'touch', 'vib'].forEach(k => { if (typeof d[k] === 'number') this.o[k] = d[k]; }); } catch (e) { } this.o.size = clamp(this.o.size | 0, 0, 2); },
+  save() { try { localStorage.setItem(CTL_KEY, JSON.stringify(this.o)); } catch (e) { } },
+  /* パッドとボタンの大きさを、あいている場所に合わせて決める */
+  layout() {
+    const c = $('ctrl'); if (!c) return; c.classList.toggle('swap', !!this.o.swap);
+    const cw = c.clientWidth - 20, ch = c.clientHeight - 12, cap = [152, 196, 236][this.o.size], f = [.4, .48, .56][this.o.size];
+    if (cw < 60 || ch < 60) return;
+    const ps = Math.max(112, Math.floor(Math.min(cw * f, ch, cap))), bw = Math.max(104, Math.min(176, cw - ps - 16));
+    c.style.setProperty('--ps', ps + 'px'); c.style.setProperty('--bw', bw + 'px'); c.classList.toggle('narrow', bw < 132);
+  },
+  same(e) { return this.pid === null || e.pointerId === undefined || e.pointerId === this.pid; },
+  /* 中心からのずれ → 上下左右。ななめでは今の向きを少し優先して、ぶれを防ぐ */
+  pick(x, y, dead, cur) {
+    const ax = Math.abs(x), ay = Math.abs(y); if (ax < dead && ay < dead) return cur;
+    let h; if (cur) { h = cur[0] !== 0; if (h && ay > ax * 1.35) h = false; else if (!h && ax > ay * 1.35) h = true; } else h = ax >= ay;
+    return h ? [x < 0 ? -1 : 1, 0] : [0, y < 0 ? -1 : 1];
+  },
+  hi() { const d = this.dir, k = !d || this.src !== 'pad' ? '' : d[1] < 0 ? 'pu' : d[1] > 0 ? 'pd' : d[0] < 0 ? 'pl' : 'pr'; document.querySelectorAll('#pad button').forEach(b => b.classList.toggle('on', b.classList.contains(k) && !!k)); },
+  buzz() { if (!this.o.vib || TEST) return; try { if (navigator.vibrate) navigator.vibrate(7); } catch (e) { } },
+  set(d) { if (!d) return; const ch = !this.dir || this.dir[0] !== d[0] || this.dir[1] !== d[1]; this.dir = d; if (ch) { this.hi(); this.buzz(); this.fire(true); } this.run(); },
+  fire(now) { if (!this.dir || Field.busy) return; const t = performance.now(); if (!now && t - this.last < 150) return; this.last = t; this.moved = true; Field.move(this.dir[0], this.dir[1]); },
+  run() { if (!this.timer) this.timer = setInterval(() => this.tick(), 20); },
+  tick() {
+    if (this.dir) { this.fire(false); return; }
+    if (this.pend) { if (performance.now() - this.pend[2] > 320) this.pend = null; else if (!Field.busy) { const p = this.pend; this.pend = null; Field.move(p[0], p[1]); } }
+    if (!this.pend) { clearInterval(this.timer); this.timer = null; }
+  },
+  /* 指をはなした。歩いている最中の短いタップは、次の1歩として覚えておく */
+  release() { if (this.dir && !this.moved) { this.pend = [this.dir[0], this.dir[1], performance.now()]; this.run(); } clearTimeout(this.hold); this.hold = null; this.dir = null; this.pid = null; this.src = null; this.moved = false; this.drag = false; this.hi(); },
+  padVec(e) { const r = $('pad').getBoundingClientRect(); return [e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2), r.width]; },
+  cvVec(e) { const r = $('cv').getBoundingClientRect(); return [e.clientX - (r.left + r.width / 2), e.clientY - (r.top + r.height / 2), r.width / Field.V]; },
+  free() { return G && !UI.stack.length && !UI.lock && !Dlg.open; },
+  init() {
+    this.load(); const z = $('padz'), cv = $('cv'); if (!z || !cv) return;
+    z.addEventListener('pointerdown', e => {
+      e.preventDefault(); if (this.pid !== null) { if (e.isPrimary === false) return; this.release(); } this.cancelWalk(); this.pid = e.pointerId === undefined ? null : e.pointerId; this.src = 'pad'; this.moved = false;
+      try { z.setPointerCapture(e.pointerId); } catch (x) { } const v = this.padVec(e); this.set(this.pick(v[0], v[1], v[2] * .08, null)); this.hi();
+    });
+    z.addEventListener('contextmenu', e => e.preventDefault());
+    cv.addEventListener('pointerdown', e => {
+      if (!this.o.touch || !this.free()) return; if (this.pid !== null) { if (e.isPrimary === false) return; this.release(); } e.preventDefault(); this.cancelWalk(); this.pid = e.pointerId === undefined ? null : e.pointerId; this.src = 'cv'; this.moved = false; this.drag = false;
+      this.p0 = this.pl = { clientX: e.clientX, clientY: e.clientY }; try { cv.setPointerCapture(e.pointerId); } catch (x) { }
+      this.hold = setTimeout(() => { this.hold = null; if (this.src === 'cv') { this.drag = true; const v = this.cvVec(this.pl); this.set(this.pick(v[0], v[1], v[2] * .5, this.dir)); } }, 190);
+    });
+    cv.addEventListener('contextmenu', e => e.preventDefault());
+    window.addEventListener('pointermove', e => {
+      if (!this.src || !this.same(e)) return;
+      if (this.src === 'pad') { const v = this.padVec(e), d = this.pick(v[0], v[1], v[2] * .08, this.dir); if (d) this.set(d); return; }
+      this.pl = { clientX: e.clientX, clientY: e.clientY };
+      if (!this.drag && Math.hypot(e.clientX - this.p0.clientX, e.clientY - this.p0.clientY) > 14) { this.drag = true; clearTimeout(this.hold); this.hold = null; }
+      if (this.drag) { const v = this.cvVec(e); const d = this.pick(v[0], v[1], v[2] * .5, this.dir); if (d) this.set(d); }
+    });
+    const up = e => { if (!this.src || !this.same(e)) return; const tap = this.src === 'cv' && !this.drag && e.type === 'pointerup', p = this.pl; this.release(); if (tap && p) this.tapAt(p); };
+    ['pointerup', 'pointercancel'].forEach(ev => window.addEventListener(ev, up)); window.addEventListener('blur', () => { if (this.src) this.release(); });
+    this.layout();
+  },
+  /* 画面のタップ:主人公なら「行動」、ほかのマスならそこまで歩く */
+  tapAt(p) {
+    if (!this.free()) return;
+    const v = this.cvVec(p), dx = Math.round(v[0] / v[2]), dy = Math.round(v[1] / v[2]), h = (Field.V - 1) / 2; if (Math.abs(dx) > h || Math.abs(dy) > h) return;
+    if (!dx && !dy) { Field.act(); return; }
+    const q = Field.scene().pos(); this.walkTo(q[0] + dx, q[1] + dy);
+  },
+  /* そのマスを、何も起こさずに通りぬけられるか(道さがし用) */
+  can(sc, x, y) {
+    if (sc === World) { const S = W.S; if (x < 0 || y < 0 || x >= S || y >= S) return false; const i = y * S + x, t = Season.t(i); if (G.veh === 'fly') return true; if (G.veh === 'ship') return isWater(t); if (W.at.get(i)) return false; return walkable(t) || Climb.ok(t); }
+    if (sc === TownMap) { const M = TownMap.cur; if (x < 0 || y < 0 || x >= M.W || y >= M.H) return false; if (M.exits[y * M.W + x] !== undefined) return false; return TownMap.pass(x, y) && !M.npcs.some(n => n.x === x && n.y === y); }
+    if (sc === Dun) { const D = Dun.cur, S = D.S; if (x < 0 || y < 0 || x >= S || y >= S) return false; const i = y * S + x, t = D.t[i]; if (!G.dun.ex || !G.dun.ex[i]) return false; return t === DT.FLOOR || t === DT.KEY || (t === DT.DOOR && !!G.dun.used['d' + G.dun.f + ':' + i]); }
+    return false;
+  },
+  /* 目的地への最初の1歩(近くだけを幅優先でさがす。道がなければ、まっすぐ近づく) */
+  next(sc, p, tx, ty) {
+    const R = 8, N = R * 2 + 1, ok = (x, y) => (x === tx && y === ty) || this.can(sc, x, y), I = (x, y) => (y - p[1] + R) * N + (x - p[0] + R);
+    const sx = Math.sign(tx - p[0]), sy = Math.sign(ty - p[1]), hz = Math.abs(tx - p[0]) >= Math.abs(ty - p[1]);
+    const dirs = (hz ? [[sx || 1, 0], [0, sy || 1], [0, -(sy || 1)], [-(sx || 1), 0]] : [[0, sy || 1], [sx || 1, 0], [-(sx || 1), 0], [0, -(sy || 1)]]);
+    if (Math.abs(tx - p[0]) <= R && Math.abs(ty - p[1]) <= R) {
+      const from = new Int16Array(N * N).fill(-1), q = [[p[0], p[1]]]; from[I(p[0], p[1])] = 4;
+      for (let h = 0; h < q.length; h++) {
+        const [x, y] = q[h]; if (x === tx && y === ty) { let cx = x, cy = y, d = null; while (cx !== p[0] || cy !== p[1]) { d = dirs[from[I(cx, cy)]]; cx -= d[0]; cy -= d[1]; } return d; }
+        for (let k = 0; k < 4; k++) { const nx = x + dirs[k][0], ny = y + dirs[k][1]; if (Math.abs(nx - p[0]) > R || Math.abs(ny - p[1]) > R || from[I(nx, ny)] >= 0 || !ok(nx, ny)) continue; from[I(nx, ny)] = k; q.push([nx, ny]); }
+      }
+    }
+    for (const d of dirs.slice(0, 2)) { if (!d[0] && !d[1]) continue; if ((d[0] && !sx) || (d[1] && !sy)) continue; if (ok(p[0] + d[0], p[1] + d[1])) return d; }
+    return null;
+  },
+  cancelWalk() { this.aw++; if (this.mark) { this.mark = null; if (G && !UI.stack.length) Field.render(); } },
+  async walkTo(tx, ty) {
+    const id = ++this.aw; this.mark = { x: tx, y: ty, sc: Field.scene() }; Field.render();
+    for (let n = 0; n < 36 && this.aw === id; n++) {
+      if (!this.free() || B) break; const sc = Field.scene(), p = sc.pos(); if (sc !== this.mark.sc || (p[0] === tx && p[1] === ty)) break;
+      const d = this.next(sc, p, tx, ty); if (!d) break;
+      if (Field.busy) { await new Promise(r => setTimeout(r, 30)); continue; }
+      const dn = this.dn, t0 = performance.now(); await Field.move(d[0], d[1]);
+      if (!G || this.aw !== id) break; const q = Field.scene().pos();
+      if (Field.scene() !== sc || q[0] !== p[0] + d[0] || q[1] !== p[1] + d[1] || this.dn !== dn || !this.free() || B) break;
+      const w = 150 - (performance.now() - t0); if (w > 0 && !TEST) await new Promise(r => setTimeout(r, w));
+    }
+    if (this.aw === id) { this.mark = null; if (G && !UI.stack.length && !Dlg.open) Field.render(); }
+  },
+  /* 目的地の目印 */
+  draw() {
+    const m = this.mark; if (!m || !G) return; const cv = $('cv'), ctx = cv && cv.getContext('2d'); if (!ctx) return; const sc = Field.scene(); if (sc !== m.sc) return;
+    const p = sc.pos(), V = Field.V, u = cv.width / (V * 16), now = performance.now(); let ox = 0, oy = 0;
+    if (Field.tw) { const q = clamp((now - Field.tw.t0) / Field.tw.dur, 0, 1); ox = Math.round(Field.tw.dx * 16 * (1 - q)); oy = Math.round(Field.tw.dy * 16 * (1 - q)); }
+    const x = ((m.x - p[0]) * 16 + (V - 1) / 2 * 16 + ox) * u, y = ((m.y - p[1]) * 16 + (V - 1) / 2 * 16 + oy) * u, s = 16 * u, g = s * (.1 + .06 * Math.sin(now / 130)), L = s * .3;
+    ctx.save(); ctx.lineWidth = Math.max(2, u * 1.3); ctx.lineCap = 'round';
+    for (const col of ['rgba(0,0,0,.55)', '#ffe27a']) {
+      ctx.strokeStyle = col; if (col !== '#ffe27a') ctx.lineWidth += 2; else ctx.lineWidth = Math.max(2, u * 1.3); ctx.beginPath();
+      [[x + g, y + g, 1, 1], [x + s - g, y + g, -1, 1], [x + g, y + s - g, 1, -1], [x + s - g, y + s - g, -1, -1]].forEach(([cx, cy, ax, ay]) => { ctx.moveTo(cx + ax * L, cy); ctx.lineTo(cx, cy); ctx.lineTo(cx, cy + ay * L); }); ctx.stroke();
+    }
+    ctx.restore();
+  },
+  /* 設定画面の「操作」 */
+  settings(s) {
+    const set = fn => () => { fn(); this.save(); this.layout(); };
+    s.h('操作'); s.p('<small>十字パッドは、<b>指をはなさずにすべらせて向きを変えられる</b>。パッドのまわり(左下の広い範囲)のどこを押しても反応する。</small>');
+    s.p('<small>パッドの大きさ</small>'); s.grid(3); ['小さめ', '標準', '大きめ'].forEach((n, i) => s.btn(n, set(() => { this.o.size = i; }), { cls: this.o.size === i ? 'pri' : '' })); s.end();
+    s.p('<small>パッドの位置</small>'); s.grid(2); ['左(右手でボタン)', '右(左手でボタン)'].forEach((n, i) => s.btn(n, set(() => { this.o.swap = i; }), { cls: this.o.swap === i ? 'pri' : '' })); s.end();
+    s.btn('画面タッチで歩く:' + (this.o.touch ? 'ON' : 'OFF'), set(() => { this.o.touch = this.o.touch ? 0 : 1; }), { sub: 'ゲーム画面を<b>押しっぱなし</b>にすると、主人公から見た指の方向へ歩く。<b>行きたい場所をタップ</b>すると、そこまで自動で歩く(店の扉や人をタップすれば、入る・話す)。<b>主人公をタップ</b>で「行動」', cls: this.o.touch ? 'ok' : '' });
+    s.btn('向きを変えたときの振動:' + (this.o.vib ? 'ON' : 'OFF'), set(() => { this.o.vib = this.o.vib ? 0 : 1; }), { sub: '押せたことが指に伝わる(対応している端末のみ。iPhoneでは鳴らない)', cls: this.o.vib ? 'ok' : '' });
+  }
+};
+/* 何かの画面や会話・戦闘が始まったら、自動歩行をやめる */
+{ const f0 = Dlg.show; Dlg.show = function (...a) { Ctl.dn++; return f0.apply(this, a); }; }
+{ const f0 = UI.open; UI.open = function (...a) { Ctl.dn++; return f0.apply(this, a); }; }
+{ const f0 = Battle.start; Battle.start = function (...a) { Ctl.dn++; Ctl.aw++; return f0.apply(this, a); }; }
+{ const f0 = Field.render; Field.render = function (...a) { const r = f0.apply(this, a); Ctl.draw(); return r; }; }
+{ const f0 = Field.resize; Field.resize = function (...a) { const r = f0.apply(this, a); Ctl.layout(); return r; }; }
 
 /* ===================== エディタ ===================== */
 const obj = (keys, f) => { const o = {}; keys.forEach(k => o[k] = f(k)); return o; };
@@ -6803,36 +7267,54 @@ const Title = {
       const ms = [1, 2, 3].map(slotMeta);
       ms.forEach((m, i) => { if (m) s.btn(`▶ つづきから:冒険の書${i + 1}`, async () => { const done = await busy('🌍 世界を読みこんでいます…'); try { loadGame(i + 1); } catch (e) { done(); await say('この記録は読み込めませんでした。\n<small>' + esc(e.message) + '</small>'); return; } done(); Title.resume(); }, { cls: 'pri', sub: `${esc(m.name)} Lv${m.lv} ${m.job}・${m.day}日目・${playStr(m.play)}${m.hard ? '・ハードコア' : ''}` }); });
       s.btn('✨ はじめから(新しい人生)', () => Title.newGame(), { cls: 'ok' });
+      s.btn('🎨 カスタムスタート(好きな職業ではじめる)', () => Title.newGame(true), { sub: `全${Object.keys(DB.jobs).length}職から最初の職業を選べる。上級職・伝説職も、エディタで作った職業もOK` });
       s.btn('🛠️ エディタ(職業・魔物・仲間・特技の追加と編集)', () => Editor.open());
       s.btn('📥 セーブデータを読み込む', async () => { const t = await askArea('書き出したセーブデータを貼り付けるか、ファイルを選んでください。', '', true); if (!t) return; try { unpackSave(t.trim()); const sl = await ask('どの冒険の書に入れますか?', [1, 2, 3].map(n => '冒険の書' + n + (slotMeta(n) ? '(上書き)' : '')), { cancel: 1 }); if (sl < 0) { G = null; return; } saveGame(sl + 1); Title.resume(); } catch (e) { G = null; await say('読み込めませんでした。\n<small>' + esc(e.message) + '</small>'); } });
       s.btn('📘 あそびかた', () => Title.help());
       if (ms.some(Boolean)) s.btn('🗑️ 冒険の書を消す', async () => { const i = await ask('どれを消しますか?', [1, 2, 3].map(n => ({ l: '冒険の書' + n, dis: !ms[n - 1] })), { cancel: 1 }); if (i >= 0 && await yn(`冒険の書${i + 1}を本当に消しますか?`)) deleteSave(i + 1); });
       let gr = []; try { gr = JSON.parse(LS('tl_grave') || '[]'); } catch (e) { }
       if (gr.length) s.btn('🪦 かつての人生(ハードコアの記録)', () => say(gr.map(g => `${esc(g.name)} Lv${g.lv} ${g.job}・${g.day}日目・${g.wins}勝`).join('\n')));
-      r.appendChild(el('div', 'sp note', `職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種`));
+      r.appendChild(el('div', 'sp note', `種族${RACES.length}種・職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種`));
     }, { noClose: true });
   },
   resume() { UI.closeAll(); const s = !G.dun && !G.tm && G.veh === 'foot' && W.at.get(G.y * W.S + G.x); if (s && s.fac) TownMap.enter(s, 'mid', true); Field.resize(); Field.draw(); },
-  async newGame() {
+  async newGame(custom) {
     const name = await askText('あなたの名前を教えてください。', 'アレン', 8); if (name === null) return;
     const sx = await ask('性別は?', ['男', '女', 'その他'], { cancel: 1 }); if (sx < 0) return;
-    const look = await askLook(['m', 'f', 'x'][sx], 'C'); if (!look) return;
+    const race = await Race.choose(true); if (!race) return;
+    Race.ctx = race; const look = await askLook(['m', 'f', 'x'][sx], 'C'); Race.ctx = null; if (!look) return;
     const og = await ask('どんな生まれですか?', ORIGINS.map(o => ({ l: o[1], sub: o[2] })), { cancel: 1 }); if (og < 0) return;
     const pk = Object.keys(PERS), ps = await ask('どんな性格ですか?<small>(成長のしかたが変わる)</small>', pk.map(k => ({ l: PERS[k][0], sub: PERS[k][1].map((v, i) => v > 1.04 ? STAT_JP[STATS[i]] + '◎' : v < .96 ? STAT_JP[STATS[i]] + '△' : '').filter(Boolean).join(' ') })), { cancel: 1 }); if (ps < 0) return;
-    const jb = Object.values(DB.jobs).filter(j => j.tier === 1 && !j.cond.length && !j.req.length), ji = await ask('最初の職業を選んでください。<small>(あとから神殿でいつでも変えられる)</small>', jb.map(j => ({ l: `${JOBCAT[j.cat][1]} ${j.name}`, sub: j.desc })), { cancel: 1 }); if (ji < 0) return;
+    let job; if (custom) { job = await Title.pickJob(); if (!job) return; } else { const jb = Object.values(DB.jobs).filter(j => j.tier === 1 && !j.cond.length && !j.req.length), ji = await ask('最初の職業を選んでください。<small>(あとから神殿でいつでも変えられる)</small>', jb.map(j => ({ l: `${JOBCAT[j.cat][1]} ${j.name}`, sub: j.desc })), { cancel: 1 }); if (ji < 0) return; job = jb[ji].id; }
     const md = await ask('難しさを選んでください。', [{ l: 'ノーマル', sub: '全滅しても、所持金の半分を失って教会からやり直せる' }, { l: 'ハードコア(ローグライク)', sub: '全滅したらその人生は終わり。記録は消える。緊張感を求める人に' }], { cancel: 1 }); if (md < 0) return;
     const wd = await ask('世界を選んでください。<small>(世界は番号ごとに地形がまったく変わる)</small>', ['おまかせ(ランダムな世界)', '世界の番号を自分で決める'], { cancel: 1 }); if (wd < 0) return;
     let seed = rnd(900000) + 1000; if (wd === 1) { const t = await askText('世界の番号(数字)', String(seed), 9); if (t === null) return; seed = Math.abs(parseInt(t, 10)) || seed; }
     const ms = [1, 2, 3].map(slotMeta), fr = ms.findIndex(m => !m); let slot = fr + 1;
     if (fr < 0) { const i = await ask('冒険の書がいっぱいです。どれに上書きしますか?', ms.map((m, k) => ({ l: `冒険の書${k + 1}`, sub: `${m.name} Lv${m.lv}・${m.day}日目` })), { cancel: 1 }); if (i < 0) return; slot = i + 1; }
-    const done = await busy('🌍 世界を生成しています…<br><small>大陸・町・迷宮をつくっています</small>'); try { this.create({ name: name || 'アレン', sex: ['m', 'f', 'x'][sx], look, emoji: ['🧑', '👩', '🧑'][sx], origin: ORIGINS[og], pers: pk[ps], job: jb[ji].id, hard: md === 1, seed, slot }); } finally { done(); }
+    const done = await busy('🌍 世界を生成しています…<br><small>大陸・町・迷宮をつくっています</small>'); try { this.create({ name: name || 'アレン', sex: ['m', 'f', 'x'][sx], look, emoji: ['🧑', '👩', '🧑'][sx], origin: ORIGINS[og], pers: pk[ps], job, race, custom: !!custom, hard: md === 1, seed, slot }); } finally { done(); }
     const N = W.nations[0], h = hero();
-    await say([`${dateStr()}。${N.name}、${N.cap.name}。`, `${h.name}、${G.age0}歳。${ORIGINS[og][1]}として育ったあなたは、今日、ひとり立ちの日を迎えた。`, `世界のどこかでは魔王が力を増しているという。\nけれど——勇者になるのも、商人として財を成すのも、気ままに旅をするのも、あなたの自由だ。`, `<small>【はじめに】\n・十字ボタンで町の中を歩ける。建物の扉へ進むと中に入れる(看板が目印)\n・「行動」→「施設の一覧」なら歩かずに入れる。「メニュー」で装備や仲間の確認\n・まずは酒場で仲間を探し、武器屋で装備を整えよう\n・北にある城の王様に会うと、最初の目的地を教えてくれる\n・くわしくは メニュー → 設定 → あそびかた</small>`]);
+    await say([`${dateStr()}。${N.name}、${N.cap.name}。`, `${h.name}、${G.age0}歳。${Race.id(h) !== 'human' ? Race.name(h) + 'の' : ''}${ORIGINS[og][1]}として育ったあなたは、今日、ひとり立ちの日を迎えた。`, `世界のどこかでは魔王が力を増しているという。\nけれど——勇者になるのも、商人として財を成すのも、気ままに旅をするのも、あなたの自由だ。`, custom ? `<small>【カスタムスタート】</small>\n最初の職業は <b>${esc(jobName(h))}</b>。\n<small>神殿でほかの職業に変えても、この職業にはいつでも戻れる。</small>` : '', `<small>【はじめに】\n・十字ボタンで町の中を歩ける。建物の扉へ進むと中に入れる(看板が目印)\n・「行動」→「施設の一覧」なら歩かずに入れる。「メニュー」で装備や仲間の確認\n・まずは酒場で仲間を探し、武器屋で装備を整えよう\n・北にある城の王様に会うと、最初の目的地を教えてくれる\n・くわしくは メニュー → 設定 → あそびかた</small>`]);
     Field.draw();
+  },
+  /* カスタムスタート:すべての職業から最初の職業を選ぶ(系統 → 職業 → 確認) */
+  async pickJob() {
+    const TN = ['', '基本職', '中級職', '上級職', '最上級職', '伝説職'], all = Object.values(DB.jobs).filter(j => JOBCAT[j.cat]), cats = Object.keys(JOBCAT).filter(k => all.some(j => j.cat === k));
+    for (; ;) {
+      const ci = await ask(`どの系統の職業ではじめますか?<small>(全${all.length}職。上級職・伝説職も、エディタで作った職業も選べる)</small>`, cats.map(k => { const ls = all.filter(j => j.cat === k); return { l: `${JOBCAT[k][1]} ${JOBCAT[k][0]}`, sub: `${ls.length}職・` + [1, 2, 3, 4, 5].map(t => { const n = ls.filter(j => j.tier === t).length; return n ? TN[t].replace('職', '') + n : ''; }).filter(Boolean).join(' ') }; }), { cancel: 1 });
+      if (ci < 0) return null;
+      const k = cats[ci], ls = all.filter(j => j.cat === k).sort((a, b) => a.tier - b.tier);
+      for (; ;) {
+        const ji = await ask(`${JOBCAT[k][1]} <b>${JOBCAT[k][0]}</b><small>(${ls.length}職・下へ行くほど上の職)</small>`, ls.map(j => ({ l: `${esc(j.name)} <span class="tag">${TN[j.tier] || ''}</span>`, sub: esc(j.desc) })), { cancel: '系統を選びなおす' });
+        if (ji < 0) break;
+        const j = ls[ji]; let a = 1;
+        while (a === 1) { a = await ask(`${JOBCAT[j.cat][1]} <b>${esc(j.name)}</b> <small>${TN[j.tier] || ''}</small>\n${esc(j.desc)}`, ['この職業ではじめる', 'くわしく見る'], { cancel: 'ほかの職業にする' }); if (a === 1) await jobInfo(j); }
+        if (a === 0) return j.id;
+      }
+    }
   },
   create(o) {
     G = newG(o.seed); if (o.wv || window.__WV__) G.wv = o.wv || window.__WV__; World.gen(o.seed); More.boot(); FOG = new Uint8Array(Math.ceil(W.S * W.S / 8)); G.hard = o.hard; G.slot = o.slot; if (o.hard) G.opts.autosave = true;
-    const c = newChar({ name: o.name, emoji: o.emoji, sex: o.sex, job: o.job, lv: 1, pers: o.pers, tactic: 'manual' }); if (o.look) c.look = o.look; G.hero = c.id; G.party = [c.id];
+    const c = newChar({ name: o.name, emoji: o.emoji, sex: o.sex, job: o.job, lv: 1, pers: o.pers, tactic: 'manual', race: o.race || 'human' }); if (o.look) c.look = o.look; if (o.custom) { c.fj = o.job; G.custom = 1; } G.hero = c.id; G.party = [c.id];
     const b = o.origin[3]; G.gold = b.gold || 50; STATS.forEach(k => { if (b[k]) c.base[k] += b[k]; }); if (b.fame) G.fame = b.fame; if (b.karma) G.karma = b.karma; (b.skills || []).forEach(k => learn(c, k)); for (const k in b.items) give(k, b.items[k]);
     give('herb', 3); give('wing', 1);
     const sg = starterGear(c, 0), hasSl = sl => Object.keys(G.inv).some(k => { const it = item(k); return it && it.slot === sl && canEquip(c, it); }); if (sg[0] && !hasSl('w')) give(sg[0]); if (sg[1] && !hasSl('b')) give(sg[1]);
@@ -6844,9 +7326,11 @@ const Title = {
       s.head('📘 あそびかた');
       const H = (t, b) => { s.h(t); s.card(b); };
       H('このゲームについて', 'コマンド式の戦闘と転職で遊ぶ、自由度の高いRPGです。魔王を倒す旅に出ても、商人として稼いでも、釣りや畑で暮らしても、盗賊として生きてもかまいません。世界は「はじめから」のたびに自動で作られます。');
-      H('操作', '・<b>十字ボタン</b>(パソコンは矢印キー):移動。押しっぱなしで歩き続ける<br>・<b>町・村・城の中</b>は歩いてまわれる。建物の扉に向かって進むと店に入り、人にぶつかると話せる。たるやつぼも調べられる<br>・<b>行動</b>:目の前を調べる、施設の一覧、採集、採掘、釣り、野営、飛竜の乗り降り、迷宮では階の地図<br>・<b>世界</b>は1776×1776マス(新しく始めた場合)。地形は約30種類あり、森・竹林・溶岩原・古戦場など場所ごとに出る魔物がちがう。町や村は<b>街道</b>でつながっていて、街道の上は魔物が出にくく速く歩ける。地図は「周辺・広域・世界全体」を切りかえられる<br>・<b>迷宮</b>は150種類。入口で大きさ(小・中・大・超巨大)と仕掛けがわかる。暗い迷宮は<b>たいまつ</b>(道具屋)で明るくなる。10階以上の迷宮は5階ごとに再開地点がある<br>・<b>メニュー</b>:つよさ、装備、道具、特技、仲間と作戦、製作、図鑑、セーブ、設定<br>・<b>地図</b>:歩いた場所が記録される世界地図<br>・町やダンジョンは、そのマスに入ると入れる');
+      H('操作', '・<b>十字パッド</b>は、指をはなさずに<b>すべらせて向きを変えられる</b>。パッドのまわりの広い範囲が反応するので、だいたいの位置を押せばよい<br>・<b>画面タッチ</b>:ゲーム画面を押しっぱなしで指の方向へ歩く/行きたい場所をタップでそこまで自動で歩く/主人公をタップで「行動」<br>・パッドの大きさ・左右の位置・画面タッチ・振動は メニュー → 設定 →「操作」で変えられる<br>・<b>十字ボタン</b>(パソコンは矢印キー):移動。押しっぱなしで歩き続ける<br>・<b>町・村・城の中</b>は歩いてまわれる。建物の扉に向かって進むと店に入り、人にぶつかると話せる。たるやつぼも調べられる<br>・<b>行動</b>:目の前を調べる、施設の一覧、採集、採掘、釣り、野営、飛竜の乗り降り、迷宮では階の地図<br>・<b>世界</b>は1776×1776マス(新しく始めた場合)。地形は約30種類あり、森・竹林・溶岩原・古戦場など場所ごとに出る魔物がちがう。町や村は<b>街道</b>でつながっていて、街道の上は魔物が出にくく速く歩ける。地図は「周辺・広域・世界全体」を切りかえられる<br>・<b>迷宮</b>は150種類。入口で大きさ(小・中・大・超巨大)と仕掛けがわかる。暗い迷宮は<b>たいまつ</b>(道具屋)で明るくなる。10階以上の迷宮は5階ごとに再開地点がある<br>・<b>メニュー</b>:つよさ、装備、道具、特技、仲間と作戦、製作、図鑑、セーブ、設定<br>・<b>地図</b>:歩いた場所が記録される世界地図<br>・町やダンジョンは、そのマスに入ると入れる');
       H('戦闘', '・「こうげき」「とくぎ・魔法」「ぼうぎょ」「どうぐ」「にげる」を選ぶ<br>・仲間は「作戦」に従って自分で動く(メニュー→仲間・作戦で「めいれいする」にすれば手動)<br>・<b>おまかせ</b>を押すと、その戦闘は全員が自動で戦う。設定で常時ONにすると、勝利メッセージも省いて連戦できる<br>・<b>気合ため</b>を使うと次の一撃が1.7倍→3倍→5倍→7.5倍<br>・鞭は敵1グループ、投輪は敵全体を攻撃できる<br>・属性の弱点を突くと1.5倍。鑑定眼で弱点がわかる<br>・倒した魔物がまれに仲間になる(魔物使い系の職で確率アップ)');
-      H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・タイトルの<b>カスタムスタート</b>なら、条件のある職業も含めて好きな職業で人生をはじめられる(その職業にはいつでも戻れる)<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('国境', '・外を歩いていると、国と国の境目に<b>それぞれの国の色の線</b>が見える。境目の近くでは、画面上の地名に「⇄となりの国」と出る<br>・国境を越えると「🚩 国境を越えた」と知らせが出る。国が変わると魔物の強さも変わるので注意<br>・<b>地図</b>は国ごとに色がつき、白い線が国境、国名も入る(地図の下のボタンで切りかえ)');
+      H('種族(全' + RACES.length + '種)', '・はじめるときに、主人公の<b>種族</b>を選ぶ。人間系・妖精系・獣人系・鱗と水の民・巨人と鬼・精霊と異形の6系統<br>・種族ごとに<b>能力の伸び</b>(HPやかしこさなど)、<b>特性</b>(会心率・回避率・製作の腕など)、<b>属性の耐性と弱点</b>、効かない状態異常がちがう。夜に強い種族、戦闘中に体力が戻る種族もいる<br>・町の住民は国や町によって種族の割合がちがい、酒場で仲間になる冒険者も その町の住民にあわせた種族になる<br>・<b>種族の里</b>:ひとつの種族だけが暮らす村が各地にある(最初の国には かならずハーフリングの里がある)。その種族を仲間にしたいときは里の酒場へ。主人公が同じ種族なら、里の店は1割引き<br>・訪れた里は 手帳 →「探索」に記録される。前からのセーブデータの主人公は、メニュー → 仲間 → 主人公 から1回だけ種族を選べる');
       H('生き方いろいろ', '・<b>冒険者</b>:ギルドの依頼をこなしてランクを上げる<br>・<b>商人</b>:交易所で安く仕入れて他国で高く売る。店を買えば毎日収入<br>・<b>職人</b>:採掘・採集した素材で武具や薬、料理を作る。装備の強化も<br>・<b>旅人</b>:8つの国と魔王領を巡る。船や飛竜を手に入れよう<br>・<b>暮らし</b>:家を買って畑を耕し、結婚して子供を育てる<br>・<b>悪党</b>:盗みで稼ぐ。賞金首になり、闇の職業への道が開く<br>・<b>闘士</b>:闘技場でランク30を目指す<br>・<b>探索者</b>:底なしの「深淵の大穴」に挑む');
       H('時間', '歩くと時間が進み、昼と夜がある。夜は魔物が強く、多くの店が閉まる。宿屋や野営で休むと時間が進む。30日で1か月、360日で1年がたち、年を取る。');
       H('強くなり続けるには', '・Lv99になったら神殿で<b>転生</b>。Lv1に戻るが成長率が上がる<br>・魔王を倒したあとも、真の魔王、深淵100階、世界の強さを上げる周回が待っている<br>・装備は鍛冶で+1ずつ強化できる。深淵では+付きの装備が見つかる');
@@ -6879,18 +7363,11 @@ const Title = {
 /* ===================== 入力と起動 ===================== */
 function boot() {
   loadCustom(); initDB();
-  let rep = null, dir = null; const stop = () => { clearInterval(rep); rep = null; dir = null; document.querySelectorAll('#pad button').forEach(b => b.classList.remove('on')); };
-  document.querySelectorAll('#pad button').forEach(b => {
-    const [dx, dy] = b.dataset.d.split(',').map(Number);
-    const start = e => { e.preventDefault(); stop(); b.classList.add('on'); dir = [dx, dy]; Field.move(dx, dy); rep = setInterval(() => { if (dir) Field.move(dir[0], dir[1]); }, 150); };
-    b.addEventListener('pointerdown', start); ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => b.addEventListener(ev, stop));
-    b.addEventListener('contextmenu', e => e.preventDefault());
-  });
+  Ctl.init();
   $('bMenu').onclick = () => Field.menu(); $('bAct').onclick = () => Field.act(); $('bMap').onclick = () => Field.map();
   const KEY = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
   document.addEventListener('keydown', e => { if (e.target && /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return; const k = KEY[e.key]; if (k) { e.preventDefault(); Field.move(k[0], k[1]); } else if (e.key === 'Enter' || e.key === ' ') { if (Dlg.open) { const d = $('dlg'); if (d.onclick) d.onclick(); } else Field.act(); } else if (e.key === 'm' || e.key === 'Escape') { if (!UI.stack.length) Field.menu(); } });
   window.addEventListener('resize', () => { if (G) Field.resize(); else { const cv = $('cv'); if (cv) Field.resize(); } });
-  window.addEventListener('blur', stop); ['pointerup', 'pointercancel'].forEach(ev => window.addEventListener(ev, stop));
   setInterval(() => { if (G && !document.hidden) G.play++; }, 1000);
   Field.resize(); if (typeof requestAnimationFrame === 'function') { Field.anim = true; Field.loop(); } Title.open();
 }
