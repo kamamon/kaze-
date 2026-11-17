@@ -399,20 +399,65 @@ stare|怪しい瞳|s|0|e1|s|0|n|st=sleep:60|
 web|糸吐き|s|0|eg|d|0|n|b=agi:-2|
 sting|毒針|p|0|e1|p|90|n|st=poison:70|
 scream|金切り声|s|0|ea|s|0|n|st=stun:30|
+thousand|千刃乱舞|p|34|er|p|62|n|hits=12|
+skysplit|蒼天断ち|p|40|e1|p|760|n|crit=20|
+worldcut|世界断ち|p|58|ea|p|500|n|ign=1|守備力を無視して、敵全体を斬りはらう
+fistinf|無限拳|p|32|er|p|74|n|hits=10;crit=15|
+meteorfist|流星拳|p|38|ea|p|390|n|st=stun:30|
+onehit|一撃必殺|p|28|e1|p|430|n|crit=100|かならず会心の一撃になる
+dragonfang|竜牙連撃|p|26|e1|p|230|n|hits=3|
+stardance|流星の舞|p|30|er|p|84|n|hits=7;deb=agi:-1|
+soulsteal|魂盗み|p|22|e1|p|300|da|drain=50|
+savior|救世の一閃|p|46|ea|p|450|li||
+heavenfall|天崩地裂|p|72|ea|p|640|n|crit=15|
+luckstrike|天運の一撃|p|36|e1|p|560|n|crit=100|かならず会心の一撃になる
+voidlance|虚空穿ち|m|64|e1|m|1000|n||
+novaburst|星の終焉|m|110|ea|m|900|n||
+eclipse|日蝕|m|70|ea|m|520|da|drain=20|
+lastjudge|最後の審判|m|96|ea|m|780|li|st=stun:25|
+bigend|万物の終わり|m|160|ea|m|1300|n||
+lifestream|生命の奔流|h|88|aa|h|9999|n|b=regen|
+sanctuary|聖域|s|46|aa|b|0|n|b=barrier,bguard,regen|味方全体の魔法と息のダメージを減らし、毎ターン少しずつ回復する
+godbless|神々の祝福|s|60|aa|b|0|n|b=atk:2,def:2,agi:2,mag:2|味方全体の攻撃・守備・素早さ・魔力を大きく上げる
+allhaste|万象加速|s|72|aa|b|0|n|b=twice,agi:1|味方全体が2回行動できるようになる
+mirrorwall|鏡の城壁|s|44|aa|b|0|n|b=reflect,barrier|味方全体に、魔法をはね返す壁を張る
+decay|万物衰退|s|38|ea|d|0|n|b=atk:-2,def:-2,agi:-2|
+fate|宿命の鎖|s|52|ea|s|0|n|st=stun:95|
+hellgate|冥府の門|s|46|ea|s|0|da|st=death:55|
+warhymn|鬨の神声|x|48|aa|b|0|n|b=atk:2,agi:1;ten=2|味方全体の攻撃と素早さを上げ、テンションを2段階上げる
+eternal|永遠の加護|s|92|aa|b|0|n|b=regen,reflect,barrier,bguard,def:2|味方全体に、あらゆる守りをまとめてかける
+aw_W|剣魂解放|x|28|self|b|0|n|b=twice,atk:2,def:2;ten=2|〈戦士系の覚醒技〉2回行動になり、攻撃と守備が大きく上がり、テンションも2段階上がる
+aw_F|明鏡止水|x|24|self|b|0|n|b=twice,eva,counter,agi:2|〈武闘系の覚醒技〉2回行動になり、攻撃をかわしやすく、受けたら反撃する
+aw_M|魔力の奔流|m|78|ea|m|470|n|hits=2|〈魔法系の覚醒技〉敵全体に、無属性の魔法を2回たたきつける
+aw_P|天恵|h|62|aa|h|9999|n|b=regen,barrier,bguard|〈聖職系の覚醒技〉味方全体を完全に回復し、守りの加護をかける
+aw_T|影縫い乱舞|p|26|er|p|92|n|hits=8;st=stun:25|〈盗賊系の覚醒技〉敵をランダムに8回斬り、足を止める
+aw_C|黄金律|x|20|aa|b|0|n|b=atk:1,def:1,agi:1,mag:1;ten=1|〈商人系の覚醒技〉味方全体の能力をまとめて上げ、テンションも上げる
+aw_N|大自然の怒り|m|50|ea|m|540|ea|st=stun:30|〈自然・旅系の覚醒技〉大地をゆるがし、敵全体の足を止める
+aw_A|終わらない喝采|x|46|aa|h|420|n|b=atk:2,agi:2|〈芸能系の覚醒技〉味方全体を回復し、攻撃と素早さを大きく上げる
+aw_K|神工の大仕掛け|x|30|ea|f|540|n||〈職人系の覚醒技〉敵全体に、守備力に関係のない大ダメージ
+aw_B|獣王咆哮|p|34|ea|p|430|n|st=stun:35|〈魔物系の覚醒技〉敵全体をなぎはらい、すくみあがらせる
+aw_D|闇の契約|m|46|ea|m|600|da|drain=30|〈闇系の覚醒技〉敵全体に闇の大ダメージを与え、その一部を吸い取る
+aw_S|星の導き|x|40|aa|b|0|n|b=atk:1,def:1,agi:1,mag:1,regen;ten=1|〈特別な職の覚醒技〉味方全体の能力をまとめて上げ、少しずつ回復させる
+ar_H|不屈の闘志|x|30|self|h|9999|n|b=atk:2,def:2|〈人間系の覚醒技〉自分を完全に回復し、攻撃と守備を大きく上げる
+ar_F|森羅の加護|s|40|aa|b|0|n|b=barrier,regen,mag:2|〈妖精・森系の覚醒技〉味方全体の魔力を上げ、魔法から守り、少しずつ回復させる
+ar_B|野生解放|x|30|self|b|0|n|b=twice,atk:2,agi:2|〈獣人系の覚醒技〉2回行動になり、攻撃と素早さが大きく上がる
+ar_S|逆鱗|p|34|ea|p|400|n|crit=30|〈鱗・水系の覚醒技〉敵全体を荒々しくなぎはらう。会心が出やすい
+ar_G|大地割り|p|40|ea|p|470|n|st=stun:35|〈巨人・鬼系の覚醒技〉大地ごと敵全体をたたき割り、足を止める
+ar_X|魂の共鳴|m|60|ea|m|640|n|drain=25|〈精霊・異形系の覚醒技〉敵全体に無属性の大ダメージを与え、その一部を吸い取る
 `;
 // 属性魔法(自動生成): [属性id, 表示, 5段階の名前]
 const ELEM = {fi:'火',ic:'氷',wi:'風',th:'雷',ea:'土',li:'光',da:'闇',n:'無'};
 const ELEM_SPELLS = {
- fi:['火弾','炎波','爆炎陣','紅蓮槍','焦熱地獄'], ic:['氷弾','氷柱雨','吹雪陣','絶氷槍','永久凍土'],
- wi:['風刃','旋風','竜巻陣','真空大刃','天嵐'], th:['雷撃','連鎖雷','雷雲陣','轟雷槍','神鳴'],
- ea:['石弾','岩雪崩','地裂陣','金剛槍','大地震'], li:['光弾','聖光波','浄化陣','聖槍','天の裁き'],
- da:['闇弾','暗黒波','冥界陣','魔槍','終焉'] };
-const ELEM_TIER = [[3,'e1',14],[7,'eg',32],[14,'ea',62],[20,'e1',200],[40,'ea',270]];
+ fi:['火弾','炎波','爆炎陣','紅蓮槍','焦熱地獄','劫火の牙','太陽落とし'], ic:['氷弾','氷柱雨','吹雪陣','絶氷槍','永久凍土','氷獄の棺','氷河期'],
+ wi:['風刃','旋風','竜巻陣','真空大刃','天嵐','断空','万里の暴風'], th:['雷撃','連鎖雷','雷雲陣','轟雷槍','神鳴','天槌','万雷'],
+ ea:['石弾','岩雪崩','地裂陣','金剛槍','大地震','地核の牙','大陸崩し'], li:['光弾','聖光波','浄化陣','聖槍','天の裁き','光臨','天地開闢'],
+ da:['闇弾','暗黒波','冥界陣','魔槍','終焉','虚無の槍','常闇'] };
+const ELEM_TIER = [[3,'e1',14],[7,'eg',32],[14,'ea',62],[20,'e1',200],[40,'ea',270],[56,'e1',580],[92,'ea',620]];
 const ELEM_SLASH = {fi:'火炎斬り',ic:'氷結斬り',wi:'風刃斬り',th:'雷鳴斬り',ea:'大地斬り',li:'聖光斬り',da:'暗黒斬り'};
 const FAM = {jelly:'ゼリー',beast:'獣',bird:'鳥',plant:'植物',bug:'虫',undead:'不死',demon:'悪魔',dragon:'竜',material:'物質',aquatic:'水棲',humanoid:'人型',elemental:'精霊',metal:'金属'};
 const KILLER = {jelly:'ゼリー切り',beast:'獣狩り',bird:'鳥落とし',plant:'草刈り',bug:'虫潰し',undead:'不死祓い',demon:'悪魔祓い',dragon:'竜殺し',material:'機械壊し',aquatic:'魚突き',humanoid:'対人剣',elemental:'精霊斬り'};
-const BREATHS = [['fb','fi',['火の息','火炎の息','灼熱の息','煉獄の息']],['ib','ic',['冷気の息','吹雪の息','極寒の息','絶対零度']]];
-const BREATH_T = [[0,18],[4,55],[10,130],[22,260]];
+const BREATHS = [['fb','fi',['火の息','火炎の息','灼熱の息','煉獄の息','太陽の息']],['ib','ic',['冷気の息','吹雪の息','極寒の息','絶対零度','氷河の息']]];
+const BREATH_T = [[0,18],[4,55],[10,130],[22,260],[40,440]];
 
 /* ===================== データ表:職業 ===================== */
 // id|名前|段階|系統|条件|補正(HP,MP,力,守,速,賢,運)|習得特技|特性|説明
@@ -633,7 +678,33 @@ starwalker|星渡り|5|N|worldwalker+naturesage|9,10,7,7,9,10,8|allthings@1,gods
 emperor|皇帝|5|S|lord+conqueror;fame>=2000|13,4,10,10,3,8,8|rally@1,order@1,bigslash@2,mercs@3,hope@8|income:200,gold:60,exp:20|大陸を統べる唯一の帝
 omni|万能者|5|S|;masters>=100|10,10,10,10,10,10,10|allthings@1,hope@3,godspeed@5,genesis@7,bigslash@9|exp:30,gold:30,drop:30,mpc:20|百の道を極めし者
 legendcommoner|伝説の村人|5|S|commoner;masters>=30|8,8,8,8,8,8,20|pray@1,chaos@3,hope@6,godfist@9|luk:100,exp:25|ただの村人が辿り着いた境地
+skyblade|天剣の覇者|6|W|wargod+emperor|16,3,18,12,8,4,3|bigslash@1,godspeed@1,thousand@3,skysplit@6,worldcut@9|phys:40,crit:25|天をも断つと語られる、剣の覇者
+fistking|無極の拳皇|6|F|fistgod+wargod|14,4,16,7,20,5,5|godfist@1,hundred@1,fistinf@3,meteorfist@6,onehit@9|crit:40,eva:25,twice:22|拳ひとつで星を砕く、武の皇
+starsage|星辰の大賢者|6|M|magicgod+starwalker|2,24,-2,2,6,24,4|allthings@1,fi6@2,ic6@2,th6@4,voidlance@6,novaburst@9|mag:55,mpc:35,mpr:2|星々の理を読み解いた大賢者
+seraph|熾天の導き手|6|P|angel+truehero|6,22,3,6,5,18,8|hope@1,genesis@1,li6@2,sanctuary@4,lifestream@6,lastjudge@9|heal:80,mpc:35,hpr:4|六枚の光の翼で人々を導く者
+voidthief|虚空の盗神|6|T|legendthief+artgod|6,6,8,3,22,8,22|masterthief@1,godspeed@1,stardance@3,soulsteal@5,fate@8|steal:150,drop:110,eva:32,luk:70|運命さえ盗み出す、盗みの神
+scalelord|天秤の覇商|6|C|goldking+emperor|11,6,6,8,4,11,20|goldrain@1,mercs@1,rally@2,decay@5,godbless@8|gold:180,disc:45,trade:70,sell:35,income:250|世界の富をはかりにかける大商人
+worldtree|世界樹の守人|6|N|starwalker+seagod|14,12,10,11,10,12,10|seawrath@1,allthings@1,ea6@3,wi6@3,lifestream@6,ea7@9|exp:60,enc:-70,drop:55,gather:150,fish:120,hpr:3|大地と海を見守る、世界樹の番人
+musegod|天球の楽神|6|A|artgod+angel|6,14,6,3,18,12,16|muse@1,song6@1,godbless@3,allhaste@6,warhymn@8|exp:55,gold:80,luk:70,heal:30|星々のめぐりさえ奏でる楽の神
+relicsmith|神器匠|6|K|creator+goldking|12,12,10,13,2,16,8|cannon@1,hope@1,gigaA@2,mirrorwall@4,worldcut@8|craft:300,income:180,farm:150,gather:80|神々の道具をも鍛える名匠
+dragonemperor|竜皇|6|B|dragongod+wargod|19,8,16,14,7,10,5|fb4@1,ib4@1,dragonroar@1,fb5@3,ib5@3,dragonfang@5,skysplit@9|tame:220,phys:25,mag:10|すべての竜がこうべを垂れる皇
+abysslord|奈落の魔帝|6|D|demonlord+magicgod|15,16,15,10,8,19,-3|darkstar@1,dlwave@1,da6@2,eclipse@4,hellgate@6,da7@9|mag:42,phys:28,mpc:15|魔王すら従える、奈落の帝
+starhero|星の勇者|6|S|truehero+starwalker;clear|16,14,16,14,11,14,9|brave@1,herothunder@1,hope@1,savior@4,th7@7,li7@10|exp:30,phys:22,mag:22,crit:10|星に選ばれ、世界を越えて戦う勇者
+skyemperor|天帝|6|S|emperor+goldking;fame>=5000|17,6,13,13,5,11,12|rally@1,order@1,mercs@1,warhymn@3,godbless@5,bigslash@7|income:400,gold:90,exp:30,phys:10|天の名のもとに万国を治める帝
+allknowing|全知の旅人|6|S|omni+legendcommoner;masters>=150|14,14,14,14,14,14,14|allthings@1,hope@1,godspeed@2,allhaste@5,novaburst@8,worldcut@10|exp:45,gold:45,drop:45,mpc:28,luk:40|あらゆる道を歩きつくした旅人
+peerless|天地無双|7|W|skyblade+fistking|22,6,24,16,16,6,6|skysplit@1,fistinf@1,thousand@2,worldcut@4,onehit@6,heavenfall@9|phys:55,crit:32,twice:25,eva:15|天にも地にも並ぶ者のない、武の頂
+originmage|根源の魔導|7|M|starsage+abysslord|6,30,2,5,9,30,5|novaburst@1,voidlance@1,fi7@2,ic7@2,wi7@3,th7@3,ea7@4,li7@5,da7@5,bigend@9|mag:75,mpc:45,mpr:4|魔法が生まれた源にたどり着いた者
+gospel|福音の光|7|P|seraph+musegod|9,26,4,9,12,22,14|lifestream@1,sanctuary@1,allhaste@2,godbless@3,lastjudge@5,eternal@8|heal:120,mpc:45,hpr:6,exp:30|その歌と祈りは、死さえ遠ざける
+fateweaver|運命の支配者|7|T|voidthief+scalelord|9,9,10,6,26,11,30|fate@1,soulsteal@1,goldrain@1,stardance@2,decay@4,chaos@5,hellgate@7,luckstrike@9|steal:200,drop:150,gold:150,luk:120,eva:38|幸運も不運も、思いのままに織りなす
+worldmaker|世界を創る者|7|K|worldtree+relicsmith|18,16,14,16,11,17,12|lifestream@1,ea7@1,wi7@2,mirrorwall@3,godbless@5,novaburst@7,eternal@10|craft:400,gather:200,farm:200,exp:70,drop:70,hpr:5|山を築き、海を満たし、世界を形づくる
+eternalhero|永劫の勇者|7|S|starhero+skyemperor|22,18,22,18,14,18,12|savior@1,hope@1,li7@2,th7@2,heavenfall@5,godbless@6,allhaste@8,eternal@10|exp:45,phys:32,mag:32,crit:15,income:200|いくつもの世界を救いつづける勇者
+firstone|始まりの者|7|S|allknowing+dragonemperor;masters>=160|20,20,20,20,20,20,20|novaburst@1,worldcut@1,lifestream@2,allhaste@3,heavenfall@5,bigend@8,eternal@10|exp:60,gold:60,drop:60,mpc:35,phys:25,mag:25,luk:80|すべてのはじまりに立つ、名もなき者
 `;
+// 職業の段階の名前(6 神話職・7 超越職は、伝説職のさらに上)
+const JOB_TIER = ['', '基本職', '中級職', '上級職', '最上級職', '伝説職', '神話職', '超越職'];
+// 神話職・超越職を極めた(★10)ときに、いちどだけもらえる証
+const JOB_GIFT = {skyblade:'gx1',fistking:'gx2',starsage:'gx3',seraph:'gx4',voidthief:'gx5',scalelord:'gx6',worldtree:'gx7',musegod:'gx8',relicsmith:'gx9',dragonemperor:'gx10',abysslord:'gx11',starhero:'gx12',skyemperor:'gx13',allknowing:'gx14',
+ peerless:'gw1',originmage:'gw2',gospel:'gw3',fateweaver:'gw4',worldmaker:'gw5',eternalhero:'gw6',firstone:'gw7'};
 const JOBCAT = {W:['戦士系','⚔️'],F:['武闘系','👊'],M:['魔法系','🔮'],P:['聖職系','🙏'],T:['盗賊系','🗝️'],C:['商人系','💰'],N:['自然・旅系','🌿'],A:['芸能系','🎵'],K:['職人系','🔨'],B:['魔物系','🐾'],D:['闇系','🌑'],S:['特別','⭐']};
 // 系統ごとの装備可能: 武器種 | 鎧の種類(H重 L軽 R衣) | 盾
 const JOBEQ = {W:'sw,ax,sp,hm,bw|H,L|1',F:'cl,st,fn|L|0',M:'st,dg,wh|R|0',P:'st,hm,sp|R,L|1',T:'dg,wh,bm,sw,cl|L|0',C:'dg,hm,wh,bm,ax|L|1',
@@ -918,6 +989,8 @@ ore8|魔石|mat|5000||魔の武具の材料
 ore9|星の砂|mat|9000||星の武具の材料
 ore10|天空石|mat|16000||天の武具の材料
 ore11|神鉄|mat|30000||神の武具の材料
+ore12|永劫石|mat|60000||永劫の武具の材料
+ore13|原初の核|mat|120000||原初の武具の材料
 wood|木材|mat|15||木の武具や建物の材料
 poisonweed|毒草|mat|15||毒や薬の材料
 manaweed|魔力草|mat|80||魔力の薬の材料
@@ -994,6 +1067,20 @@ ac27|呪いの仮面|100|atk:50|cursed:1|
 ac28|死神の指輪|100|atk:30,agi:30|cursed:1|
 ac29|黄金の招き猫|50000|luk:30|gold:40|
 ac30|時の砂時計|80000|agi:60|twice:10|
+gx1|覇者の紋章|0|atk:45,def:25|crit:10|天剣の覇者を極めた証
+gx2|拳皇の帯|0|atk:35,agi:45|twice:8|無極の拳皇を極めた証
+gx3|星辰の冠|0|int:60,mp:120|mag:10|星辰の大賢者を極めた証
+gx4|熾天の羽|0|int:40,def:30,mp:80|heal:20|熾天の導き手を極めた証
+gx5|盗神の手袋|0|agi:60,luk:60|steal:50,drop:20|虚空の盗神を極めた証
+gx6|黄金の天秤|0|luk:60|gold:60,disc:10|天秤の覇商を極めた証
+gx7|世界樹の若葉|0|hp:150,mp:60|hpr:5,mpr:2|世界樹の守人を極めた証
+gx8|天球の竪琴|0|agi:40,luk:50,mp:60|exp:20|天球の楽神を極めた証
+gx9|神器の槌飾り|0|atk:30,def:40|craft:60|神器匠を極めた証
+gx10|竜皇の逆鱗|0|atk:40,def:40,hp:120|tame:40|竜皇を極めた証
+gx11|魔帝の指輪|0|atk:35,int:45|mag:10,phys:10|奈落の魔帝を極めた証
+gx12|星の勇者の証|0|atk:40,def:40,agi:30,int:30|exp:15|星の勇者を極めた証
+gx13|天帝の玉璽|0|hp:100,luk:40|income:100,gold:30|天帝を極めた証
+gx14|旅人の古びた地図|0|agi:30,luk:80|exp:20,drop:20,enc:-20|全知の旅人を極めた証
 `;
 // 伝説の武器: id|名前|武器種|攻撃|能力|特殊
 const T_UNIQ = `
@@ -1010,15 +1097,24 @@ uw10|盗賊王の短剣|dg|168|agi:45|steal:40
 uw11|覇者の斧|ax|238|hp:80|
 uw12|女王の鞭|wh|162|int:25|tame:30
 uw13|破滅の剣|sw|270||cursed:1
+gw1|天地無双の剣|sw|330|def:30,agi:30|crit:15
+gw2|根源の杖|st|170|int:130,mp:160|mpr:3
+gw3|福音の聖槌|hm|265|int:60,mp:100|heal:30
+gw4|運命の短剣|dg|250|agi:90,luk:90|steal:60,crit:10
+gw5|創世の大槌|hm|300|def:40,hp:120|craft:80
+gw6|永劫の聖剣|sw|340|def:40,int:40,hp:100|exp:15
+gw7|はじまりの剣|sw|320|agi:40,int:40,luk:40,hp:80,mp:80|exp:20
 `;
 const WT = {sw:'剣',ax:'斧',sp:'槍',dg:'短剣',st:'杖',bw:'弓',cl:'爪',wh:'鞭',hm:'槌',fn:'扇',bm:'投輪'};
 const WT_F = {sw:[1,100,1],ax:[1.15,92,1.05],sp:[1.05,100,1],dg:[0.8,100,0.8],st:[0.6,100,0.9],bw:[0.95,100,1],cl:[0.9,100,0.95],wh:[0.75,100,1],hm:[1.2,88,1.05],fn:[0.7,100,0.9],bm:[0.65,100,1.1]};
-const TIER_M = ['木','銅','鉄','鋼','銀','ミスリル','竜','聖','魔','星','天','神'];
-const TIER_H = ['皮','銅','鉄','鋼','銀','ミスリル','竜','聖','魔','星','天','神'];
-const TIER_C = ['布','麻','絹','旅人','精霊','ミスリル','竜','聖','魔','星','天','神'];
-const TIER_ATK = [6,12,20,30,42,56,72,90,110,132,156,185];
-const TIER_DEF = [4,8,13,19,26,34,43,53,64,76,89,104];
-const TIER_PRICE = [50,150,400,1000,2400,5500,12000,25000,50000,90000,160000,300000];
+const TIER_M = ['木','銅','鉄','鋼','銀','ミスリル','竜','聖','魔','星','天','神','永劫','原初'];
+const TIER_H = ['皮','銅','鉄','鋼','銀','ミスリル','竜','聖','魔','星','天','神','永劫','原初'];
+const TIER_C = ['布','麻','絹','旅人','精霊','ミスリル','竜','聖','魔','星','天','神','永劫','原初'];
+const TIER_ATK = [6,12,20,30,42,56,72,90,110,132,156,185,220,262];
+const TIER_DEF = [4,8,13,19,26,34,43,53,64,76,89,104,122,143];
+const TIER_PRICE = [50,150,400,1000,2400,5500,12000,25000,50000,90000,160000,300000,560000,1000000];
+// ふつうの武具は 0〜EQ_TOP 段。伝説の武器・証の武器は UNIQ_TIER
+const EQ_TOP = 13, UNIQ_TIER = 14;
 const SLOT_JP = {w:'武器',s:'盾',h:'頭',b:'体',a:'装飾'};
 // レシピ: 出来る物|分類(cook料理 mix調合 alch錬金)|材料
 const T_RECIPES = `
@@ -1365,8 +1461,8 @@ function LS(k, v) { try { if (v === undefined) return localStorage.getItem(k); i
 /* ===================== データベース構築 ===================== */
 const DB = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {}, recipes: [] };
 let RAWF = {}, BASEF = {}, ITEMC = {};
-let CUSTOM = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {} };
-const DBTYPES = ['skills', 'jobs', 'mons', 'items', 'comps'];
+let CUSTOM = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {}, perks: {} };
+const DBTYPES = ['skills', 'jobs', 'mons', 'items', 'comps', 'perks'];
 const BOOKS = ['fi1', 'ic1', 'wi1', 'th1', 'ea1', 'li1', 'da1', 'heal1', 'cureP', 'defUp', 'atkUp', 'agiUp', 'sleep', 'fi2', 'ic2', 'wi2', 'th2', 'ea2', 'heal2', 'warp', 'escape', 'repel', 'detect', 'unlock', 'barrier', 'fi3', 'ic3', 'th3', 'healA1', 'rev1', 'mb2', 'metalS', 'camp', 'dig', 'hawkeye', 'analyze', 'cureAll', 'defUpA', 'atkUpA'];
 function rows(txt, keys) {
   return txt.trim().split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('//')).map(l => { const p = l.split('|'), o = {}; keys.forEach((k, i) => o[k] = p[i] === undefined ? '' : p[i]); return o; });
@@ -1413,8 +1509,8 @@ function genBase() {
   const I = f => B.items[f.id] = Object.assign({ slot: '', wt: '', atk: '', def: '', int: '', agi: '', luk: '', hp: '', mp: '', sp: '', tier: '', use: '', desc: '' }, f);
   rows(T_ITEMS, ['id', 'name', 'type', 'price', 'use', 'desc']).forEach(I);
   rows(T_ACC, ['id', 'name', 'price', 'st', 'sp', 'desc']).forEach(a => { const s = numkv(a.st); I(Object.assign({ id: a.id, name: a.name, type: 'equip', price: a.price, slot: 'a', sp: a.sp, desc: a.desc }, s)); });
-  rows(T_UNIQ, ['id', 'name', 'wt', 'atk', 'st', 'sp']).forEach(a => { const s = numkv(a.st); I(Object.assign({ id: a.id, name: a.name, type: 'equip', price: 0, slot: 'w', wt: a.wt, atk: a.atk, sp: a.sp, tier: 12, desc: '伝説の武器' }, s)); });
-  for (let t = 0; t < 12; t++) {
+  rows(T_UNIQ, ['id', 'name', 'wt', 'atk', 'st', 'sp']).forEach(a => { const s = numkv(a.st); I(Object.assign({ id: a.id, name: a.name, type: 'equip', price: 0, slot: 'w', wt: a.wt, atk: a.atk, sp: a.sp, tier: UNIQ_TIER, desc: /^gw/.test(a.id) ? '超越職を極めた証' : '伝説の武器' }, s)); });
+  for (let t = 0; t <= EQ_TOP; t++) {
     for (const w in WT) {
       const f = WT_F[w];
       I({ id: w + t, name: TIER_M[t] + 'の' + WT[w], type: 'equip', slot: 'w', wt: w, tier: t, price: Math.round(TIER_PRICE[t] * f[2]), atk: Math.round(TIER_ATK[t] * f[0]),
@@ -1428,6 +1524,7 @@ function genBase() {
   }
   BOOKS.forEach(s => { const k = B.skills[s]; if (k) I({ id: 'bk_' + s, name: k.name + 'の書', type: 'book', price: 400 + (+k.mp) * 300 + (+k.pow) * 6, use: 'learn:' + s, desc: '読むと「' + k.name + '」を覚える' }); });
   rows(T_COMPS, ['id', 'name', 'emoji', 'sex', 'job', 'lv', 'nation', 'pers', 'fee', 'bio']).forEach(f => B.comps[f.id] = f);
+  B.perks = genPerks(B);
   return B;
 }
 const TGT_JP = { e1: '敵1体', eg: '敵1グループ', ea: '敵全体', er: '敵ランダム', a1: '味方1人', aa: '味方全体', self: '自分', none: '—' };
@@ -1463,7 +1560,7 @@ function normSkill(f) {
 function normJob(f) {
   const parts = String(f.req || '').split(';'), rq = parts[0];
   const mod = String(f.mod || '').split(',').map(Number); while (mod.length < 7) mod.push(0);
-  return { id: f.id, name: f.name, tier: clamp(+f.tier || 1, 1, 5), cat: JOBCAT[f.cat] ? f.cat : 'S', req: rq ? rq.split('+').map(a => a.split('/')) : [], cond: parts.slice(1).filter(Boolean), mod: mod.map(x => x || 0),
+  return { id: f.id, name: f.name, tier: clamp(+f.tier || 1, 1, 7), cat: JOBCAT[f.cat] ? f.cat : 'S', req: rq ? rq.split('+').map(a => a.split('/')) : [], cond: parts.slice(1).filter(Boolean), mod: mod.map(x => x || 0),
     skills: String(f.skills || '').split(',').filter(Boolean).map(s => { const [a, b] = s.split('@'); return { id: a.trim(), lv: clamp(+b || 1, 1, 10) }; }), pas: numkv(f.pas), desc: f.desc || '' };
 }
 const ARCH = { n: [1, 1, 1, 1], t: [1.5, .9, 1.4, .6], f: [.8, 1, .8, 1.7], c: [.8, .7, .8, 1], g: [.7, 1.4, .6, 1.2], b: [14, 1.4, 1.15, 1.1], m: [1, .8, 1, 3] };
@@ -1497,7 +1594,7 @@ function equipText(it) {
   return a.join(' ');
 }
 function normComp(f) { return { id: f.id, name: f.name, emoji: f.emoji || '🧑', sex: f.sex || 'x', job: f.job || 'commoner', lv: Math.max(1, +f.lv || 1), nation: f.nation === '' ? -1 : +f.nation, pers: PERS[f.pers] ? f.pers : 'honest', fee: +f.fee || 0, bio: f.bio || '' }; }
-const NORM = { skills: normSkill, jobs: normJob, mons: normMon, items: normItem, comps: normComp };
+const NORM = { skills: normSkill, jobs: normJob, mons: normMon, items: normItem, comps: normComp, perks: f => normPerk(f) };
 function loadCustom() { try { const c = JSON.parse(LS('tl_custom') || '{}'); DBTYPES.forEach(t => CUSTOM[t] = c[t] || {}); } catch (e) { } }
 function saveCustom() { LS('tl_custom', JSON.stringify(CUSTOM)); }
 function initDB() {
@@ -1510,6 +1607,7 @@ function initDB() {
   });
   DB.recipes = rows(T_RECIPES, ['out', 'cat', 'mats']).map(r => ({ out: r.out, cat: r.cat, mats: numkv(r.mats) })).filter(r => DB.items[r.out]);
   DB.monList = Object.values(DB.mons).filter(m => !m.boss);
+  if (typeof Perk !== 'undefined') Perk.ver++;
   if (typeof Nem !== 'undefined') Nem.regItems();
   if (typeof More2 !== 'undefined' && G && W && Poi.all.length) { try { Lords.regItems(); More2.amu(); Curse.reg(); } catch (e) { } }
 }
@@ -1519,7 +1617,7 @@ let G = null, FOG = null, W = null;
 const STATS = ['hp', 'mp', 'str', 'vit', 'agi', 'int', 'luk'];
 const STAT_JP = { hp: 'HP', mp: 'MP', str: 'ちから', vit: 'みのまもり', agi: 'すばやさ', int: 'かしこさ', luk: 'うん' };
 const GROW = [6.5, 3.6, 2.4, 2.1, 2.1, 2.3, 1.8], BASE0 = [22, 6, 7, 6, 6, 6, 6];
-const JOBPTS = [0, 5, 12, 22, 35, 52, 72, 96, 124, 156], JOBTM = [1, 1, 1.3, 1.7, 2.2, 3], REQLV = 8;
+const JOBPTS = [0, 5, 12, 22, 35, 52, 72, 96, 124, 156], JOBTM = [1, 1, 1.3, 1.7, 2.2, 3, 4, 5.5], REQLV = 8;
 const MONJOB = {
   n: { name: '魔物', mod: [1, 0, 1, 1, 1, 0, 0] }, t: { name: '魔物', mod: [4, -1, 1, 4, -2, -1, 0] }, f: { name: '魔物', mod: [0, 0, 1, 0, 6, 0, 1] },
   c: { name: '魔物', mod: [-1, 5, -2, 0, 1, 6, 0] }, g: { name: '魔物', mod: [0, -1, 5, -1, 2, 0, 0] }, b: { name: '魔物', mod: [6, 3, 4, 4, 2, 3, 0] }, m: { name: '魔物', mod: [-3, 2, 0, 8, 8, 0, 5] }
@@ -1537,7 +1635,7 @@ function newG(seed) {
     lords: {}, stele: {}, stamp: {}, mount: null, oath: {}, cards: {}, gvGot: {}, led: {},
     towers: {}, ougi: {}, nests: {}, nestTown: {}, ranch: { ids: [], store: {}, egg: null }, exped: null, proph: null, mail: [], mailQ: [],
     eat: {}, relic: {}, museum: {}, wrecks: {}, mig: {}, rival: null, bard: {}, dreamSnap: null,
-    peaks: {}, tunnels: {}, mist: {}, mapSold: 0, beast: { st: 0, n: 0, cd: 0 }, wear: '', persOff: {}, cz: {},
+    peaks: {}, tunnels: {}, mist: {}, mapSold: 0, beast: { st: 0, n: 0, cd: 0 }, jobGift: {}, wear: '', persOff: {}, cz: {},
     dojo: {}, route: null, pet: null, built: [], wanted: null, rush: { best: 0, turns: 0 },
     edict: {}, pure: {}, lore: {}, fief: null, riddle: {}, crest: '', gone: [] };
 }
@@ -1559,18 +1657,19 @@ function give(id, n = 1) { if (!item(id)) return; G.inv[id] = (G.inv[id] || 0) +
 function take(id, n = 1) { if ((G.inv[id] || 0) < n) return false; G.inv[id] -= n; if (G.inv[id] <= 0) delete G.inv[id]; return true; }
 function addGold(n) { G.gold = Math.max(0, Math.floor(G.gold + n)); if (n > 0) G.stat.earn += n; }
 function st(c) {
-  const m = jobOf(c).mod, b = c.base, rm = Race.mul(c), e = { atk: 0, def: 0, int: 0, agi: 0, luk: 0, hp: 0, mp: 0 };
+  const m = Awake.mod(c), b = c.base, rm = Awake.rmul(c), e = { atk: 0, def: 0, int: 0, agi: 0, luk: 0, hp: 0, mp: 0 };
   for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it) for (const k in e) e[k] += it[k] || 0; }
-  const f = (v, i) => Math.floor(v * (1 + 0.1 * m[i]) * rm[i]);
+  const pm = Perk.smul(c), f = (v, i) => Math.floor(v * (1 + 0.1 * m[i]) * rm[i] * (pm ? pm[i] : 1));
   const r = { mhp: Math.max(1, f(b.hp, 0) + e.hp), mmp: Math.max(0, f(b.mp, 1) + e.mp), str: f(b.str, 2), vit: f(b.vit, 3), agi: Math.max(1, f(b.agi, 4) + e.agi), int: Math.max(1, f(b.int, 5) + e.int), luk: Math.max(1, f(b.luk, 6) + e.luk) };
   r.luk = Math.floor(r.luk * (1 + pasC(c, 'luk') / 100));
   r.atk = Math.max(1, r.str + e.atk + (c.kind === 'monster' ? Math.floor(c.lv * 1.6) : 0));
   r.def = Math.max(0, r.vit + e.def + (c.kind === 'monster' ? Math.floor(c.lv * 1.4) : 0));
   if (G && G.food) { if (G.food.k === 'atk') r.atk = Math.floor(r.atk * (1 + G.food.v / 100)); if (G.food.k === 'def') r.def = Math.floor(r.def * (1 + G.food.v / 100)); }
+  if (pm) { const w = c.eq.w && item(c.eq.w), wm = Perk.wm(c, w && w.wt); if (wm !== 1) r.atk = Math.floor(r.atk * wm); }
   const tb = Race.time(c); if (tb !== 1) { r.atk = Math.max(1, Math.floor(r.atk * tb)); r.agi = Math.max(1, Math.floor(r.agi * tb)); r.int = Math.max(1, Math.floor(r.int * tb)); }
   return r;
 }
-function pasC(c, k) { let v = ((jobOf(c).pas || {})[k] || 0) + Race.pas(c, k); for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it && typeof it.sp[k] === 'number') v += it.sp[k]; } return v; }
+function pasC(c, k) { let v = ((jobOf(c).pas || {})[k] || 0) * Awake.jpm(c) + Race.pas(c, k) + Perk.pas(c, k); for (const s in c.eq) { const it = c.eq[s] && item(c.eq[s]); if (it && typeof it.sp[k] === 'number') v += it.sp[k]; } return v; }
 function pas(k) { let v = 0; P().forEach(c => { const x = pasC(c, k); if (Math.abs(x) > Math.abs(v)) v = x; }); if (G.food && G.food.k === k) v += G.food.v; if (typeof Wear !== 'undefined') v += Wear.pas(k); return v; }
 const needExp = lv => Math.floor(6 * Math.pow(lv, 2.4) + 12 * lv);
 function newChar(o) {
@@ -1595,7 +1694,7 @@ function gainExp(c, n) {
   while (c.lv < 99 && c.exp >= needExp(c.lv)) {
     c.exp -= needExp(c.lv); const b = st(c); levelUp(c); const a = st(c);
     c.hp = Math.min(a.mhp, c.hp + (a.mhp - b.mhp)); c.mp = Math.min(a.mmp, c.mp + (a.mmp - b.mmp));
-    msgs.push(`🎉 ${c.name}は レベル${c.lv}に上がった!<small>(HP+${a.mhp - b.mhp} MP+${a.mmp - b.mmp} 力+${a.str - b.str} 守+${a.vit - b.vit} 速+${a.agi - b.agi} 賢+${a.int - b.int})</small>`);
+    msgs.push(`🎉 ${c.name}は レベル${c.lv}に上がった!<small>(HP+${a.mhp - b.mhp} MP+${a.mmp - b.mmp} 力+${a.str - b.str} 守+${a.vit - b.vit} 速+${a.agi - b.agi} 賢+${a.int - b.int}・SP+${Perk.RATE})</small>`);
   }
   if (c.lv >= 99) c.exp = 0; return msgs;
 }
@@ -1605,7 +1704,7 @@ const jobLv = (c, id) => (c.jobs[id] ? c.jobs[id].lv : 0);
 const masters = c => Object.keys(c.jobs).filter(k => c.jobs[k].lv >= 10 && DB.jobs[k]).length;
 function gainJob(c, pts) {
   const msgs = []; if (c.kind === 'monster' || c.dead) return msgs; const j = DB.jobs[c.job]; if (!j) return msgs;
-  const r = c.jobs[c.job] || (c.jobs[c.job] = { lv: 1, p: 0 }); if (r.lv >= 10) return msgs;
+  const r = c.jobs[c.job] || (c.jobs[c.job] = { lv: 1, p: 0 }); if (r.lv >= 10) return Awake.gain(c, j, r, pts, msgs);
   r.p += pts * (1 + pasC(c, 'job') / 100);
   while (r.lv < 10 && r.p >= Math.ceil(JOBPTS[r.lv] * JOBTM[j.tier])) {
     r.lv++; msgs.push(`✨ ${c.name}の${j.name}の熟練度が ★${r.lv}になった!`);
@@ -1613,6 +1712,7 @@ function gainJob(c, pts) {
     if (r.lv >= 10) {
       j.mod.forEach((v, i) => { if (v > 0) c.base[STATS[i]] += Math.ceil(v * j.tier * 0.4) * (i === 0 ? 3 : i === 1 ? 2 : 1); });
       msgs.push(`👑 ${c.name}は${j.name}を極めた!能力が永久に上がった!`);
+      const gid = JOB_GIFT[j.id]; if (gid && DB.items[gid] && G) { if (!G.jobGift) G.jobGift = {}; if (!G.jobGift[j.id]) { G.jobGift[j.id] = G.day; give(gid); msgs.push(`🎁 ${JOB_TIER[j.tier]}を極めた証「${DB.items[gid].name}」を手に入れた!`); } }
     }
   }
   return msgs;
@@ -1691,7 +1791,7 @@ function unpackSave(txt) {
   for (const k in d.stat) if (o.stat[k] === undefined) o.stat[k] = 0;
   for (const k in d.life) if (o.life[k] === undefined) o.life[k] = 0;
   G = o; World.gen(G.seed); FOG = unfog(G.fog || '', Math.ceil(W.S * W.S / 8)); delete G.fog; if (!G.ev.cd) G.ev = d.ev; More.boot(); Nem.regItems();
-  for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; c.skills = c.skills.filter(s => DB.skills[s]); fixEquip(c); }
+  for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; c.skills = c.skills.filter(s => DB.skills[s]); if (c.pk) c.pk = Array.isArray(c.pk) ? c.pk.filter(k => DB.perks[k]) : []; fixEquip(c); }
   for (const k in G.inv) if (!item(k)) delete G.inv[k];
   if (G.dun) Dun.restore();
   if (G.tm) { if (G.dun) G.tm = null; else TownMap.restore(); }
@@ -1741,6 +1841,7 @@ const TITLES = [
   ['t_rush5', '塔の挑戦者', '連戦の塔を5階まで勝ちぬいた', () => G.rush.best >= 5], ['t_rush15', '塔の覇者', '連戦の塔を15階まで勝ちぬいた', () => G.rush.best >= 15], ['t_dojo', '看板あつめ', 'すべての道場の看板を手に入れた', () => { const n = Poi.all.filter(p => p.pk === 'dojo').length; return n > 0 && Object.keys(G.dojo).length >= n; }],
   ['t_built', '国づくりの恩人', '街道や橋を5つ つくった', () => G.built.length >= 5], ['t_wanted', '名探偵', 'お尋ね者を5人捕まえた', () => (G.stat.wanted || 0) >= 5], ['t_star', '星を育てた者', 'かけ合わせで「星の実の苗」を生み出した', () => !!G.got.c_star], ['t_bond', '以心伝心', '絆の連携を50回決めた', () => (G.stat.bond || 0) >= 50], ['t_pet', 'いつもいっしょ', 'ペットをレベル10まで育てた', () => !!G.pet && G.pet.lv >= 10],
   ['t_edict', '王の右腕', 'ひとつの国の勅命をすべて果たした', () => (G.stat.edict || 0) >= 1], ['t_edict8', '八王の信任', '8つの国すべての勅命を果たした', () => (G.stat.edict || 0) >= 8], ['t_pure', '大地をいやす者', '8つの国の土地を清めた', () => Object.keys(G.pure).length >= 8], ['t_lore', '伝承を継ぐ者', '伝承の本をすべて集めた', () => Lore.count() >= LORE.length],
+  ['t_aw1', '目覚めし者', '仲間のだれかが職業を覚醒させた', () => allChars().some(c => Awake.count(c) >= 1)], ['t_aw10', '覚醒の達人', '主人公が10の職業を覚醒させた', () => Awake.count(hero()) >= 10], ['t_raw', '血の目覚め', '仲間のだれかが種族を覚醒させた', () => allChars().some(c => c.raw)], ['t_awall', '真の覚醒者', '主人公が、種族と いまの職業の両方を覚醒させた', () => !!hero().raw && Awake.jobOn(hero())],
   ['t_fief', '名領主', '領地の人口を1000人にした', () => !!G.fief && G.fief.pop >= 1000], ['t_realm', '異界を渡る者', '3つの異界をすべて制した', () => Poi.all.filter(p => p.pk === 'gate').length > 0 && Poi.all.filter(p => p.pk === 'gate').every(p => Poi.done(p))], ['t_riddle', '謎とき名人', 'すべての謎かけに答えた', () => { const n = Poi.all.filter(p => p.pk === 'sage').length; return n > 0 && Object.keys(G.riddle).length >= n; }],
   ['t_sugo', 'さいころの申し子', 'すごろくで5回あがった', () => (G.stat.sugo || 0) >= 5], ['t_mrace', '勝負師', '魔物かけっこを10回当てた', () => (G.stat.mrace || 0) >= 10], ['t_recon', '雨ふって地かたまる', '去った仲間と和解した', () => (G.stat.recon || 0) >= 1],
   ['t_medal', 'メダルコレクター', '星のメダルを50枚集めた', () => G.medalGot >= 50], ['t_year', '歳月を重ねて', '10年を生きた', () => year() >= 10], ['t_fame', '生ける伝説', '名声2000', () => G.fame >= 2000]
@@ -3450,16 +3551,16 @@ const Dun = {
   }
 };
 /* ===================== 戦利品 ===================== */
-const eqTier = L => clamp(Math.floor(L / 9), 0, 11);
+const eqTier = L => clamp(Math.floor(L / 9), 0, EQ_TOP);
 const Loot = {
-  equip(L, plusOk) { const t = clamp(eqTier(L) + rint(-1, 1), 0, 11), k = rnd(16); let id = k < 11 ? Object.keys(WT)[k] + t : ['bh', 'bl', 'br', 'sh', 'hl'][k - 11] + t; if (plusOk && L > 20 && chance(35)) id += '+' + rint(1, clamp(Math.floor(L / 20), 1, 30)); return id; },
+  equip(L, plusOk) { const t = clamp(eqTier(L) + rint(-1, 1), 0, EQ_TOP), k = rnd(16); let id = k < 11 ? Object.keys(WT)[k] + t : ['bh', 'bl', 'br', 'sh', 'hl'][k - 11] + t; if (plusOk && L > 20 && chance(35)) id += '+' + rint(1, clamp(Math.floor(L / 20), 1, 30)); return id; },
   chest(L) {
     const r = Math.random() * 100;
     if (r < 6) { G.medals++; G.medalGot++; return '⭐ 星のメダルを見つけた!'; }
     if (r < 30) { const g = rint(L * 8, L * 26) + 10; addGold(g); return `💰 ${fmt(g)}Gを手に入れた!`; }
     let id, n = 1;
     if (r < 60) { const pool = L < 10 ? ['herb', 'herb', 'antidote', 'wing', 'holywater', 'herb2', 'rope', 'torch'] : L < 25 ? ['herb2', 'herb2', 'water1', 'smelling', 'rope', 'panacea', 'firebottle', 'tent', 'torch'] : L < 50 ? ['herb3', 'water1', 'water2', 'panacea', 'leaf', 'bomb', 'incense'] : ['herb4', 'water2', 'water3', 'leaf', 'dew', 'elixir', 'incense']; id = pick(pool); n = rint(1, 2); if (chance(7)) { id = pick(['s_str', 's_vit', 's_agi', 's_int', 's_luk', 's_hp', 's_mp']); n = 1; } }
-    else if (r < 78) { id = chance(60) ? 'ore' + clamp(eqTier(L) + rint(0, 1), 1, 11) : pick(['gem', 'manaweed', 'm_dust', 'moonflower', L > 40 ? 'liferoot' : 'manaweed', L > 30 ? 'goldbar' : 'gem']); n = rint(1, 3); }
+    else if (r < 78) { id = chance(60) ? 'ore' + clamp(eqTier(L) + rint(0, 1), 1, EQ_TOP) : pick(['gem', 'manaweed', 'm_dust', 'moonflower', L > 40 ? 'liferoot' : 'manaweed', L > 30 ? 'goldbar' : 'gem']); n = rint(1, 3); }
     else id = this.equip(L, true);
     give(id, n); return `「${item(id).name}」${n > 1 ? '×' + n : ''}を手に入れた!`;
   },
@@ -3845,11 +3946,11 @@ const TownMap = {
   // 「行動」ボタン
   async action() {
     const s = this.site(), o = [{ l: '🔍 目の前を調べる・話す', v: 'look' }];
-    if (!G.tm.in) { o.push({ l: '📋 施設の一覧(歩かずに入る)', v: 'list' }); if (Race.home(s)) o.push({ l: '🤝 里の者を旅にさそう', v: 'rrec', sub: RACE[Race.home(s)].name + 'を仲間にできる' }); o.push({ l: '🌙 盗みを働く', v: 'crime' }); if (s.type !== 'village') o.push({ l: '🧵 仕立て屋へ行く', v: 'tail', sub: '服や髪を染める' }); if (s.type === 'capital') o.push({ l: '🏛️ 博物館へ行く', v: 'mus', sub: `展示 ${Relic.shown()}/${RELICS.length}` }); if (BlackMarket.isOpen(s)) o.push({ l: '🌙 闇市をのぞく', v: 'bm', sub: '夜のあいだだけ。骨董と、わけありの品' }); }
+    if (!G.tm.in) { o.push({ l: '📋 施設の一覧(歩かずに入る)', v: 'list' }); if (Race.home(s)) o.push({ l: '🤝 里の者を旅にさそう', v: 'rrec', sub: RACE[Race.home(s)].name + 'を仲間にできる' }, { l: '🌟 祖霊の試練(種族の覚醒)', v: 'rawk' }); o.push({ l: '🌙 盗みを働く', v: 'crime' }); if (s.type !== 'village') o.push({ l: '🧵 仕立て屋へ行く', v: 'tail', sub: '服や髪を染める' }); if (s.type === 'capital') o.push({ l: '🏛️ 博物館へ行く', v: 'mus', sub: `展示 ${Relic.shown()}/${RELICS.length}` }); if (BlackMarket.isOpen(s)) o.push({ l: '🌙 闇市をのぞく', v: 'bm', sub: '夜のあいだだけ。骨董と、わけありの品' }); }
     o.push({ l: '💬 仲間と話す', v: 'chat' }); o.push({ l: G.tm.in ? '🚪 城を出る' : '🚪 町を出る', v: 'out' });
     const a = await ask(`${Field.locName()}<small>・${timeStr()}</small>`, o, { cancel: '閉じる' });
     if (a === 'look') { const x = G.tm.x + DIRV[Field.dir][0], y = G.tm.y + DIRV[Field.dir][1], n = this.cur.npcs.find(q => q.x === x && q.y === y); if (n) await this.talk(n); else if (!(await this.bump(x, y))) await say('とくに変わったものはない。'); }
-    else if (a === 'list') Town.open(s); else if (a === 'rrec') Race.recruit(s); else if (a === 'crime') await Crime.menu(s); else if (a === 'bm') BlackMarket.open(s); else if (a === 'mus') Relic.open(); else if (a === 'tail') Tailor.open(); else if (a === 'chat') await Menu.chat(); else if (a === 'out') await this.exit('out');
+    else if (a === 'list') Town.open(s); else if (a === 'rrec') Race.recruit(s); else if (a === 'rawk') Awake.open(s); else if (a === 'crime') await Crime.menu(s); else if (a === 'bm') BlackMarket.open(s); else if (a === 'mus') Relic.open(); else if (a === 'tail') Tailor.open(); else if (a === 'chat') await Menu.chat(); else if (a === 'out') await this.exit('out');
     if (G) Field.draw();
   }
 };
@@ -3870,6 +3971,7 @@ function mkEnemy(id, o) {
   if (o.nem) { const n = o.nem; u.s.mhp = u.hp = Math.floor(m.hp * (4 + Math.min(4, n.wins))); u.s.atk = Math.floor(m.atk * 1.12); u.boss = true; u.nem = n.id; u.name = '『' + n.epi + '』' + n.name; u.exp *= 6; u.gold = 0; }
   if (o.rich) u.gold *= o.rich;
   if (o.giant) { u.s.mhp = u.hp = Math.floor(u.s.mhp * 2); u.exp = Math.floor(u.exp * 2.5); u.gold = Math.floor(u.gold * 1.5); }
+  if (o.trial) { u.s.mhp = u.hp = Math.floor(m.hp * 5); u.s.atk = Math.floor(m.atk * 1.1); u.boss = true; u.name = o.trial; u.exp *= 4; u.gold = 0; }
   if (o.lord) { u.s.mhp = u.hp = Math.floor(m.hp * 9); u.s.atk = Math.floor(m.atk * 1.25); u.s.def = Math.floor(m.def * 1.15); u.boss = true; u.name = o.lord; u.exp *= 12; u.gold *= 10; }
   u.buf = {}; u.fx = {}; u.ten = 0; return u;
 }
@@ -3879,7 +3981,7 @@ function mkAlly(c) {
   Object.defineProperty(u, 'mp', { get() { return c.mp; }, set(v) { c.mp = v; } });
   Object.defineProperty(u, 'dead', { get() { return c.dead; }, set(v) { c.dead = v; } });
   u.cursed = Object.values(c.eq).some(k => { const it = k && item(k); return it && it.sp.cursed; });
-  u.imm = Object.values(c.eq).map(k => { const it = k && item(k); return it && it.sp.im; }).filter(Boolean).concat(Race.imm(c));
+  u.imm = Object.values(c.eq).map(k => { const it = k && item(k); return it && it.sp.im; }).filter(Boolean).concat(Race.imm(c)); Perk.unit(u, c);
   return u;
 }
 const Battle = {
@@ -3941,6 +4043,7 @@ const Battle = {
       for (const k in u.fx) if (--u.fx[k] <= 0) delete u.fx[k];
       if (u.fx.regen) { const h = Math.floor(u.s.mhp * .1); u.hp = Math.min(u.s.mhp, u.hp + h); }
       if (u.side === 'A' && u.c) { const rg = Race.regen(u.c); if (rg && u.hp > 0 && u.hp < u.s.mhp) u.hp = Math.min(u.s.mhp, u.hp + Math.max(1, Math.floor(u.s.mhp * rg / 100))); }
+      if (u.side === 'A' && u.px) { if (u.px.bregen && u.hp > 0 && u.hp < u.s.mhp) u.hp = Math.min(u.s.mhp, u.hp + Math.max(1, Math.floor(u.s.mhp * Math.min(30, u.px.bregen) / 100))); if (u.px.bmp && u.mp < u.s.mmp) u.mp = Math.min(u.s.mmp, u.mp + Math.max(1, Math.floor(u.s.mmp * Math.min(20, u.px.bmp) / 100))); }
       if (u.st.poison) { const d = Math.max(1, Math.floor(u.s.mhp * (u.boss ? .03 : .08))); u.hp = Math.max(u.side === 'A' ? 1 : 0, u.hp - d); await this.log(`${u.name}は毒で ${d} のダメージ!`, 'dm'); if (u.hp <= 0) await this.kill(u, null); }
       ['silence', 'blind'].forEach(k => { if (u.st[k] && u.st[k] < 90 && --u.st[k] <= 0) delete u.st[k]; });
     }
@@ -4097,7 +4200,7 @@ const Battle = {
     const crit = chance(cr); let d = crit ? atk * (.95 + Math.random() * .2) * Math.max(1, mult * .85) : (atk - def / 2) / 2 * (.85 + Math.random() * .3) * mult;
     if (d < 1) d = rnd(2);
     if (o.kill && t.fam === o.kill) d *= (+o.km || 2); if (o.sneak && (t.st.sleep || t.st.para || t.st.stun)) d *= 1.6;
-    d *= this.elem(t, o.el); if (u.side === 'A') d *= (1 + pasC(u.c, 'phys') / 100) * WMast.dmg(u.c); d *= TEN[u.tenUse || 0]; if (t.guard) d *= .5;
+    d *= this.elem(t, o.el); if (u.side === 'A') d *= (1 + pasC(u.c, 'phys') / 100) * WMast.dmg(u.c) * Perk.el(u.c, o.el); d *= TEN[u.tenUse || 0]; if (t.guard) d *= .5;
     if (t.metal) d = o.metal ? rint(1, 2) + (crit ? 1 : 0) : (crit ? rint(1, 2) : rnd(2));
     d = Math.floor(d); if (crit) { B.fxCrit = 1; await this.log(u.side === 'A' ? '💥 会心の一撃!' : '💥 痛恨の一撃!', 'dm'); }
     B.fxEl = o.el && o.el !== 'n' ? o.el : 'slash'; B.hk = u.side === 'A' ? [Stance.wcls(u)].concat(o.el && o.el !== 'n' ? [o.el] : []) : null; await this.damage(u, t, d);
@@ -4110,8 +4213,9 @@ const Battle = {
   },
   async damage(u, t, d) {
     if (t.brk && d > 0 && !t.metal) d = Math.floor(d * 1.5);
-    if (u && u.side === 'A' && t.side === 'E' && d > 1 && !t.metal) d = Math.floor(d * Res.dmg(t.m));
+    if (u && u.side === 'A' && t.side === 'E' && d > 1 && !t.metal) d = Math.floor(d * Res.dmg(t.m) * Perk.fam(u.c, t.fam));
     { const cv = Bond.cover(u, t, d); if (cv) { d = Math.floor(d / 2); await this.log(`🤝 ${cv.name}が、${t.name}をかばった!`, 'hl'); t = cv; } }
+    if (t.side === 'A' && t.px && t.px.guts && !t.guts && d >= t.hp && t.hp > 1) { d = t.hp - 1; t.guts = 1; await this.log(`💪 ${t.name}は 根性でふみとどまった!`, 'hl'); }
     t.hp = Math.max(0, t.hp - d); this.refresh(); FX.hit(t, d, B.fxEl);
     await this.log(d > 0 ? `${t.name}に <b>${d}</b> のダメージ!` : `${t.name}にダメージを与えられない!`, 'dm');
     if (u && u.side === 'A' && d > G.stat.maxdmg) G.stat.maxdmg = d;
@@ -4126,7 +4230,7 @@ const Battle = {
   stRes(t, k) {
     if (t.metal) return 1;
     if (t.side === 'E') { if (t.boss) return ['death', 'para', 'sleep', 'conf', 'curse'].includes(k) ? 1 : k === 'stun' ? .7 : .5; return (k === 'death' ? .35 : .1) + Math.min(.3, t.lv / 400); }
-    if (t.imm && t.imm.includes(k)) return 1; return (k === 'death' ? .3 : .1) + Math.min(.4, t.s.luk / 600);
+    if (t.imm && t.imm.includes(k)) return 1; return Math.min(1, (k === 'death' ? .3 : .1) + Math.min(.4, t.s.luk / 600) + (t.pg && t.pg[k] ? t.pg[k] / 100 : 0));
   },
   async tryStatus(u, t, k, p) {
     if (t.dead || t.gone) return false; if (t.st[k] && k !== 'death') { return false; }
@@ -4177,7 +4281,7 @@ const Battle = {
   async magic(u, t, sk) {
     if (sk.kind === 'm' && t.fx.reflect && t.side !== u.side) { await this.log(`${t.name}は魔法をはね返した!`, 'sy'); t = u; }
     let d = sk.pow * (.9 + Math.random() * .2) * (sk.kind === 'f' ? (1 + u.lv / 40) * (u.side === 'E' ? .5 : 1) : (1 + magOf(u) / (u.side === 'E' ? 500 : 250)));
-    d *= this.elem(t, sk.el); if (sk.kind === 'm') d *= Tfx.mag(); if (u.side === 'A' && sk.kind === 'm') d *= 1 + pasC(u.c, 'mag') / 100; d *= TEN[u.tenUse || 0];
+    d *= this.elem(t, sk.el); if (sk.kind === 'm') d *= Tfx.mag(); if (u.side === 'A' && sk.kind === 'm') d *= 1 + pasC(u.c, 'mag') / 100; if (u.side === 'A') d *= Perk.el(u.c, sk.el); d *= TEN[u.tenUse || 0];
     if (sk.o.kill && t.fam === sk.o.kill) d *= (+sk.o.km || 2);
     if (sk.kind === 'm' && t.fx.barrier) d *= .6; if (sk.kind === 'f' && t.fx.bguard) d *= .6; if (t.guard) d *= .5; if (t.metal) d = 0;
     d = Math.floor(d); B.fxEl = sk.el && sk.el !== 'n' ? sk.el : 'mg'; B.hk = u.side === 'A' && sk.el && sk.el !== 'n' ? [sk.el] : null; await this.damage(u, t, d);
@@ -4345,6 +4449,7 @@ const Menu = {
       s.btn('📊 つよさ', () => Menu.status(0)); s.btn('🗡️ そうび', () => Menu.equip(0));
       s.btn('🎒 どうぐ', () => Menu.items()); s.btn('✨ とくぎ・魔法', () => Menu.skills(0));
       s.btn('👥 仲間・作戦', () => Menu.party()); s.btn('📜 依頼', () => Menu.quests());
+      { const un = Perk.unspent(); s.end(); s.btn('🔷 スキル盤(SPで能力を解放)', () => Perk.open(0), { r: un > 0 ? `<span class="good">のこりSP ${un}</span>` : '', sub: 'レベルアップでもらえるSPで、能力値・特性・魔法・特技などを自由に身につける。転職しても消えない', cls: un > 0 ? 'ok' : '' }); s.grid(2); }
       s.btn('🍳 製作', () => Life.craftMenu()); s.btn('🏠 資産・家族', () => Life.assets());
       s.btn('📖 図鑑・記録', () => Menu.journal(0)); s.btn('🗺️ 地図', () => Menu.map());
       s.btn('💾 セーブ', () => Menu.save(), { cls: 'pri' }); s.btn('⚙️ 設定', () => Menu.settings());
@@ -4358,11 +4463,11 @@ const Menu = {
     let idx = i;
     UI.open(s => {
       const all = allChars(); s.head('つよさ'); const c = Menu.charTabs(s, idx, k => idx = k, all), m = st(c), j = jobOf(c), jr = c.jobs[c.job];
-      s.card(`${ic(c, 48)}<b style="font-size:17px">${esc(c.name)}</b> <span class="tag">${SEX_JP[c.sex] || ''}</span><span class="tag">${(PERS[c.pers] || PERS.honest)[0]}</span>${c.kind !== 'monster' ? '<span class="tag">' + Race.name(c) + '</span>' : ''}${c.reb ? '<span class="tag">転生' + c.reb + '回</span>' : ''}<br>` +
+      s.card(`${ic(c, 48)}<b style="font-size:17px">${esc(c.name)}</b> <span class="tag">${SEX_JP[c.sex] || ''}</span><span class="tag">${(PERS[c.pers] || PERS.honest)[0]}</span>${c.kind !== 'monster' ? '<span class="tag">' + Race.name(c) + '</span>' : ''}${Awake.jobOn(c) ? '<span class="tag" style="color:#ffd76a">✦職業覚醒</span>' : ''}${c.reb ? '<span class="tag">転生' + c.reb + '回</span>' : ''}<br>` +
         `${c.kind === 'monster' ? jobName(c) + '(魔物)' : `${JOBCAT[j.cat][1]} ${j.name} ★${jr ? jr.lv : 1}${jr && jr.lv >= 10 ? '(極)' : ''}`}・Lv ${c.lv}<br>` +
-        `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで ' + Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier] - jr.p)) + '戦' : ''}</small>`);
+        `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで ' + Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier] - jr.p)) + '戦' : ''}${c.kind !== 'monster' && Awake.left(c) >= 0 ? '・職業の覚醒まで ' + Awake.left(c) + '戦' : ''}</small>`);
       s.card(`<div class="kv"><span>HP<b>${c.hp} / ${m.mhp}</b></span><span>MP<b>${c.mp} / ${m.mmp}</b></span><span>こうげき力<b>${m.atk}</b></span><span>しゅび力<b>${m.def}</b></span><span>ちから<b>${m.str}</b></span><span>みのまもり<b>${m.vit}</b></span><span>すばやさ<b>${m.agi}</b></span><span>かしこさ<b>${m.int}</b></span><span>うん<b>${m.luk}</b></span><span>極めた職<b>${masters(c)}</b></span></div>`);
-      if (c.kind !== 'monster') { const R = Race.of(c); s.card(`<b>種族:${R.emoji} ${R.name}</b> <small>${RACE_GRP[R.grp][0]}</small><br><small>${R.d}<br>${Race.traits(R)}</small>`); }
+      if (c.kind !== 'monster') { const R = Race.of(c); s.card(`<b>種族:${R.emoji} ${c.raw ? R.an + '</b> <small>' + R.name + '・覚醒ずみ' : R.name + '</b> <small>' + RACE_GRP[R.grp][0]}</small><br><small>${R.d}<br>${Race.traits(R)}${c.raw ? '<br><span class="good">【覚醒】' + Awake.raceText(R).replace(/^<b>[^<]*<\/b>になる。/, '') + '</span>' : ''}</small>`); if (Awake.jobOn(c)) s.card(`<b>✦ ${esc(jobOf(c).name)}・覚醒</b><br><small>${Awake.jobText(jobOf(c))}</small>`); }
       s.card('<b>そうび</b><br>' + Object.keys(SLOT_JP).map(k => `<small>${SLOT_JP[k]}:</small> ${c.eq[k] && item(c.eq[k]) ? esc(item(c.eq[k]).name) : '<span class="note">なし</span>'}`).join('<br>'));
       const ps = Object.keys(j.pas || {}).filter(k => PAS_JP[k]).map(k => `<span class="tag">${PAS_JP[k]}${j.pas[k] > 0 ? '+' : ''}${j.pas[k]}%</span>`).join('');
       if (ps) s.card('<b>職業の特性</b><br>' + ps);
@@ -4439,8 +4544,9 @@ const Menu = {
     const inP = G.party.includes(c.id), i = G.party.indexOf(c.id), opts = [{ l: '作戦を変える', v: 'tac', sub: 'いま:' + TACTIC_JP[c.tactic] }];
     if (inP && i > 0) opts.push({ l: '前へ出す', v: 'up' }); if (inP && i < G.party.length - 1) opts.push({ l: '後ろへ下げる', v: 'down' });
     if (inP && c.id !== G.hero && G.party.length > 1) opts.push({ l: '控えにまわす', v: 'out' }); if (!inP) opts.push({ l: 'パーティに入れる', v: 'in', dis: G.party.length >= 4 });
-    opts.push({ l: 'つよさを見る', v: 'st' }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id === G.hero && c.race === undefined) opts.push({ l: '🧬 種族を選ぶ(1回だけ)', v: 'race', sub: 'まだ種族を決めていない(いまは人間)' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
+    opts.push({ l: 'つよさを見る', v: 'st' }); opts.push({ l: '🔷 スキル盤', v: 'perk', sub: 'のこりSP ' + Perk.left(c) }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id === G.hero && c.race === undefined) opts.push({ l: '🧬 種族を選ぶ(1回だけ)', v: 'race', sub: 'まだ種族を決めていない(いまは人間)' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
     const a = await ask(`${ic(c)} <b>${esc(c.name)}</b> Lv${c.lv} ${jobName(c)}`, opts, { cancel: 1 });
+    if (a === 'perk') { Perk.open(allChars().indexOf(c)); return; }
     if (a === 'look') { Race.ctx = Race.id(c); const L = await askLook(c.sex, catOf(c), lookOf(c)); Race.ctx = null; if (L) c.look = L; }
     if (a === 'race') { const r = await Race.choose(false); if (r && await yn(`${c.name}の種族を <b>${RACE[r].name}</b> にしますか?\n<small>あとから変えられません。</small>`)) { c.race = r; fixEquip(c); c.hp = Math.min(c.hp, st(c).mhp); c.mp = Math.min(c.mp, st(c).mmp); HUD.update(); await say(`${c.name}は <b>${RACE[r].name}</b> として生きていくことにした。`); } }
     if (a === 'tac') { const ks = Object.keys(TACTIC_JP), t = await ask('作戦を選んでください', ks.map(k => TACTIC_JP[k]), { cancel: 1 }); if (t >= 0) c.tactic = ks[t]; }
@@ -4488,7 +4594,7 @@ const Menu = {
         list.slice(page * per, page * per + per).forEach(m => s.btn(`${ic(m)} ${esc(m.name)}`, () => say(`${monImg(m, Gfx.monSize(m) > 40 ? 2 : 3)}\n<b>${esc(m.name)}</b> Lv${m.lv}・${FAM[m.fam]}系・${ARCH_JP[m.arch]}\nHP ${m.hp} 攻 ${m.atk} 守 ${m.def} 速 ${m.agi}\n経験値 ${m.exp}・${m.gold}G\n弱点:${Object.keys(m.res).filter(k => m.res[k] > 1).map(k => ELEM[k]).join('') || 'なし'} 耐性:${Object.keys(m.res).filter(k => m.res[k] < 1).map(k => ELEM[k]).join('') || 'なし'}\n特技:${m.skills.map(k => DB.skills[k] ? DB.skills[k].name : '').filter(Boolean).join('、') || 'なし'}\n<small>出会った ${G.best[m.id][0]}回・倒した ${G.best[m.id][1]}体</small>`), { r: 'Lv' + m.lv + ' 討伐' + G.best[m.id][1] }));
         if (mx > 0) { s.grid(2); s.btn('◀ 前', () => { page--; }, { dis: page <= 0 }); s.btn(`次 ▶ (${page + 1}/${mx + 1})`, () => { page++; }, { dis: page >= mx }); s.end(); }
       } else if (tab === 3) {
-        const h = hero(), all = Object.values(DB.jobs); s.p(`全${all.length}職・極めた数 <b>${masters(h)}</b>`); s.tabs(['基本', '中級', '上級', '最上級', '伝説'], tier - 1, i => tier = i + 1);
+        const h = hero(), all = Object.values(DB.jobs); s.p(`全${all.length}職・極めた数 <b>${masters(h)}</b>`); s.tabs(['基本', '中級', '上級', '最上級', '伝説', '神話', '超越'], tier - 1, i => tier = i + 1);
         all.filter(j => j.tier === tier).forEach(j => { const lv = jobLv(h, j.id), ok = canJob(h, j); s.btn(`${JOBCAT[j.cat][1]} ${esc(j.name)}`, () => jobInfo(j, h), { r: lv ? '★' + lv : ok ? '<span class="good">転職可</span>' : '🔒', sub: esc(j.desc) }); });
       } else if (tab === 4) { s.p(`獲得 <b>${Object.keys(G.titles).length}</b> / ${TITLES.length}`); TITLES.forEach(t => s.card(G.titles[t[0]] ? `🏅 <b>${t[1]}</b><br><small>${t[2]}</small>` : `<span class="note">???<br><small>${t[2]}</small></span>`)); }
       else { const all = Object.values(DB.items), got = all.filter(i => G.got[i.id]); s.p(`入手 <b>${got.length}</b> / ${all.length}種`); s.card(got.map(i => `<span class="tag">${esc(i.name)}</span>`).join('') || '<span class="note">なし</span>'); }
@@ -4551,7 +4657,7 @@ async function jobInfo(j, c) {
   const md = j.mod.map((v, i) => v ? `${STAT_JP[STATS[i]]}${v > 0 ? '+' : ''}${v * 10}%` : '').filter(Boolean).join(' ') || '補正なし';
   const ps = Object.keys(j.pas).filter(k => PAS_JP[k]).map(k => `${PAS_JP[k]}${j.pas[k] > 0 ? '+' : ''}${j.pas[k]}%`).join('、') || 'なし';
   const e = (JOBEQ[j.cat] || JOBEQ.S).split('|');
-  await say(`${JOBCAT[j.cat][1]} <b>${esc(j.name)}</b> <small>${['', '基本職', '中級職', '上級職', '最上級職', '伝説職'][j.tier]}・${JOBCAT[j.cat][0]}</small>\n${esc(j.desc)}\n\n<small>【条件】${reqText(j) || 'なし(誰でもなれる)'}\n【能力補正】${md}\n【特性】${ps}\n【覚える特技】${sk}\n【装備】${e[0].split(',').map(w => WT[w]).join('・')}/${e[1].replace('H', '鎧').replace('L', '服').replace('R', 'ローブ')}${e[2] === '1' ? '/盾' : ''}${c ? '\n【いまの熟練度】' + (jobLv(c, j.id) ? '★' + jobLv(c, j.id) : '未経験') : ''}</small>`);
+  await say(`${JOBCAT[j.cat][1]} <b>${esc(j.name)}</b> <small>${JOB_TIER[j.tier] || ''}・${JOBCAT[j.cat][0]}</small>\n${esc(j.desc)}\n\n<small>【条件】${reqText(j) || 'なし(誰でもなれる)'}\n【能力補正】${md}\n【特性】${ps}\n【覚える特技】${sk}\n【装備】${e[0].split(',').map(w => WT[w]).join('・')}/${e[1].replace('H', '鎧').replace('L', '服').replace('R', 'ローブ')}${e[2] === '1' ? '/盾' : ''}${JOB_GIFT[j.id] && DB.items[JOB_GIFT[j.id]] ? '\n【極めた証】' + DB.items[JOB_GIFT[j.id]].name + '(★10で1回だけもらえる' + (G && G.jobGift && G.jobGift[j.id] ? '・受けとりずみ' : '') + ')' : ''}${c ? '\n【いまの熟練度】' + (jobLv(c, j.id) ? '★' + jobLv(c, j.id) : '未経験') : ''}</small>`);
 }
 /* ---- フィールドで道具・特技を使う ---- */
 async function pickTown(t) { const ls = W.sites.filter(x => G.vis[x.id] && x.fac); if (!ls.length) return null; const i = await ask(t, ls.map(x => ({ l: `${SITE_ICON[x.type]} ${x.name}`, sub: W.nations[x.nation].short })), { cancel: 1 }); return i < 0 ? null : ls[i]; }
@@ -4625,7 +4731,7 @@ const Town = {
       sc.grid(2);
       s.fac.forEach(f => { const cl = night && !NIGHT_OPEN.includes(f); sc.btn(`${FAC[f][0]} ${FAC[f][1]}`, () => Town.go(f, s), { dis: cl, sub: cl ? '閉店中' : '' }); });
       if (G.home && G.home.town === s.id) sc.btn('🏡 自宅', () => Home.open(s), { cls: 'ok' });
-      if (Race.home(s)) sc.btn(`🤝 里の者を旅にさそう`, () => Race.recruit(s), { cls: 'ok', sub: RACE[Race.home(s)].name + 'を仲間に' });
+      if (Race.home(s)) { sc.btn(`🤝 里の者を旅にさそう`, () => Race.recruit(s), { cls: 'ok', sub: RACE[Race.home(s)].name + 'を仲間に' }); sc.btn('🌟 祖霊の試練(種族の覚醒)', () => Awake.open(s), { cls: 'ok', sub: RACE[Race.home(s)].name + 'なら お布施なしで受けられる。ほかの種族も受けられる' }); }
       sc.end(); sc.h('そのほか'); sc.grid(2);
       sc.btn('💬 人と話す', () => Town.talk(s)); sc.btn('🔍 町を探索', () => Town.search(s));
       sc.btn('🌙 盗みを働く', () => Crime.menu(s)); sc.btn('📋 メニュー', () => Menu.open());
@@ -4903,6 +5009,7 @@ const Temple = {
     UI.open(sc => {
       sc.head('🏛️ 転職の神殿'); sc.p('「ここは転職をつかさどる神殿。新たな道を歩みたい者は、名乗り出るがよい。」<br><small>覚えた特技は転職しても忘れない。職業の熟練度は戦闘の勝利でたまり、★8で上の職への道が開け、★10で「極めた」ことになり能力が永久に上がる。</small>');
       allChars().filter(c => c.kind !== 'monster').forEach(c => sc.btn(`${ic(c)}${esc(c.name)}`, () => Temple.pick(c), { r: 'Lv' + c.lv, sub: `${jobName(c)} ★${jobLv(c, c.job)}・極めた職 ${masters(c)}` }));
+      sc.btn('🌟 覚醒(職業と種族の真の力)', () => Awake.open(s), { cls: 'ok', sub: '極めた職業の覚醒のぐあいを見る/種族の「祖霊の試練」を受ける' });
       sc.h('転生'); sc.p('<small>Lv99に達した者は、Lv1に生まれ変われる。特技と職歴はそのまま、能力の一部を引き継ぎ、前より大きく成長するようになる。</small>');
       allChars().filter(c => c.lv >= 99).forEach(c => sc.btn(`♻️ ${esc(c.name)}を転生させる`, async () => { if (!(await yn(`${c.name}をLv1に転生させますか?\n<small>(転生${c.reb + 1}回目・成長率+${(c.reb + 1) * 6}%)</small>`))) return; STATS.forEach((k, i) => c.base[k] = BASE0[i] + c.base[k] * .15); c.lv = 1; c.exp = 0; c.reb++; fullHeal(c); await say(`まばゆい光に包まれ……\n<b>${c.name}は生まれ変わった!</b>`); checkTitles(); }, { cls: 'pri' }));
     });
@@ -4911,10 +5018,10 @@ const Temple = {
     let tier = 0, only = true;
     UI.open(sc => {
       sc.head(`${c.name}の転職`); sc.p(`いま:<b>${jobName(c)}</b> ★${jobLv(c, c.job)}`);
-      sc.tabs(['なれる職', '基本', '中級', '上級', '最上級', '伝説'], tier, i => tier = i);
+      sc.tabs(['なれる職', '基本', '中級', '上級', '最上級', '伝説', '神話', '超越'], tier, i => tier = i);
       let ls = Object.values(DB.jobs); ls = tier === 0 ? ls.filter(j => canJob(c, j)).sort((a, b) => b.tier - a.tier) : ls.filter(j => j.tier === tier);
       sc.p(`<small>${ls.length}職</small>`);
-      ls.forEach(j => { const ok = canJob(c, j), lv = jobLv(c, j.id); sc.btn(`${JOBCAT[j.cat][1]} ${esc(j.name)}${j.id === c.job ? ' <span class="tag">いま</span>' : ''}`, () => Temple.change(c, j, ok), { r: lv ? (lv >= 10 ? '👑極' : '★' + lv) : ok ? '<span class="good">可</span>' : '🔒', sub: ok ? esc(j.desc) : '条件:' + reqText(j) }); });
+      ls.forEach(j => { const ok = canJob(c, j), lv = jobLv(c, j.id); sc.btn(`${JOBCAT[j.cat][1]} ${esc(j.name)}${j.id === c.job ? ' <span class="tag">いま</span>' : ''}`, () => Temple.change(c, j, ok), { r: lv ? (Awake.jobOn(c, j.id) ? '🌟覚醒' : lv >= 10 ? '👑極' : '★' + lv) : ok ? '<span class="good">可</span>' : '🔒', sub: ok ? esc(j.desc) : '条件:' + reqText(j) }); });
     });
   },
   async change(c, j, ok) {
@@ -4929,7 +5036,7 @@ const Smith = {
   skill() { return clamp(pas('craft'), 0, 300) + G.life.forge; },
   open(s) {
     UI.open(sc => {
-      const mt = s ? Math.min(11, Town.shopTier(s) + 1) : 0, sk = Smith.skill(), myT = clamp(1 + Math.floor(sk / 14), 1, 11), maxT = Math.max(mt, myT), cap = sk >= 100 ? 20 : 10;
+      const mt = s ? Math.min(11, Town.shopTier(s) + 1) : 0, sk = Smith.skill(), myT = clamp(1 + Math.floor(sk / 14), 1, EQ_TOP), maxT = Math.max(mt, myT), cap = sk >= 100 ? 20 : 10;
       sc.head('🔨 鍛冶屋', fmt(G.gold) + 'G'); sc.p(`<small>鍛冶の腕 <b>${sk}</b>・この店で作れるのは「${TIER_M[maxT]}」まで・強化は +${cap} まで<br>職人系の職業や、鍛冶の経験で腕が上がる。</small>`);
       sc.btn('⚒️ 装備を鍛える(+1ずつ強化)', () => Smith.refine(cap));
       sc.btn('🗡️ 武具を作る', () => Smith.forge(maxT));
@@ -4942,7 +5049,7 @@ const Smith = {
       sc.btn('たたき方:' + (G.opts.hammer ? '自分で打つ(ミニゲーム)' : '職人にまかせる(確率)'), () => { G.opts.hammer = !G.opts.hammer; }, { sub: '自分で打つと、確率ではなく腕しだい。出来ばえをぴったり100に近づけると「会心の出来」で一気に+2', cls: G.opts.hammer ? 'ok' : '' });
       const ls = Object.keys(G.inv).map(item).filter(it => it && it.type === 'equip' && it.slot !== 'a' && it.tier >= 0); if (!ls.length) sc.p('<span class="note">鍛えられる装備を持っていない。</span>');
       ls.forEach(it => {
-        const n = it.plus || 0, base = it.baseId || it.id, b = DB.items[base], t = Math.min(11, b.tier), mat = t <= 0 ? 'wood' : 'ore' + t, need = 1 + Math.floor(n / 3), cost = Math.floor(Math.max(200, b.price) * .15 * (n + 1)), rate = clamp(96 - n * 7 + Smith.skill() / 5, 15, 100);
+        const n = it.plus || 0, base = it.baseId || it.id, b = DB.items[base], t = b.tier >= UNIQ_TIER ? 11 : Math.min(EQ_TOP, b.tier), mat = t <= 0 ? 'wood' : 'ore' + t, need = 1 + Math.floor(n / 3), cost = Math.floor(Math.max(200, b.price) * .15 * (n + 1)), rate = clamp(96 - n * 7 + Smith.skill() / 5, 15, 100);
         sc.btn(`${esc(it.name)} → +${n + 1}`, async () => { take(it.id); take(mat, need); G.gold -= cost; addMin(60); const hr = G.opts.hammer ? await Hammer.play(n, it.name) : (chance(rate) ? 1 : 0); if (hr > 0) { const up = Math.min(cap, n + hr); give(base + '+' + up); G.life.forge++; G.stat.craft++; lifeJob(1 + t * .3, 'K'); if (hr > 1) G.stat.hammer = (G.stat.hammer || 0) + 1; toast(up > n + 1 ? '✨✨ 会心の出来!一気に+2された!' : '✨ 強化に成功した!'); checkTitles(); } else { give(it.id); toast('💦 失敗……素材が無駄になった'); } },
           { r: Math.round(rate) + '%', sub: `${DB.items[mat].name}×${need}(所持${have(mat)})・${fmt(cost)}G`, dis: n >= cap || have(mat) < need || G.gold < cost });
       });
@@ -5068,7 +5175,7 @@ const Life = {
     if (!this.once('m')) { await say('この岩場は今日もう掘りつくした。'); return; } addMin(60); if (await this.ambush(8)) return;
     if (!chance(65 + clamp(pas('gather'), 0, 30))) { await say('⛏️ 岩を掘ったが、何も出なかった。'); return; } await this.mineAt(World.zoneLv(G.x, G.y), true);
   },
-  async mineAt(L, field) { const gb = 1 + clamp(pas('gather'), 0, 200) / 100, out = {}; out['ore' + clamp(eqTier(L) + (chance(30) ? 1 : 0), 1, 11)] = Math.max(1, Math.round((field ? rint(1, 2) : rint(2, 4)) * gb)); if (chance(field ? 8 : 20)) out.gem = 1; if (L >= 30 && chance(field ? 2 : 8)) out.goldbar = 1; await this.gain(out, '⛏️ 掘り当てた!', 'mine', 'K'); },
+  async mineAt(L, field) { const gb = 1 + clamp(pas('gather'), 0, 200) / 100, out = {}; out['ore' + clamp(eqTier(L) + (chance(30) ? 1 : 0), 1, EQ_TOP)] = Math.max(1, Math.round((field ? rint(1, 2) : rint(2, 4)) * gb)); if (chance(field ? 8 : 20)) out.gem = 1; if (L >= 30 && chance(field ? 2 : 8)) out.goldbar = 1; await this.gain(out, '⛏️ 掘り当てた!', 'mine', 'K'); },
   async log() { if (!this.once('l')) { await say('このあたりの木は今日もう伐った。'); return; } addMin(60); if (await this.ambush(6)) return; const out = { wood: Math.round(rint(1, 3) * (1 + clamp(pas('gather'), 0, 200) / 100)) }; if (chance(15)) out.m_nectar = 1; if (chance(10)) out.fruit = 1; await this.gain(out, '🪓 木を伐った。', 'herb', 'NK'); },
   async gain(out, head, key, cats) { const ls = []; for (const id in out) { give(id, out[id]); ls.push(`${item(id).name}×${out[id]}`); } G.life[key]++; lifeJob(1, cats); await say(head + '\n' + ls.join('、') + ' を手に入れた!'); },
   async fish() {
@@ -5088,7 +5195,7 @@ const Life = {
   async dig(c) {
     if ((G.flags.digStep || -99) > G.stat.steps - 12) { await say('このあたりはもう掘った。少し歩いてから試そう。'); return; } G.flags.digStep = G.stat.steps; addMin(20);
     const L = G.dun ? Dun.floorLv(Dun.site(), G.dun.f) : World.zoneLv(G.x, G.y), r = rnd(10);
-    if (r < 4) { const g = rint(L * 2, L * 8) + 5; addGold(g); await say(`${c.name}は地面を掘った。\n${g}Gを掘り当てた!`); } else if (r < 6) { const id = pick(['herb', 'm_bone', 'ore' + clamp(eqTier(L), 1, 11), 'antidote']); give(id); await say(`${c.name}は地面を掘った。\n「${item(id).name}」が出てきた!`); } else if (r === 6 && chance(20)) { G.medals++; G.medalGot++; await say('⭐ 星のメダルを掘り当てた!'); } else await say(`${c.name}は地面を掘った。\n……なにも出てこなかった。`);
+    if (r < 4) { const g = rint(L * 2, L * 8) + 5; addGold(g); await say(`${c.name}は地面を掘った。\n${g}Gを掘り当てた!`); } else if (r < 6) { const id = pick(['herb', 'm_bone', 'ore' + clamp(eqTier(L), 1, EQ_TOP), 'antidote']); give(id); await say(`${c.name}は地面を掘った。\n「${item(id).name}」が出てきた!`); } else if (r === 6 && chance(20)) { G.medals++; G.medalGot++; await say('⭐ 星のメダルを掘り当てた!'); } else await say(`${c.name}は地面を掘った。\n……なにも出てこなかった。`);
   },
   craftMenu() {
     UI.open(s => {
@@ -5749,7 +5856,7 @@ const Grave = {
     const g = s.g, own = G.flags.monDate === g.date, head = g.hero ? `🪦 <b>英雄${g.name}の碑</b>\n「魔王を討ちし者、${g.name}。${g.job}、Lv${g.lv}。旅立ちから${g.day}日。」` : `🪦 <b>${g.name}の墓</b>\n「ここに ${g.job}・${g.name} 眠る。Lv${g.lv}、${g.wins}の戦いに勝ち、${g.day}日目に倒れた。」`;
     if (own) { await say(head + '\n<small>これは、あなた自身の旅をたたえる碑だ。</small>'); return; }
     if (G.gvGot[g.date]) { toast('🪦 静かに手を合わせた。'); return; }
-    G.gvGot[g.date] = G.day; const msg = [head + '\n<small>かつてこの世界を旅した、先代の冒険者だ。</small>']; let id = g.item && item(g.item) && item(g.item).type === 'equip' && item(g.item).tier < 12 ? g.item : ''; const gold = Math.min(20000, g.lv * 60 + 100); addGold(gold); addKarma(2);
+    G.gvGot[g.date] = G.day; const msg = [head + '\n<small>かつてこの世界を旅した、先代の冒険者だ。</small>']; let id = g.item && item(g.item) && item(g.item).type === 'equip' && item(g.item).tier < UNIQ_TIER ? g.item : ''; const gold = Math.min(20000, g.lv * 60 + 100); addGold(gold); addKarma(2);
     if (id) { give(id); msg.push(`墓前に、${g.name}の使っていた「<b>${item(id).name}</b>」と ${fmt(gold)}G が供えられていた。\n「あとに続く者へ」と刻まれている。ありがたく受けつぐことにした。`); } else msg.push(`墓前に ${fmt(gold)}G と小さな箱が供えられていた。「あとに続く者へ」と刻まれている。\n` + Loot.chest(Math.max(5, g.lv)));
     await say(msg);
   }
@@ -6897,6 +7004,181 @@ Gfx.facePixOf = function (c) { return facePix(Race.look(Object.assign({ sex: c.s
 { const f0 = More2.notesExtra; More2.notesExtra = function (s) { f0.call(this, s); Race.notes(s); }; }
 { const f0 = More2.boot; More2.boot = function () { f0.call(this); Race.build(); }; }
 
+/* ===================== 覚醒(職業の覚醒・種族の覚醒) ===================== */
+// 覚醒技:職業は系統ごと、種族は系統ごとに1つ
+const AW_JOB = { W: 'aw_W', F: 'aw_F', M: 'aw_M', P: 'aw_P', T: 'aw_T', C: 'aw_C', N: 'aw_N', A: 'aw_A', K: 'aw_K', B: 'aw_B', D: 'aw_D', S: 'aw_S' };
+const AW_RACE = { H: 'ar_H', F: 'ar_F', B: 'ar_B', S: 'ar_S', G: 'ar_G', X: 'ar_X' };
+// 覚醒した種族の呼び名
+const AW_NAME = { human: '英傑', highland: '山王の裔', nomad: '風の申し子', sea: '潮の申し子', sand: '陽炎の民', snow: '氷原の勇士', halfelf: '双血の賢者',
+  elf: 'ハイエルフ', darkelf: '月影のエルフ', dwarf: 'エルダードワーフ', halfling: '幸運の申し子', gnome: 'グランノーム', fairy: '大妖精', dryad: '千年樹の民', mushroom: '胞子の賢者', kobold: 'ハイコボルト',
+  cat: '猫又', wolf: '銀狼', fox: '九尾', rabbit: '月兎', bear: '山王熊', lion: '獅子王', mouse: '鼠王', bird: '大鷲の民', bat: '夜翼', deer: '神鹿', bull: '猛牛王', monkey: '猿王',
+  lizard: '竜鱗の戦士', dragon: '真竜人', merfolk: '海王の民', frog: '大蝦蟇', turtle: '霊亀', snake: '白蛇', shark: '荒海の牙', kappa: '大河童',
+  ogre: 'オーガロード', goblin: 'ホブゴブリン', orc: 'ハイオーク', troll: 'エルダートロル', giant: '古の巨人', cyclops: '天目の匠', oni: '鬼神', tengu: '大天狗',
+  angel: '大天翼', demon: '上位魔族', night: '真祖', construct: '神造からくり', flame: '業火の民', frost: '絶氷の民', crystal: '金剛晶の民', shadow: '深影の民' };
+RACES.forEach(R => { R.an = AW_NAME[R.id] || '真・' + R.name; R.am = R.mp.map(v => R.id === 'human' ? 1.25 : (1 + (v > 0 ? v * 2 : v * .5) / 100) * 1.15); R.ares = {}; Object.keys(R.res).forEach(k => { const r = R.res[k]; R.ares[k] = r < 1 ? Math.max(.1, Math.round((1 - (1 - r) * 1.5) * 100) / 100) : Math.round((1 + (r - 1) * .5) * 100) / 100; }); });
+const Awake = {
+  PERM: 30, RLV: 30,
+  /* ---- 職業 ---- */
+  need(j) { return Math.ceil(60 * JOBTM[j.tier]); },
+  jobOn(c, id) { if (!c || c.kind === 'monster' || !c.jobs) return false; const r = c.jobs[id || c.job]; return !!(r && r.aw); },
+  count(c) { if (!c || !c.jobs) return 0; let n = 0; for (const k in c.jobs) if (c.jobs[k].aw && DB.jobs[k]) n++; return n; },
+  mod(c) { const j = jobOf(c); if (!this.jobOn(c)) return j.mod; return j._am || (j._am = j.mod.map(v => v > 0 ? v * 1.5 : v * .5)); },
+  // 種族の補正 × 覚醒した職についているあいだの+15% × 覚醒させた職の数だけ+1%
+  rmul(c) { const rm = Race.mul(c); if (!c || c.kind === 'monster') return rm; const on = this.jobOn(c), n = this.count(c); if (!on && !n) return rm; const k = (on ? 1.15 : 1) * (1 + Math.min(this.PERM, n) / 100); return rm.map(v => v * k); },
+  jpm(c) { return this.jobOn(c) ? 1.5 : 1; },
+  gain(c, j, r, pts, msgs) {
+    if (r.aw) return msgs; r.ap = (r.ap || 0) + pts * (1 + pasC(c, 'job') / 100);
+    if (r.ap >= this.need(j)) {
+      r.aw = G.day || 1; delete r.ap; const sk = AW_JOB[j.cat], nw = sk && DB.skills[sk] && learn(c, sk);
+      msgs.push(`🌟 ${c.name}の${j.name}が <b>覚醒</b>した!\n<small>${j.name}でいるあいだ、能力と特性が大きく上がる。</small>`); if (nw) msgs.push(`　${c.name}は 覚醒技「${DB.skills[sk].name}」を覚えた!`);
+      c.hp = Math.min(c.hp, st(c).mhp); G.stat.awake = (G.stat.awake || 0) + 1;
+    }
+    return msgs;
+  },
+  left(c) { const j = jobOf(c), r = c.jobs && c.jobs[c.job]; if (!r || r.lv < 10 || r.aw) return -1; return Math.max(0, Math.ceil(this.need(j) - (r.ap || 0))); },
+  jobText(j) { const m = j.mod.map((v, i) => v ? `${STAT_JP[STATS[i]]}${v > 0 ? '+' + Math.round(v * 15) : Math.round(v * 5)}%` : '').filter(Boolean).join(' '), sk = DB.skills[AW_JOB[j.cat]]; return `職の能力補正が1.5倍(${m || '—'})、苦手は半分に。さらに全能力+15%、特性(${Object.keys(j.pas).filter(k => PAS_JP[k]).map(k => PAS_JP[k]).join('・') || 'なし'})が1.5倍${sk ? '。覚醒技「' + sk.name + '」を覚える' : ''}`; },
+  /* ---- 種族 ---- */
+  raceOn(c) { return !!(c && c.kind !== 'monster' && c.raw); },
+  raceText(R) { const sk = DB.skills[AW_RACE[R.grp]], st2 = R.mp.map((v, i) => { const a = Math.round((R.am[i] - 1) * 100); return a ? `${STAT_JP[STATS[i]]}${a > 0 ? '+' : ''}${a}%` : ''; }).filter(Boolean).join(' '); return `<b>${R.an}</b>になる。能力:${st2}。特性は1.5倍、耐性は強く・弱点は小さくなり、戦闘中は毎ターンHPが少し戻る${R.tm ? '。昼の弱体がなくなり、夜はさらに強くなる' : ''}${sk ? '。覚醒技「' + sk.name + '」を覚える' : ''}`; },
+  cost(c, s) { return s && Race.home(s) === Race.id(c) ? 0 : c.lv * 300; },
+  spirit(L) { const ls = DB.monList.filter(m => !m.metal && !m.boss && m.fam === 'elemental'); let b = ls[0]; ls.forEach(m => { if (Math.abs(m.lv - L) < Math.abs(b.lv - L)) b = m; }); return b || DB.monList[0]; },
+  async raceTrial(c, s) {
+    const R = Race.of(c), cost = this.cost(c, s);
+    if (c.raw) { await say(`${c.name}は、すでに <b>${R.an}</b>として目覚めている。`); return; }
+    if (c.lv < this.RLV) { await say(`「${c.name}よ、まだ早い。Lv${this.RLV}になったら、また来なさい。」`); return; }
+    if (!G.party.includes(c.id)) { await say(`試練は、${c.name}がいっしょに戦わなければ意味がない。\n<small>(${c.name}を戦う仲間に入れてから来よう)</small>`); return; }
+    if (G.gold < cost) { await say(`お布施が足りない。<small>(${fmt(cost)}G)</small>`); return; }
+    const L = clamp(c.lv + 4, this.RLV, 110);
+    if (!(await yn(`🌟 <b>祖霊の試練</b>\n${R.name}の遠い祖先の魂が、${c.name}の力をためす。\n<small>相手:${R.name}の祖霊(Lv${L})・いまの仲間全員で戦う・負けても命は取られない${cost ? '・お布施 ' + fmt(cost) + 'G(勝ったときだけ納める)' : '・同族の里なのでお布施はいらない'}</small>\n\n勝てば:${this.raceText(R)}`, '試練を受ける', 'やめておく'))) return;
+    addMin(30); UI.closeAll();
+    const res = await Encounter.fight([this.spirit(L).id], { lv: L, trial: `${R.name}の祖霊`, boss: true, noFlee: true, noTame: true, noDeath: true, noPre: 1 });
+    if (res !== 'win') { P().forEach(p => { if (p.dead) { p.dead = false; p.hp = 1; } }); HUD.update(); await say(`「……まだ、力が足りぬようだ。」\n祖霊は静かに消えていった。\n<small>(仲間はHP1で起こしてもらえた。また挑める)</small>`); return; }
+    G.gold = Math.max(0, G.gold - cost); c.raw = G.day || 1; const sk = AW_RACE[R.grp], nw = sk && DB.skills[sk] && learn(c, sk); fullHeal(c); G.stat.rawake = (G.stat.rawake || 0) + 1; HUD.update();
+    await say([`祖霊の光が、${c.name}の体に流れこむ……`, `🌟 <b>${c.name}は ${R.an}として覚醒した!</b>\n<small>${this.raceText(R).replace(/^<b>[^<]*<\/b>になる。/, '')}</small>` + (nw ? `\n覚醒技「${DB.skills[sk].name}」を覚えた!` : '')]); checkTitles(); Field.draw();
+  },
+  /* ---- 画面 ---- */
+  open(s) {
+    UI.open(sc => {
+      sc.head('🌟 覚醒', fmt(G.gold) + 'G');
+      sc.p('<small><b>職業の覚醒</b>:極めた(★10)職業でさらに戦いつづけると、その職業が覚醒する。覚醒した職についているあいだ、能力と特性が大きく上がり、系統ごとの覚醒技を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+' + this.PERM + '%)。<br><b>種族の覚醒</b>:Lv' + this.RLV + '以上で「祖霊の試練」に勝つと、種族の真の力に目覚める(ずっと続く)。同族の里なら お布施はいらない。</small>');
+      allChars().filter(c => c.kind !== 'monster').forEach(c => {
+        const j = jobOf(c), r = c.jobs[c.job] || { lv: 1 }, R = Race.of(c), n = this.count(c), need = this.need(j);
+        const jt = r.aw ? '<span class="good">覚醒ずみ ✦</span>' : r.lv >= 10 ? `覚醒まで あと <b>${this.left(c)}</b>戦ぶん <small>(${Math.floor(r.ap || 0)}/${need})</small>` : `<small>まず極める(いま★${r.lv})</small>`;
+        const rt = c.raw ? `<span class="good">覚醒ずみ:${R.an}</span>` : c.lv >= this.RLV ? '試練を受けられる' : `<small>Lv${this.RLV}から(いまLv${c.lv})</small>`;
+        sc.card(`${ic(c)} <b>${esc(c.name)}</b> <small>Lv${c.lv}${G.party.includes(c.id) ? '' : '・ひかえ'}</small><br>職業 ${esc(j.name)}:${jt}<br>種族 ${R.name}:${rt}<br><small>覚醒させた職 ${n}(全能力+${Math.min(this.PERM, n)}%)</small>`);
+        if (!c.raw) sc.btn(`🌟 ${esc(c.name)}:祖霊の試練を受ける`, () => this.raceTrial(c, s), { r: this.cost(c, s) ? fmt(this.cost(c, s)) + 'G' : '無料', sub: `勝てば ${R.an} に`, dis: c.lv < this.RLV || !G.party.includes(c.id) || G.gold < this.cost(c, s), cls: 'ok' });
+        if (!r.aw && r.lv >= 10) sc.p(`<small>${esc(j.name)}が覚醒すると:${this.jobText(j)}</small>`);
+      });
+    });
+  }
+};
+/* ---- 種族の覚醒を、能力・特性・耐性に反映 ---- */
+{ const f0 = Race.mul; Race.mul = function (c) { return Awake.raceOn(c) ? this.of(c).am : f0.call(this, c); }; }
+{ const f0 = Race.pas; Race.pas = function (c, k) { const v = f0.call(this, c, k); return v && Awake.raceOn(c) ? (k === 'enc' ? (v < 0 ? v * 1.5 : v * .5) : v > 0 ? v * 1.5 : v * .5) : v; }; }
+{ const f0 = Race.res; Race.res = function (c) { return Awake.raceOn(c) ? Object.assign({}, this.of(c).ares) : f0.call(this, c); }; }
+{ const f0 = Race.time; Race.time = function (c) { if (!Awake.raceOn(c) || !G) return f0.call(this, c); const t = this.of(c).tm; if (!t) return 1; return isNight() ? 1 + t[0] * 1.5 / 100 : 1; }; }
+{ const f0 = Race.regen; Race.regen = function (c) { const v = f0.call(this, c); return Awake.raceOn(c) ? Math.round(v * 1.6) + 2 : v; }; }
+{ const f0 = Race.name; Race.name = function (c) { return Awake.raceOn(c) ? this.of(c).an : f0.call(this, c); }; }
+
+/* ===================== スキル盤(レベルアップでもらえるSPで、能力を自由に解放する) ===================== */
+/* 解放した能力は、転職しても転生しても残る。データは DB.perks(エディタで追加・編集できる) */
+const PERK_CAT = { st: ['能力値', '💪'], pa: ['特性', '🎖️'], el: ['属性の極意', '🔥'], re: ['守り', '🛡️'], wm: ['武器の心得', '⚔️'], fk: ['特効', '🎯'], mg: ['攻撃魔法', '🔮'], hl: ['回復・補助・旅', '✨'], tk: ['特技', '🥋'], sp: ['奥義', '🌟'] };
+const PERK_X = { bregen: v => `戦闘中、毎ターンHPが${v}%回復`, bmp: v => `戦闘中、毎ターンMPが${v}%回復`, ten: v => `戦闘開始時、テンションが${v}段階上がっている`, guts: () => '戦闘ごとに1回だけ、倒れるほどのダメージをHP1で耐える' };
+const ROMAN = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ', 'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ'];
+// 特性ごとの、名前と1段ぶんの伸び
+const PERK_PAS = { gold: ['金運', 6], exp: ['学びの心', 4], drop: ['宝さがし', 5], steal: ['手くせ', 6], tame: ['魔物ずき', 6], crit: ['会心の心得', 2], eva: ['身かわし', 2], mpc: ['節約の心得', 3], hpr: ['歩いて回復', 1], mpr: ['歩いて瞑想', .5],
+  disc: ['値切り上手', 2], trade: ['商才', 4], sell: ['売りこみ上手', 2], craft: ['職人の腕', 15], gather: ['採集の目', 10], fish: ['釣りの勘', 10], farm: ['畑じまん', 10], enc: ['忍び足', -6], amb: ['先手必勝', 4], twice: ['早業', 1.5],
+  luk: ['強運', 6], heal: ['癒やしの手', 6], mag: ['魔力の高まり', 4], phys: ['剛力', 4], income: ['家主の才', 15] };
+const PERK_ST = { poison: '毒', sleep: '眠り', para: '麻痺', conf: '混乱', silence: '沈黙', blind: '暗闇', curse: '呪い', stun: '足止め', death: '即死' };
+// 特技・魔法の習得:[特技ID, SP] をつなげたものは、左から順に解放していく
+const PERK_SK = {
+  mg: [['fi1', 1, 'fi2', 2, 'fi3', 4, 'fi4', 7, 'fi5', 12], ['ic1', 1, 'ic2', 2, 'ic3', 4, 'ic4', 7, 'ic5', 12], ['wi1', 1, 'wi2', 2, 'wi3', 4, 'wi4', 7, 'wi5', 12], ['th1', 1, 'th2', 2, 'th3', 4, 'th4', 7, 'th5', 12], ['ea1', 1, 'ea2', 2, 'ea3', 4, 'ea4', 7, 'ea5', 12],
+    ['li1', 1, 'li2', 2, 'li3', 4, 'li4', 7, 'li5', 12], ['da1', 1, 'da2', 2, 'da3', 4, 'da4', 7, 'da5', 12], ['mb1', 1, 'mb2', 4, 'mb3', 8, 'meteor', 12], ['drain', 4]],
+  hl: [['heal1', 1, 'heal2', 2, 'heal3', 5], ['healA1', 4, 'healA2', 8, 'healA3', 14], ['rev1', 5, 'rev2', 9], ['cureP', 1, 'cureAll', 3], ['cureS', 1], ['regen', 3], ['bless', 5], ['uncurse', 3], ['defUp', 1, 'defUpA', 3], ['atkUp', 2, 'atkUpA', 4], ['agiUp', 2, 'haste', 6],
+    ['magUp', 2], ['barrier', 3], ['bguard', 3], ['reflect', 4], ['evaUp', 2], ['defDn', 1], ['atkDn', 1], ['agiDn', 1], ['magDn', 2], ['dispel', 3], ['sleep', 2], ['silence', 2], ['blind', 1], ['confuse', 2], ['poison', 1], ['para', 3],
+    ['warp', 3], ['escape', 2], ['repel', 2], ['detect', 1], ['unlock', 2], ['stealth', 2], ['hawkeye', 1], ['camp', 1], ['dig', 1], ['whistle', 1], ['fortune', 1]],
+  tk: [['pow1', 1, 'double', 3, 'quad', 6], ['sweep', 1, 'whirl', 3, 'giga', 7], ['first', 1], ['pierce', 2], ['vital', 3], ['trip', 1], ['bash', 1], ['cover', 1], ['wall', 2], ['counter', 3], ['taunt', 1], ['charge', 1, 'charge2', 5], ['rush', 1],
+    ['punch', 1, 'combo', 3, 'hundred', 7], ['kick', 1, 'roundk', 2, 'vacuum', 4], ['kiblast', 2], ['medit', 2], ['backstab', 3], ['aim', 1, 'volley', 3], ['iai', 3, 'swallow', 5, 'triple', 8], ['smite', 2, 'cross', 5], ['bloodsuck', 2],
+    ['fiS', 3], ['icS', 3], ['wiS', 3], ['thS', 3], ['eaS', 3], ['liS', 3], ['daS', 3], ['steal', 2, 'mug', 4], ['analyze', 1], ['weak', 2]]
+};
+/* もとからある能力(約560種)を作る */
+function genPerks(B) {
+  const out = {}; const add = (id, name, cat, cost, req, eff, desc) => { out[id] = { id, name, cat, cost, req: req || '', eff, desc: desc || '' }; };
+  const chain = (pre, name, cat, costs, effOf, last) => costs.forEach((c, i) => add(pre + (i + 1), last && i === costs.length - 1 ? last : name + ' ' + ROMAN[i], cat, c, i ? pre + i : '', effOf(i)));
+  STATS.forEach(k => chain('s_' + k, STAT_JP[k] + 'の鍛錬', 'st', [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], () => 's.' + k + ':3'));
+  Object.keys(PERK_PAS).forEach(k => chain('p_' + k, PERK_PAS[k][0], 'pa', [1, 2, 3, 5, 7], () => 'p.' + k + ':' + PERK_PAS[k][1]));
+  Object.keys(ELEM).filter(e => e !== 'n').forEach(e => chain('e_' + e, ELEM[e] + 'の極意', 'el', [1, 2, 3, 5, 7], () => 'e.' + e + ':5'));
+  Object.keys(ELEM).filter(e => e !== 'n').forEach(e => chain('r_' + e, ELEM[e] + 'の守り', 're', [1, 2, 3, 4, 6], () => 'r.' + e + ':6'));
+  Object.keys(PERK_ST).forEach(k => chain('g_' + k, PERK_ST[k] + 'よけ', 're', [1, 2, 3, 5], () => 'g.' + k + ':25', PERK_ST[k] + '無効'));
+  Object.keys(WT).forEach(w => chain('w_' + w, WT[w] + 'の心得', 'wm', [1, 2, 3, 5, 7], () => 'w.' + w + ':4'));
+  Object.keys(KILLER).forEach(f => chain('f_' + f, '対' + FAM[f] + 'の心得', 'fk', [1, 2, 3, 5], () => 'f.' + f + ':6'));
+  Object.keys(PERK_SK).forEach(cat => PERK_SK[cat].forEach(ls => { let prev = ''; for (let i = 0; i < ls.length; i += 2) { const sid = ls[i], sk = B.skills[sid]; if (!sk) continue; const id = 'k_' + sid; add(id, sk.name, cat, ls[i + 1], prev, 'k.' + sid); prev = id; } }));
+  chain('x_bregen', '不屈の体', 'sp', [2, 3, 4, 6, 8], () => 'x.bregen:2'); chain('x_bmp', '尽きぬ魔力', 'sp', [2, 3, 4, 6, 8], () => 'x.bmp:1'); chain('x_ten', '闘志', 'sp', [8, 16], () => 'x.ten:1'); add('x_guts', '根性', 'sp', 15, '', 'x.guts:1');
+  return out;
+}
+/* 効果の書き方: 種類.名前:数値 を「,」でつなぐ。 s.能力(%) p.特性 e.属性(与える%) r.属性(受ける-%) g.状態(かかりにくさ%) w.武器種(攻撃%) f.魔物の系統(%) k.特技ID x.奥義 */
+function perkEffText(e) {
+  const [t, k, v] = e, sg = (v > 0 ? '+' : '') + v;
+  if (t === 's') return `${STAT_JP[k]}${sg}%`; if (t === 'p') return `${PAS_JP[k]}${sg}${k === 'hpr' || k === 'mpr' ? '' : '%'}`; if (t === 'e') return `${ELEM[k]}属性で与えるダメージ${sg}%`; if (t === 'r') return `${ELEM[k]}属性で受けるダメージ−${v}%`;
+  if (t === 'g') return v >= 100 ? `${ST_JP[k]}がまったく効かなくなる` : `${ST_JP[k]}にかかりにくくなる(${sg}%)`; if (t === 'w') return `${WT[k]}を持つと攻撃力${sg}%`; if (t === 'f') return `${FAM[k]}系へのダメージ${sg}%`;
+  if (t === 'k') return `「${DB.skills[k].name}」を覚える<small>(${DB.skills[k].desc}・MP${DB.skills[k].mp})</small>`; if (t === 'x') return PERK_X[k](v); return '';
+}
+function normPerk(f) {
+  const eff = []; String(f.eff || '').split(',').forEach(p => { p = p.trim(); if (!p) return; const i = p.indexOf(':'), key = i < 0 ? p : p.slice(0, i), d = key.indexOf('.'); if (d < 1) return; const t = key.slice(0, d), k = key.slice(d + 1), v = i < 0 ? 1 : Number(p.slice(i + 1)); if (isNaN(v)) return;
+    const ok = t === 's' ? STATS.includes(k) : t === 'p' ? !!PAS_JP[k] : t === 'e' || t === 'r' ? !!ELEM[k] && k !== 'n' : t === 'g' ? !!ST_JP[k] : t === 'w' ? !!WT[k] : t === 'f' ? !!FAM[k] : t === 'k' ? !!(DB.skills && DB.skills[k]) : t === 'x' ? !!PERK_X[k] : false; if (ok) eff.push([t, k, v]); });
+  const P = { id: f.id, name: f.name || '能力', cat: PERK_CAT[f.cat] ? f.cat : 'sp', cost: clamp(Math.round(+f.cost || 0), 0, 99), req: f.req || '', eff, sk: eff.filter(e => e[0] === 'k').map(e => e[1]), rawDesc: f.desc || '' };
+  P.perm = P.sk.length > 0; P.desc = P.rawDesc || eff.map(perkEffText).filter(Boolean).join('、') || '(効果なし)'; return P;
+}
+const Perk = {
+  ver: 0, _c: new WeakMap(), RATE: 2,
+  list(c) { return c && Array.isArray(c.pk) ? c.pk : []; },
+  has(c, id) { return this.list(c).includes(id); },
+  earned(c) { if (!c) return 0; const b = Math.max(0, c.lv - 1) * this.RATE + (c.reb || 0) * 98 * this.RATE; return c.kind === 'monster' ? b : b + masters(c) + Awake.count(c) * 2 + (c.raw ? 5 : 0); },
+  spent(c) { let n = 0; this.list(c).forEach(id => { const P = DB.perks[id]; if (P) n += P.cost; }); return n; },
+  left(c) { return this.earned(c) - this.spent(c); },
+  agg(c) {
+    const pk = c && c.pk; if (!pk || !pk.length) return null; const h = this._c.get(c); if (h && h.v === this.ver && h.n === pk.length) return h.a;
+    const a = { s: {}, p: {}, e: {}, r: {}, g: {}, w: {}, f: {}, x: {}, sm: [1, 1, 1, 1, 1, 1, 1] }; pk.forEach(id => { const P = DB.perks[id]; if (P) P.eff.forEach(([t, k, v]) => { if (t !== 'k') a[t][k] = (a[t][k] || 0) + v; }); });
+    STATS.forEach((k, i) => { if (a.s[k]) a.sm[i] = 1 + a.s[k] / 100; }); this._c.set(c, { v: this.ver, n: pk.length, a }); return a;
+  },
+  smul(c) { const a = this.agg(c); return a ? a.sm : null; },
+  pas(c, k) { const a = this.agg(c); return a ? a.p[k] || 0 : 0; },
+  wm(c, wt) { const a = this.agg(c); return a && wt && a.w[wt] ? 1 + a.w[wt] / 100 : 1; },
+  el(c, e) { const a = this.agg(c); return a && e && a.e[e] ? 1 + a.e[e] / 100 : 1; },
+  fam(c, f) { const a = this.agg(c); return a && f && a.f[f] ? 1 + a.f[f] / 100 : 1; },
+  // 戦闘に出るときの下ごしらえ(耐性・状態よけ・奥義)
+  unit(u, c) { const a = this.agg(c); if (!a) return; for (const k in a.r) u.res[k] = (u.res[k] === undefined ? 1 : u.res[k]) * (1 - Math.min(80, a.r[k]) / 100); u.pg = a.g; for (const k in a.g) if (a.g[k] >= 100 && !u.imm.includes(k)) u.imm.push(k); u.px = a.x; if (a.x.ten) u.ten = Math.min(4, Math.round(a.x.ten)); },
+  reqOk(c, P) { return !P.req || !DB.perks[P.req] || this.has(c, P.req); },
+  can(c, P) { return !!P && !this.has(c, P.id) && this.reqOk(c, P) && this.left(c) >= P.cost; },
+  fix(c) { const s = st(c); c.hp = Math.min(c.hp, s.mhp); c.mp = Math.min(c.mp, s.mmp); },
+  unlock(c, id, free) { const P = DB.perks[id]; if (!P || this.has(c, id) || (!free && !this.can(c, P))) return false; if (!Array.isArray(c.pk)) c.pk = []; c.pk.push(id); P.sk.forEach(k => learn(c, k)); this.ver++; this.fix(c); return true; },
+  // ふりなおし:特技・魔法の習得は そのまま残る(忘れないかわりに、SPも戻らない)
+  reset(c) { const keep = this.list(c).filter(id => DB.perks[id] && DB.perks[id].perm), n = this.list(c).length - keep.length; c.pk = keep; this.ver++; this.fix(c); return n; },
+  clean() { this.ver++; if (!G) return; for (const id in G.chars) { const c = G.chars[id]; if (c.pk) c.pk = c.pk.filter(k => DB.perks[k]); } },
+  unspent() { return G ? allChars().reduce((a, c) => a + Math.max(0, this.left(c)), 0) : 0; },
+  // つながり(Ⅰ→Ⅱ→…)の中での位置
+  chain(P) { let d = 1, q = P, g = 0; while (q.req && DB.perks[q.req] && g++ < 30) { q = DB.perks[q.req]; d++; } let n = d; q = P; g = 0; for (;;) { const nx = this._kid[q.id]; if (!nx || nx.length !== 1 || g++ > 30) break; q = nx[0]; n++; } return [d, n]; },
+  kids() { const m = {}; Object.values(DB.perks).forEach(P => { if (P.req && DB.perks[P.req]) (m[P.req] = m[P.req] || []).push(P); }); this._kid = m; },
+  open(i0) {
+    let i = i0 || 0, cat = 'st', showAll = false;
+    UI.open(s => {
+      const cs = allChars(); i = clamp(i, 0, cs.length - 1); const c = cs[i], left = this.left(c), all = Object.values(DB.perks); this.kids();
+      s.head('🔷 スキル盤', `SP ${left}`); if (cs.length > 1) s.tabs(cs.map(x => esc(x.name) + (this.left(x) > 0 ? '●' : '')), i, k => i = k);
+      s.card(`${ic(c)} <b>${esc(c.name)}</b> <small>Lv${c.lv} ${jobName(c)}</small><br>のこりSP <b class="${left > 0 ? 'good' : ''}">${left}</b> <small>/ これまでに得た ${this.earned(c)}・解放した能力 ${this.list(c).filter(id => DB.perks[id]).length}個</small><br><small>レベルが1上がるごとにSP+${this.RATE}。職業を極める・覚醒するともらえる。解放した能力は、転職しても転生しても消えない。</small>`);
+      const ks = Object.keys(PERK_CAT); s.tabs(ks.map(k => { const own = all.filter(P => P.cat === k && this.has(c, P.id)).length; return PERK_CAT[k][1] + PERK_CAT[k][0] + (own ? `<small>${own}</small>` : ''); }), ks.indexOf(cat), k => { cat = ks[k]; });
+      const ps = all.filter(P => P.cat === cat), own = ps.filter(P => this.has(c, P.id)), av = ps.filter(P => !this.has(c, P.id) && this.reqOk(c, P)), lock = ps.length - own.length - av.length;
+      s.p(`<small>${PERK_CAT[cat][0]}:全${ps.length}個・解放ずみ ${own.length}${lock ? '・この先に ' + lock + '個' : ''}</small>`);
+      av.forEach(P => { const [d, n] = this.chain(P); s.btn(`${esc(P.name)}${n > 1 ? ` <small>${d}/${n}</small>` : ''}`, () => { if (this.unlock(c, P.id)) { toast(`🔷 ${c.name}は「${P.name}」を解放した!`); HUD.update(); } }, { r: 'SP' + P.cost, sub: P.desc, dis: left < P.cost }); });
+      if (!av.length) s.p('<span class="note">この分類は、すべて解放した。</span>');
+      if (own.length) { s.h(`解放ずみ(${own.length})`); const tops = own.filter(P => !(this._kid[P.id] || []).some(q => this.has(c, q.id))); s.card((showAll ? own : tops).map(P => `・<b>${esc(P.name)}</b> <small>${P.desc.replace(/<small>.*?<\/small>/g, '')}</small>`).join('<br>')); if (tops.length !== own.length) s.btn(showAll ? 'いちばん上の段だけ表示' : 'すべての段を表示', () => { showAll = !showAll; }); }
+      const sum = this.sumText(c); if (sum) { s.h('いまの合計'); s.card(`<small>${sum}</small>`); }
+      const rf = this.list(c).filter(id => DB.perks[id] && !DB.perks[id].perm), fee = c.lv * 50;
+      s.btn(`♻️ ふりなおす(${fmt(fee)}G)`, async () => { if (!(await yn(`${c.name}の能力をふりなおしますか?\n<small>解放した能力 ${rf.length}個を取り消して、SPを戻します。<b>特技・魔法の習得は そのまま残り</b>、そのぶんのSPは戻りません。</small>`))) return; G.gold -= fee; const n = this.reset(c); HUD.update(); toast(`♻️ ${n}個の能力を取り消して、SPを戻した`); }, { dis: !rf.length || G.gold < fee, sub: '能力値・特性・守りなどを選びなおせる' });
+    });
+  },
+  sumText(c) { const a = this.agg(c); if (!a) return ''; const out = []; ['s', 'p', 'e', 'r', 'g', 'w', 'f', 'x'].forEach(t => Object.keys(a[t]).forEach(k => { const v = Math.round(a[t][k] * 10) / 10; out.push(perkEffText([t, k, t === 'g' ? Math.min(100, v) : v])); })); return out.join('、'); }
+};
+
 /* ===================== 国境をわかりやすく(フィールドの境界線・地図の色分け・国名) ===================== */
 const Border = {
   _c: {},
@@ -6973,12 +7255,13 @@ const Ledger = {
     // 探訪
     W.sites.forEach(s => { if (s.type === 'dungeon') return; const T = W.nations[s.nation].tier, k = s.type === 'capital' ? 4 : s.type === 'town' ? 2 : 1; Q.push({ id: 'v:' + s.id, c: 'v', t: `${s.name}をたずねる`, d: s.type === 'shrine' ? '依頼主:巡礼者の会「祠に手を合わせてきてほしい。」' : `依頼主:地図屋「${W.nations[s.nation].short}の${s.type === 'capital' ? '都' : s.type === 'town' ? '町' : '村'}。たしかにそこにあると、確かめてきてほしい。」`, n: 1, p: () => G.vis[s.id] ? 1 : 0, g: gold((80 + T * 90) * k), gp: 2 + k, lv: T * 10 + (s.type === 'village' ? 2 : 0) }); });
     // 納品
-    Object.values(DB.items).forEach(it => { if (it.price <= 0) return; const add = (n, tag) => Q.push({ id: 'n:' + it.id + tag, c: 'n', t: `${it.name}を${n}個 納める`, d: `依頼主:${LED_CLIENT[hstr(it.id + tag) % LED_CLIENT.length]}「${it.name}が足りなくて困っている。」(報告すると品物を渡す)`, n, p: () => Math.min(n, have(it.id)), tk: it.id, g: gold(it.price * n * 2.2 + 80), gp: 3 + Math.min(12, Math.floor(it.price * n / 800)), lv: it.price });
+    Object.values(DB.items).forEach(it => { if (it.price <= 0 || /^ore1[23]$/.test(it.id)) return; const add = (n, tag) => Q.push({ id: 'n:' + it.id + tag, c: 'n', t: `${it.name}を${n}個 納める`, d: `依頼主:${LED_CLIENT[hstr(it.id + tag) % LED_CLIENT.length]}「${it.name}が足りなくて困っている。」(報告すると品物を渡す)`, n, p: () => Math.min(n, have(it.id)), tk: it.id, g: gold(it.price * n * 2.2 + 80), gp: 3 + Math.min(12, Math.floor(it.price * n / 800)), lv: it.price });
       if (it.type === 'mat') { const n1 = clamp(Math.round(600 / it.price), 2, 20); add(n1, ''); if (it.price <= 400) add(n1 * 4, 'b'); } else if (it.type === 'use') add(clamp(Math.round(900 / it.price), 1, 10), ''); else if (it.type === 'trade') add(clamp(Math.round(6000 / it.price), 1, 10), ''); });
     // 収集(見せるだけ)
-    Object.values(DB.items).forEach(it => { if (it.type !== 'equip' || /^(nm|ld|anc_)/.test(it.id)) return; Q.push({ id: 'c:' + it.id, c: 'c', t: `${it.name}を手に入れる`, d: `依頼主:武具の目利き「うわさの${it.name}を、この目で見てみたい。」(見せるだけでよい)`, n: 1, p: () => G.got[it.id] ? 1 : 0, g: it.tier >= 12 ? 40000 : gold(Math.min(60000, it.price * .3 + 200)), gp: 3 + Math.max(0, it.tier), lv: it.price }); });
+    const newEq = new RegExp('^(g[xw]\\d+|(' + Object.keys(WT).concat(['bh', 'bl', 'br', 'sh', 'hl']).join('|') + ')1[23])$');
+    Object.values(DB.items).forEach(it => { if (it.type !== 'equip' || /^(nm|ld|anc_)/.test(it.id) || newEq.test(it.id)) return; Q.push({ id: 'c:' + it.id, c: 'c', t: `${it.name}を手に入れる`, d: `依頼主:武具の目利き「うわさの${it.name}を、この目で見てみたい。」(見せるだけでよい)`, n: 1, p: () => G.got[it.id] ? 1 : 0, g: it.tier >= UNIQ_TIER ? 40000 : gold(Math.min(60000, it.price * .3 + 200)), gp: 3 + Math.max(0, Math.min(12, it.tier)), lv: it.price }); });
     // 修行
-    Object.values(DB.jobs).forEach(j => { Q.push({ id: 'j:' + j.id, c: 'j', t: `${j.name}の道を極める`, d: `依頼主:転職の神殿「仲間のだれかが${j.name}を極めたら(★10)、その技を記録させてほしい。」`, n: 1, p: () => allChars().some(c => c.jobs && c.jobs[j.id] && c.jobs[j.id].lv >= 10) ? 1 : 0, g: 1200 * j.tier * j.tier, gp: 6 * j.tier, it: j.tier >= 3 ? LED_SEEDS[hstr(j.id) % 7] : '', lv: j.tier }); });
+    Object.values(DB.jobs).forEach(j => { if (j.tier >= 6) return; Q.push({ id: 'j:' + j.id, c: 'j', t: `${j.name}の道を極める`, d: `依頼主:転職の神殿「仲間のだれかが${j.name}を極めたら(★10)、その技を記録させてほしい。」`, n: 1, p: () => allChars().some(c => c.jobs && c.jobs[j.id] && c.jobs[j.id].lv >= 10) ? 1 : 0, g: 1200 * j.tier * j.tier, gp: 6 * j.tier, it: j.tier >= 3 ? LED_SEEDS[hstr(j.id) % 7] : '', lv: j.tier }); });
     // 探索(ぬし・絶景)
     Poi.all.forEach(p => { if (p.pk === 'den') { const L = Lords.lv(p); Q.push({ id: 'x:' + p.id, c: 'x', t: `${TER_JP[p.ter]}のぬしを倒す`, d: '依頼主:王国騎士団「地形の主を討ち、その証を見せてほしい。」', n: 1, p: () => G.lords[p.ter] ? 1 : 0, g: gold(L * L * 4 + 1000), gp: 20, md: 1, lv: L }); } else if (p.pk === 'vista') Q.push({ id: 'x:' + p.id, c: 'x', t: `絶景「${p.name}」をながめる`, d: '依頼主:旅の絵描き「あの景色を見た人の話を聞きたい。」', n: 1, p: () => G.stamp[p.id] ? 1 : 0, g: 600, gp: 4, lv: 0 }); else if (p.pk === 'tower') Q.push({ id: 'x:' + p.id, c: 'x', t: `${W.nations[W.nat[p.y * W.S + p.x]].short}の見張り塔(${p.n + 1}番)にのぼる`, d: '依頼主:地図屋「塔の上からのながめを、地図に書きこんできてほしい。」', n: 1, p: () => G.towers[p.id] ? 1 : 0, g: 500, gp: 4, lv: 1 }); else if (p.pk === 'nest') Q.push({ id: 'x:' + p.id, c: 'x', t: `${W.nations[W.nat[p.y * W.S + p.x]].short}の魔物の巣(${p.n + 1}番)をつぶす`, d: '依頼主:街道の見回り「あの巣があるかぎり、旅人が安心して歩けない。」', n: 1, p: () => G.nests[p.id] ? 1 : 0, g: gold(World.zoneLv(p.x, p.y) * 90 + 600), gp: 10, lv: 2 }); else if (p.pk === 'wreck') Q.push({ id: 'x:' + p.id, c: 'x', t: `沈没船(${p.n + 1}番)を調べる`, d: '依頼主:港の商人組合「沈んだ船の積み荷が、どうなったか知りたい。」', n: 1, p: () => G.wrecks[p.id] ? 1 : 0, g: gold(World.zoneLv(p.x, p.y) * 80 + 800), gp: 8, lv: 3 }); });
     Object.values(Dish.all()).forEach(d => { const t = +d.id.split(':')[1]; Q.push({ id: 'x:dish' + d.id, c: 'x', t: `${W.nations[d.n].short}名物「${d.name}」を食べる`, d: `依頼主:食通の旅人「${W.nations[d.n].short}の${['都', '町', '村'][t]}の酒場で食べられるそうだ。味の感想を聞かせてほしい。」`, n: 1, p: () => G.eat[d.id] ? 1 : 0, g: 300 + d.n * 60, gp: 3, lv: 4 }); });
@@ -7159,7 +7442,7 @@ const Ctl = {
 const obj = (keys, f) => { const o = {}; keys.forEach(k => o[k] = f(k)); return o; };
 const ED = {
   jobs: { label: '職業', icon: '🎓', fields: [
-    ['name', '名前', 'text'], ['tier', '段階', 'sel', { 1: '基本職', 2: '中級職', 3: '上級職', 4: '最上級職', 5: '伝説職' }], ['cat', '系統(装備できる物が決まる)', 'sel', () => obj(Object.keys(JOBCAT), k => JOBCAT[k][0])],
+    ['name', '名前', 'text'], ['tier', '段階', 'sel', { 1: '基本職', 2: '中級職', 3: '上級職', 4: '最上級職', 5: '伝説職', 6: '神話職', 7: '超越職' }], ['cat', '系統(装備できる物が決まる)', 'sel', () => obj(Object.keys(JOBCAT), k => JOBCAT[k][0])],
     ['_req', '前提の職業(すべて★8が必要)', 'pl', { src: 'jobs', sep: '+' }, '空なら誰でもなれる'],
     ['_cond', '追加の条件(なくてもよい)', 'text', null, '例: fame>=100;karma>=20 使える名前: fame(名声) karma(善悪) gold(総資産) arena props(物件) nations masters(極めた職数) ship clear。「;」で区切る'],
     ['mod', '能力の補正(1につき10%)', 'mod'], ['skills', '覚える特技と、覚える熟練度★', 'pl', { src: 'skills', sep: ',', num: '@', nl: '★' }],
@@ -7188,14 +7471,20 @@ const ED = {
     ['slot', '装備する場所(装備のみ)', 'sel', Object.assign({ '': '—' }, SLOT_JP)], ['wt', '武器・防具の種類', 'sel', Object.assign({ '': '—', H: '重い鎧', L: '服', R: 'ローブ', S: '盾' }, WT)],
     ['atk', '攻撃力+', 'num'], ['def', '守備力+', 'num'], ['int', '賢さ+', 'num'], ['agi', '素早さ+', 'num'], ['luk', '運+', 'num'], ['hp', '最大HP+', 'num'], ['mp', '最大MP+', 'num'],
     ['sp', '特殊効果(装備のみ)', 'text', null, '例: exp:10,crit:5 職業の特性と同じ名前が使える。im:poison で毒無効、cursed:1 で呪い'], ['desc', '説明文', 'text']],
-    blank: { name: '新しいアイテム', type: 'use', price: 100, use: 'heal:50', slot: '', wt: '', atk: '', def: '', int: '', agi: '', luk: '', hp: '', mp: '', sp: '', tier: '', desc: '' } }
+    blank: { name: '新しいアイテム', type: 'use', price: 100, use: 'heal:50', slot: '', wt: '', atk: '', def: '', int: '', agi: '', luk: '', hp: '', mp: '', sp: '', tier: '', desc: '' } },
+  perks: { label: 'スキル盤', icon: '🔷', fields: [
+    ['name', '名前', 'text'], ['cat', '分類(スキル盤のどのページに出すか)', 'sel', () => obj(Object.keys(PERK_CAT), k => PERK_CAT[k][0])], ['cost', '必要なSP', 'num', null, 'レベルが1上がるごとにSPが2もらえる'],
+    ['req', '先に解放しておく能力(なくてもよい)', 'sel', () => { const o = { '': 'なし(はじめから選べる)' }; Object.keys(DB.perks).sort((a, b) => String(DB.perks[a].name).localeCompare(String(DB.perks[b].name), 'ja')).forEach(k => { o[k] = DB.perks[k].name + '(' + PERK_CAT[DB.perks[k].cat][0] + ')'; }); return o; }],
+    ['eff', '効果', 'text', null, '「種類.名前:数値」を「,」でつなぐ。 s.str:5(能力値+%。hp mp str vit agi int luk) / p.crit:3(特性。職業の特性と同じ名前) / e.fi:10(その属性で与えるダメージ+%) / r.fi:10(その属性で受けるダメージ-%。fi火 ic氷 wi風 th雷 ea土 li光 da闇) / g.poison:50(状態にかかりにくく。100で無効。poison sleep para conf silence blind curse stun death) / w.sw:5(その武器を持つと攻撃+%。sw剣 ax斧 sp槍 dg短剣 st杖 bw弓 cl爪 wh鞭 hm槌 fn扇 bm投輪) / f.dragon:10(その系統の魔物へのダメージ+%) / k.特技ID(特技・魔法を覚える) / x.bregen:3(戦闘中HP回復%) x.bmp:2(戦闘中MP回復%) x.ten:1(開幕テンション) x.guts:1(1回だけ耐える)'],
+    ['desc', '説明文(空なら自動)', 'text']],
+    blank: { name: '新しい能力', cat: 'sp', cost: 3, req: '', eff: 's.str:5', desc: '' } }
 };
 const Editor = {
   open() {
     let type = 'jobs', q = '', page = 0, mine = false;
     UI.open(s => {
       s.head('🛠️ エディタ'); const ks = Object.keys(ED);
-      s.p('<small>職業・魔物・仲間・魔法/特技・アイテムを、あとから自由に追加・編集できます。変更はこの端末に保存され、すべての冒険の書に反映されます。</small>');
+      s.p('<small>職業・魔物・仲間・魔法/特技・アイテム・スキル盤の能力を、あとから自由に追加・編集できます。変更はこの端末に保存され、すべての冒険の書に反映されます。</small>');
       s.tabs(ks.map(k => ED[k].icon + ED[k].label), ks.indexOf(type), i => { type = ks[i]; page = 0; q = ''; });
       const inp = el('input'); inp.type = 'search'; inp.placeholder = '名前で検索'; inp.value = q; inp.onchange = () => { q = inp.value.trim(); page = 0; UI.render(); }; s.add(inp);
       s.grid(2); s.btn('＋ 新しく追加', () => Editor.edit(type, null), { cls: 'ok' }); s.btn(mine ? '全部を表示' : '追加・変更した物だけ', () => { mine = !mine; page = 0; }); s.end();
@@ -7211,8 +7500,8 @@ const Editor = {
       s.btn('🗑️ 追加・変更をすべて消して初期状態に戻す', async () => { if (await yn('本当に、追加・変更したデータをすべて消しますか?')) { DBTYPES.forEach(k => CUSTOM[k] = {}); Editor.apply(); toast('初期状態に戻した'); } }, { cls: 'dan' });
     });
   },
-  brief(type, f) { if (type === 'jobs') return ['', '基本', '中級', '上級', '最上級', '伝説'][+f.tier] || ''; if (type === 'mons') return 'Lv' + f.lv; if (type === 'comps') return 'Lv' + f.lv; if (type === 'skills') return 'MP' + f.mp; return f.price ? fmt(+f.price) + 'G' : ''; },
-  apply() { saveCustom(); initDB(); Gfx.reset(); if (G) { for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; if (c.kind === 'monster' && !DB.mons[c.mon]) c.mon = 'j1'; c.skills = c.skills.filter(k => DB.skills[k]); if (c.kind !== 'monster') learnJobSkills(c); fixEquip(c); } for (const k in G.inv) if (!item(k)) delete G.inv[k]; } },
+  brief(type, f) { if (type === 'jobs') return ['', '基本', '中級', '上級', '最上級', '伝説', '神話', '超越'][+f.tier] || ''; if (type === 'mons') return 'Lv' + f.lv; if (type === 'comps') return 'Lv' + f.lv; if (type === 'skills') return 'MP' + f.mp; if (type === 'perks') return 'SP' + f.cost; return f.price ? fmt(+f.price) + 'G' : ''; },
+  apply() { saveCustom(); initDB(); Gfx.reset(); if (G) { for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; if (c.kind === 'monster' && !DB.mons[c.mon]) c.mon = 'j1'; c.skills = c.skills.filter(k => DB.skills[k]); if (c.kind !== 'monster') learnJobSkills(c); fixEquip(c); } for (const k in G.inv) if (!item(k)) delete G.inv[k]; Perk.clean(); } },
   edit(type, id) {
     const D = ED[type], isNew = !id; if (isNew) id = 'c' + type[0] + Date.now().toString(36) + rnd(99);
     const v = Object.assign({}, D.blank, isNew ? {} : RAWF[type][id], { id });
@@ -7247,6 +7536,7 @@ const Editor = {
       if (!isNew && !BASEF[type][id]) s.btn('🗑️ 削除する', async () => { if (await yn('本当に削除しますか?')) { delete CUSTOM[type][id]; Editor.apply(); UI.close(); } }, { cls: 'dan' });
       if (G && !isNew && DB[type][id]) {
         s.h('ためす(保存済みの内容で)'); const h = hero();
+        if (type === 'perks') s.btn(`${h.name}に解放する(SPを使わずに)`, () => { Perk.unlock(h, id, true) ? toast('解放した') : toast('もう解放している'); });
         if (type === 'skills') s.btn(`${h.name}に覚えさせる`, () => { learn(h, id) ? toast('覚えた') : toast('もう覚えている'); });
         if (type === 'items') s.btn('持ち物に1個加える', () => { give(id); toast('持ち物に加えた'); });
         if (type === 'jobs') s.btn(`${h.name}をこの職業にする`, () => { h.job = id; if (!h.jobs[id]) h.jobs[id] = { lv: 1, p: 0 }; learnJobSkills(h); fixEquip(h); toast('転職した'); });
@@ -7267,14 +7557,14 @@ const Title = {
       const ms = [1, 2, 3].map(slotMeta);
       ms.forEach((m, i) => { if (m) s.btn(`▶ つづきから:冒険の書${i + 1}`, async () => { const done = await busy('🌍 世界を読みこんでいます…'); try { loadGame(i + 1); } catch (e) { done(); await say('この記録は読み込めませんでした。\n<small>' + esc(e.message) + '</small>'); return; } done(); Title.resume(); }, { cls: 'pri', sub: `${esc(m.name)} Lv${m.lv} ${m.job}・${m.day}日目・${playStr(m.play)}${m.hard ? '・ハードコア' : ''}` }); });
       s.btn('✨ はじめから(新しい人生)', () => Title.newGame(), { cls: 'ok' });
-      s.btn('🎨 カスタムスタート(好きな職業ではじめる)', () => Title.newGame(true), { sub: `全${Object.keys(DB.jobs).length}職から最初の職業を選べる。上級職・伝説職も、エディタで作った職業もOK` });
+      s.btn('🎨 カスタムスタート(好きな職業ではじめる)', () => Title.newGame(true), { sub: `全${Object.keys(DB.jobs).length}職から最初の職業を選べる。伝説職や その上の神話職・超越職も、エディタで作った職業もOK` });
       s.btn('🛠️ エディタ(職業・魔物・仲間・特技の追加と編集)', () => Editor.open());
       s.btn('📥 セーブデータを読み込む', async () => { const t = await askArea('書き出したセーブデータを貼り付けるか、ファイルを選んでください。', '', true); if (!t) return; try { unpackSave(t.trim()); const sl = await ask('どの冒険の書に入れますか?', [1, 2, 3].map(n => '冒険の書' + n + (slotMeta(n) ? '(上書き)' : '')), { cancel: 1 }); if (sl < 0) { G = null; return; } saveGame(sl + 1); Title.resume(); } catch (e) { G = null; await say('読み込めませんでした。\n<small>' + esc(e.message) + '</small>'); } });
       s.btn('📘 あそびかた', () => Title.help());
       if (ms.some(Boolean)) s.btn('🗑️ 冒険の書を消す', async () => { const i = await ask('どれを消しますか?', [1, 2, 3].map(n => ({ l: '冒険の書' + n, dis: !ms[n - 1] })), { cancel: 1 }); if (i >= 0 && await yn(`冒険の書${i + 1}を本当に消しますか?`)) deleteSave(i + 1); });
       let gr = []; try { gr = JSON.parse(LS('tl_grave') || '[]'); } catch (e) { }
       if (gr.length) s.btn('🪦 かつての人生(ハードコアの記録)', () => say(gr.map(g => `${esc(g.name)} Lv${g.lv} ${g.job}・${g.day}日目・${g.wins}勝`).join('\n')));
-      r.appendChild(el('div', 'sp note', `種族${RACES.length}種・職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種`));
+      r.appendChild(el('div', 'sp note', `種族${RACES.length}種・職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種・スキル盤${Object.keys(DB.perks).length}種`));
     }, { noClose: true });
   },
   resume() { UI.closeAll(); const s = !G.dun && !G.tm && G.veh === 'foot' && W.at.get(G.y * W.S + G.x); if (s && s.fac) TownMap.enter(s, 'mid', true); Field.resize(); Field.draw(); },
@@ -7298,9 +7588,9 @@ const Title = {
   },
   /* カスタムスタート:すべての職業から最初の職業を選ぶ(系統 → 職業 → 確認) */
   async pickJob() {
-    const TN = ['', '基本職', '中級職', '上級職', '最上級職', '伝説職'], all = Object.values(DB.jobs).filter(j => JOBCAT[j.cat]), cats = Object.keys(JOBCAT).filter(k => all.some(j => j.cat === k));
+    const TN = JOB_TIER, all = Object.values(DB.jobs).filter(j => JOBCAT[j.cat]), cats = Object.keys(JOBCAT).filter(k => all.some(j => j.cat === k));
     for (; ;) {
-      const ci = await ask(`どの系統の職業ではじめますか?<small>(全${all.length}職。上級職・伝説職も、エディタで作った職業も選べる)</small>`, cats.map(k => { const ls = all.filter(j => j.cat === k); return { l: `${JOBCAT[k][1]} ${JOBCAT[k][0]}`, sub: `${ls.length}職・` + [1, 2, 3, 4, 5].map(t => { const n = ls.filter(j => j.tier === t).length; return n ? TN[t].replace('職', '') + n : ''; }).filter(Boolean).join(' ') }; }), { cancel: 1 });
+      const ci = await ask(`どの系統の職業ではじめますか?<small>(全${all.length}職。伝説職や その上の神話職・超越職も、エディタで作った職業も選べる)</small>`, cats.map(k => { const ls = all.filter(j => j.cat === k); return { l: `${JOBCAT[k][1]} ${JOBCAT[k][0]}`, sub: `${ls.length}職・` + [1, 2, 3, 4, 5, 6, 7].map(t => { const n = ls.filter(j => j.tier === t).length; return n ? TN[t].replace('職', '') + n : ''; }).filter(Boolean).join(' ') }; }), { cancel: 1 });
       if (ci < 0) return null;
       const k = cats[ci], ls = all.filter(j => j.cat === k).sort((a, b) => a.tier - b.tier);
       for (; ;) {
@@ -7328,7 +7618,9 @@ const Title = {
       H('このゲームについて', 'コマンド式の戦闘と転職で遊ぶ、自由度の高いRPGです。魔王を倒す旅に出ても、商人として稼いでも、釣りや畑で暮らしても、盗賊として生きてもかまいません。世界は「はじめから」のたびに自動で作られます。');
       H('操作', '・<b>十字パッド</b>は、指をはなさずに<b>すべらせて向きを変えられる</b>。パッドのまわりの広い範囲が反応するので、だいたいの位置を押せばよい<br>・<b>画面タッチ</b>:ゲーム画面を押しっぱなしで指の方向へ歩く/行きたい場所をタップでそこまで自動で歩く/主人公をタップで「行動」<br>・パッドの大きさ・左右の位置・画面タッチ・振動は メニュー → 設定 →「操作」で変えられる<br>・<b>十字ボタン</b>(パソコンは矢印キー):移動。押しっぱなしで歩き続ける<br>・<b>町・村・城の中</b>は歩いてまわれる。建物の扉に向かって進むと店に入り、人にぶつかると話せる。たるやつぼも調べられる<br>・<b>行動</b>:目の前を調べる、施設の一覧、採集、採掘、釣り、野営、飛竜の乗り降り、迷宮では階の地図<br>・<b>世界</b>は1776×1776マス(新しく始めた場合)。地形は約30種類あり、森・竹林・溶岩原・古戦場など場所ごとに出る魔物がちがう。町や村は<b>街道</b>でつながっていて、街道の上は魔物が出にくく速く歩ける。地図は「周辺・広域・世界全体」を切りかえられる<br>・<b>迷宮</b>は150種類。入口で大きさ(小・中・大・超巨大)と仕掛けがわかる。暗い迷宮は<b>たいまつ</b>(道具屋)で明るくなる。10階以上の迷宮は5階ごとに再開地点がある<br>・<b>メニュー</b>:つよさ、装備、道具、特技、仲間と作戦、製作、図鑑、セーブ、設定<br>・<b>地図</b>:歩いた場所が記録される世界地図<br>・町やダンジョンは、そのマスに入ると入れる');
       H('戦闘', '・「こうげき」「とくぎ・魔法」「ぼうぎょ」「どうぐ」「にげる」を選ぶ<br>・仲間は「作戦」に従って自分で動く(メニュー→仲間・作戦で「めいれいする」にすれば手動)<br>・<b>おまかせ</b>を押すと、その戦闘は全員が自動で戦う。設定で常時ONにすると、勝利メッセージも省いて連戦できる<br>・<b>気合ため</b>を使うと次の一撃が1.7倍→3倍→5倍→7.5倍<br>・鞭は敵1グループ、投輪は敵全体を攻撃できる<br>・属性の弱点を突くと1.5倍。鑑定眼で弱点がわかる<br>・倒した魔物がまれに仲間になる(魔物使い系の職で確率アップ)');
-      H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・タイトルの<b>カスタムスタート</b>なら、条件のある職業も含めて好きな職業で人生をはじめられる(その職業にはいつでも戻れる)<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・段階は 基本 → 中級 → 上級 → 最上級 → 伝説 → <b>神話</b> → <b>超越</b> の7つ。神話職(14種)は伝説職を2つ ★8にすると、超越職(7種)は神話職を2つ ★8にすると道が開ける<br>・神話職と超越職は、火・氷・風・雷・土・光・闇の<b>6段目・7段目の魔法</b>や、「万象加速」「世界断ち」などの奥の手を覚える。極める(★10)と、その職の<b>証</b>(神話職は装飾品、超越職は武器)を1回だけもらえる<br>・武具には「神」の上に<b>永劫</b>・<b>原初</b>の2段がある。素材の永劫石・原初の核は 魔物Lv108以上の土地や迷宮(深淵の奥や、強さを上げた世界)で採掘・宝箱から手に入り、同じあたりで武具そのものも見つかる。鍛冶の腕が168以上なら自分でも作れる<br>・タイトルの<b>カスタムスタート</b>なら、条件のある職業も含めて好きな職業で人生をはじめられる(その職業にはいつでも戻れる)<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('スキル盤', '・メニューの<b>🔷 スキル盤</b>で、レベルアップでもらえる<b>SP</b>(1レベルにつき2)を使って能力を解放できる。解放した能力は<b>転職しても転生しても消えない</b><br>・能力は約560種。能力値(HP・ちから など)、特性(会心率・経験値 など)、属性の極意と守り、状態異常よけ、武器の心得、魔物の系統への特効、攻撃魔法・回復・補助・特技の習得、奥義(戦闘中の回復・根性 など)<br>・Ⅰ→Ⅱ→Ⅲ…と順に解放していく。上の段ほど必要なSPが多い。職業を極めると+1、職業の覚醒で+2、種族の覚醒で+5、転生するとレベルを上げなおしたぶんだけ さらにもらえる<br>・<b>ふりなおし</b>(お金がかかる)で、能力値や特性は選びなおせる。特技・魔法の習得だけは戻せない(忘れないかわりにSPも戻らない)<br>・タイトルやメニューの<b>エディタ</b>で、スキル盤の能力を追加・変更できる');
+      H('覚醒', '・<b>職業の覚醒</b>:職業を極めた(★10)あとも その職で戦いつづけると、やがて<b>覚醒</b>する(必要な戦闘は基本職で約60戦、上の段階ほど多い)。覚醒した職についているあいだ、その職の能力補正が1.5倍・全能力+15%・特性1.5倍になり、系統ごとの<b>覚醒技</b>を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+30%)<br>・<b>種族の覚醒</b>:Lv30以上で<b>祖霊の試練</b>(強い祖霊との戦い)に勝つと、種族の真の力に目覚める。長所の補正が2倍・短所は半分・全能力+15%、特性1.5倍、耐性の強化、戦闘中のHP回復がつき、種族の系統ごとの覚醒技を覚える。呼び名も変わる(エルフ → ハイエルフ など)<br>・試練は、各国の都の<b>転職の神殿</b>(お布施が必要)か、同じ種族の<b>里</b>(無料)で受けられる。負けても命は取られず、何度でも挑める<br>・覚醒のぐあいは 神殿の「🌟 覚醒」や つよさの画面で見られる');
       H('国境', '・外を歩いていると、国と国の境目に<b>それぞれの国の色の線</b>が見える。境目の近くでは、画面上の地名に「⇄となりの国」と出る<br>・国境を越えると「🚩 国境を越えた」と知らせが出る。国が変わると魔物の強さも変わるので注意<br>・<b>地図</b>は国ごとに色がつき、白い線が国境、国名も入る(地図の下のボタンで切りかえ)');
       H('種族(全' + RACES.length + '種)', '・はじめるときに、主人公の<b>種族</b>を選ぶ。人間系・妖精系・獣人系・鱗と水の民・巨人と鬼・精霊と異形の6系統<br>・種族ごとに<b>能力の伸び</b>(HPやかしこさなど)、<b>特性</b>(会心率・回避率・製作の腕など)、<b>属性の耐性と弱点</b>、効かない状態異常がちがう。夜に強い種族、戦闘中に体力が戻る種族もいる<br>・町の住民は国や町によって種族の割合がちがい、酒場で仲間になる冒険者も その町の住民にあわせた種族になる<br>・<b>種族の里</b>:ひとつの種族だけが暮らす村が各地にある(最初の国には かならずハーフリングの里がある)。その種族を仲間にしたいときは里の酒場へ。主人公が同じ種族なら、里の店は1割引き<br>・訪れた里は 手帳 →「探索」に記録される。前からのセーブデータの主人公は、メニュー → 仲間 → 主人公 から1回だけ種族を選べる');
       H('生き方いろいろ', '・<b>冒険者</b>:ギルドの依頼をこなしてランクを上げる<br>・<b>商人</b>:交易所で安く仕入れて他国で高く売る。店を買えば毎日収入<br>・<b>職人</b>:採掘・採集した素材で武具や薬、料理を作る。装備の強化も<br>・<b>旅人</b>:8つの国と魔王領を巡る。船や飛竜を手に入れよう<br>・<b>暮らし</b>:家を買って畑を耕し、結婚して子供を育てる<br>・<b>悪党</b>:盗みで稼ぐ。賞金首になり、闇の職業への道が開く<br>・<b>闘士</b>:闘技場でランク30を目指す<br>・<b>探索者</b>:底なしの「深淵の大穴」に挑む');
