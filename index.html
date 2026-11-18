@@ -1293,6 +1293,7 @@ const RUMORS = [
  '魔王の城は8つの「封印の紋章」が揃わないと入れないらしい。紋章は各国の魔窟にいる魔将が持っているとか。',
  '銀色の玉のような魔物を見たら逃がすな。倒せれば経験値がたっぷり手に入る。',
  '交易所の品は国ごとに値段が違う。安い国で買って高い国で売れば大もうけだ。',
+ '交易所では鉱石も買えるが、目玉が飛び出るほど高い。季節や町でならぶ石が変わるし、月はじめの王都の大市には、めったに出ない石が出るそうだ。',
  '港町の定期船に乗れば、船を持っていなくても他の国へ行けるぞ。',
  '夜は魔物が強くなるが、夜にしか出ない魔物もいる。月光草も夜にしか見つからない。',
  '魔物を倒したあと、まれに仲間になりたそうにすることがある。魔物使いがいると確率が上がる。',
@@ -1692,9 +1693,9 @@ function newG(seed) {
   return { v: 1, seed, day: 1, min: 480, gold: 0, bank: 0, loan: 0, hero: 0, party: [], reserve: [], chars: {}, cid: 1, inv: {}, store: {},
     x: 0, y: 0, veh: 'foot', ship: null, hasShip: false, hasWyvern: false, dun: null, vis: {}, ds: {}, flags: {}, sigils: {}, quests: [], qdone: 0, gp: 0,
     fame: 0, karma: 0, bounty: {}, rep: {}, best: {}, got: {}, titles: {},
-    stat: { battles: 0, wins: 0, flee: 0, steps: 0, kills: 0, earn: 0, craft: 0, fish: 0, steal: 0, trade: 0, wipes: 0, chests: 0, maxdmg: 0, tamed: 0, quests: 0, maps: 0, nem: 0, brk: 0, rum: 0, evs: 0, cardW: 0, race: 0 },
+    stat: { battles: 0, wins: 0, flee: 0, steps: 0, kills: 0, earn: 0, craft: 0, fish: 0, steal: 0, trade: 0, wipes: 0, chests: 0, maxdmg: 0, tamed: 0, quests: 0, maps: 0, nem: 0, brk: 0, rum: 0, evs: 0, cardW: 0, race: 0, ore: 0 },
     props: [], home: null, spouse: null, kids: [], medals: 0, medalGot: 0, coins: 0, arena: 0, wagon: 0, food: null, repel: 0, stealth: 0, respawn: null,
-    opts: { speed: 2, autosave: true }, hard: false, worldLv: 0, play: 0, tstock: {}, tcost: {}, life: { fish: 0, mine: 0, herb: 0, cook: 0, mix: 0, alch: 0, forge: 0, farm: 0 },
+    opts: { speed: 2, autosave: true }, hard: false, worldLv: 0, play: 0, tstock: {}, ostock: {}, tcost: {}, life: { fish: 0, mine: 0, herb: 0, cook: 0, mix: 0, alch: 0, forge: 0, farm: 0 },
     abyssMax: 0, luckDay: 0, slot: 1, hires: {}, searched: {}, age0: 16, wv: 3, light: 0, mapZ: 0,
     ev: { last: 0, cd: {}, t: 40, rain: -9999 }, rum: [], rumN: 0, tmaps: [], tmN: 0, tmCodes: {}, nem: [], nemN: 0, nemLog: [],
     lords: {}, stele: {}, stamp: {}, mount: null, oath: {}, cards: {}, gvGot: {}, led: {},
@@ -5010,6 +5011,7 @@ const Trade = {
     UI.open(sc => {
       const N = W.nations[s.nation], S2 = Trade.st(s), tr = clamp(pas('trade'), 0, 80);
       sc.head('📦 交易所', fmt(G.gold) + 'G'); sc.p(`<small>積み荷 <b>${cargoUsed()} / ${cargoCap()}</b>・安い国で買い、高い国で売ろう。値段は数日ごとに変わる。<br>特産(安い):${N.cheap.map(g => DB.items[g].name).join('・')}/品薄(高い):${N.dear.map(g => DB.items[g].name).join('・')}</small>`);
+      sc.btn('⛏️ 鉱石を買う', () => OreMart.open(s), { r: OreMart.fair(s) ? '<span class="good">大市!</span>' : SEASONS[Wx.season()] + 'の入荷', sub: '武具の素材になる石。とても高い。季節と町によって、ならぶ石が変わる' });
       Trade.goods().forEach(it => {
         const p = Trade.price(s, it), sold = S2.s[it.id] || 0, sp = Math.min(Math.floor(p * .97), Math.floor(p * .9 * (1 + tr / 200) * Math.max(.5, 1 - .02 * sold))), left = Trade.stockMax(it) - (S2.b[it.id] || 0), own = have(it.id), avg = own ? Math.round((G.tcost[it.id] || 0) / own) : 0;
         const tag = N.cheap.includes(it.id) ? '<span class="tag" style="background:#16402c">特産</span>' : N.dear.includes(it.id) ? '<span class="tag" style="background:#5a3a16">品薄</span>' : '';
@@ -7562,6 +7564,79 @@ Perk.open = function (i0) {
   });
 };
 
+/* ===================== 交易所の鉱石 ===================== */
+/* 鉱石は交易所でも買える。ただし とても高い(標準のおよそ10倍・希少な石は16倍)。
+   ならぶ石は、場所(国の強さ・産地・地形・種族の里)と 時期(季節・10日ごとの入荷・月はじめの大市)で変わる。 */
+// 種族の里:up=ひとつ上の石までならぶ pm=値段の倍率 sig=その里だけの名産(鉱石の段) se=その季節だけ
+const ORE_RACE = { dwarf: { up: 1, pm: .75 }, gnome: { pm: .85 }, kobold: { pm: .85 }, highland: { pm: .85 }, construct: { sig: 3 }, crystal: { sig: 5 }, dragon: { sig: 6 }, angel: { sig: 7 }, demon: { sig: 8 }, fairy: { sig: 9 }, tengu: { sig: 10 }, cyclops: { sig: 11 }, frost: { sig: 12, se: 3 }, flame: { sig: 13, se: 1 } };
+// 町の近くの地形で決まる石:[地形の番号, 鉱石の段, 呼び名, さがす半径]
+const ORE_TER = [[[29, 22], 8, '火の山', 24], [[24], 5, '水晶の原', 6], [[28, 18], 7, '氷の山', 6], [[16], 9, '砂丘', 6]];
+const ORE_SEASON = ['山開きの季節。入荷が多く、すこし安い', '遠くの鉱山から隊商が着く季節。町と王都に、上の段の石がとどく', '市が立つ季節。ならぶ石の種類がふえる', '山が雪に閉ざされる季節。品薄で値が上がる。王都では、蔵出しの希少な石が出る'];
+const OreMart = {
+  MULT: 10, RARE: 1.6, FLOOR: 5,
+  per() { return Math.floor((G.day - 1) / 10); },
+  left() { return 10 - (G.day - 1) % 10; },
+  fair(s) { return s.type === 'capital' && (G.day - 1) % 30 < 3; },
+  // その土地で採れる石の段(国の魔物の強さから)
+  band(s) { return clamp(eqTier(TIERLV[Town.tier(s)] + (G.worldLv || 0) * 15) + 1, 1, EQ_TOP); },
+  // 町のまわりの地形。山や岩場が多ければ「山の町」
+  land(s) {
+    if (this._w !== W) { this._w = W; this._l = {}; } if (this._l[s.id]) return this._l[s.id];
+    const R = 24, S = W.S, near = {}; let n = 0, ore = 0;
+    for (let dy = -R; dy <= R; dy++) for (let dx = -R; dx <= R; dx++) { const x = s.x + dx, y = s.y + dy, d2 = dx * dx + dy * dy; if (x < 0 || y < 0 || x >= S || y >= S || d2 > R * R) continue; const t = W.t[y * S + x]; if (near[t] === undefined || d2 < near[t]) near[t] = d2; if (d2 <= 36) { n++; if (TER_ORE[t] || TER_K[t] === 2) ore++; } }
+    return this._l[s.id] = { hilly: n > 0 && ore / n >= .15, sig: ORE_TER.filter(a => a[0].some(t => near[t] !== undefined && near[t] <= a[3] * a[3])) };
+  },
+  race(s) { const r = Race.home(s); return r && ORE_RACE[r] ? ORE_RACE[r] : null; },
+  spec(s) { return clamp(this.band(s) + [0, 0, -1, 1][hstr('oresp' + W.seed + s.id) % 4], 1, EQ_TOP); },
+  st(s) { if (!G.ostock) G.ostock = {}; const p = this.per(); if (!G.ostock[s.id] || G.ostock[s.id].p !== p) G.ostock[s.id] = { p, b: {} }; return G.ostock[s.id]; },
+  // いま、この町にならぶ石:[{ t:段, n:入荷数, tags:[…], rare:希少 }]
+  offers(s) {
+    const b = this.band(s), se = Wx.season(), per = this.per(), L = this.land(s), RR = this.race(s), cap = s.type === 'capital', vil = s.type === 'village', out = [], by = {};
+    const h = k => hstr('ore' + W.seed + s.id + k + per) % 100, sp = this.spec(s);
+    const add = (t, n, tag, rare) => { if (t < 1 || t > EQ_TOP) return; const e = by[t]; if (e) { if (tag && !e.tags.includes(tag)) e.tags.push(tag); e.n = Math.max(e.n, n); e.rare = e.rare && !!rare; return; } out.push(by[t] = { t, n, tags: tag ? [tag] : [], rare: !!rare }); };
+    add(b, 6); add(b - 1, 8); if (L.hilly || (RR && RR.up) || b === 1 || (se !== 3 && h('up') < 55)) add(b + 1, 3); if (RR && RR.up) add(b + 2, 2, '里の名産');
+    if (se === 1 && !vil) add(b + 2, 2, '隊商', true);
+    const okD = ds => ds.filter(d => b + d >= 1 && b + d <= EQ_TOP);
+    if (se === 2) { const ds = okD([-2, 2, 2, 3]); if (ds.length) { const d = ds[h('au') % ds.length]; add(b + d, 2, '秋の市', d > 1); } }
+    if (h('pd') < 40) { const ds = okD([-3, -2, 2, 3]); if (ds.length) { const d = ds[h('pe') % ds.length]; add(b + d, 2, '行商', d > 1); } }
+    if (se === 3 && cap) add(b + 3, 1, '蔵出し', true);
+    if (this.fair(s)) { add(b + 2, 2, '大市', true); add(b + 3, 2, '大市', true); add(b + 4, 1, '大市', true); if (se === 3) { add(b + 5, 1, '冬の大市', true); add(b + 6, 1, '冬の大市', true); } }
+    L.sig.forEach(a => add(a[1], 2, a[2], a[1] > b + 1));
+    if (RR && RR.sig && (RR.se === undefined || RR.se === se)) add(RR.sig, 3, '里の名産', false);
+    const k = [1.5, 1, 1, .5][se] * (cap ? 1.3 : vil ? .6 : 1); out.forEach(o => { o.n = Math.max(1, Math.round(o.n * (o.rare ? Math.min(1, k) : k))); if (o.t === sp && !o.rare) o.tags.unshift('産地'); });
+    return out.sort((x, y) => x.t - y.t);
+  },
+  price(s, o) {
+    const it = DB.items['ore' + o.t], L = this.land(s), RR = this.race(s); let m = this.MULT * (o.rare ? this.RARE : 1);
+    if (o.tags.includes('産地')) m *= .8; if (L.hilly) m *= .85; if (RR && RR.pm) m *= RR.pm; m *= [.9, 1, 1, 1.25][Wx.season()]; m *= .92 + (hstr('orep' + s.id + o.t + this.per()) % 200) / 1000;
+    m *= (1 - clamp(pas('trade'), 0, 80) / 400) * (1 - clamp(pas('disc'), 0, 60) / 200) * Race.disc() * (typeof Edict !== 'undefined' && Edict.has('trade') ? .9 : 1);
+    const p = it.price * Math.max(this.FLOOR, m), r = p >= 100000 ? 100 : p >= 1000 ? 10 : 1; return Math.max(1, Math.round(p / r) * r);
+  },
+  async buy(s, o) {
+    const it = DB.items['ore' + o.t], p = this.price(s, o), S2 = this.st(s), max = Math.min(o.n - (S2.b[o.t] || 0), Math.floor(G.gold / p)); if (max < 1) return;
+    const n = await askNum(`<b>${it.name}</b> 1個 ${fmt(p)}G\nいくつ買いますか?`, max, 1); if (!n) return;
+    if (p * n >= 50000 && !(await yn(`${it.name} ×${n} を <b>${fmt(p * n)}G</b> で買いますか?`))) return;
+    G.gold -= p * n; give(it.id, n); S2.b[o.t] = (S2.b[o.t] || 0) + n; G.stat.ore = (G.stat.ore || 0) + n; HUD.update(); toast(`⛏️ ${it.name} ×${n} を買った(−${fmt(p * n)}G)`);
+  },
+  open(s) {
+    UI.open(sc => {
+      const se = Wx.season(), L = this.land(s), rid = Race.home(s), RR = this.race(s), os = this.offers(s), S2 = this.st(s), md = (G.day - 1) % 30 + 1, b = this.band(s), nm = t => DB.items['ore' + clamp(t, 1, EQ_TOP)].name;
+      sc.head('⛏️ 鉱石の取引', fmt(G.gold) + 'G'); sc.p('「石かい? あるにはあるが……山から運ぶのは命がけでね。<b>値は張るよ</b>。」');
+      const ln = [`📅 <b>${SEASONS[se]}・${['上旬', '中旬', '下旬'][Math.floor((md - 1) / 10)]}</b> <small>(次の入荷まで あと${this.left()}日)</small>`, `🍃 ${ORE_SEASON[se]}`, `🏔️ このあたりの石は「${nm(b)}」。産地の石は「${nm(this.spec(s))}」<small>(2割安い)</small>`];
+      if (L.hilly) ln.push('⛰️ 山に近い町。石が豊富で、ひとつ上の石もならび、1割5分ほど安い'); L.sig.forEach(a => ln.push(`🧭 近くに${a[2]}がある:「${nm(a[1])}」がとどく`));
+      if (RR) ln.push(`🏘️ ${RACE[rid].name}の里:` + [RR.up ? '鉱山とともに生きる民。上の石までならぶ' : '', RR.pm ? '石が安い' : '', RR.sig ? `名産は「${nm(RR.sig)}」` + (RR.se === undefined ? '' : `<small>(${SEASONS[RR.se]}だけ)</small>`) : ''].filter(Boolean).join('・'));
+      ln.push(this.fair(s) ? '🎪 <b class="good">鉱石の大市が開かれている!</b> <small>(毎月1〜3日)</small> めったに出ない石がならぶ' : s.type === 'capital' ? `🎪 毎月1〜3日は、ここで鉱石の大市 <small>(あと${31 - md}日)</small>` : '🎪 毎月1〜3日は、各国の王都で鉱石の大市が開かれる');
+      sc.card(ln.join('<br>'));
+      const TAGC = { 産地: '#16402c', 里の名産: '#16402c', 大市: '#4a2a5a', 冬の大市: '#4a2a5a', 隊商: '#1d3a5a', 蔵出し: '#1d3a5a', 秋の市: '#1d3a5a', 行商: '#1d3a5a' };
+      os.forEach(o => { const it = DB.items['ore' + o.t], p = this.price(s, o), left = o.n - (S2.b[o.t] || 0), own = have(it.id), tags = (o.rare ? ['希少'] : []).concat(o.tags).map(t => `<span class="tag" style="background:${t === '希少' ? '#5a3a16' : TAGC[t] || '#3a3a4a'}">${t}</span>`).join('');
+        sc.btn(`${esc(it.name)} ${tags}`, () => this.buy(s, o), { r: fmt(p) + 'G', sub: `標準 ${fmt(it.price)}G の約${Math.round(p / it.price)}倍・在庫 <b>${Math.max(0, left)}</b>${own ? '・所持 ' + own : ''}・${esc(it.desc)}`, dis: left < 1 || G.gold < p }); });
+      sc.h('🧭 石さがしの手引き');
+      const vs = Race.homeSites().filter(v => G.vis[v.id] && ORE_RACE[Race.home(v)]).map(v => { const R2 = ORE_RACE[Race.home(v)]; return `${esc(v.name)}(${RACE[Race.home(v)].name})` + (R2.sig ? '=' + nm(R2.sig) + (R2.se === undefined ? '' : '・' + SEASONS[R2.se] + 'だけ') : R2.up ? '=上の石まで・安い' : '=安い'); });
+      sc.card('<small>・魔物の強い国ほど、上の段の石がならぶ。町ごとに「産地」の石があり、山に近い町は品数が多く安い<br>' + ORE_SEASON.map((t, i) => `・<b>${SEASONS[i]}</b>:${t}`).join('<br>') + '<br>・毎月1〜3日は、王都の<b>大市</b>。ふだんは出ない、ずっと上の石が少しだけならぶ。<b>冬の大市</b>(10〜12月)には、さらに上の石も出る<br>・火の山・氷の山・水晶の原・砂丘の近くの町や、種族の里には、その土地だけの石がある<br>・入荷は10日ごと。ときどき行商が、ふだんは無い石を持ちこむ。売りきれたら、つぎの入荷を待つ' + (vs.length ? '<br>・訪れた里:' + vs.join('、') : '') + '<br>・つるはしで自分で掘れば、ただで手に入る</small>');
+    });
+  }
+};
+
 /* ===================== 国境をわかりやすく(フィールドの境界線・地図の色分け・国名) ===================== */
 const Border = {
   _c: {},
@@ -8011,6 +8086,7 @@ const Title = {
       H('操作', '・<b>十字パッド</b>は、指をはなさずに<b>すべらせて向きを変えられる</b>。パッドのまわりの広い範囲が反応するので、だいたいの位置を押せばよい<br>・<b>画面タッチ</b>:ゲーム画面を押しっぱなしで指の方向へ歩く/行きたい場所をタップでそこまで自動で歩く/主人公をタップで「行動」<br>・パッドの大きさ・左右の位置・画面タッチ・振動は メニュー → 設定 →「操作」で変えられる<br>・<b>十字ボタン</b>(パソコンは矢印キー):移動。押しっぱなしで歩き続ける<br>・<b>町・村・城の中</b>は歩いてまわれる。建物の扉に向かって進むと店に入り、人にぶつかると話せる。たるやつぼも調べられる<br>・<b>行動</b>:目の前を調べる、施設の一覧、採集、採掘、釣り、野営、飛竜の乗り降り、迷宮では階の地図<br>・<b>世界</b>は1776×1776マス(新しく始めた場合)。地形は約30種類あり、森・竹林・溶岩原・古戦場など場所ごとに出る魔物がちがう。町や村は<b>街道</b>でつながっていて、街道の上は魔物が出にくく速く歩ける。地図は「周辺・広域・世界全体」を切りかえられる<br>・<b>迷宮</b>は150種類。入口で大きさ(小・中・大・超巨大)と仕掛けがわかる。暗い迷宮は<b>たいまつ</b>(道具屋)で明るくなる。10階以上の迷宮は5階ごとに再開地点がある<br>・<b>メニュー</b>:つよさ、装備、道具、特技、仲間と作戦、製作、図鑑、セーブ、設定<br>・<b>地図</b>:歩いた場所が記録される世界地図<br>・町やダンジョンは、そのマスに入ると入れる');
       H('戦闘', '・「こうげき」「とくぎ・魔法」「ぼうぎょ」「どうぐ」「にげる」を選ぶ<br>・仲間は「作戦」に従って自分で動く(メニュー→仲間・作戦で「めいれいする」にすれば手動)<br>・<b>おまかせ</b>を押すと、その戦闘は全員が自動で戦う。設定で常時ONにすると、勝利メッセージも省いて連戦できる<br>・<b>気合ため</b>を使うと次の一撃が1.7倍→3倍→5倍→7.5倍<br>・鞭は敵1グループ、投輪は敵全体を攻撃できる<br>・属性の弱点を突くと1.5倍。鑑定眼で弱点がわかる<br>・倒した魔物がまれに仲間になる(魔物使い系の職で確率アップ)');
       H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・段階は 基本 → 中級 → 上級 → 最上級 → 伝説 → <b>神話</b> → <b>超越</b> の7つ。神話職(14種)は伝説職を2つ ★8にすると、超越職(7種)は神話職を2つ ★8にすると道が開ける<br>・神話職と超越職は、火・氷・風・雷・土・光・闇の<b>6段目・7段目の魔法</b>や、「万象加速」「世界断ち」などの奥の手を覚える。極める(★10)と、その職の<b>証</b>(神話職は装飾品、超越職は武器)を1回だけもらえる<br>・武具には「神」の上に<b>永劫</b>・<b>原初</b>の2段がある。素材の永劫石・原初の核は 魔物Lv108以上の土地や迷宮(深淵の奥や、強さを上げた世界)で採掘・宝箱から手に入り、同じあたりで武具そのものも見つかる。鍛冶の腕が168以上なら自分でも作れる<br>・タイトルの<b>カスタムスタート</b>なら、条件のある職業も含めて好きな職業で人生をはじめられる(その職業にはいつでも戻れる)<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('鉱石を買う', '・武具の素材になる鉱石は、<b>交易所の「⛏️ 鉱石を買う」</b>でも手に入る。ただし<b>とても高い</b>(標準のおよそ10倍、希少な石は16倍)。つるはしで自分で掘れば ただ<br>・<b>場所</b>でならぶ石が変わる:魔物の強い国ほど上の段の石。町ごとに「産地」の石(2割安い)。山に近い町は品数が多く安い。火の山・氷の山・水晶の原・砂丘の近くの町や、種族の里(ドワーフ・竜人・天翼の民 など)には、その土地だけの石がある<br>・<b>時期</b>でも変わる:春は入荷が多く安い/夏は隊商が上の石を運んでくる/秋は種類がふえる/冬は品薄で高いが、王都で蔵出しの石が出る。<b>毎月1〜3日は王都の大市</b>で、ずっと上の石が少しだけならぶ(冬の大市には、さらに上の石も)<br>・入荷は10日ごと(上旬・中旬・下旬)。ときどき行商が、ふだんは無い石を持ちこむ。在庫は少ない');
       H('会得スキル', '・<b>行動のつみ重ねで、ひとりでに身につくスキル</b>。条件を満たすと、戦闘のあとに〈天の声〉が知らせてくれる。転職しても消えない。メニューの「📜 会得スキル」で、いまの育ちぐあいを見られる<br>・<b>耐性スキル</b>:同じ属性の攻撃や状態異常を受けつづけると身につく。火耐性 → 火大耐性 → 火無効、毒慣れ → 毒克服 のように<b>進化</b>する<br>・<b>資質スキル</b>:戦いぶりから芽ばえる。「逆境」(HPが3割以下で与えるダメージが上がる)、「孤高」(1人で戦うと強い)、「格上殺し」、「七転八起」(倒れても1回起き上がる)など18種。それぞれ「・改」「・極」へ進化する<br>・<b>固有スキル</b>:並はずれた経験を積むと宿る。倒した魔物の特技を写し取る「喰らい写し」、2回行動の「刹那」、味方全員を守る「守護者」、耐性スキルを集めると宿る「調和の器」など12種。さらに条件を満たすと<b>極致</b>へ進化する<br>・以前のセーブでは、これまでに倒した魔物の数などを主人公が引きつぐ<br>・エディタで、会得スキルの追加・変更ができる');
       H('ツリー表示', '・<b>🌳 職業ツリー</b>(メニュー・神殿・図鑑から):系統ごとに、それぞれの職を「前提の職」の下にぶら下げた枝わかれの木(たて長で、画面の幅におさまる)。<b>＋</b>は あわせて必要な職や条件。職をタップすると、その場に条件の達成ぐあいが開き、そこまでの道すじが光る。「全体図」に切りかえると、基本職から超越職までを段ごとに並べ、前提をすべて線でつないだ横に広い図になる。神殿から開けば そのまま転職できる<br>・<b>✨ 魔法・特技の系統</b>(とくぎ・魔法から):火の魔法、回復、居合…と つながりごとに並び、覚えているものが光る。タップで、どの職やスキル盤で覚えられるかがわかる<br>・<b>🔷 スキル盤</b>と<b>📜 会得スキル</b>も、Ⅰ→Ⅱ→Ⅲ のつながりを玉の列で表示する');
       H('スキル盤', '・メニューの<b>🔷 スキル盤</b>で、レベルアップでもらえる<b>SP</b>(1レベルにつき2)を使って能力を解放できる。解放した能力は<b>転職しても転生しても消えない</b><br>・能力は約560種。能力値(HP・ちから など)、特性(会心率・経験値 など)、属性の極意と守り、状態異常よけ、武器の心得、魔物の系統への特効、攻撃魔法・回復・補助・特技の習得、奥義(戦闘中の回復・根性 など)<br>・Ⅰ→Ⅱ→Ⅲ…と順に解放していく。上の段ほど必要なSPが多い。職業を極めると+1、職業の覚醒で+2、種族の覚醒で+5、転生するとレベルを上げなおしたぶんだけ さらにもらえる<br>・<b>ふりなおし</b>(お金がかかる)で、能力値や特性は選びなおせる。特技・魔法の習得だけは戻せない(忘れないかわりにSPも戻らない)<br>・タイトルやメニューの<b>エディタ</b>で、スキル盤の能力を追加・変更できる');
