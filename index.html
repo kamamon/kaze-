@@ -166,6 +166,71 @@ table.t{width:100%;border-collapse:collapse;font-size:13px}table.t td,table.t th
 .en .lk{display:block;min-height:15px;font-size:12px;letter-spacing:1px;line-height:15px;white-space:nowrap}.en .lk b{color:#ffd24a;font-size:11px}
 .lkm{color:#ffd24a}
 .en.brk .sp{animation:ebrk .5s}@keyframes ebrk{0%{transform:rotate(0)}25%{transform:rotate(-14deg) translateY(4px)}60%{transform:rotate(10deg) translateY(6px)}100%{transform:rotate(0)}}
+
+/* ---- ツリー表示 ---- */
+.tcard{padding:8px 9px}
+.ttitle{margin-bottom:5px;line-height:1.3}
+.tline{display:flex;flex-wrap:wrap;align-items:center;row-gap:5px}
+.tline.loose{gap:5px}
+.tnode{display:inline-block;min-width:26px;padding:4px 7px;border-radius:9px;border:1px solid #3d4a70;background:#151b30;color:#8e9ac0;font-size:11.5px;line-height:1.25;text-align:center;font-family:inherit}
+button.tnode{cursor:pointer}
+.tnode.on{background:#2c4689;border-color:#9fb6ff;color:#fff}
+.tnode.cur{box-shadow:0 0 0 2px #ffd76a inset}
+.tnode.nx{border-color:#ffd76a;color:#ffe9a8;background:#372f12}
+.tseg{display:inline-flex;align-items:center;white-space:nowrap}
+.tlink{display:inline-block;flex:0 0 9px;width:9px;height:2px;background:#3d4a70}
+.tnode.pip{min-width:0;width:25px;padding:4px 0}
+.tlink.on{background:#9fb6ff}
+.tinfo{margin-top:6px;font-size:12.5px;line-height:1.45}
+.tbar{display:block;height:5px;border-radius:3px;background:#1a2138;margin:3px 0 1px;overflow:hidden}
+.tbar i{display:block;height:100%;background:linear-gradient(90deg,#5b7be0,#9fd0ff)}
+.jtwrap{overflow:auto;max-height:56vh;border:1px solid #2b3556;border-radius:10px;background:#0d1222;margin:6px 0;-webkit-overflow-scrolling:touch}
+.jtsvg{display:block}
+.jtedge{fill:none;stroke:#39456a;stroke-width:1.6}
+.jtedge.ok{stroke:#6f8fe0}
+.jtedge.hot{stroke:#ffd76a;stroke-width:2.6}
+.jttier{fill:#7783a8;font-size:9px}
+.jtnode{cursor:pointer}
+.jtnode rect{fill:#161c31;stroke:#3d4a70;stroke-width:1.2}
+.jtname{fill:#8e9ac0;font-size:10px;text-anchor:middle;dominant-baseline:middle}
+.jtmark{fill:#ffe9a8;font-size:8.5px;text-anchor:end}
+.jtext{fill:#ff9d9d;font-size:8.5px}
+.jtnode.can rect{stroke:#63d083}.jtnode.can .jtname{fill:#bff0cc}
+.jtnode.exp rect{fill:#22305a;stroke:#6f8fe0}.jtnode.exp .jtname{fill:#dfe6ff}
+.jtnode.mas rect{fill:#2c4689;stroke:#9fb6ff}.jtnode.mas .jtname{fill:#fff}
+.jtnode.awk rect{fill:#5a3f8f;stroke:#d9b8ff}.jtnode.awk .jtname{fill:#fff}
+.jtnode.cur rect{fill:#4a3c16;stroke:#ffd76a;stroke-width:2}.jtnode.cur .jtname{fill:#fff}
+.jtnode.hot rect{stroke:#ffd76a}
+.jtnode.sel rect{stroke:#fff;stroke-width:2.4}
+.jleg{display:inline-block;padding:1px 6px;margin:0 3px 3px 0;border-radius:6px;border:1px solid #3d4a70;font-size:10.5px;color:#8e9ac0}
+.jleg.cur{background:#4a3c16;border-color:#ffd76a;color:#fff}.jleg.mas{background:#2c4689;border-color:#9fb6ff;color:#fff}.jleg.awk{background:#5a3f8f;border-color:#d9b8ff;color:#fff}.jleg.exp{background:#22305a;border-color:#6f8fe0;color:#dfe6ff}.jleg.can{border-color:#63d083;color:#bff0cc}
+
+.tnext{display:flex;align-items:center;gap:8px;margin-top:6px;line-height:1.35}
+.tnext>span{flex:1;min-width:0}
+.tbuy{flex:0 0 auto;padding:7px 10px;border-radius:9px;border:1px solid #ffd76a;background:#372f12;color:#ffe9a8;font-size:12.5px;font-family:inherit;cursor:pointer}
+.tbuy:disabled{opacity:.5;border-color:#3d4a70;color:#8e9ac0;background:#151b30}
+.jlist{padding:8px 8px}
+.jrow{display:flex;align-items:stretch}
+.jg{flex:0 0 15px;position:relative}
+.jg.v::before,.jg.t::before{content:'';position:absolute;left:7px;top:0;bottom:0;border-left:1.5px solid #46547e}
+.jg.l::before{content:'';position:absolute;left:7px;top:0;height:50%;border-left:1.5px solid #46547e}
+.jg.t::after,.jg.l::after{content:'';position:absolute;left:7px;right:0;top:50%;border-top:1.5px solid #46547e}
+.jmain{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:3px 5px;padding:3px 0}
+.jchip{padding:5px 9px;border-radius:9px;border:1.2px solid #3d4a70;background:#161c31;color:#8e9ac0;font-size:12.5px;font-family:inherit;line-height:1.2;cursor:pointer}
+.jchip small{margin-left:4px;color:#ffe9a8;font-size:10px}
+.jchip.can{border-color:#63d083;color:#bff0cc}
+.jchip.exp{background:#22305a;border-color:#6f8fe0;color:#dfe6ff}
+.jchip.mas{background:#2c4689;border-color:#9fb6ff;color:#fff}
+.jchip.awk{background:#5a3f8f;border-color:#d9b8ff;color:#fff}
+.jchip.cur{background:#4a3c16;border-color:#ffd76a;color:#fff}
+.jrow.hot .jchip{box-shadow:0 0 0 2px #ffd76a}
+.jrow .jchip.sel{box-shadow:0 0 0 2px #fff}
+.jx{display:inline-block;font-size:10.5px;color:#ff9d9d;border:1px dashed #6a4050;border-radius:6px;padding:0 4px;line-height:1.5}
+.jx.ok{color:#9fe0b0;border-color:#3d6a4d}
+.jtr{margin-left:auto;font-size:10px;color:#6f7a9c;padding-left:4px;white-space:nowrap}
+.jdet{flex:1;min-width:0;margin:2px 0 6px;padding:7px 9px;border-radius:9px;background:#0f1528;border:1px solid #2b3556;font-size:12.5px;line-height:1.5}
+.card.jdet{margin:6px 0}
+.jact{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
 </style>
 </head>
 <body>
@@ -1461,8 +1526,8 @@ function LS(k, v) { try { if (v === undefined) return localStorage.getItem(k); i
 /* ===================== データベース構築 ===================== */
 const DB = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {}, recipes: [] };
 let RAWF = {}, BASEF = {}, ITEMC = {};
-let CUSTOM = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {}, perks: {} };
-const DBTYPES = ['skills', 'jobs', 'mons', 'items', 'comps', 'perks'];
+let CUSTOM = { skills: {}, jobs: {}, mons: {}, items: {}, comps: {}, perks: {}, feats: {} };
+const DBTYPES = ['skills', 'jobs', 'mons', 'items', 'comps', 'perks', 'feats'];
 const BOOKS = ['fi1', 'ic1', 'wi1', 'th1', 'ea1', 'li1', 'da1', 'heal1', 'cureP', 'defUp', 'atkUp', 'agiUp', 'sleep', 'fi2', 'ic2', 'wi2', 'th2', 'ea2', 'heal2', 'warp', 'escape', 'repel', 'detect', 'unlock', 'barrier', 'fi3', 'ic3', 'th3', 'healA1', 'rev1', 'mb2', 'metalS', 'camp', 'dig', 'hawkeye', 'analyze', 'cureAll', 'defUpA', 'atkUpA'];
 function rows(txt, keys) {
   return txt.trim().split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('//')).map(l => { const p = l.split('|'), o = {}; keys.forEach((k, i) => o[k] = p[i] === undefined ? '' : p[i]); return o; });
@@ -1524,7 +1589,7 @@ function genBase() {
   }
   BOOKS.forEach(s => { const k = B.skills[s]; if (k) I({ id: 'bk_' + s, name: k.name + 'の書', type: 'book', price: 400 + (+k.mp) * 300 + (+k.pow) * 6, use: 'learn:' + s, desc: '読むと「' + k.name + '」を覚える' }); });
   rows(T_COMPS, ['id', 'name', 'emoji', 'sex', 'job', 'lv', 'nation', 'pers', 'fee', 'bio']).forEach(f => B.comps[f.id] = f);
-  B.perks = genPerks(B);
+  B.perks = genPerks(B); B.feats = genFeats();
   return B;
 }
 const TGT_JP = { e1: '敵1体', eg: '敵1グループ', ea: '敵全体', er: '敵ランダム', a1: '味方1人', aa: '味方全体', self: '自分', none: '—' };
@@ -1594,7 +1659,7 @@ function equipText(it) {
   return a.join(' ');
 }
 function normComp(f) { return { id: f.id, name: f.name, emoji: f.emoji || '🧑', sex: f.sex || 'x', job: f.job || 'commoner', lv: Math.max(1, +f.lv || 1), nation: f.nation === '' ? -1 : +f.nation, pers: PERS[f.pers] ? f.pers : 'honest', fee: +f.fee || 0, bio: f.bio || '' }; }
-const NORM = { skills: normSkill, jobs: normJob, mons: normMon, items: normItem, comps: normComp, perks: f => normPerk(f) };
+const NORM = { skills: normSkill, jobs: normJob, mons: normMon, items: normItem, comps: normComp, perks: f => normPerk(f), feats: f => normFeat(f) };
 function loadCustom() { try { const c = JSON.parse(LS('tl_custom') || '{}'); DBTYPES.forEach(t => CUSTOM[t] = c[t] || {}); } catch (e) { } }
 function saveCustom() { LS('tl_custom', JSON.stringify(CUSTOM)); }
 function initDB() {
@@ -1791,7 +1856,8 @@ function unpackSave(txt) {
   for (const k in d.stat) if (o.stat[k] === undefined) o.stat[k] = 0;
   for (const k in d.life) if (o.life[k] === undefined) o.life[k] = 0;
   G = o; World.gen(G.seed); FOG = unfog(G.fog || '', Math.ceil(W.S * W.S / 8)); delete G.fog; if (!G.ev.cd) G.ev = d.ev; More.boot(); Nem.regItems();
-  for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; c.skills = c.skills.filter(s => DB.skills[s]); if (c.pk) c.pk = Array.isArray(c.pk) ? c.pk.filter(k => DB.perks[k]) : []; fixEquip(c); }
+  for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; c.skills = c.skills.filter(s => DB.skills[s]); if (c.pk) c.pk = Array.isArray(c.pk) ? c.pk.filter(k => DB.perks[k]) : []; if (c.fs) c.fs = Array.isArray(c.fs) ? c.fs.filter(k => DB.feats[k]) : []; fixEquip(c); }
+  Feat.seed();
   for (const k in G.inv) if (!item(k)) delete G.inv[k];
   if (G.dun) Dun.restore();
   if (G.tm) { if (G.dun) G.tm = null; else TownMap.restore(); }
@@ -1842,6 +1908,7 @@ const TITLES = [
   ['t_built', '国づくりの恩人', '街道や橋を5つ つくった', () => G.built.length >= 5], ['t_wanted', '名探偵', 'お尋ね者を5人捕まえた', () => (G.stat.wanted || 0) >= 5], ['t_star', '星を育てた者', 'かけ合わせで「星の実の苗」を生み出した', () => !!G.got.c_star], ['t_bond', '以心伝心', '絆の連携を50回決めた', () => (G.stat.bond || 0) >= 50], ['t_pet', 'いつもいっしょ', 'ペットをレベル10まで育てた', () => !!G.pet && G.pet.lv >= 10],
   ['t_edict', '王の右腕', 'ひとつの国の勅命をすべて果たした', () => (G.stat.edict || 0) >= 1], ['t_edict8', '八王の信任', '8つの国すべての勅命を果たした', () => (G.stat.edict || 0) >= 8], ['t_pure', '大地をいやす者', '8つの国の土地を清めた', () => Object.keys(G.pure).length >= 8], ['t_lore', '伝承を継ぐ者', '伝承の本をすべて集めた', () => Lore.count() >= LORE.length],
   ['t_aw1', '目覚めし者', '仲間のだれかが職業を覚醒させた', () => allChars().some(c => Awake.count(c) >= 1)], ['t_aw10', '覚醒の達人', '主人公が10の職業を覚醒させた', () => Awake.count(hero()) >= 10], ['t_raw', '血の目覚め', '仲間のだれかが種族を覚醒させた', () => allChars().some(c => c.raw)], ['t_awall', '真の覚醒者', '主人公が、種族と いまの職業の両方を覚醒させた', () => !!hero().raw && Awake.jobOn(hero())],
+  ['t_feat1', '天の声を聞いた者', '仲間のだれかが会得スキルを身につけた', () => allChars().some(c => (c.fs || []).length >= 1)], ['t_feat10', '百戦の体', '主人公が会得スキルを10個そろえた', () => (hero().fs || []).length >= 10], ['t_featu', '固有の才', '仲間のだれかが固有スキルに目覚めた', () => allChars().some(c => (c.fs || []).some(id => DB.feats[id] && DB.feats[id].grp === 'u'))],
   ['t_fief', '名領主', '領地の人口を1000人にした', () => !!G.fief && G.fief.pop >= 1000], ['t_realm', '異界を渡る者', '3つの異界をすべて制した', () => Poi.all.filter(p => p.pk === 'gate').length > 0 && Poi.all.filter(p => p.pk === 'gate').every(p => Poi.done(p))], ['t_riddle', '謎とき名人', 'すべての謎かけに答えた', () => { const n = Poi.all.filter(p => p.pk === 'sage').length; return n > 0 && Object.keys(G.riddle).length >= n; }],
   ['t_sugo', 'さいころの申し子', 'すごろくで5回あがった', () => (G.stat.sugo || 0) >= 5], ['t_mrace', '勝負師', '魔物かけっこを10回当てた', () => (G.stat.mrace || 0) >= 10], ['t_recon', '雨ふって地かたまる', '去った仲間と和解した', () => (G.stat.recon || 0) >= 1],
   ['t_medal', 'メダルコレクター', '星のメダルを50枚集めた', () => G.medalGot >= 50], ['t_year', '歳月を重ねて', '10年を生きた', () => year() >= 10], ['t_fame', '生ける伝説', '名声2000', () => G.fame >= 2000]
@@ -4449,7 +4516,7 @@ const Menu = {
       s.btn('📊 つよさ', () => Menu.status(0)); s.btn('🗡️ そうび', () => Menu.equip(0));
       s.btn('🎒 どうぐ', () => Menu.items()); s.btn('✨ とくぎ・魔法', () => Menu.skills(0));
       s.btn('👥 仲間・作戦', () => Menu.party()); s.btn('📜 依頼', () => Menu.quests());
-      { const un = Perk.unspent(); s.end(); s.btn('🔷 スキル盤(SPで能力を解放)', () => Perk.open(0), { r: un > 0 ? `<span class="good">のこりSP ${un}</span>` : '', sub: 'レベルアップでもらえるSPで、能力値・特性・魔法・特技などを自由に身につける。転職しても消えない', cls: un > 0 ? 'ok' : '' }); s.grid(2); }
+      { const un = Perk.unspent(); s.end(); s.btn('🔷 スキル盤(SPで能力を解放)', () => Perk.open(0), { r: un > 0 ? `<span class="good">のこりSP ${un}</span>` : '', sub: 'レベルアップでもらえるSPで、能力値・特性・魔法・特技などを自由に身につける。転職しても消えない', cls: un > 0 ? 'ok' : '' }); s.grid(2); s.btn('📜 会得スキル', () => Feat.open(0)); s.btn('🌳 職業ツリー', () => JobTree.open(0)); }
       s.btn('🍳 製作', () => Life.craftMenu()); s.btn('🏠 資産・家族', () => Life.assets());
       s.btn('📖 図鑑・記録', () => Menu.journal(0)); s.btn('🗺️ 地図', () => Menu.map());
       s.btn('💾 セーブ', () => Menu.save(), { cls: 'pri' }); s.btn('⚙️ 設定', () => Menu.settings());
@@ -4468,6 +4535,7 @@ const Menu = {
         `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで ' + Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier] - jr.p)) + '戦' : ''}${c.kind !== 'monster' && Awake.left(c) >= 0 ? '・職業の覚醒まで ' + Awake.left(c) + '戦' : ''}</small>`);
       s.card(`<div class="kv"><span>HP<b>${c.hp} / ${m.mhp}</b></span><span>MP<b>${c.mp} / ${m.mmp}</b></span><span>こうげき力<b>${m.atk}</b></span><span>しゅび力<b>${m.def}</b></span><span>ちから<b>${m.str}</b></span><span>みのまもり<b>${m.vit}</b></span><span>すばやさ<b>${m.agi}</b></span><span>かしこさ<b>${m.int}</b></span><span>うん<b>${m.luk}</b></span><span>極めた職<b>${masters(c)}</b></span></div>`);
       if (c.kind !== 'monster') { const R = Race.of(c); s.card(`<b>種族:${R.emoji} ${c.raw ? R.an + '</b> <small>' + R.name + '・覚醒ずみ' : R.name + '</b> <small>' + RACE_GRP[R.grp][0]}</small><br><small>${R.d}<br>${Race.traits(R)}${c.raw ? '<br><span class="good">【覚醒】' + Awake.raceText(R).replace(/^<b>[^<]*<\/b>になる。/, '') + '</span>' : ''}</small>`); if (Awake.jobOn(c)) s.card(`<b>✦ ${esc(jobOf(c).name)}・覚醒</b><br><small>${Awake.jobText(jobOf(c))}</small>`); }
+      { const fl = Feat.list(c).map(id => DB.feats[id]).filter(Boolean); if (fl.length) s.card(`<b>📜 会得スキル</b> <small>${fl.length}個</small><br><small>${['u', 't', 'r'].map(g => fl.filter(F => F.grp === g).map(F => (g === 'u' ? '👑' : '') + esc(F.name)).join('・')).filter(Boolean).join('<br>')}</small>`); }
       s.card('<b>そうび</b><br>' + Object.keys(SLOT_JP).map(k => `<small>${SLOT_JP[k]}:</small> ${c.eq[k] && item(c.eq[k]) ? esc(item(c.eq[k]).name) : '<span class="note">なし</span>'}`).join('<br>'));
       const ps = Object.keys(j.pas || {}).filter(k => PAS_JP[k]).map(k => `<span class="tag">${PAS_JP[k]}${j.pas[k] > 0 ? '+' : ''}${j.pas[k]}%</span>`).join('');
       if (ps) s.card('<b>職業の特性</b><br>' + ps);
@@ -4520,7 +4588,7 @@ const Menu = {
   skills(i) {
     let idx = i;
     UI.open(s => {
-      s.head('とくぎ・魔法'); const c = Menu.charTabs(s, idx, k => idx = k); s.p(`<small>${statLine(c)}</small>`);
+      s.head('とくぎ・魔法'); const c = Menu.charTabs(s, idx, k => idx = k); s.p(`<small>${statLine(c)}</small>`); s.btn('✨ 系統(ツリー)で見る', () => SkillTree.open(idx), { sub: '魔法や特技のつながりと、覚えているもの・覚えられるところ' });
       const all = c.skills.map(id => DB.skills[id]).filter(Boolean), fl = all.filter(k => k.field);
       s.h('フィールドで使える'); if (!fl.length) s.p('<span class="note">なし</span>');
       fl.forEach(k => s.btn(esc(k.name), () => FieldSkill.use(c, k), { r: 'MP' + k.mp, sub: esc(k.desc), dis: c.dead || c.mp < k.mp }));
@@ -4544,9 +4612,10 @@ const Menu = {
     const inP = G.party.includes(c.id), i = G.party.indexOf(c.id), opts = [{ l: '作戦を変える', v: 'tac', sub: 'いま:' + TACTIC_JP[c.tactic] }];
     if (inP && i > 0) opts.push({ l: '前へ出す', v: 'up' }); if (inP && i < G.party.length - 1) opts.push({ l: '後ろへ下げる', v: 'down' });
     if (inP && c.id !== G.hero && G.party.length > 1) opts.push({ l: '控えにまわす', v: 'out' }); if (!inP) opts.push({ l: 'パーティに入れる', v: 'in', dis: G.party.length >= 4 });
-    opts.push({ l: 'つよさを見る', v: 'st' }); opts.push({ l: '🔷 スキル盤', v: 'perk', sub: 'のこりSP ' + Perk.left(c) }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id === G.hero && c.race === undefined) opts.push({ l: '🧬 種族を選ぶ(1回だけ)', v: 'race', sub: 'まだ種族を決めていない(いまは人間)' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
+    opts.push({ l: 'つよさを見る', v: 'st' }); opts.push({ l: '🔷 スキル盤', v: 'perk', sub: 'のこりSP ' + Perk.left(c) }); opts.push({ l: '📜 会得スキル', v: 'feat', sub: Feat.list(c).length + '個' }); if (c.kind !== 'monster') opts.push({ l: '見た目を変える', v: 'look' }); if (c.id === G.hero && c.race === undefined) opts.push({ l: '🧬 種族を選ぶ(1回だけ)', v: 'race', sub: 'まだ種族を決めていない(いまは人間)' }); if (c.id !== G.hero) { opts.push({ l: '贈り物をする', v: 'gift' }); opts.push({ l: '名前を変える', v: 'name' }); opts.push({ l: '別れる', v: 'bye' }); }
     const a = await ask(`${ic(c)} <b>${esc(c.name)}</b> Lv${c.lv} ${jobName(c)}`, opts, { cancel: 1 });
     if (a === 'perk') { Perk.open(allChars().indexOf(c)); return; }
+    if (a === 'feat') { Feat.open(allChars().indexOf(c)); return; }
     if (a === 'look') { Race.ctx = Race.id(c); const L = await askLook(c.sex, catOf(c), lookOf(c)); Race.ctx = null; if (L) c.look = L; }
     if (a === 'race') { const r = await Race.choose(false); if (r && await yn(`${c.name}の種族を <b>${RACE[r].name}</b> にしますか?\n<small>あとから変えられません。</small>`)) { c.race = r; fixEquip(c); c.hp = Math.min(c.hp, st(c).mhp); c.mp = Math.min(c.mp, st(c).mmp); HUD.update(); await say(`${c.name}は <b>${RACE[r].name}</b> として生きていくことにした。`); } }
     if (a === 'tac') { const ks = Object.keys(TACTIC_JP), t = await ask('作戦を選んでください', ks.map(k => TACTIC_JP[k]), { cancel: 1 }); if (t >= 0) c.tactic = ks[t]; }
@@ -4594,7 +4663,7 @@ const Menu = {
         list.slice(page * per, page * per + per).forEach(m => s.btn(`${ic(m)} ${esc(m.name)}`, () => say(`${monImg(m, Gfx.monSize(m) > 40 ? 2 : 3)}\n<b>${esc(m.name)}</b> Lv${m.lv}・${FAM[m.fam]}系・${ARCH_JP[m.arch]}\nHP ${m.hp} 攻 ${m.atk} 守 ${m.def} 速 ${m.agi}\n経験値 ${m.exp}・${m.gold}G\n弱点:${Object.keys(m.res).filter(k => m.res[k] > 1).map(k => ELEM[k]).join('') || 'なし'} 耐性:${Object.keys(m.res).filter(k => m.res[k] < 1).map(k => ELEM[k]).join('') || 'なし'}\n特技:${m.skills.map(k => DB.skills[k] ? DB.skills[k].name : '').filter(Boolean).join('、') || 'なし'}\n<small>出会った ${G.best[m.id][0]}回・倒した ${G.best[m.id][1]}体</small>`), { r: 'Lv' + m.lv + ' 討伐' + G.best[m.id][1] }));
         if (mx > 0) { s.grid(2); s.btn('◀ 前', () => { page--; }, { dis: page <= 0 }); s.btn(`次 ▶ (${page + 1}/${mx + 1})`, () => { page++; }, { dis: page >= mx }); s.end(); }
       } else if (tab === 3) {
-        const h = hero(), all = Object.values(DB.jobs); s.p(`全${all.length}職・極めた数 <b>${masters(h)}</b>`); s.tabs(['基本', '中級', '上級', '最上級', '伝説', '神話', '超越'], tier - 1, i => tier = i + 1);
+        const h = hero(), all = Object.values(DB.jobs); s.p(`全${all.length}職・極めた数 <b>${masters(h)}</b>`); s.btn('🌳 職業ツリーで見る', () => JobTree.open(0), { sub: '系統ごとに、前提の職を線でつないだ図' }); s.tabs(['基本', '中級', '上級', '最上級', '伝説', '神話', '超越'], tier - 1, i => tier = i + 1);
         all.filter(j => j.tier === tier).forEach(j => { const lv = jobLv(h, j.id), ok = canJob(h, j); s.btn(`${JOBCAT[j.cat][1]} ${esc(j.name)}`, () => jobInfo(j, h), { r: lv ? '★' + lv : ok ? '<span class="good">転職可</span>' : '🔒', sub: esc(j.desc) }); });
       } else if (tab === 4) { s.p(`獲得 <b>${Object.keys(G.titles).length}</b> / ${TITLES.length}`); TITLES.forEach(t => s.card(G.titles[t[0]] ? `🏅 <b>${t[1]}</b><br><small>${t[2]}</small>` : `<span class="note">???<br><small>${t[2]}</small></span>`)); }
       else { const all = Object.values(DB.items), got = all.filter(i => G.got[i.id]); s.p(`入手 <b>${got.length}</b> / ${all.length}種`); s.card(got.map(i => `<span class="tag">${esc(i.name)}</span>`).join('') || '<span class="note">なし</span>'); }
@@ -5017,7 +5086,7 @@ const Temple = {
   pick(c) {
     let tier = 0, only = true;
     UI.open(sc => {
-      sc.head(`${c.name}の転職`); sc.p(`いま:<b>${jobName(c)}</b> ★${jobLv(c, c.job)}`);
+      sc.head(`${c.name}の転職`); sc.p(`いま:<b>${jobName(c)}</b> ★${jobLv(c, c.job)}`); sc.btn('🌳 ツリーで選ぶ', () => JobTree.open(allChars().filter(x => x.kind !== 'monster').indexOf(c), null, true), { sub: '系統ごとの図で、前提の職と道すじを見ながら転職する' });
       sc.tabs(['なれる職', '基本', '中級', '上級', '最上級', '伝説', '神話', '超越'], tier, i => tier = i);
       let ls = Object.values(DB.jobs); ls = tier === 0 ? ls.filter(j => canJob(c, j)).sort((a, b) => b.tier - a.tier) : ls.filter(j => j.tier === tier);
       sc.p(`<small>${ls.length}職</small>`);
@@ -7083,7 +7152,11 @@ const Awake = {
 /* ===================== スキル盤(レベルアップでもらえるSPで、能力を自由に解放する) ===================== */
 /* 解放した能力は、転職しても転生しても残る。データは DB.perks(エディタで追加・編集できる) */
 const PERK_CAT = { st: ['能力値', '💪'], pa: ['特性', '🎖️'], el: ['属性の極意', '🔥'], re: ['守り', '🛡️'], wm: ['武器の心得', '⚔️'], fk: ['特効', '🎯'], mg: ['攻撃魔法', '🔮'], hl: ['回復・補助・旅', '✨'], tk: ['特技', '🥋'], sp: ['奥義', '🌟'] };
-const PERK_X = { bregen: v => `戦闘中、毎ターンHPが${v}%回復`, bmp: v => `戦闘中、毎ターンMPが${v}%回復`, ten: v => `戦闘開始時、テンションが${v}段階上がっている`, guts: () => '戦闘ごとに1回だけ、倒れるほどのダメージをHP1で耐える' };
+const PERK_X = { bregen: v => `戦闘中、毎ターンHPが${v}%回復`, bmp: v => `戦闘中、毎ターンMPが${v}%回復`, ten: v => `戦闘開始時、テンションが${v}段階上がっている`, guts: () => '戦闘ごとに1回だけ、倒れるほどのダメージをHP1で耐える',
+  copy: v => `魔物を倒すと、${v}%でその魔物の特技を写し取る`, feast: v => `魔物を倒すたびにHPとMPが${v}%回復`, revive: v => `戦闘ごとに1回、倒れてもHP${v}%で起き上がる`, revn: v => `起き上がりを1戦闘に${v}回まで使える`, awe: v => `戦闘開始時、${v}%で敵をすくませる(ボスには半分)` };
+// 戦闘中のダメージの増減(会得スキルでは「発動条件」つきにできる)
+const PERK_D = { out: v => `与えるダメージ+${v}%`, pout: v => `物理で与えるダメージ+${v}%`, mout: v => `魔法で与えるダメージ+${v}%`, inc: v => `受けるダメージ−${v}%`, pinc: v => `物理で受けるダメージ−${v}%`, minc: v => `魔法で受けるダメージ−${v}%`, aura: v => `味方全員の受けるダメージ−${v}%` };
+const PAS_X = k => PAS_JP[k] || (k === 'job' ? '職業の熟練度' : '');
 const ROMAN = ['Ⅰ', 'Ⅱ', 'Ⅲ', 'Ⅳ', 'Ⅴ', 'Ⅵ', 'Ⅶ', 'Ⅷ', 'Ⅸ', 'Ⅹ'];
 // 特性ごとの、名前と1段ぶんの伸び
 const PERK_PAS = { gold: ['金運', 6], exp: ['学びの心', 4], drop: ['宝さがし', 5], steal: ['手くせ', 6], tame: ['魔物ずき', 6], crit: ['会心の心得', 2], eva: ['身かわし', 2], mpc: ['節約の心得', 3], hpr: ['歩いて回復', 1], mpr: ['歩いて瞑想', .5],
@@ -7119,13 +7192,17 @@ function genPerks(B) {
 /* 効果の書き方: 種類.名前:数値 を「,」でつなぐ。 s.能力(%) p.特性 e.属性(与える%) r.属性(受ける-%) g.状態(かかりにくさ%) w.武器種(攻撃%) f.魔物の系統(%) k.特技ID x.奥義 */
 function perkEffText(e) {
   const [t, k, v] = e, sg = (v > 0 ? '+' : '') + v;
-  if (t === 's') return `${STAT_JP[k]}${sg}%`; if (t === 'p') return `${PAS_JP[k]}${sg}${k === 'hpr' || k === 'mpr' ? '' : '%'}`; if (t === 'e') return `${ELEM[k]}属性で与えるダメージ${sg}%`; if (t === 'r') return `${ELEM[k]}属性で受けるダメージ−${v}%`;
+  if (t === 's') return `${STAT_JP[k]}${sg}%`; if (t === 'd') return PERK_D[k](v); if (t === 'p') return `${PAS_X(k)}${sg}${k === 'hpr' || k === 'mpr' ? '' : '%'}`; if (t === 'e') return `${ELEM[k]}属性で与えるダメージ${sg}%`; if (t === 'r') return `${ELEM[k]}属性で受けるダメージ−${v}%`;
   if (t === 'g') return v >= 100 ? `${ST_JP[k]}がまったく効かなくなる` : `${ST_JP[k]}にかかりにくくなる(${sg}%)`; if (t === 'w') return `${WT[k]}を持つと攻撃力${sg}%`; if (t === 'f') return `${FAM[k]}系へのダメージ${sg}%`;
   if (t === 'k') return `「${DB.skills[k].name}」を覚える<small>(${DB.skills[k].desc}・MP${DB.skills[k].mp})</small>`; if (t === 'x') return PERK_X[k](v); return '';
 }
+function parseEff(str) {
+  const eff = []; String(str || '').split(',').forEach(p => { p = p.trim(); if (!p) return; const i = p.indexOf(':'), key = i < 0 ? p : p.slice(0, i), d = key.indexOf('.'); if (d < 1) return; const t = key.slice(0, d), k = key.slice(d + 1), v = i < 0 ? 1 : Number(p.slice(i + 1)); if (isNaN(v)) return;
+    const ok = t === 's' ? STATS.includes(k) : t === 'p' ? !!PAS_X(k) : t === 'e' || t === 'r' ? !!ELEM[k] && k !== 'n' : t === 'g' ? !!ST_JP[k] : t === 'w' ? !!WT[k] : t === 'f' ? !!FAM[k] : t === 'k' ? !!(DB.skills && DB.skills[k]) : t === 'x' ? !!PERK_X[k] : t === 'd' ? !!PERK_D[k] : false; if (ok) eff.push([t, k, v]); });
+  return eff;
+}
 function normPerk(f) {
-  const eff = []; String(f.eff || '').split(',').forEach(p => { p = p.trim(); if (!p) return; const i = p.indexOf(':'), key = i < 0 ? p : p.slice(0, i), d = key.indexOf('.'); if (d < 1) return; const t = key.slice(0, d), k = key.slice(d + 1), v = i < 0 ? 1 : Number(p.slice(i + 1)); if (isNaN(v)) return;
-    const ok = t === 's' ? STATS.includes(k) : t === 'p' ? !!PAS_JP[k] : t === 'e' || t === 'r' ? !!ELEM[k] && k !== 'n' : t === 'g' ? !!ST_JP[k] : t === 'w' ? !!WT[k] : t === 'f' ? !!FAM[k] : t === 'k' ? !!(DB.skills && DB.skills[k]) : t === 'x' ? !!PERK_X[k] : false; if (ok) eff.push([t, k, v]); });
+  const eff = parseEff(f.eff);
   const P = { id: f.id, name: f.name || '能力', cat: PERK_CAT[f.cat] ? f.cat : 'sp', cost: clamp(Math.round(+f.cost || 0), 0, 99), req: f.req || '', eff, sk: eff.filter(e => e[0] === 'k').map(e => e[1]), rawDesc: f.desc || '' };
   P.perm = P.sk.length > 0; P.desc = P.rawDesc || eff.map(perkEffText).filter(Boolean).join('、') || '(効果なし)'; return P;
 }
@@ -7137,9 +7214,10 @@ const Perk = {
   spent(c) { let n = 0; this.list(c).forEach(id => { const P = DB.perks[id]; if (P) n += P.cost; }); return n; },
   left(c) { return this.earned(c) - this.spent(c); },
   agg(c) {
-    const pk = c && c.pk; if (!pk || !pk.length) return null; const h = this._c.get(c); if (h && h.v === this.ver && h.n === pk.length) return h.a;
-    const a = { s: {}, p: {}, e: {}, r: {}, g: {}, w: {}, f: {}, x: {}, sm: [1, 1, 1, 1, 1, 1, 1] }; pk.forEach(id => { const P = DB.perks[id]; if (P) P.eff.forEach(([t, k, v]) => { if (t !== 'k') a[t][k] = (a[t][k] || 0) + v; }); });
-    STATS.forEach((k, i) => { if (a.s[k]) a.sm[i] = 1 + a.s[k] / 100; }); this._c.set(c, { v: this.ver, n: pk.length, a }); return a;
+    const pk = c && c.pk, fs = c && c.fs, n = (pk ? pk.length : 0) + (fs ? fs.length * 1000 : 0); if (!n) return null; const h = this._c.get(c); if (h && h.v === this.ver && h.n === n) return h.a;
+    const a = { s: {}, p: {}, e: {}, r: {}, g: {}, w: {}, f: {}, x: {}, dl: [], sm: [1, 1, 1, 1, 1, 1, 1] }, put = (eff, when) => eff.forEach(([t, k, v]) => { if (t === 'k') return; if (t === 'd') { a.dl.push([k, when || '', v]); return; } if (t === 'x' && (k === 'revive' || k === 'awe')) { a.x[k] = Math.max(a.x[k] || 0, v); return; } a[t][k] = (a[t][k] || 0) + v; });
+    if (pk) pk.forEach(id => { const P = DB.perks[id]; if (P) put(P.eff); }); if (fs) fs.forEach(id => { const F = DB.feats[id]; if (F) put(F.eff, F.when); });
+    STATS.forEach((k, i) => { if (a.s[k]) a.sm[i] = 1 + a.s[k] / 100; }); this._c.set(c, { v: this.ver, n, a }); return a;
   },
   smul(c) { const a = this.agg(c); return a ? a.sm : null; },
   pas(c, k) { const a = this.agg(c); return a ? a.p[k] || 0 : 0; },
@@ -7147,14 +7225,14 @@ const Perk = {
   el(c, e) { const a = this.agg(c); return a && e && a.e[e] ? 1 + a.e[e] / 100 : 1; },
   fam(c, f) { const a = this.agg(c); return a && f && a.f[f] ? 1 + a.f[f] / 100 : 1; },
   // 戦闘に出るときの下ごしらえ(耐性・状態よけ・奥義)
-  unit(u, c) { const a = this.agg(c); if (!a) return; for (const k in a.r) u.res[k] = (u.res[k] === undefined ? 1 : u.res[k]) * (1 - Math.min(80, a.r[k]) / 100); u.pg = a.g; for (const k in a.g) if (a.g[k] >= 100 && !u.imm.includes(k)) u.imm.push(k); u.px = a.x; if (a.x.ten) u.ten = Math.min(4, Math.round(a.x.ten)); },
+  unit(u, c) { const a = this.agg(c); if (!a) return; for (const k in a.r) u.res[k] = (u.res[k] === undefined ? 1 : u.res[k]) * (1 - Math.min(100, a.r[k]) / 100); u.pg = a.g; u.fdl = a.dl; for (const k in a.g) if (a.g[k] >= 100 && !u.imm.includes(k)) u.imm.push(k); u.px = a.x; if (a.x.ten) u.ten = Math.min(4, Math.round(a.x.ten)); },
   reqOk(c, P) { return !P.req || !DB.perks[P.req] || this.has(c, P.req); },
   can(c, P) { return !!P && !this.has(c, P.id) && this.reqOk(c, P) && this.left(c) >= P.cost; },
   fix(c) { const s = st(c); c.hp = Math.min(c.hp, s.mhp); c.mp = Math.min(c.mp, s.mmp); },
   unlock(c, id, free) { const P = DB.perks[id]; if (!P || this.has(c, id) || (!free && !this.can(c, P))) return false; if (!Array.isArray(c.pk)) c.pk = []; c.pk.push(id); P.sk.forEach(k => learn(c, k)); this.ver++; this.fix(c); return true; },
   // ふりなおし:特技・魔法の習得は そのまま残る(忘れないかわりに、SPも戻らない)
   reset(c) { const keep = this.list(c).filter(id => DB.perks[id] && DB.perks[id].perm), n = this.list(c).length - keep.length; c.pk = keep; this.ver++; this.fix(c); return n; },
-  clean() { this.ver++; if (!G) return; for (const id in G.chars) { const c = G.chars[id]; if (c.pk) c.pk = c.pk.filter(k => DB.perks[k]); } },
+  clean() { this.ver++; if (!G) return; for (const id in G.chars) { const c = G.chars[id]; if (c.pk) c.pk = c.pk.filter(k => DB.perks[k]); if (c.fs) c.fs = c.fs.filter(k => DB.feats[k]); } },
   unspent() { return G ? allChars().reduce((a, c) => a + Math.max(0, this.left(c)), 0) : 0; },
   // つながり(Ⅰ→Ⅱ→…)の中での位置
   chain(P) { let d = 1, q = P, g = 0; while (q.req && DB.perks[q.req] && g++ < 30) { q = DB.perks[q.req]; d++; } let n = d; q = P; g = 0; for (;;) { const nx = this._kid[q.id]; if (!nx || nx.length !== 1 || g++ > 30) break; q = nx[0]; n++; } return [d, n]; },
@@ -7176,7 +7254,312 @@ const Perk = {
       s.btn(`♻️ ふりなおす(${fmt(fee)}G)`, async () => { if (!(await yn(`${c.name}の能力をふりなおしますか?\n<small>解放した能力 ${rf.length}個を取り消して、SPを戻します。<b>特技・魔法の習得は そのまま残り</b>、そのぶんのSPは戻りません。</small>`))) return; G.gold -= fee; const n = this.reset(c); HUD.update(); toast(`♻️ ${n}個の能力を取り消して、SPを戻した`); }, { dis: !rf.length || G.gold < fee, sub: '能力値・特性・守りなどを選びなおせる' });
     });
   },
-  sumText(c) { const a = this.agg(c); if (!a) return ''; const out = []; ['s', 'p', 'e', 'r', 'g', 'w', 'f', 'x'].forEach(t => Object.keys(a[t]).forEach(k => { const v = Math.round(a[t][k] * 10) / 10; out.push(perkEffText([t, k, t === 'g' ? Math.min(100, v) : v])); })); return out.join('、'); }
+  sumText(c) { const a = this.agg(c); if (!a) return ''; const out = []; a.dl.forEach(([k, w, v]) => out.push((w && FEAT_WHEN[w] ? FEAT_WHEN[w] + '、' : '') + PERK_D[k](v))); ['s', 'p', 'e', 'r', 'g', 'w', 'f', 'x'].forEach(t => Object.keys(a[t]).forEach(k => { const v = Math.round(a[t][k] * 10) / 10; out.push(perkEffText([t, k, t === 'g' ? Math.min(100, v) : v])); })); return out.join('、'); }
+};
+
+/* ===================== 会得スキル(行動のつみ重ねで、ひとりでに身につき、進化するスキル) ===================== */
+/* SPで選ぶ「スキル盤」とちがい、戦い方しだいで勝手に目覚める。耐性・資質・固有の3種類。データは DB.feats(エディタで追加・編集できる) */
+const FEAT_GRP = { r: ['耐性スキル', '🛡️', '同じ種類の攻撃や状態異常を受けつづけると、体が慣れて身につく'], t: ['資質スキル', '🔥', '戦いぶりから芽ばえ、決まった状況で力を発揮する'], u: ['固有スキル', '👑', '並はずれた経験を積んだ者だけに宿り、やがて「極致」へ進化する'] };
+const FEAT_WHEN = { '': '', low: 'HPが3割以下のとき', full: 'HPが満タンのとき', solo: '1人で戦っているとき', last: '味方で最後の1人のとき', higher: '自分よりLvの高い相手に', boss: 'ボスが相手のとき', many: '敵が3体以上いるとき', night: '夜のあいだ', day: '昼のあいだ', t1: '最初のターンに', known: '倒したことのある種類の魔物に' };
+// 数えているもの(キャラごと)
+const FEAT_CNT = { dmgp: '物理攻撃を受けた回数', dmgm: '魔法や息を受けた回数', dmgT: '受けたダメージの合計', low: 'HP3割以下になってから勝った回数', solo: '1人で勝った回数', last: '最後の1人になって勝った回数', giant: '自分よりLvの高い魔物を倒した数', boss: 'ボスを倒した数',
+  kill: '魔物を倒した数', t1k: '最初のターンに倒した数', kinds: 'はじめての種類の魔物を倒した数', cast: '攻撃魔法を使った回数', heal: '回復魔法を使った回数', mp: '使ったMPの合計', crit: '会心の一撃を出した回数', evade: '攻撃をかわした回数', ko: '倒れた回数', revive: '仲間を生き返らせた回数',
+  btl: '勝った戦闘の数', many: '3体以上の敵に勝った回数', nightw: '夜の戦闘に勝った回数', drop: '魔物の落とし物を拾った数', copy: '写し取った特技の数', nres: '持っている耐性スキルの数', nfeat: '持っている会得スキルの数', lv: 'レベル', aw: '覚醒させた職業の数', raw: '種族の覚醒', masters: '極めた職業の数' };
+Object.keys(ELEM).forEach(e => { if (e !== 'n') FEAT_CNT['dmg_' + e] = ELEM[e] + '属性の攻撃を受けた回数'; }); Object.keys(ST_JP).forEach(k => { FEAT_CNT['st_' + k] = ST_JP[k] + 'になった回数'; });
+// 資質スキル:[id, 名前, 発動条件, 数えるもの, [必要回数×3], 効果(v0,v1,v2 が段ごとの数値)]
+const FEAT_T = [
+  ['gyk', '逆境', 'low', 'low', [3, 15, 50], 'd.out:#', [15, 30, 50]], ['kok', '孤高', 'solo', 'solo', [5, 25, 80], 'd.out:#,d.inc:$', [15, 30, 50], [10, 20, 30]], ['kak', '格上殺し', 'higher', 'giant', [5, 30, 120], 'd.out:#', [10, 20, 35]],
+  ['sen', '先陣', 't1', 't1k', [10, 50, 200], 'd.out:#', [20, 40, 60]], ['hai', '背水', 'last', 'last', [1, 5, 20], 'd.out:#,d.inc:$', [30, 60, 100], [10, 20, 30]], ['nan', '七転八起', '', 'ko', [3, 15, 50], 'x.revive:#', [20, 40, 60]],
+  ['hit', 'ひたむき', '', 'btl', [50, 300, 1000], 'p.exp:#', [10, 20, 35]], ['eis', '詠唱練達', '', 'cast', [50, 300, 1000], 'd.mout:#', [8, 16, 25]], ['jun', '魔力循環', '', 'mp', [500, 3000, 12000], 'x.bmp:#', [2, 4, 6]],
+  ['itu', '慈しみの手', '', 'heal', [30, 150, 500], 'p.heal:#', [15, 30, 50]], ['kar', '狩りの記憶', 'known', 'kill', [50, 300, 1200], 'd.out:#', [8, 16, 25]], ['kyu', '急所読み', '', 'crit', [20, 120, 500], 'p.crit:#', [4, 8, 14]],
+  ['mik', '見切り', '', 'evade', [20, 120, 500], 'p.eva:#', [4, 8, 12]], ['tep', '鉄壁', '', 'dmgT', [3000, 30000, 200000], 'd.inc:#', [5, 10, 15]], ['oug', '王殺し', 'boss', 'boss', [3, 15, 50], 'd.out:#', [10, 20, 35]],
+  ['ran', '乱戦', 'many', 'many', [20, 100, 400], 'd.out:#', [10, 20, 30]], ['hir', '拾い運', '', 'drop', [20, 100, 400], 'p.drop:#', [10, 20, 35]], ['gek', '月下', 'night', 'nightw', [15, 80, 300], 'd.out:#', [10, 20, 30]]
+];
+// 固有スキル → 極致:[id, 名前, 獲得条件, 発動条件, 効果, 極致の名前, 進化の条件, 極致の効果]
+const FEAT_U = [
+  ['copy', '喰らい写し', 'kill>=100', '', 'x.copy:8,x.feast:5', '万喰の理', 'kill>=1500&copy>=15', 'x.copy:25,x.feast:12'],
+  ['wis', '千里の智', 'kinds>=60', 'known', 'd.out:15,p.crit:10,p.mpc:10', '万象の智', 'kinds>=300&lv>=60', 'd.out:30,p.crit:20,p.mpc:25'],
+  ['body', '金剛の身', 'dmgT>=100000', '', 'd.pinc:20,g.poison:100,g.para:100', '不壊', 'dmgT>=600000&ko>=30', 'd.pinc:35,d.minc:20,g.poison:100,g.para:100,g.sleep:100,g.conf:100,g.stun:100'],
+  ['sets', '刹那', 'evade>=300&t1k>=60', '', 'p.twice:25', '永劫の刹那', 'evade>=1200&t1k>=300', 'p.twice:45,p.eva:15'],
+  ['abys', '魔の深淵', 'cast>=2000', '', 'd.mout:25,p.mpc:20', '魔の極点', 'cast>=8000&mp>=60000', 'd.mout:50,p.mpc:40'],
+  ['hero', '英雄の器', 'giant>=300&boss>=30', '', 'p.exp:30,p.job:30', '英雄の証明', 'giant>=1000&boss>=100', 'p.exp:60,p.job:60,s.hp:10,s.mp:10,s.str:10,s.vit:10,s.agi:10,s.int:10,s.luk:10'],
+  ['grd', '守護者', 'revive>=20&heal>=500', '', 'd.aura:10', '大守護者', 'revive>=80&heal>=2500', 'd.aura:20,p.heal:20'],
+  ['luck', '天運', 'drop>=500', '', 'p.drop:50,p.gold:50,s.luk:50', '天命', 'drop>=2000&crit>=1000', 'p.drop:100,p.gold:100,s.luk:100,p.crit:10'],
+  ['phx', '不死鳥', 'ko>=100', '', 'x.revive:100', '不滅', 'ko>=300&last>=30', 'x.revive:100,x.revn:2,x.bregen:5'],
+  ['awe', '威圧', 'boss>=60', '', 'x.awe:30', '王の威圧', 'boss>=200&lv>=80', 'x.awe:60,d.out:15'],
+  ['harm', '調和の器', 'nres>=6', '', 'd.inc:10', '万象の器', 'nres>=14&lv>=50', 'd.inc:20,x.bregen:3'],
+  ['seek', '求道者', 'nfeat>=12', '', 's.str:5,s.vit:5,s.agi:5,s.int:5', '到達者', 'nfeat>=30', 's.hp:12,s.mp:12,s.str:12,s.vit:12,s.agi:12,s.int:12,s.luk:12']
+];
+function genFeats() {
+  const out = {}, add = (id, name, grp, from, get, when, eff) => { out[id] = { id, name, grp, from: from || '', get, when: when || '', eff, desc: '' }; };
+  Object.keys(ELEM).filter(e => e !== 'n').forEach(e => { add('r1_' + e, ELEM[e] + '耐性', 'r', '', 'dmg_' + e + '>=20', '', 'r.' + e + ':15'); add('r2_' + e, ELEM[e] + '大耐性', 'r', 'r1_' + e, 'dmg_' + e + '>=80', '', 'r.' + e + ':35'); add('r3_' + e, ELEM[e] + '無効', 'r', 'r2_' + e, 'dmg_' + e + '>=300', '', 'r.' + e + ':100'); });
+  add('rp1', '物理耐性', 'r', '', 'dmgp>=100', '', 'd.pinc:8'); add('rp2', '物理大耐性', 'r', 'rp1', 'dmgp>=500', '', 'd.pinc:16'); add('rp3', '金剛体', 'r', 'rp2', 'dmgp>=2000', '', 'd.pinc:25');
+  add('rm1', '魔法耐性', 'r', '', 'dmgm>=100', '', 'd.minc:8'); add('rm2', '魔法大耐性', 'r', 'rm1', 'dmgm>=500', '', 'd.minc:16'); add('rm3', '魔力の鎧', 'r', 'rm2', 'dmgm>=2000', '', 'd.minc:25');
+  Object.keys(ST_JP).forEach(k => { add('g1_' + k, ST_JP[k] + '慣れ', 'r', '', 'st_' + k + '>=4', '', 'g.' + k + ':50'); add('g2_' + k, ST_JP[k] + '克服', 'r', 'g1_' + k, 'st_' + k + '>=15', '', 'g.' + k + ':100'); });
+  FEAT_T.forEach(([id, name, when, cnt, ns, eff, v, w]) => ns.forEach((n, i) => add('t_' + id + (i + 1), name + ['', '・改', '・極'][i], 't', i ? 't_' + id + i : '', cnt + '>=' + n, when, eff.replace('#', v[i]).replace('$', w ? w[i] : 0))));
+  FEAT_U.forEach(([id, name, get, when, eff, name2, get2, eff2]) => { add('u_' + id, name, 'u', '', get, when, eff); add('u_' + id + '2', name2, 'u', 'u_' + id, get2, when, eff2); });
+  return out;
+}
+function normFeat(f) {
+  const get = []; String(f.get || '').split('&').forEach(p => { const m = p.trim().match(/^([a-zA-Z_0-9]+)\s*>=\s*(\d+)$/); if (m && FEAT_CNT[m[1]]) get.push([m[1], +m[2]]); });
+  const F = { id: f.id, name: f.name || 'スキル', grp: FEAT_GRP[f.grp] ? f.grp : 't', from: f.from || '', get, when: FEAT_WHEN[f.when] !== undefined ? f.when : '', eff: parseEff(f.eff), rawDesc: f.desc || '' };
+  const cond = F.eff.filter(e => e[0] === 'd').map(perkEffText), rest = F.eff.filter(e => e[0] !== 'd').map(perkEffText).filter(Boolean);
+  F.desc = F.rawDesc || [cond.length ? (F.when ? FEAT_WHEN[F.when] + '、' : '') + cond.join('・') : '', rest.join('、')].filter(Boolean).join('。さらに ') || '(効果なし)'; return F;
+}
+const Feat = {
+  ft(c) { return c.ft || (c.ft = {}); },
+  add(c, k, n) { if (!c) return; const f = this.ft(c); f[k] = (f[k] || 0) + (n === undefined ? 1 : n); },
+  val(c, k) { if (k === 'lv') return c.lv; if (k === 'nfeat') return this.list(c).filter(id => DB.feats[id]).length; if (k === 'nres') return this.list(c).filter(id => DB.feats[id] && DB.feats[id].grp === 'r').length; if (k === 'aw') return Awake.count(c); if (k === 'raw') return c.raw ? 1 : 0; if (k === 'masters') return c.kind === 'monster' ? 0 : masters(c); return (c.ft && c.ft[k]) || 0; },
+  list(c) { return c && Array.isArray(c.fs) ? c.fs : []; },
+  // 以前のセーブ:これまでの戦いの記録を、主人公の経験として引きつぐ(1度だけ)
+  seed() { if (!G || G.featSeed) return; G.featSeed = 1; const h = hero(); if (!h || h.ft || !G.stat.kills) return; h.ft = { kill: G.stat.kills, kinds: Object.values(G.best || {}).filter(b => b && b[1] > 0).length, btl: G.stat.wins || 0 }; },
+  has(c, id) { return this.list(c).includes(id); },
+  // そのスキル(か、その進化先)を持っているか
+  past(c, F) { let g = 0; const kid = this.kids(), walk = x => this.has(c, x.id) || (kid[x.id] || []).some(y => g++ < 60 && walk(y)); return walk(F); },
+  kids() { if (this._k && this._kv === Perk.ver) return this._k; const m = {}; Object.values(DB.feats).forEach(F => { if (F.from && DB.feats[F.from]) (m[F.from] = m[F.from] || []).push(F); }); this._k = m; this._kv = Perk.ver; return m; },
+  ready(c, F) { return F.get.length > 0 && F.get.every(([k, n]) => this.val(c, k) >= n); },
+  // 条件を満たしたスキルを会得する(進化元は、新しいスキルに置きかわる)
+  check(c) {
+    const msgs = []; if (!c) return msgs; let any = true, guard = 0;
+    while (any && guard++ < 8) { any = false; for (const F of Object.values(DB.feats)) { if (this.has(c, F.id) || !this.ready(c, F)) continue; if (F.from && DB.feats[F.from]) { if (!this.has(c, F.from)) continue; } else if (this.past(c, F)) continue;
+      if (!Array.isArray(c.fs)) c.fs = []; const prev = F.from && DB.feats[F.from]; if (prev) c.fs = c.fs.filter(id => id !== F.from); c.fs.push(F.id); F.eff.forEach(e => { if (e[0] === 'k' && c.kind !== 'monster') learn(c, e[1]); }); Perk.ver++; any = true; G.stat.feats = (G.stat.feats || 0) + 1;
+      msgs.push(`〈天の声〉 ${prev ? `${c.name}の『${prev.name}』が、<b>『${F.name}』</b>へ進化した。` : `${c.name}は、${FEAT_GRP[F.grp][0].replace('スキル', '')}スキル <b>『${F.name}』</b>を会得した。`}\n<small>${F.desc}</small>`); } }
+    if (msgs.length) Perk.fix(c); return msgs;
+  },
+  /* ---- 戦闘 ---- */
+  cond(w, u, t) {
+    if (!w) return true; if (!B) return false;
+    if (w === 'low') return u.hp <= u.s.mhp * .3; if (w === 'full') return u.hp >= u.s.mhp; if (w === 'solo') return B.al.length === 1; if (w === 'last') return B.al.length > 1 && B.al.filter(a => !a.dead && !a.gone).length === 1;
+    if (w === 'higher') return !!t && t.lv > u.c.lv; if (w === 'boss') return !!t && !!t.boss; if (w === 'many') return B.en.filter(e => !e.dead && !e.gone).length >= 3; if (w === 'night') return isNight(); if (w === 'day') return !isNight(); if (w === 't1') return B.turn <= 1;
+    if (w === 'known') return !!t && !!t.m && !!G.best[t.m.id] && G.best[t.m.id][1] > 0; return false;
+  },
+  out(u, t, kind) { let m = 1; const dl = u.fdl; if (dl) for (const [k, w, v] of dl) if ((k === 'out' || (k === 'pout' && kind === 'p') || (k === 'mout' && kind === 'm')) && this.cond(w, u, t)) m *= 1 + v / 100; return m; },
+  inc(t, u, kind) {
+    let m = 1; const dl = t.fdl; if (dl) for (const [k, w, v] of dl) if ((k === 'inc' || (k === 'pinc' && kind === 'p') || (k === 'minc' && kind === 'm')) && this.cond(w, t, u)) m *= 1 - Math.min(90, v) / 100;
+    let au = 0; B.al.forEach(a => { if (!a.dead && !a.gone && a.fdl) a.fdl.forEach(([k, w, v]) => { if (k === 'aura' && this.cond(w, a, u)) au = Math.max(au, v); }); }); return m * (1 - Math.min(60, au) / 100);
+  },
+  begin(Bx) { Bx.al.forEach(a => { const x = a.px; if (x && x.awe) { let n = 0; Bx.en.forEach(e => { if (!e.dead && chance(e.boss ? x.awe / 2 : x.awe)) { e.st.stun = 1; n++; } }); if (n) toast(`👑 ${a.name}の気迫に、敵 ${n}体が すくみあがった!`); } }); },
+  // 魔物を倒したとき(写し取り・回復)
+  async onKill(u, e) {
+    const c = u.c, x = u.px; this.add(c, 'kill'); if (e.lv > c.lv) this.add(c, 'giant'); if (e.boss) this.add(c, 'boss'); if (B.turn <= 1) this.add(c, 't1k'); if (e.m && G.best[e.m.id] && G.best[e.m.id][1] === 1) this.add(c, 'kinds');
+    if (!x || u.dead) return;
+    if (x.feast) { u.hp = Math.min(u.s.mhp, u.hp + Math.floor(u.s.mhp * x.feast / 100)); u.mp = Math.min(u.s.mmp, u.mp + Math.floor(u.s.mmp * x.feast / 100)); }
+    if (x.copy && c.kind !== 'monster' && e.m && chance(x.copy)) { const ls = (e.m.skills || []).filter(id => DB.skills[id] && !c.skills.includes(id)); if (ls.length) { const id = pick(ls); if (learn(c, id)) { this.add(c, 'copy'); await Battle.log(`〈天の声〉 ${c.name}は ${e.base || e.name}の「${DB.skills[id].name}」を写し取った!`, 'hl'); } } }
+  },
+  // 勝ったあと:数を足して、会得したスキルを知らせる
+  async after(res, drops) {
+    const msgs = []; if (!B) return;
+    if (res === 'win') { const alive = B.al.filter(a => !a.dead && !a.gone), many = B.en.length >= 3, night = isNight();
+      alive.forEach(a => { const c = a.c; this.add(c, 'btl'); if (a.wasLow) this.add(c, 'low'); if (B.al.length === 1) this.add(c, 'solo'); else if (alive.length === 1) this.add(c, 'last'); if (many) this.add(c, 'many'); if (night) this.add(c, 'nightw'); if (drops) this.add(c, 'drop', drops); }); }
+    B.al.forEach(a => { if (a.c && G.chars[a.c.id]) msgs.push(...this.check(a.c)); });
+    if (msgs.length) { HUD.update(); await say(msgs.length > 3 ? [msgs.slice(0, 3).join('\n\n'), msgs.slice(3).join('\n\n')] : msgs.join('\n\n')); checkTitles(); }
+  },
+  /* ---- 画面 ---- */
+  progress(c, F) { return F.get.map(([k, n]) => { const v = Math.min(n, this.val(c, k)); return `${FEAT_CNT[k]} <b>${fmt(Math.floor(v))}</b>/${fmt(n)}`; }).join('、'); },
+  lines(grp) { const all = Object.values(DB.feats).filter(F => F.grp === grp), kid = this.kids(), out = []; all.filter(F => !F.from || !DB.feats[F.from]).forEach(r => { const ln = [r]; let q = r, g = 0; while (kid[q.id] && kid[q.id].length && g++ < 20) { q = kid[q.id][0]; ln.push(q); } out.push(ln); }); return out; },
+  open(i0) {
+    let i = i0 || 0, grp = 'r', only = false;
+    UI.open(s => {
+      const cs = allChars(); i = clamp(i, 0, cs.length - 1); const c = cs[i]; this.check(c).forEach(m => toast(m.replace(/<[^>]+>/g, '').split('\n')[0]));
+      s.head('📜 会得スキル', `${this.list(c).filter(id => DB.feats[id]).length}個`); if (cs.length > 1) s.tabs(cs.map(x => esc(x.name)), i, k => i = k);
+      s.p('<small>戦い方のつみ重ねで<b>ひとりでに身につき、進化していく</b>スキル。転職しても消えない。条件を満たすと、戦闘のあとに〈天の声〉が知らせてくれる。</small>');
+      const ks = Object.keys(FEAT_GRP); s.tabs(ks.map(k => { const n = this.list(c).filter(id => DB.feats[id] && DB.feats[id].grp === k).length; return FEAT_GRP[k][1] + FEAT_GRP[k][0] + (n ? `<small>${n}</small>` : ''); }), ks.indexOf(grp), k => { grp = ks[k]; });
+      s.p(`<small>${FEAT_GRP[grp][2]}。</small>`); let lines = this.lines(grp); const own = ln => ln.findIndex(F => this.has(c, F.id));
+      if (only) lines = lines.filter(ln => own(ln) >= 0 || ln[0].get.some(([k]) => this.val(c, k) > 0));
+      lines.sort((a, b) => (own(b) >= 0) - (own(a) >= 0));
+      lines.forEach(ln => { const k = own(ln), cur = k >= 0 ? ln[k] : null, nx = ln[k + 1];
+        const box = el('div', 'card tcard'); box.appendChild(Tree.chain(ln.map((F, n) => ({ label: esc(F.name), st: n < k ? 'on' : n === k ? 'on cur' : n === k + 1 ? 'nx' : '' }))));
+        box.appendChild(el('div', 'tinfo', (cur ? `<span class="good">いま:${cur.desc}</span><br>` : '') + (nx ? `<small>${cur ? '進化' : '会得'}の条件:${this.progress(c, nx)}${Tree.bar(Math.min(...nx.get.map(([q, n]) => this.val(c, q) / n)))}${cur ? '' : '効果:' + nx.desc}</small>` : '<small>これ以上の進化はない。</small>'))); s.add(box); });
+      if (!lines.length) s.p('<span class="note">まだ何も芽ばえていない。</span>');
+      s.btn(only ? 'すべてのスキルを表示' : '持っているもの・育ちかけのものだけ表示', () => { only = !only; });
+    });
+  }
+};
+/* ---- 戦闘への組みこみ ---- */
+{ const f0 = Battle.hit; Battle.hit = async function (u, t, o) { const pk = B.fk, pe = B.fe, pc = B._crit, pv = B._eva; B.fk = 'p'; B.fe = o && o.el && o.el !== 'n' ? o.el : ''; B._crit = 0; B._eva = 0; let r, cr = 0, ev = 0; try { r = await f0.call(this, u, t, o); } finally { if (B) { cr = B._crit; ev = B._eva; B.fk = pk; B.fe = pe; B._crit = pc; B._eva = pv; } }
+  if (B && u && t) { if (cr && u.side === 'A' && u.c) Feat.add(u.c, 'crit'); if (ev && t.side === 'A' && t.c && u.side === 'E') Feat.add(t.c, 'evade'); } return r; }; }
+{ const f0 = Battle.magic; Battle.magic = async function (u, t, sk) { const pk = B.fk, pe = B.fe; B.fk = 'm'; B.fe = sk && sk.el && sk.el !== 'n' ? sk.el : ''; try { return await f0.call(this, u, t, sk); } finally { if (B) { B.fk = pk; B.fe = pe; } } }; }
+{ const f0 = Battle.log; Battle.log = function (t, cls) { if (B && typeof t === 'string') { if (t.indexOf('会心の一撃') >= 0) B._crit = 1; else if (t.indexOf('身をかわした') >= 0) B._eva = 1; } return f0.call(this, t, cls); }; }
+{ const f0 = Battle.damage; Battle.damage = async function (u, t, d) {
+  const kind = B.fk || '', el = B.fe || '';
+  if (d > 0 && u && u.side === 'A' && t.side === 'E' && u.fdl && !t.metal) d = Math.floor(d * Feat.out(u, t, kind));
+  if (d > 0 && t.side === 'A') d = Math.max(1, Math.floor(d * Feat.inc(t, u, kind)));
+  const al = B.al.map(a => [a, a.hp]);
+  await f0.call(this, u, t, d); if (!B) return;
+  for (const [a, hp0] of al) { if (!a.c) continue; const lost = a._rv ? hp0 : hp0 - a.hp; a._rv = 0;
+    if (lost > 0 && u && u.side === 'E') { Feat.add(a.c, 'dmgT', lost); if (kind === 'p') Feat.add(a.c, 'dmgp'); else if (kind === 'm') Feat.add(a.c, 'dmgm'); if (el && ELEM[el]) Feat.add(a.c, 'dmg_' + el); }
+    if (!a.dead && a.hp > 0 && a.hp <= a.s.mhp * .3) a.wasLow = 1; }
+}; }
+// 倒れたとき(起き上がり)・倒したとき(写し取り)。即死の呪文などもここを通る
+{ const f0 = Battle.kill; Battle.kill = async function (t, u) {
+  await f0.call(this, t, u); if (!B || !t) return;
+  if (t.side === 'A' && t.c) { Feat.add(t.c, 'ko'); const x = t.px; if (x && x.revive && (t.rvn || 0) < Math.max(1, x.revn || 1)) { t.rvn = (t.rvn || 0) + 1; t._rv = 1; t.dead = false; t.hp = Math.max(1, Math.floor(t.s.mhp * Math.min(100, x.revive) / 100)); t.wasLow = 1; if (B.killer === u) B.killer = null; this.refresh(); await this.log(`🔥 ${t.name}は 倒れなかった! 力をふりしぼって起き上がった!`, 'hl'); } }
+  else if (t.side === 'E' && u && u.side === 'A' && u.c) await Feat.onKill(u, t);
+}; }
+{ const f0 = Battle.tryStatus; Battle.tryStatus = async function (u, t, k, p) { const r = await f0.call(this, u, t, k, p); if (r && t && t.side === 'A' && t.c && ST_JP[k]) Feat.add(t.c, 'st_' + k); return r; }; }
+{ const f0 = Battle.useSkill; Battle.useSkill = async function (u, sk, tg) { const mp0 = u ? u.mp : 0, dead0 = B && u && u.side === 'A' ? B.al.filter(a => a.dead).length : 0; const r = await f0.call(this, u, sk, tg);
+  if (B && u && u.side === 'A' && u.c && sk) { if (mp0 > u.mp) Feat.add(u.c, 'mp', mp0 - u.mp); if (sk.kind === 'm') Feat.add(u.c, 'cast'); else if (sk.kind === 'h') Feat.add(u.c, 'heal'); else if (sk.kind === 'r') { const n = dead0 - B.al.filter(a => a.dead).length; if (n > 0) Feat.add(u.c, 'revive', n); } } return r; }; }
+{ const f0 = Tfx.set; Tfx.set = function (Bx) { const r = f0.call(this, Bx); try { Feat.begin(Bx); } catch (e) { } return r; }; }
+{ const f0 = Loot.drop; Loot.drop = function (...a) { const d = f0.apply(this, a); if (d && Feat._dc !== undefined) Feat._dc++; return d; }; }
+{ const f0 = Battle.finish; Battle.finish = async function () { Feat._dc = 0; let r; try { r = await f0.call(this); } finally { const n = Feat._dc; Feat._dc = undefined; if (B) await Feat.after(r, n); } return r; }; }
+
+/* ===================== ツリー表示(職業ツリー・魔法と特技の系統・スキル盤のつながり) ===================== */
+const Tree = {
+  // つながった玉の列。nodes: [{ label, st: 'on' | 'on cur' | 'nx' | '', tap, pip }]。loose は順番のない仲間(線を引かない)
+  chain(nodes, loose) {
+    const d = el('div', 'tline' + (loose ? ' loose' : ''));
+    nodes.forEach((n, i) => { const b = el(n.tap ? 'button' : 'span', 'tnode ' + (n.st || '') + (n.pip ? ' pip' : ''), n.label); if (n.tap) b.onclick = () => UI.run(n.tap);
+      if (i && !loose) { const g = el('span', 'tseg'); g.appendChild(el('span', 'tlink' + (/on/.test(n.st || '') ? ' on' : ''))); g.appendChild(b); d.appendChild(g); } else d.appendChild(b); });
+    return d;
+  },
+  bar(f) { f = clamp(f || 0, 0, 1); return `<span class="tbar"><i style="width:${Math.round(f * 100)}%"></i></span>`; },
+  roman(name) { const m = String(name).match(/^(.*?)\s*([ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]+)$/); return m ? [m[1], m[2]] : [String(name), '']; },
+  mini(label, fn, dis) { const b = el('button', 'tbuy', label); b.disabled = !!dis; b.onclick = () => UI.run(fn); return b; }
+};
+
+/* ---------- 職業ツリー ----------
+   ふだんは「枝わかれの木」(たて長・スマホの幅におさまる):それぞれの職を、同じ系統の前提職の下にぶら下げる。
+   「全体図」に切りかえると、段階(基本 → 超越)を上から下へ並べ、前提をすべて線でつないだ横に広い図になる。 */
+const JobTree = {
+  W: 82, H: 34, GX: 8, GY: 30,
+  state(c, j) { const lv = jobLv(c, j.id); if (c.job === j.id) return 'cur'; if (Awake.jobOn(c, j.id)) return 'awk'; if (lv >= 10) return 'mas'; if (lv > 0) return 'exp'; if (canJob(c, j)) return 'can'; return 'lock'; },
+  mark(c, j) { const lv = jobLv(c, j.id); return Awake.jobOn(c, j.id) ? '✦' : lv >= 10 ? '👑' : lv ? '★' + lv : ''; },
+  // 枝わかれの木:親 = 同じ系統の前提職のうち、いちばん段の高いもの
+  tree(cat) {
+    const js = Object.values(DB.jobs).filter(j => j.cat === cat), par = {}, kids = {}, roots = [], rows = [];
+    js.forEach(j => { let p = null; [].concat(...j.req).forEach(id => { const q = DB.jobs[id]; if (q && q.cat === cat && q.tier < j.tier && (!p || q.tier > DB.jobs[p].tier)) p = id; }); par[j.id] = p; if (p) (kids[p] = kids[p] || []).push(j); else roots.push(j); });
+    const ord = (a, b) => a.tier - b.tier; roots.sort(ord); for (const k in kids) kids[k].sort(ord);
+    const walk = (j, lines) => { rows.push({ j, lines }); const ks = kids[j.id] || []; ks.forEach((k, i) => walk(k, lines.concat([i < ks.length - 1]))); }; roots.forEach(r => walk(r, []));
+    return { js, rows, par, kids };
+  },
+  // 親のほかに必要なもの(ほかの前提職・条件)
+  extras(c, j, prim) { const ex = []; j.req.forEach(g => { if (prim && g.includes(prim)) return; const ns = g.filter(id => DB.jobs[id]); if (ns.length) ex.push([ns.map(id => DB.jobs[id].name).join('か'), ns.some(id => jobLv(c, id) >= REQLV)]); }); j.cond.forEach(x => ex.push([condText(x), condOk(x, c)])); return ex; },
+  detail(c, j) {
+    const lv = jobLv(c, j.id), need = j.req.map(g => g.map(id => { const q = DB.jobs[id]; return q ? `${jobLv(c, id) >= REQLV ? '✅' : '⬜'}${esc(q.name)}<small>(${JOBCAT[q.cat][0]}・いま★${jobLv(c, id)})</small>` : id; }).join(' か ')).concat(j.cond.map(x => `${condOk(x, c) ? '✅' : '⬜'}${condText(x)}`));
+    return `<b>${JOBCAT[j.cat][1]} ${esc(j.name)}</b> <small>${JOB_TIER[j.tier]}${lv ? '・★' + lv : ''}${Awake.jobOn(c, j.id) ? '・覚醒ずみ' : ''}</small><br><small>${esc(j.desc)}</small><br>${need.length ? '<small>なるには(★' + REQLV + '以上):</small><br>' + need.join('<br>') : '<small>だれでもなれる</small>'}<br><small>覚える特技:${j.skills.map(k => (DB.skills[k.id] ? DB.skills[k.id].name : k.id) + '(★' + k.lv + ')').join('、') || 'なし'}</small>`;
+  },
+  acts(c, j, temple) { const d = el('div', 'jact'); d.appendChild(Tree.mini('📖 くわしく', () => jobInfo(j, c))); if (temple) d.appendChild(Tree.mini('⛪ この職に転職', () => Temple.change(c, j, canJob(c, j)), c.job === j.id || !canJob(c, j))); return d; },
+  list(s, c, cat, sel, pick, temple) {
+    const T = this.tree(cat), hot = {}; if (sel && T.par[sel] !== undefined) { let q = sel, g = 0; while (q && g++ < 20) { hot[q] = 1; q = T.par[q]; } }
+    const box = el('div', 'card jlist'), guides = (lines, node) => lines.map((more, i) => `<i class="jg ${node && i === lines.length - 1 ? (more ? 't' : 'l') : more ? 'v' : ''}"></i>`).join('');
+    T.rows.forEach(({ j, lines }) => {
+      const row = el('div', 'jrow' + (hot[j.id] ? ' hot' : ''), guides(lines, true)), main = el('div', 'jmain'), mk = this.mark(c, j), b = el('button', 'jchip ' + this.state(c, j) + (sel === j.id ? ' sel' : ''), esc(j.name) + (mk ? `<small>${mk}</small>` : ''));
+      b.onclick = () => UI.run(() => pick(j.id)); main.appendChild(b); const ex = this.extras(c, j, T.par[j.id]); ex.slice(0, 2).forEach(([t, ok]) => main.appendChild(el('span', 'jx' + (ok ? ' ok' : ''), '＋' + esc(t)))); if (ex.length > 2) main.appendChild(el('span', 'jx' + (ex.slice(2).every(x => x[1]) ? ' ok' : ''), '＋ほか' + (ex.length - 2)));
+      main.appendChild(el('span', 'jtr', JOB_TIER[j.tier].replace('職', ''))); row.appendChild(main); box.appendChild(row);
+      if (sel === j.id) { const dr = el('div', 'jrow', guides(lines, false) + `<i class="jg ${(T.kids[j.id] || []).length ? 'v' : ''}"></i>`), d = el('div', 'jdet', this.detail(c, j)); d.appendChild(this.acts(c, j, temple)); dr.appendChild(d); box.appendChild(dr); }
+    });
+    s.add(box); return box;
+  },
+  layout(cat) {
+    const js = Object.values(DB.jobs).filter(j => j.cat === cat), rows = {}, pos = {}; js.forEach(j => (rows[j.tier] = rows[j.tier] || []).push(j));
+    const tiers = Object.keys(rows).map(Number).sort((a, b) => a - b), inCat = id => DB.jobs[id] && DB.jobs[id].cat === cat, parents = j => [].concat(...j.req).filter(inCat);
+    let maxN = 0; tiers.forEach(t => { maxN = Math.max(maxN, rows[t].length); });
+    // 上の段の親の真下に近づけて置く(線が短くなり、交差もへる)
+    const step = this.W + this.GX, wAll = maxN * step;
+    tiers.forEach((t, ri) => { const r = rows[t]; r.forEach(j => { const ps = parents(j).filter(id => pos[id]); j._bx = ps.length ? ps.reduce((a, id) => a + pos[id].cx, 0) / ps.length : 1e9; }); if (ri) r.sort((a, b) => a._bx - b._bx);
+      const xs = r.map((j, k) => ri && j._bx < 1e9 ? j._bx - this.W / 2 : ri ? 0 : (wAll - r.length * step) / 2 + k * step + this.GX / 2);
+      for (let k = 0; k < xs.length; k++) xs[k] = Math.max(xs[k], k ? xs[k - 1] + step : this.GX / 2); for (let k = xs.length - 1; k >= 0; k--) xs[k] = Math.min(xs[k], k < xs.length - 1 ? xs[k + 1] - step : wAll - this.W - this.GX / 2);
+      r.forEach((j, k) => { pos[j.id] = { x: xs[k], y: ri * (this.H + this.GY) + 18, cx: xs[k] + this.W / 2 }; }); });
+    return { js, tiers, pos, w: maxN * (this.W + this.GX), h: tiers.length * (this.H + this.GY) + 6, parents };
+  },
+  graph(s, c, cat, sel, pick, temple) {
+    const L = this.layout(cat), NS = 'http://www.w3.org/2000/svg', mk = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+    const wrap = el('div', 'jtwrap'), svg = mk('svg', { width: L.w, height: L.h, viewBox: `0 0 ${L.w} ${L.h}`, class: 'jtsvg' }); wrap.appendChild(svg);
+    const hot = {}; if (sel && DB.jobs[sel]) { const up = id => { [].concat(...DB.jobs[id].req).forEach(p => { if (DB.jobs[p] && !hot[p]) { hot[p] = 1; up(p); } }); }; hot[sel] = 1; up(sel); }
+    L.tiers.forEach((t, ri) => { const tx = mk('text', { x: 4, y: ri * (this.H + this.GY) + 12, class: 'jttier' }); tx.textContent = JOB_TIER[t]; svg.appendChild(tx); });
+    L.js.forEach(j => L.parents(j).forEach(p => { const a = L.pos[p], b = L.pos[j.id], y1 = a.y + this.H, y2 = b.y, my = (y1 + y2) / 2; svg.appendChild(mk('path', { d: `M${a.cx} ${y1} C${a.cx} ${my} ${b.cx} ${my} ${b.cx} ${y2}`, class: 'jtedge' + (hot[j.id] && hot[p] ? ' hot' : jobLv(c, p) >= REQLV ? ' ok' : '') })); }));
+    L.js.forEach(j => { const p = L.pos[j.id], g = mk('g', { class: 'jtnode ' + this.state(c, j) + (sel === j.id ? ' sel' : '') + (hot[j.id] ? ' hot' : ''), transform: `translate(${p.x},${p.y})` }), ext = [].concat(...j.req).filter(id => DB.jobs[id] && DB.jobs[id].cat !== cat).length + j.cond.length;
+      g.appendChild(mk('rect', { width: this.W, height: this.H, rx: 8 })); const nm = j.name.length > 6 ? [j.name.slice(0, Math.ceil(j.name.length / 2)), j.name.slice(Math.ceil(j.name.length / 2))] : [j.name];
+      nm.forEach((t, k) => { const e = mk('text', { x: this.W / 2, y: nm.length > 1 ? 13 + k * 12 : 17, class: 'jtname' }); e.textContent = t; g.appendChild(e); });
+      const mark = this.mark(c, j); if (mark) { const e = mk('text', { x: this.W - 3, y: 9, class: 'jtmark' }); e.textContent = mark; g.appendChild(e); }
+      if (ext) { const e = mk('text', { x: 4, y: 9, class: 'jtext' }); e.textContent = '＋' + ext; g.appendChild(e); }
+      g.addEventListener('click', () => UI.run(() => pick(j.id))); svg.appendChild(g); });
+    s.add(wrap); const keep = this._sc && this._sc.cat === cat ? this._sc : null; setTimeout(() => { if (keep) wrap.scrollLeft = keep.x; else { const cur = L.pos[sel || c.job]; if (cur) wrap.scrollLeft = Math.max(0, cur.cx - wrap.clientWidth / 2); } wrap.onscroll = () => { this._sc = { cat, x: wrap.scrollLeft }; }; }, 0);
+    const j = sel && DB.jobs[sel]; if (j) { const d = el('div', 'card jdet', this.detail(c, j)); d.appendChild(this.acts(c, j, temple)); s.add(d); } else s.p('<span class="note">職をタップすると、そこまでの道すじが光る。指で左右に動かせる。</span>');
+  },
+  open(ci0, cat0, temple) {
+    let ci = ci0 || 0, cat = cat0 || null, sel = null, wide = false, seen = '';
+    UI.open(s => {
+      const cs = allChars().filter(c => c.kind !== 'monster'); ci = clamp(ci, 0, cs.length - 1); const c = cs[ci]; if (!cat) cat = jobOf(c).cat && JOBCAT[jobOf(c).cat] ? jobOf(c).cat : 'W';
+      s.head('🌳 職業ツリー', esc(c.name)); if (cs.length > 1) s.tabs(cs.map(x => esc(x.name)), ci, k => { ci = k; sel = null; });
+      const cats = Object.keys(JOBCAT).filter(k => Object.values(DB.jobs).some(j => j.cat === k)); s.tabs(cats.map(k => JOBCAT[k][1] + JOBCAT[k][0]), cats.indexOf(cat), k => { cat = cats[k]; sel = null; });
+      s.p('<small><span class="jleg cur">いまの職</span><span class="jleg mas">極めた👑</span><span class="jleg awk">覚醒✦</span><span class="jleg exp">経験あり★</span><span class="jleg can">なれる</span><span class="jleg lock">まだ</span>' + (wide ? '線は「前提の職」。<b>＋</b>は ほかの系統の職や条件も必要なしるし。' : '下にぶら下がっているのが、その職から進める上の職。<b>＋</b>は あわせて必要な職や条件(<span class="jx ok">達成</span><span class="jx">まだ</span>)。') + '職をタップで くわしく。</small>');
+      const pick = id => { sel = sel === id ? null : id; };
+      if (wide) this.graph(s, c, cat, sel, pick, temple); else { const box = this.list(s, c, cat, sel, pick, temple), key = cat + '/' + c.id; if (seen !== key) { seen = key; setTimeout(() => { const cur = box.querySelector('.jchip.cur'), sc = $('screen'); if (cur && sc) { const r = cur.getBoundingClientRect(), h = sc.clientHeight; if (r.bottom > h - 40) sc.scrollTop += r.top - h / 2; } }, 0); } }
+      s.btn(wide ? '🌳 枝わかれの木(たて長)で見る' : '🗺️ 全体図(横に広い図)で見る', () => { wide = !wide; }, { sub: wide ? 'スマホの幅におさまる、たて長の表示にもどす' : '段階ごとに横に並べ、前提をすべて線でつないだ図。指で左右に動かす' });
+    });
+  }
+};
+
+/* ---------- 魔法と特技の系統:つながりごとに、覚えたものを光らせて並べる ---------- */
+// [分類, 絵文字, [[系統の名前, [特技ID…], バラ(順番のない仲間)かどうか]…]]
+const SKILL_LINES = [
+  ['攻撃魔法', '🔮', Object.keys(ELEM).filter(e => e !== 'n').map(e => [ELEM[e] + 'の魔法', [1, 2, 3, 4, 5, 6, 7].map(n => e + n)]).concat([['無属性の魔法', ['mb1', 'mb2', 'mb3', 'meteor', 'allthings', 'voidlance', 'novaburst', 'bigend']], ['炎の息', ['fb1', 'fb2', 'fb3', 'fb4', 'fb5']], ['氷の息', ['ib1', 'ib2', 'ib3', 'ib4', 'ib5']],
+    ['召喚', ['sum1', 'sum2', 'sum3', 'sum4'], 1], ['光と闇の秘術', ['judgment', 'herothunder', 'genesis', 'lastjudge', 'darkstar', 'eclipse'], 1], ['吸収', ['drain', 'mpdrain', 'allmp'], 1]])],
+  ['回復・補助', '✨', [['回復(1人)', ['heal1', 'heal2', 'heal3']], ['回復(全員)', ['healA1', 'healA2', 'healA3', 'lifestream']], ['よみがえり', ['rev1', 'rev2', 'revA', 'hope']], ['治療', ['cureP', 'cureS', 'cureAll', 'cureAA', 'uncurse'], 1], ['祈りと恵み', ['regen', 'bless', 'mpgive', 'rewind'], 1],
+    ['守りを上げる', ['defUp', 'defUpA', 'barrier', 'bguard', 'reflect', 'evaUp', 'holyward', 'guardian', 'mirrorwall', 'sanctuary', 'eternal'], 1], ['力を上げる', ['atkUp', 'atkUpA', 'magUp', 'godbless'], 1], ['速さを上げる', ['agiUp', 'haste', 'godspeed', 'allhaste']],
+    ['弱らせる', ['atkDn', 'defDn', 'defDnG', 'agiDn', 'slowA', 'magDn', 'dispel', 'decay'], 1], ['状態異常', ['poison', 'blind', 'sleep', 'silence', 'confuse', 'para', 'timestop', 'fate'], 1], ['呪いと即死', ['curse', 'death1', 'deathG', 'deadhand', 'hellgate'], 1]]],
+  ['特技', '🥋', [['力の技', ['pow1', 'double', 'quad']], ['なぎはらい', ['sweep', 'whirl', 'giga', 'bigslash', 'worldcut', 'heavenfall']], ['居合', ['iai', 'swallow', 'triple', 'skysplit']], ['乱舞', ['dance3', 'thousand', 'stardance', 'dragonfang']], ['こぶし', ['punch', 'combo', 'hundred', 'godfist', 'fistinf']], ['けり', ['kick', 'roundk', 'vacuum', 'meteorfist']],
+    ['弓', ['aim', 'volley', 'sleeparrow']], ['聖なる技', ['smite', 'cross', 'savior']], ['ためる・気', ['charge', 'charge2', 'kiblast', 'medit'], 1], ['ぬすむ', ['steal', 'mug', 'masterthief', 'soulsteal']], ['急所ねらい', ['first', 'pierce', 'vital', 'backstab', 'assassinate', 'onehit'], 1],
+    ['守りの技', ['cover', 'wall', 'counter', 'taunt', 'bash', 'trip'], 1], ['捨て身・運だめし', ['gamble', 'reckless', 'rush', 'luckstrike', 'gigaA'], 1], ['忍びの技', ['venom', 'eyegouge', 'pin', 'shuriken'], 1], ['属性斬り', ['fiS', 'icS', 'wiS', 'thS', 'eaS', 'liS', 'daS'], 1],
+    ['特効の技', ['k_jelly', 'k_beast', 'k_bird', 'k_plant', 'k_bug', 'k_undead', 'k_demon', 'k_dragon', 'k_material', 'k_aquatic', 'k_humanoid', 'k_elemental', 'metalS'], 1], ['奥義', ['og1', 'og2', 'og3', 'og4', 'og5', 'og6'], 1], ['古き詩', ['anc1', 'anc2', 'anc3'], 1], ['職ならではの技', ['anchor', 'pickaxe', 'forgefire', 'hook', 'logdrop', 'oath', 'skydrop', 'brave', 'bloodsuck', 'sacrifice', 'giveLife', 'grudge'], 1]]],
+  ['歌・術・旅', '🎵', [['歌', ['song1', 'song2', 'song3', 'song4', 'song5', 'song6', 'shanty', 'muse', 'warhymn'], 1], ['舞', ['dance1', 'dance2', 'dance4'], 1], ['号令', ['cheer', 'roar', 'order', 'rally', 'mercs'], 1], ['忍術', ['katon', 'suiton', 'raiton', 'clone'], 1], ['あやしい息', ['pbreath', 'sbreath', 'parabreath', 'sand'], 1],
+    ['薬・料理・手しごと', ['potionmist', 'toxin', 'panacea', 'lifewater', 'bombtoss', 'quickmeal', 'feast', 'sharpen'], 1], ['竜と海の技', ['dragonroar', 'scale', 'tsunami', 'cannon', 'seawrath', 'herd'], 1], ['運とお金', ['play', 'joke', 'chaos', 'dice', 'pray', 'goldtoss', 'bribe', 'goldrain'], 1],
+    ['見ぬく・手なずける', ['analyze', 'weak', 'starread', 'tame', 'flee', 'smoke'], 1], ['旅の術(フィールド)', ['warp', 'escape', 'repel', 'detect', 'unlock', 'stealth', 'hawkeye', 'camp', 'dig', 'whistle', 'fortune'], 1],
+    ['職業の覚醒の技', Object.keys(AW_JOB).map(k => AW_JOB[k]), 1], ['種族の覚醒の技', Object.keys(AW_RACE).map(k => AW_RACE[k]), 1]]]
+];
+const SkillTree = {
+  // その特技をどこで覚えられるか
+  where(id) { const a = []; Object.values(DB.jobs).forEach(j => j.skills.forEach(k => { if (k.id === id) a.push(`${j.name}★${k.lv}`); })); Object.values(DB.perks).forEach(P => { if (P.sk.includes(id)) a.push(`スキル盤(SP${P.cost})`); }); Object.keys(AW_JOB).forEach(k => { if (AW_JOB[k] === id) a.push(JOBCAT[k][0] + 'の職の覚醒'); }); Object.keys(AW_RACE).forEach(k => { if (AW_RACE[k] === id) a.push(RACE_GRP[k][0] + 'の種族の覚醒'); });
+    const bk = Object.values(DB.items).find(it => it.use === 'learn:' + id); if (bk) a.push('道具「' + bk.name + '」'); if (typeof MASTERS !== 'undefined') MASTERS.forEach(m => { if (m[1] === id) a.push('達人「' + m[0] + '」の教え'); }); if (/^anc\d/.test(id)) a.push('古代の石碑');
+    if (!this._mon || this._mv !== Perk.ver) { this._mon = {}; this._mv = Perk.ver; DB.monList.forEach(m => (m.skills || []).forEach(k => { (this._mon[k] = this._mon[k] || []).push(m.name); })); } const ms = this._mon[id]; if (ms) a.push('魔物の技(' + ms[0] + (ms.length > 1 ? ' など' : '') + ')'); return a; },
+  info(c, k) { const w = this.where(k.id); return say(`<b>${esc(k.name)}</b> <span class="tag">${CAT_JP[k.cat] || ''}</span><span class="tag">MP${k.mp}</span>${c.skills.includes(k.id) ? ' <span class="good">おぼえている</span>' : ''}\n${esc(k.desc)}\n<small>覚えられるところ:${w.length ? w.slice(0, 8).join('、') + (w.length > 8 ? ' ほか' + (w.length - 8) : '') : '特別なできごと'}</small>`); },
+  open(i0) {
+    let idx = i0 || 0, tab = 0;
+    UI.open(s => {
+      s.head('✨ 魔法・特技の系統'); const c = Menu.charTabs(s, idx, k => idx = k); const tabs = SKILL_LINES.map(t => t[1] + t[0]).concat(['📚 そのほか']); s.tabs(tabs, tab, k => tab = k);
+      const used = new Set(); SKILL_LINES.forEach(t => t[2].forEach(l => l[1].forEach(id => used.add(id))));
+      if (tab < SKILL_LINES.length) { s.p('<small><b>光っているもの</b>が、いま覚えているもの。線でつながった列は、左から右へ上位の技になっていく。タップで説明と、覚えられるところ。</small>');
+        SKILL_LINES[tab][2].forEach(([name, ids, loose]) => { const ks = ids.map(id => DB.skills[id]).filter(Boolean); if (!ks.length) return; const n = ks.filter(k => c.skills.includes(k.id)).length, box = el('div', 'card tcard'); box.appendChild(el('div', 'ttitle', `<b>${name}</b> <small>${n}/${ks.length}${loose ? '' : '・左ほど初歩'}</small>`));
+          box.appendChild(Tree.chain(ks.map(k => ({ label: esc(k.name), st: c.skills.includes(k.id) ? 'on' : '', tap: () => this.info(c, k) })), loose)); s.add(box); }); }
+      else { const rest = c.skills.map(id => DB.skills[id]).filter(k => k && !used.has(k.id)); s.p(`<small>系統に入らないもの(魔物の技 など)のうち、${esc(c.name)}が覚えているもの(${rest.length})。</small>`);
+        Object.keys(CAT_JP).forEach(cat => { const ks = rest.filter(k => k.cat === cat); if (!ks.length) return; const box = el('div', 'card tcard'); box.appendChild(el('div', 'ttitle', `<b>${CAT_JP[cat]}</b> <small>${ks.length}</small>`)); const d = el('div', 'tline'); ks.forEach(k => { const b = el('button', 'tnode on', esc(k.name)); b.onclick = () => UI.run(() => this.info(c, k)); d.appendChild(b); }); box.appendChild(d); s.add(box); });
+        if (!rest.length) s.p('<span class="note">なし</span>'); }
+      s.btn('📋 一覧で見る(フィールドで使う)', () => Menu.skills(allChars().indexOf(c)));
+    });
+  }
+};
+
+/* ---------- スキル盤:つながりを玉の列で見せる ---------- */
+Perk.rows = function (cat) {
+  const all = Object.values(DB.perks).filter(P => P.cat === cat), kid = this._kid || {}, out = [], seen = new Set();
+  const start = P => { const ln = [P]; seen.add(P.id); let q = P, g = 0; while (kid[q.id] && kid[q.id].length === 1 && g++ < 40) { q = kid[q.id][0]; if (seen.has(q.id)) break; ln.push(q); seen.add(q.id); } out.push(ln); if (kid[q.id] && kid[q.id].length > 1) kid[q.id].forEach(start); };
+  all.filter(P => !P.req || !DB.perks[P.req]).forEach(start); all.forEach(P => { if (!seen.has(P.id)) start(P); }); return out;
+};
+Perk.open = function (i0) {
+  let i = i0 || 0, cat = 'st';
+  UI.open(s => {
+    const cs = allChars(); i = clamp(i, 0, cs.length - 1); const c = cs[i], left = this.left(c), all = Object.values(DB.perks); this.kids();
+    s.head('🔷 スキル盤', `SP ${left}`); if (cs.length > 1) s.tabs(cs.map(x => esc(x.name) + (this.left(x) > 0 ? '●' : '')), i, k => i = k);
+    s.card(`${ic(c)} <b>${esc(c.name)}</b> <small>Lv${c.lv} ${jobName(c)}</small><br>のこりSP <b class="${left > 0 ? 'good' : ''}">${left}</b> <small>/ これまでに得た ${this.earned(c)}・解放した能力 ${this.list(c).filter(id => DB.perks[id]).length}個</small><br><small>レベルが1上がるごとにSP+${this.RATE}。職業を極める・覚醒するともらえる。解放した能力は、転職しても転生しても消えない。</small>`);
+    const ks = Object.keys(PERK_CAT); s.tabs(ks.map(k => { const own = all.filter(P => P.cat === k && this.has(c, P.id)).length; return PERK_CAT[k][1] + PERK_CAT[k][0] + (own ? `<small>${own}</small>` : ''); }), ks.indexOf(cat), k => { cat = ks[k]; });
+    const ps = all.filter(P => P.cat === cat), nOwn = ps.filter(P => this.has(c, P.id)).length;
+    s.p(`<small>${PERK_CAT[cat][0]}:全${ps.length}個・解放ずみ ${nOwn}。線でつながった列は、左から順に解放していく。<b>金色のふち</b>が、つぎに解放できるもの。</small>`);
+    const buy = P => { if (this.unlock(c, P.id)) { toast(`🔷 ${c.name}は「${P.name}」を解放した!`); HUD.update(); } };
+    this.rows(cat).forEach(ln => {
+      const k = ln.filter(P => this.has(c, P.id)).length, nx = ln.find(P => !this.has(c, P.id) && this.reqOk(c, P)), parts = ln.map(P => Tree.roman(P.name)), base = parts[0][0], same = ln.length > 1 && parts.every((p, n) => p[1] && (p[0] === base || n === ln.length - 1));
+      if (ln.length === 1) { const P = ln[0], own = this.has(c, P.id); s.btn(`${own ? '✅ ' : ''}${esc(P.name)}`, () => buy(P), { r: own ? '解放ずみ' : 'SP' + P.cost, sub: P.desc, dis: own || !this.can(c, P), cls: own ? 'ok' : '' }); return; }
+      const box = el('div', 'card tcard'), tot = {}; ln.forEach(P => { if (this.has(c, P.id)) P.eff.forEach(([t, kk, v]) => { if (t !== 'k') tot[t + '.' + kk] = (tot[t + '.' + kk] || 0) + v; }); });
+      const now = Object.keys(tot).map(q => { const [t, kk] = q.split('.'); return perkEffText([t, kk, Math.round(tot[q] * 10) / 10]); }).join('、'), lab = n => same && parts[n][0] === base ? parts[n][1] : esc(ln[n].name);
+      box.appendChild(el('div', 'ttitle', `<b>${esc(same ? base : ln[0].name + ' → ' + ln[ln.length - 1].name)}</b> <small>${k}/${ln.length}${now ? '・いま:' + now : ''}</small>`));
+      box.appendChild(Tree.chain(ln.map((P, n) => ({ label: lab(n), pip: same && parts[n][0] === base, st: this.has(c, P.id) ? 'on' : P === nx ? 'nx' : '', tap: P === nx && left >= P.cost ? () => buy(P) : () => say(`<b>${esc(P.name)}</b> <span class="tag">SP${P.cost}</span>\n${P.desc}${this.has(c, P.id) ? '\n<span class="good">解放ずみ</span>' : P === nx ? (left >= P.cost ? '' : '\n<span class="note">SPが足りない</span>') : '\n<span class="note">手前のものを先に解放する</span>'}`) }))));
+      if (nx) { const row = el('div', 'tnext'); row.appendChild(el('span', '', `<small>つぎ <b>${lab(ln.indexOf(nx))}</b>:${nx.desc}</small>`)); row.appendChild(Tree.mini(`解放 <b>SP${nx.cost}</b>`, () => buy(nx), left < nx.cost)); box.appendChild(row); } else box.appendChild(el('div', 'tnext', '<small class="good">✔ この列は すべて解放した</small>'));
+      s.add(box);
+    });
+    const sum = this.sumText(c); if (sum) { s.h('いまの合計(会得スキルもふくむ)'); s.card(`<small>${sum}</small>`); }
+    const rf = this.list(c).filter(id => DB.perks[id] && !DB.perks[id].perm), fee = c.lv * 50;
+    s.btn(`♻️ ふりなおす(${fmt(fee)}G)`, async () => { if (!(await yn(`${c.name}の能力をふりなおしますか?\n<small>解放した能力 ${rf.length}個を取り消して、SPを戻します。<b>特技・魔法の習得は そのまま残り</b>、そのぶんのSPは戻りません。</small>`))) return; G.gold -= fee; const n = this.reset(c); HUD.update(); toast(`♻️ ${n}個の能力を取り消して、SPを戻した`); }, { dis: !rf.length || G.gold < fee, sub: '能力値・特性・守りなどを選びなおせる' });
+  });
 };
 
 /* ===================== 国境をわかりやすく(フィールドの境界線・地図の色分け・国名) ===================== */
@@ -7477,14 +7860,22 @@ const ED = {
     ['req', '先に解放しておく能力(なくてもよい)', 'sel', () => { const o = { '': 'なし(はじめから選べる)' }; Object.keys(DB.perks).sort((a, b) => String(DB.perks[a].name).localeCompare(String(DB.perks[b].name), 'ja')).forEach(k => { o[k] = DB.perks[k].name + '(' + PERK_CAT[DB.perks[k].cat][0] + ')'; }); return o; }],
     ['eff', '効果', 'text', null, '「種類.名前:数値」を「,」でつなぐ。 s.str:5(能力値+%。hp mp str vit agi int luk) / p.crit:3(特性。職業の特性と同じ名前) / e.fi:10(その属性で与えるダメージ+%) / r.fi:10(その属性で受けるダメージ-%。fi火 ic氷 wi風 th雷 ea土 li光 da闇) / g.poison:50(状態にかかりにくく。100で無効。poison sleep para conf silence blind curse stun death) / w.sw:5(その武器を持つと攻撃+%。sw剣 ax斧 sp槍 dg短剣 st杖 bw弓 cl爪 wh鞭 hm槌 fn扇 bm投輪) / f.dragon:10(その系統の魔物へのダメージ+%) / k.特技ID(特技・魔法を覚える) / x.bregen:3(戦闘中HP回復%) x.bmp:2(戦闘中MP回復%) x.ten:1(開幕テンション) x.guts:1(1回だけ耐える)'],
     ['desc', '説明文(空なら自動)', 'text']],
-    blank: { name: '新しい能力', cat: 'sp', cost: 3, req: '', eff: 's.str:5', desc: '' } }
+    blank: { name: '新しい能力', cat: 'sp', cost: 3, req: '', eff: 's.str:5', desc: '' } },
+  feats: { label: '会得スキル', icon: '📜', fields: [
+    ['name', '名前', 'text'], ['grp', '種類', 'sel', () => obj(Object.keys(FEAT_GRP), k => FEAT_GRP[k][0])],
+    ['from', '進化のもとになるスキル(なくてもよい)', 'sel', () => { const o = { '': 'なし(はじめの段)' }; Object.keys(DB.feats).forEach(k => { o[k] = DB.feats[k].name; }); return o; }, 'えらぶと、そのスキルを持っているときだけ、条件を満たすと進化する(もとのスキルと入れかわる)'],
+    ['get', '身につく条件', 'text', null, '「数えるもの>=回数」を「&」でつなぐ。 例: kill>=100&boss>=5  数えるもの: ' + Object.keys(FEAT_CNT).map(k => k + '(' + FEAT_CNT[k] + ')').join(' / ')],
+    ['when', '発動する状況(「与える/受けるダメージ」の効果にだけ かかる)', 'sel', () => obj(Object.keys(FEAT_WHEN), k => FEAT_WHEN[k] || 'いつでも')],
+    ['eff', '効果', 'text', null, 'スキル盤の能力と同じ書き方(s. p. e. r. g. w. f. k. x.)に加えて、 d.out:20(与えるダメージ+%) d.pout(物理) d.mout(魔法) / d.inc:10(受けるダメージ-%) d.pinc(物理) d.minc(魔法) d.aura:10(味方全員) / x.copy:10(倒した魔物の特技を写す%) x.feast:5(倒すと回復%) x.revive:50(倒れても起き上がる・HP%) x.revn:2(その回数) x.awe:30(開幕で敵をすくませる%)'],
+    ['desc', '説明文(空なら自動)', 'text']],
+    blank: { name: '新しいスキル', grp: 't', from: '', get: 'kill>=10', when: '', eff: 'd.out:10', desc: '' } }
 };
 const Editor = {
   open() {
     let type = 'jobs', q = '', page = 0, mine = false;
     UI.open(s => {
       s.head('🛠️ エディタ'); const ks = Object.keys(ED);
-      s.p('<small>職業・魔物・仲間・魔法/特技・アイテム・スキル盤の能力を、あとから自由に追加・編集できます。変更はこの端末に保存され、すべての冒険の書に反映されます。</small>');
+      s.p('<small>職業・魔物・仲間・魔法/特技・アイテム・スキル盤の能力・会得スキルを、あとから自由に追加・編集できます。変更はこの端末に保存され、すべての冒険の書に反映されます。</small>');
       s.tabs(ks.map(k => ED[k].icon + ED[k].label), ks.indexOf(type), i => { type = ks[i]; page = 0; q = ''; });
       const inp = el('input'); inp.type = 'search'; inp.placeholder = '名前で検索'; inp.value = q; inp.onchange = () => { q = inp.value.trim(); page = 0; UI.render(); }; s.add(inp);
       s.grid(2); s.btn('＋ 新しく追加', () => Editor.edit(type, null), { cls: 'ok' }); s.btn(mine ? '全部を表示' : '追加・変更した物だけ', () => { mine = !mine; page = 0; }); s.end();
@@ -7500,7 +7891,7 @@ const Editor = {
       s.btn('🗑️ 追加・変更をすべて消して初期状態に戻す', async () => { if (await yn('本当に、追加・変更したデータをすべて消しますか?')) { DBTYPES.forEach(k => CUSTOM[k] = {}); Editor.apply(); toast('初期状態に戻した'); } }, { cls: 'dan' });
     });
   },
-  brief(type, f) { if (type === 'jobs') return ['', '基本', '中級', '上級', '最上級', '伝説', '神話', '超越'][+f.tier] || ''; if (type === 'mons') return 'Lv' + f.lv; if (type === 'comps') return 'Lv' + f.lv; if (type === 'skills') return 'MP' + f.mp; if (type === 'perks') return 'SP' + f.cost; return f.price ? fmt(+f.price) + 'G' : ''; },
+  brief(type, f) { if (type === 'jobs') return ['', '基本', '中級', '上級', '最上級', '伝説', '神話', '超越'][+f.tier] || ''; if (type === 'mons') return 'Lv' + f.lv; if (type === 'comps') return 'Lv' + f.lv; if (type === 'skills') return 'MP' + f.mp; if (type === 'perks') return 'SP' + f.cost; if (type === 'feats') return (FEAT_GRP[f.grp] || ['?'])[0].replace('スキル', ''); return f.price ? fmt(+f.price) + 'G' : ''; },
   apply() { saveCustom(); initDB(); Gfx.reset(); if (G) { for (const id in G.chars) { const c = G.chars[id]; if (c.kind !== 'monster' && !DB.jobs[c.job]) c.job = 'commoner'; if (c.kind === 'monster' && !DB.mons[c.mon]) c.mon = 'j1'; c.skills = c.skills.filter(k => DB.skills[k]); if (c.kind !== 'monster') learnJobSkills(c); fixEquip(c); } for (const k in G.inv) if (!item(k)) delete G.inv[k]; Perk.clean(); } },
   edit(type, id) {
     const D = ED[type], isNew = !id; if (isNew) id = 'c' + type[0] + Date.now().toString(36) + rnd(99);
@@ -7536,6 +7927,7 @@ const Editor = {
       if (!isNew && !BASEF[type][id]) s.btn('🗑️ 削除する', async () => { if (await yn('本当に削除しますか?')) { delete CUSTOM[type][id]; Editor.apply(); UI.close(); } }, { cls: 'dan' });
       if (G && !isNew && DB[type][id]) {
         s.h('ためす(保存済みの内容で)'); const h = hero();
+        if (type === 'feats') s.btn(`${h.name}に身につけさせる(条件なしで)`, () => { if (!Array.isArray(h.fs)) h.fs = []; if (h.fs.includes(id)) { toast('もう持っている'); return; } const F = DB.feats[id]; if (F.from) h.fs = h.fs.filter(k => k !== F.from); h.fs.push(id); Perk.ver++; toast('身につけた'); });
         if (type === 'perks') s.btn(`${h.name}に解放する(SPを使わずに)`, () => { Perk.unlock(h, id, true) ? toast('解放した') : toast('もう解放している'); });
         if (type === 'skills') s.btn(`${h.name}に覚えさせる`, () => { learn(h, id) ? toast('覚えた') : toast('もう覚えている'); });
         if (type === 'items') s.btn('持ち物に1個加える', () => { give(id); toast('持ち物に加えた'); });
@@ -7564,7 +7956,7 @@ const Title = {
       if (ms.some(Boolean)) s.btn('🗑️ 冒険の書を消す', async () => { const i = await ask('どれを消しますか?', [1, 2, 3].map(n => ({ l: '冒険の書' + n, dis: !ms[n - 1] })), { cancel: 1 }); if (i >= 0 && await yn(`冒険の書${i + 1}を本当に消しますか?`)) deleteSave(i + 1); });
       let gr = []; try { gr = JSON.parse(LS('tl_grave') || '[]'); } catch (e) { }
       if (gr.length) s.btn('🪦 かつての人生(ハードコアの記録)', () => say(gr.map(g => `${esc(g.name)} Lv${g.lv} ${g.job}・${g.day}日目・${g.wins}勝`).join('\n')));
-      r.appendChild(el('div', 'sp note', `種族${RACES.length}種・職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種・スキル盤${Object.keys(DB.perks).length}種`));
+      r.appendChild(el('div', 'sp note', `種族${RACES.length}種・職業${Object.keys(DB.jobs).length}種・魔物${Object.keys(DB.mons).length}種・特技${Object.keys(DB.skills).length}種・アイテム${Object.keys(DB.items).length}種・迷宮${DKIND.filter(k => !k.tm).length}種・スキル盤${Object.keys(DB.perks).length}種・会得スキル${Object.keys(DB.feats).length}種`));
     }, { noClose: true });
   },
   resume() { UI.closeAll(); const s = !G.dun && !G.tm && G.veh === 'foot' && W.at.get(G.y * W.S + G.x); if (s && s.fac) TownMap.enter(s, 'mid', true); Field.resize(); Field.draw(); },
@@ -7603,7 +7995,7 @@ const Title = {
     }
   },
   create(o) {
-    G = newG(o.seed); if (o.wv || window.__WV__) G.wv = o.wv || window.__WV__; World.gen(o.seed); More.boot(); FOG = new Uint8Array(Math.ceil(W.S * W.S / 8)); G.hard = o.hard; G.slot = o.slot; if (o.hard) G.opts.autosave = true;
+    G = newG(o.seed); G.featSeed = 1; if (o.wv || window.__WV__) G.wv = o.wv || window.__WV__; World.gen(o.seed); More.boot(); FOG = new Uint8Array(Math.ceil(W.S * W.S / 8)); G.hard = o.hard; G.slot = o.slot; if (o.hard) G.opts.autosave = true;
     const c = newChar({ name: o.name, emoji: o.emoji, sex: o.sex, job: o.job, lv: 1, pers: o.pers, tactic: 'manual', race: o.race || 'human' }); if (o.look) c.look = o.look; if (o.custom) { c.fj = o.job; G.custom = 1; } G.hero = c.id; G.party = [c.id];
     const b = o.origin[3]; G.gold = b.gold || 50; STATS.forEach(k => { if (b[k]) c.base[k] += b[k]; }); if (b.fame) G.fame = b.fame; if (b.karma) G.karma = b.karma; (b.skills || []).forEach(k => learn(c, k)); for (const k in b.items) give(k, b.items[k]);
     give('herb', 3); give('wing', 1);
@@ -7619,6 +8011,8 @@ const Title = {
       H('操作', '・<b>十字パッド</b>は、指をはなさずに<b>すべらせて向きを変えられる</b>。パッドのまわりの広い範囲が反応するので、だいたいの位置を押せばよい<br>・<b>画面タッチ</b>:ゲーム画面を押しっぱなしで指の方向へ歩く/行きたい場所をタップでそこまで自動で歩く/主人公をタップで「行動」<br>・パッドの大きさ・左右の位置・画面タッチ・振動は メニュー → 設定 →「操作」で変えられる<br>・<b>十字ボタン</b>(パソコンは矢印キー):移動。押しっぱなしで歩き続ける<br>・<b>町・村・城の中</b>は歩いてまわれる。建物の扉に向かって進むと店に入り、人にぶつかると話せる。たるやつぼも調べられる<br>・<b>行動</b>:目の前を調べる、施設の一覧、採集、採掘、釣り、野営、飛竜の乗り降り、迷宮では階の地図<br>・<b>世界</b>は1776×1776マス(新しく始めた場合)。地形は約30種類あり、森・竹林・溶岩原・古戦場など場所ごとに出る魔物がちがう。町や村は<b>街道</b>でつながっていて、街道の上は魔物が出にくく速く歩ける。地図は「周辺・広域・世界全体」を切りかえられる<br>・<b>迷宮</b>は150種類。入口で大きさ(小・中・大・超巨大)と仕掛けがわかる。暗い迷宮は<b>たいまつ</b>(道具屋)で明るくなる。10階以上の迷宮は5階ごとに再開地点がある<br>・<b>メニュー</b>:つよさ、装備、道具、特技、仲間と作戦、製作、図鑑、セーブ、設定<br>・<b>地図</b>:歩いた場所が記録される世界地図<br>・町やダンジョンは、そのマスに入ると入れる');
       H('戦闘', '・「こうげき」「とくぎ・魔法」「ぼうぎょ」「どうぐ」「にげる」を選ぶ<br>・仲間は「作戦」に従って自分で動く(メニュー→仲間・作戦で「めいれいする」にすれば手動)<br>・<b>おまかせ</b>を押すと、その戦闘は全員が自動で戦う。設定で常時ONにすると、勝利メッセージも省いて連戦できる<br>・<b>気合ため</b>を使うと次の一撃が1.7倍→3倍→5倍→7.5倍<br>・鞭は敵1グループ、投輪は敵全体を攻撃できる<br>・属性の弱点を突くと1.5倍。鑑定眼で弱点がわかる<br>・倒した魔物がまれに仲間になる(魔物使い系の職で確率アップ)');
       H('職業(全' + Object.keys(DB.jobs).length + '種)', '・各国の都にある<b>転職の神殿</b>で、いつでも無料で転職できる<br>・戦闘に勝つと熟練度がたまり、★が上がると特技を覚える。覚えた特技は転職しても忘れない<br>・★8になると上の職業への道が開ける。★10で「極めた」ことになり能力が永久に上がる<br>・名声・善悪・資産・物件などが条件の職業もある<br>・段階は 基本 → 中級 → 上級 → 最上級 → 伝説 → <b>神話</b> → <b>超越</b> の7つ。神話職(14種)は伝説職を2つ ★8にすると、超越職(7種)は神話職を2つ ★8にすると道が開ける<br>・神話職と超越職は、火・氷・風・雷・土・光・闇の<b>6段目・7段目の魔法</b>や、「万象加速」「世界断ち」などの奥の手を覚える。極める(★10)と、その職の<b>証</b>(神話職は装飾品、超越職は武器)を1回だけもらえる<br>・武具には「神」の上に<b>永劫</b>・<b>原初</b>の2段がある。素材の永劫石・原初の核は 魔物Lv108以上の土地や迷宮(深淵の奥や、強さを上げた世界)で採掘・宝箱から手に入り、同じあたりで武具そのものも見つかる。鍛冶の腕が168以上なら自分でも作れる<br>・タイトルの<b>カスタムスタート</b>なら、条件のある職業も含めて好きな職業で人生をはじめられる(その職業にはいつでも戻れる)<br>・商人系は交易、職人系は製作、自然系は採集や釣りでも熟練度が上がる');
+      H('会得スキル', '・<b>行動のつみ重ねで、ひとりでに身につくスキル</b>。条件を満たすと、戦闘のあとに〈天の声〉が知らせてくれる。転職しても消えない。メニューの「📜 会得スキル」で、いまの育ちぐあいを見られる<br>・<b>耐性スキル</b>:同じ属性の攻撃や状態異常を受けつづけると身につく。火耐性 → 火大耐性 → 火無効、毒慣れ → 毒克服 のように<b>進化</b>する<br>・<b>資質スキル</b>:戦いぶりから芽ばえる。「逆境」(HPが3割以下で与えるダメージが上がる)、「孤高」(1人で戦うと強い)、「格上殺し」、「七転八起」(倒れても1回起き上がる)など18種。それぞれ「・改」「・極」へ進化する<br>・<b>固有スキル</b>:並はずれた経験を積むと宿る。倒した魔物の特技を写し取る「喰らい写し」、2回行動の「刹那」、味方全員を守る「守護者」、耐性スキルを集めると宿る「調和の器」など12種。さらに条件を満たすと<b>極致</b>へ進化する<br>・以前のセーブでは、これまでに倒した魔物の数などを主人公が引きつぐ<br>・エディタで、会得スキルの追加・変更ができる');
+      H('ツリー表示', '・<b>🌳 職業ツリー</b>(メニュー・神殿・図鑑から):系統ごとに、それぞれの職を「前提の職」の下にぶら下げた枝わかれの木(たて長で、画面の幅におさまる)。<b>＋</b>は あわせて必要な職や条件。職をタップすると、その場に条件の達成ぐあいが開き、そこまでの道すじが光る。「全体図」に切りかえると、基本職から超越職までを段ごとに並べ、前提をすべて線でつないだ横に広い図になる。神殿から開けば そのまま転職できる<br>・<b>✨ 魔法・特技の系統</b>(とくぎ・魔法から):火の魔法、回復、居合…と つながりごとに並び、覚えているものが光る。タップで、どの職やスキル盤で覚えられるかがわかる<br>・<b>🔷 スキル盤</b>と<b>📜 会得スキル</b>も、Ⅰ→Ⅱ→Ⅲ のつながりを玉の列で表示する');
       H('スキル盤', '・メニューの<b>🔷 スキル盤</b>で、レベルアップでもらえる<b>SP</b>(1レベルにつき2)を使って能力を解放できる。解放した能力は<b>転職しても転生しても消えない</b><br>・能力は約560種。能力値(HP・ちから など)、特性(会心率・経験値 など)、属性の極意と守り、状態異常よけ、武器の心得、魔物の系統への特効、攻撃魔法・回復・補助・特技の習得、奥義(戦闘中の回復・根性 など)<br>・Ⅰ→Ⅱ→Ⅲ…と順に解放していく。上の段ほど必要なSPが多い。職業を極めると+1、職業の覚醒で+2、種族の覚醒で+5、転生するとレベルを上げなおしたぶんだけ さらにもらえる<br>・<b>ふりなおし</b>(お金がかかる)で、能力値や特性は選びなおせる。特技・魔法の習得だけは戻せない(忘れないかわりにSPも戻らない)<br>・タイトルやメニューの<b>エディタ</b>で、スキル盤の能力を追加・変更できる');
       H('覚醒', '・<b>職業の覚醒</b>:職業を極めた(★10)あとも その職で戦いつづけると、やがて<b>覚醒</b>する(必要な戦闘は基本職で約60戦、上の段階ほど多い)。覚醒した職についているあいだ、その職の能力補正が1.5倍・全能力+15%・特性1.5倍になり、系統ごとの<b>覚醒技</b>を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+30%)<br>・<b>種族の覚醒</b>:Lv30以上で<b>祖霊の試練</b>(強い祖霊との戦い)に勝つと、種族の真の力に目覚める。長所の補正が2倍・短所は半分・全能力+15%、特性1.5倍、耐性の強化、戦闘中のHP回復がつき、種族の系統ごとの覚醒技を覚える。呼び名も変わる(エルフ → ハイエルフ など)<br>・試練は、各国の都の<b>転職の神殿</b>(お布施が必要)か、同じ種族の<b>里</b>(無料)で受けられる。負けても命は取られず、何度でも挑める<br>・覚醒のぐあいは 神殿の「🌟 覚醒」や つよさの画面で見られる');
       H('国境', '・外を歩いていると、国と国の境目に<b>それぞれの国の色の線</b>が見える。境目の近くでは、画面上の地名に「⇄となりの国」と出る<br>・国境を越えると「🚩 国境を越えた」と知らせが出る。国が変わると魔物の強さも変わるので注意<br>・<b>地図</b>は国ごとに色がつき、白い線が国境、国名も入る(地図の下のボタンで切りかえ)');
