@@ -294,6 +294,18 @@ img.navship{float:right;margin:0 0 4px 8px}
 .lnpor .fr{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;z-index:2}
 .lnpor .pp{width:40px;height:50px;object-fit:cover;object-position:center 18%;border-radius:50%;display:block}
 .lnbody{flex:1;min-width:0;line-height:1.5}.lnbody small{color:#b9c2de}
+
+/* 素材:状態異常・強化の印、共鳴の光景 */
+.en .est{display:block;line-height:1;min-height:0;text-align:center}.en .est .ech{display:inline-flex;align-items:center;gap:1px;margin:2px 1px 0;padding:1px 4px 1px 2px;border-radius:8px;background:rgba(8,12,28,.82);border:1px solid #55608a;color:#e8ecff;font-size:10px;white-space:nowrap}
+.stt .ico{vertical-align:-2px;margin-right:1px}
+.rxflash{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden;animation:rxflash 1.1s ease-out forwards}
+.rxflash .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.rxflash .seal{position:absolute;left:50%;top:50%;width:96px;height:96px;margin:-48px 0 0 -48px;object-fit:contain;animation:rxseal 1.1s ease-out forwards}
+.rxflash.foe .bg{filter:hue-rotate(150deg) brightness(.7)}
+@keyframes rxflash{0%{opacity:0}18%{opacity:1}70%{opacity:1}100%{opacity:0}}
+@keyframes rxseal{0%{transform:scale(.4) rotate(-40deg)}30%{transform:scale(1.15) rotate(0)}100%{transform:scale(1) rotate(8deg)}}
+img.rseal{vertical-align:-6px}
+.deb{position:relative;display:inline-block;line-height:0}.deb .ico{filter:grayscale(1) brightness(.75) sepia(1) hue-rotate(-40deg) saturate(3)}.deb::after{content:'▼';position:absolute;right:-2px;bottom:-3px;font-size:8px;line-height:1;color:#ff7a7a}
 </style>
 </head>
 <body>
@@ -1353,6 +1365,7 @@ const NAMES_M = ['アレン','カイ','レオ','ユーリ','ガレス','ロイ',
 const NAMES_F = ['エマ','リナ','ソフィ','ミラ','クレア','ニーナ','アイリス','ルナ','セレナ','マヤ','リタ','ノーラ','エリカ','ティナ','ハンナ','ロザリー','ユナ','ベル','カミラ','ダリア','フィオ','イルマ','リーゼ','サラ','メル','コレット','アデル','ジーナ','ヒルダ','ウェンディ'];
 const RUMORS = [
  '転職の神殿は各国の都にある。職業を極めるほど、新しい道が開けるそうだ。',
+ '職を極めた者が覚醒するのは、ただ戦いつづけたときではない。その職らしい行いを重ねたときだ。鍛冶師なら鎚を、商人なら そろばんを手放すな。',
  '職の腕は、戦いだけで上がるものじゃない。鍛冶師なら良い武具を打つこと、商人なら大きな商いをすること。その職らしい仕事が、いちばんの修業だ。',
  '魔王の城は8つの「封印の紋章」が揃わないと入れないらしい。紋章は各国の魔窟にいる魔将が持っているとか。',
  '銀色の玉のような魔物を見たら逃がすな。倒せれば経験値がたっぷり手に入る。',
@@ -1834,9 +1847,9 @@ function learn(c, id) { if (!DB.skills[id] || c.skills.includes(id)) return fals
 function learnJobSkills(c) { const j = DB.jobs[c.job], out = []; if (!j || !c.jobs[c.job]) return out; j.skills.forEach(s => { if (s.lv <= c.jobs[c.job].lv && learn(c, s.id)) out.push(DB.skills[s.id].name); }); return out; }
 const jobLv = (c, id) => (c.jobs[id] ? c.jobs[id].lv : 0);
 const masters = c => Object.keys(c.jobs).filter(k => c.jobs[k].lv >= 10 && DB.jobs[k]).length;
-function gainJob(c, pts) {
+function gainJob(c, pts, src) {
   const msgs = []; if (c.kind === 'monster' || c.dead) return msgs; const j = DB.jobs[c.job]; if (!j) return msgs;
-  const r = c.jobs[c.job] || (c.jobs[c.job] = { lv: 1, p: 0 }); if (r.lv >= 10) return Awake.gain(c, j, r, pts, msgs);
+  const r = c.jobs[c.job] || (c.jobs[c.job] = { lv: 1, p: 0 }); if (r.lv >= 10) return Awake.gain(c, j, r, pts, msgs, src);
   r.p += pts * (1 + pasC(c, 'job') / 100);
   while (r.lv < 10 && r.p >= Math.ceil(JOBPTS[r.lv] * JOBTM[j.tier])) {
     r.lv++; msgs.push(`✨ ${c.name}の${j.name}の熟練度が ★${r.lv}になった!`);
@@ -3008,7 +3021,7 @@ class Scr {
   head(title, right) {
     const h = el('div', 'shead');
     if (!this.ent.o.noClose) { const b = el('button', 'sback', this.ent.o.backLabel || '◀ 戻る'); b.onclick = () => { if (UI.lock) return; if (this.ent.o.onBack) UI.run(this.ent.o.onBack); else UI.close(); }; h.appendChild(b); }
-    h.appendChild(el('div', 'stitle', title)); if (right) h.appendChild(el('div', 'sright', right));
+    h.appendChild(el('div', 'stitle', typeof Art !== 'undefined' ? Art.emo(title) : title)); if (right) h.appendChild(el('div', 'sright', right));
     this.root.appendChild(h); this.body = el('div', 'sbody'); this.root.appendChild(this.body); this.cur = this.body; return this;
   }
   p(html, cls) { const d = el('div', 'sp ' + (cls || ''), html); this.cur.appendChild(d); return d; }
@@ -3016,7 +3029,7 @@ class Scr {
   card(html) { const d = el('div', 'card', html); this.cur.appendChild(d); return d; }
   btn(label, fn, o) {
     o = o || {}; const b = el('button', 'sbtn ' + (o.cls || ''));
-    b.innerHTML = '<span class="row"><span class="bl">' + Art.emo(label) + '</span>' + (o.r ? '<span class="br">' + o.r + '</span>' : '') + '</span>' + (o.sub ? '<span class="bs">' + o.sub + '</span>' : '');
+    b.innerHTML = '<span class="row"><span class="bl">' + Art.emo(label) + '</span>' + (o.r ? '<span class="br">' + (o.r === '🔒' && typeof Art !== 'undefined' && Art.on() ? Art.ui('locked', 20) : o.r) + '</span>' : '') + '</span>' + (o.sub ? '<span class="bs">' + o.sub + '</span>' : '');
     if (o.dis) b.disabled = true; else b.onclick = () => UI.run(fn);
     this.cur.appendChild(b); return b;
   }
@@ -3039,7 +3052,7 @@ function ask(t, opts, o) {
   o = o || {};
   return Dlg.show((box, done) => {
     if (t) box.appendChild(el('div', 'dtext', t));
-    opts.forEach((x, i) => { if (typeof x === 'string') x = { l: x }; const b = el('button', 'dbtn', x.l + (x.sub ? '<small>' + x.sub + '</small>' : '')); if (x.dis) b.disabled = true; b.onclick = e => { e.stopPropagation(); done(x.v !== undefined ? x.v : i); }; box.appendChild(b); });
+    opts.forEach((x, i) => { if (typeof x === 'string') x = { l: x }; const b = el('button', 'dbtn', (typeof Art !== 'undefined' ? Art.emo(x.l) : x.l) + (x.sub ? '<small>' + x.sub + '</small>' : '')); if (x.dis) b.disabled = true; b.onclick = e => { e.stopPropagation(); done(x.v !== undefined ? x.v : i); }; box.appendChild(b); });
     if (o.cancel) { const b = el('button', 'dbtn cancel', typeof o.cancel === 'string' ? o.cancel : 'やめる'); b.onclick = e => { e.stopPropagation(); done(-1); }; box.appendChild(b); }
   });
 }
@@ -3075,7 +3088,7 @@ function askArea(t, def, file) {
 /* ---- HUD ---- */
 function pmHTML(c, o) {
   const s = st(c), hp = Math.max(0, c.hp), low = !c.dead && hp < s.mhp * 0.3;
-  const stt = Object.keys(c.st || {}).map(k => ST_JP[k]).filter(Boolean).join(' ');
+  const stt = typeof Art !== 'undefined' ? Art.stHtml(c.st) : Object.keys(c.st || {}).map(k => ST_JP[k]).filter(Boolean).join(' ');
   return `<div class="pm${c.dead ? ' dead' : ''}${low ? ' low' : ''}${o && o.cur ? ' cur' : ''}">${ic(c, 26)}<b>${esc(c.name)}</b><div class="bar"><i style="width:${Math.round(hp / s.mhp * 100)}%"></i></div><div class="bar mp"><i style="width:${s.mmp ? Math.round(c.mp / s.mmp * 100) : 0}%"></i></div>` +
     `<div>${c.dead ? '✝ たおれた' : 'H' + hp + ' M' + c.mp}</div>${o && o.extra !== undefined ? '<div class="stt">' + o.extra + '</div>' : (stt ? '<div class="stt">' + stt + '</div>' : '')}</div>`;
 }
@@ -4142,7 +4155,7 @@ const Battle = {
       if (!d) { const sz = Gfx.monSize(e.m) * Battle.scale(); d = D.es[i] = el('div', 'en' + (e.boss ? ' boss' : ''), `<div class="sp" style="width:${sz}px;height:${sz}px;animation-delay:-${(i * .37).toFixed(2)}s"><img class="fa" src="${Gfx.monURL(e.m, 0)}" alt=""><img class="fb" src="${Gfx.monURL(e.m, 1)}" alt=""></div><span class="nm"></span><div class="bar en"><i></i></div><span class="hpn"></span><span class="lk"></span>`); D.en.appendChild(d); }
       d.classList.toggle('dead', !!(e.dead || e.gone)); d.children[1].textContent = e.name; d.children[2].firstChild.style.width = Math.max(0, Math.round(e.hp / e.s.mhp * 100)) + '%'; d.children[3].textContent = B.scan[i] ? Math.max(0, e.hp) + '/' + e.s.mhp : ''; const lh = e.dead || e.gone ? '' : Stance.html(e); if (d._lk !== lh) { d._lk = lh; d.children[4].innerHTML = lh; }
     });
-    B.al.forEach((u, i) => { let d = D.ps[i]; if (!d) { d = D.ps[i] = el('div', 'pmw', '<div></div>'); D.pt.appendChild(d); } const h = pmHTML(u.c, { cur: u === cur, extra: (u.ten ? '🔥' + '気合' + u.ten + ' ' : '') + Object.keys(u.st).map(k => ST_JP[k]).filter(Boolean).join(' ') + (Object.keys(u.buf).length || Object.keys(u.fx).length ? ' ✦' : '') }); if (d._h !== h) { d._h = h; d.firstChild.innerHTML = h; } });
+    B.al.forEach((u, i) => { let d = D.ps[i]; if (!d) { d = D.ps[i] = el('div', 'pmw', '<div></div>'); D.pt.appendChild(d); } const h = pmHTML(u.c, { cur: u === cur, extra: (u.ten ? '🔥' + '気合' + u.ten + ' ' : '') + Art.stHtml(u.st) + Art.bufHtml(u) }); if (d._h !== h) { d._h = h; d.firstChild.innerHTML = h; } });
   },
   async start(ids, o) {
     o = o || {}; if (!partyAlive()) return 'lose'; Oath.solo();
@@ -4207,7 +4220,7 @@ const Battle = {
         add('✨ とくぎ・魔法', () => skills(), '', !u.skills.some(id => DB.skills[id] && DB.skills[id].battle));
         add('🛡️ ぼうぎょ', () => res({ u, type: 'guard' }));
         add('🎒 どうぐ', () => items());
-        if (Reso.ready('A')) add('🌈 共鳴連携<small>満ちた共鳴ゲージで、全員でたたみかける</small>', () => res({ u, type: 'reso' }), 'c1 reso');
+        if (Reso.ready('A')) add((Art.on() ? Art.html('exp_resonance_resonance_seal', 24, 'rseal') + ' ' : '🌈 ') + '共鳴連携<small>満ちた共鳴ゲージで、全員でたたみかける</small>', () => res({ u, type: 'reso' }), 'c1 reso');
         if (canBack) add('◀ もどる', () => res('back'), 'back'); else add('🏃 にげる', () => { if (Oath.has('noflee')) toast('不退転の誓いを立てている'); else res('flee'); }, 'back');
         add('🤖 おまかせ<small>この戦闘を自動で</small>', () => res('auto'), 'back');
       };
@@ -4483,9 +4496,9 @@ const Battle = {
     let exp = killed.reduce((s, e) => s + e.exp, 0), gold = killed.reduce((s, e) => s + e.gold, 0);
     exp = Math.floor(exp * (1 + clamp(pas('exp'), 0, 300) / 100) * (B.o.expm || 1) * (1 + Oath.exp()) * (Edict.has('learn') ? 1.1 : 1)); gold = Math.floor(gold * (1 + clamp(pas('gold'), 0, 400) / 100) * (1 + Oath.gold()));
     const msg = ['<b>戦いに勝利した!</b>'], lvm = [];
-    if (exp || gold) msg.push(`経験値 ${fmt(exp)}、${fmt(gold)}G を手に入れた!`); addGold(gold);
+    if (exp || gold) msg.push(`${Art.ui('exp', 18)}経験値 ${fmt(exp)}、${Art.ui('gold', 18)}${fmt(gold)}G を手に入れた!`); addGold(gold);
     const maxLv = Math.max(0, ...B.en.map(e => e.lv)), jp0 = B.o.boss ? 5 : 1;
-    P().forEach(c => { if (c.dead) return; lvm.push(...gainExp(c, exp)); lvm.push(...gainJob(c, maxLv < c.lv - 15 ? jp0 * .34 : jp0)); if (c.aff < 100 && c.id !== G.hero) c.aff = Math.min(100, c.aff + .25); });
+    P().forEach(c => { if (c.dead) return; lvm.push(...gainExp(c, exp)); lvm.push(...gainJob(c, maxLv < c.lv - 15 ? jp0 * .34 : jp0, maxLv < c.lv - 15 ? 'weak' : 'battle')); if (c.aff < 100 && c.id !== G.hero) c.aff = Math.min(100, c.aff + .25); });
     G.reserve.forEach(id => { const c = G.chars[id]; if (c && !c.dead) gainExp(c, exp * .4); });
     killed.forEach(e => { const d = Loot.drop(e.m, e.lv); if (d === '*medal') msg.push(`⭐ ${e.name}は星のメダルを落とした!`); else if (d) { give(d); msg.push(`${e.name}は「${item(d).name}」を落とした!`); } });
     Ledger.onKills(killed); WMast.win(); Res.after(killed); Curse.win();
@@ -4579,7 +4592,7 @@ const Menu = {
   open() {
     UI.open(s => {
       const h = hero(); s.head('メニュー', fmt(G.gold) + 'G');
-      s.card(`<b>${esc(h.name)}</b> ${age()}歳・${jobName(h)}・Lv${h.lv}<br><small>${dateStr()} ${timeStr()}・${Field.locName()}<br>名声 ${G.fame}・善悪 ${G.karma > 0 ? '+' : ''}${G.karma}・ギルド ${GUILD_RANK[guildRank()][0]}ランク・紋章 ${Object.keys(G.sigils).length}/8${G.medals ? '・星のメダル ' + G.medals : ''}${G.food ? '<br>🍽 効果中:' + FOOD_JP[G.food.k] + '+' + G.food.v + '%(あと' + G.food.n + '戦)' : ''}${G.repel > 0 ? '<br>魔除け あと' + G.repel + '歩' : ''}</small>`);
+      s.card(`<b>${esc(h.name)}</b> ${age()}歳・${jobName(h)}・Lv${h.lv}<br><small>${dateStr()} ${timeStr()}・${Field.locName()}<br>${Art.ui('fame', 16)}名声 ${G.fame}・善悪 ${G.karma > 0 ? '+' : ''}${G.karma}・ギルド ${GUILD_RANK[guildRank()][0]}ランク・紋章 ${Object.keys(G.sigils).length}/8${G.medals ? '・星のメダル ' + G.medals : ''}${G.food ? '<br>🍽 効果中:' + FOOD_JP[G.food.k] + '+' + G.food.v + '%(あと' + G.food.n + '戦)' : ''}${G.repel > 0 ? '<br>魔除け あと' + G.repel + '歩' : ''}</small>`);
       s.grid(2);
       s.btn('📊 つよさ', () => Menu.status(0)); s.btn('🗡️ そうび', () => Menu.equip(0));
       s.btn('🎒 どうぐ', () => Menu.items()); s.btn('✨ とくぎ・魔法', () => Menu.skills(0));
@@ -4600,7 +4613,7 @@ const Menu = {
       const all = allChars(); s.head('つよさ'); const c = Menu.charTabs(s, idx, k => idx = k, all), m = st(c), j = jobOf(c), jr = c.jobs[c.job];
       s.card(`${Art.por(c, 92) || ic(c, 48)}<b style="font-size:17px">${esc(c.name)}</b> <span class="tag">${SEX_JP[c.sex] || ''}</span><span class="tag">${(PERS[c.pers] || PERS.honest)[0]}</span>${c.kind !== 'monster' ? '<span class="tag">' + Race.name(c) + '</span>' : ''}${Awake.jobOn(c) ? '<span class="tag" style="color:#ffd76a">✦職業覚醒</span>' : ''}${c.reb ? '<span class="tag">転生' + c.reb + '回</span>' : ''}<br>` +
         `${c.kind === 'monster' ? jobName(c) + '(魔物)' : `${JOBCAT[j.cat][1]} ${j.name} ★${jr ? jr.lv : 1}${jr && jr.lv >= 10 ? '(極)' : ''}`}・Lv ${c.lv}<br>` +
-        `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで あと' + Work.num(Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier]) - jr.p)) : ''}${c.kind !== 'monster' && Awake.left(c) >= 0 ? '・職業の覚醒まで ' + Awake.left(c) + '戦' : ''}${c.kind !== 'monster' ? '<br>熟練が上がる行動:' + Work.text(j) + '<br>(戦闘は1回で1・ボスは5。仕事は、良い物を作るほど多い)' : ''}</small>`);
+        `<small>${c.lv >= 99 ? 'レベル最大' : '次のレベルまで ' + fmt(needExp(c.lv) - c.exp)}${jr && jr.lv < 10 ? '・次の熟練度まで あと' + Work.num(Math.max(0, Math.ceil(JOBPTS[jr.lv] * JOBTM[j.tier]) - jr.p)) : ''}${c.kind !== 'monster' && Awake.left(c) >= 0 ? '・職業の覚醒まで あと' + Awake.left(c) : ''}${c.kind !== 'monster' ? (jr && jr.lv >= 10 ? (jr.aw ? '' : '<br>覚醒の行い:' + Awake.deedText(j)) : '<br>熟練が上がる行動:' + Work.text(j) + '<br>(戦闘は1回で1・ボスは5。仕事は、良い物を作るほど多い)') : ''}</small>`);
       s.card(`<div class="kv"><span>HP<b>${c.hp} / ${m.mhp}</b></span><span>MP<b>${c.mp} / ${m.mmp}</b></span><span>こうげき力<b>${m.atk}</b></span><span>しゅび力<b>${m.def}</b></span><span>ちから<b>${m.str}</b></span><span>みのまもり<b>${m.vit}</b></span><span>すばやさ<b>${m.agi}</b></span><span>かしこさ<b>${m.int}</b></span><span>うん<b>${m.luk}</b></span><span>極めた職<b>${masters(c)}</b></span></div>`);
       if (c.kind !== 'monster') { const R = Race.of(c); s.card(`<b>種族:${R.emoji} ${c.raw ? R.an + '</b> <small>' + R.name + '・覚醒ずみ' : R.name + '</b> <small>' + RACE_GRP[R.grp][0]}</small><br><small>${R.d}<br>${Race.traits(R)}${c.raw ? '<br><span class="good">【覚醒】' + Awake.raceText(R).replace(/^<b>[^<]*<\/b>になる。/, '') + '</span>' : ''}</small>`); if (Awake.jobOn(c)) s.card(`<b>✦ ${esc(jobOf(c).name)}・覚醒</b><br><small>${Awake.jobText(jobOf(c))}</small>`); }
       { const fl = Feat.list(c).map(id => DB.feats[id]).filter(Boolean); if (fl.length) s.card(`<b>📜 会得スキル</b> <small>${fl.length}個</small><br><small>${['u', 't', 'r'].map(g => fl.filter(F => F.grp === g).map(F => (g === 'u' ? '👑' : '') + esc(F.name)).join('・')).filter(Boolean).join('<br>')}</small>`); }
@@ -4710,7 +4723,7 @@ const Menu = {
       { const pt = Proph.text(); if (pt) s.card(pt); }
       { const rd = Ledger.ready().length; s.btn(`📚 依頼台帳(達成 ${Ledger.done()}/${Ledger.qs.length})`, () => Ledger.open(false), { sub: '報酬つきの依頼 約2,000件' + (rd ? `・報告できる依頼 ${rd}件` : '') }); }
       s.h(`受けている依頼(${G.quests.length}/3)`); if (!G.quests.length) s.p('<span class="note">依頼は冒険者ギルドで受けられる。</span>');
-      G.quests.forEach(q => s.btn(esc(q.title), async () => { if (await yn('この依頼をあきらめますか?')) G.quests = G.quests.filter(x => x !== q); }, { sub: Quests.progress(q) + (q.limit ? `・期限:あと${q.limit - G.day}日` : '') + `・報酬 ${fmt(q.gold)}G`, r: q.done ? '✔達成' : '' }));
+      G.quests.forEach(q => s.btn(esc(q.title), async () => { if (await yn('この依頼をあきらめますか?')) G.quests = G.quests.filter(x => x !== q); }, { sub: Quests.progress(q) + (q.limit ? `・期限:あと${q.limit - G.day}日` : '') + `・報酬 ${fmt(q.gold)}G`, r: q.done ? Art.ui('quest_done', 18) + '✔達成' : Art.ui('quest_new', 18) }));
     });
   },
   journal(t) {
@@ -4797,7 +4810,7 @@ async function jobInfo(j, c) {
   const md = j.mod.map((v, i) => v ? `${STAT_JP[STATS[i]]}${v > 0 ? '+' : ''}${v * 10}%` : '').filter(Boolean).join(' ') || '補正なし';
   const ps = Object.keys(j.pas).filter(k => PAS_JP[k]).map(k => `${PAS_JP[k]}${j.pas[k] > 0 ? '+' : ''}${j.pas[k]}%`).join('、') || 'なし';
   const e = (JOBEQ[j.cat] || JOBEQ.S).split('|');
-  await say(`${JOBCAT[j.cat][1]} <b>${esc(j.name)}</b> <small>${JOB_TIER[j.tier] || ''}・${JOBCAT[j.cat][0]}</small>\n${esc(j.desc)}\n\n<small>【条件】${reqText(j) || 'なし(誰でもなれる)'}\n【能力補正】${md}\n【特性】${ps}\n【熟練が上がる行動】${Work.text(j)}\n【覚える特技】${sk}\n【装備】${e[0].split(',').map(w => WT[w]).join('・')}/${e[1].replace('H', '鎧').replace('L', '服').replace('R', 'ローブ')}${e[2] === '1' ? '/盾' : ''}${JOB_GIFT[j.id] && DB.items[JOB_GIFT[j.id]] ? '\n【極めた証】' + DB.items[JOB_GIFT[j.id]].name + '(★10で1回だけもらえる' + (G && G.jobGift && G.jobGift[j.id] ? '・受けとりずみ' : '') + ')' : ''}${c ? '\n【いまの熟練度】' + (jobLv(c, j.id) ? '★' + jobLv(c, j.id) : '未経験') : ''}</small>`);
+  await say(`${JOBCAT[j.cat][1]} <b>${esc(j.name)}</b> <small>${JOB_TIER[j.tier] || ''}・${JOBCAT[j.cat][0]}</small>\n${esc(j.desc)}\n\n<small>【条件】${reqText(j) || 'なし(誰でもなれる)'}\n【能力補正】${md}\n【特性】${ps}\n【熟練が上がる行動】${Work.text(j)}\n【覚醒の行い(★10のあと)】${Awake.deedText(j).replace('<br>', '/')}\n【覚える特技】${sk}\n【装備】${e[0].split(',').map(w => WT[w]).join('・')}/${e[1].replace('H', '鎧').replace('L', '服').replace('R', 'ローブ')}${e[2] === '1' ? '/盾' : ''}${JOB_GIFT[j.id] && DB.items[JOB_GIFT[j.id]] ? '\n【極めた証】' + DB.items[JOB_GIFT[j.id]].name + '(★10で1回だけもらえる' + (G && G.jobGift && G.jobGift[j.id] ? '・受けとりずみ' : '') + ')' : ''}${c ? '\n【いまの熟練度】' + (jobLv(c, j.id) ? '★' + jobLv(c, j.id) : '未経験') : ''}</small>`);
 }
 /* ---- フィールドで道具・特技を使う ---- */
 async function pickTown(t) { const ls = W.sites.filter(x => G.vis[x.id] && x.fac); if (!ls.length) return null; const i = await ask(t, ls.map(x => ({ l: `${SITE_ICON[x.type]} ${x.name}`, sub: W.nations[x.nation].short })), { cancel: 1 }); return i < 0 ? null : ls[i]; }
@@ -5883,7 +5896,7 @@ const More = {
   notes(tab) {
     let T = tab || 0;
     UI.open(s => {
-      s.head('噂・宝の地図・宿敵・探索'); s.tabs(['噂メモ', '宝の地図', '宿敵', '探索', '手紙' + (Mail.unread() ? `<b style="color:#e8534a"> ${Mail.unread()}</b>` : '')], T, i => { T = i; });
+      s.head('噂・宝の地図・宿敵・探索'); s.tabs([Art.tab('rumor', '噂メモ'), Art.tab('treasure', '宝の地図'), Art.tab('nemesis', '宿敵'), Art.tab('map', '探索'), Art.tab('mail', '手紙') + (Mail.unread() ? `<b style="color:#e8534a"> ${Mail.unread()}</b>` : '')], T, i => { T = i; });
       if (T === 0) {
         s.p('<small>町の人や酒場で聞いた噂。地図に「?」(だいたいの場所)や「!」(行けば何かある場所)がつきます。</small>');
         if (!G.rum.length) s.p('<span class="note">いまは、気になる噂はない。酒場で「噂話を聞く」と集まりやすい。</span>');
@@ -7162,8 +7175,46 @@ const AW_NAME = { human: '英傑', highland: '山王の裔', nomad: '風の申�
   ogre: 'オーガロード', goblin: 'ホブゴブリン', orc: 'ハイオーク', troll: 'エルダートロル', giant: '古の巨人', cyclops: '天目の匠', oni: '鬼神', tengu: '大天狗',
   angel: '大天翼', demon: '上位魔族', night: '真祖', construct: '神造からくり', flame: '業火の民', frost: '絶氷の民', crystal: '金剛晶の民', shadow: '深影の民' };
 RACES.forEach(R => { R.an = AW_NAME[R.id] || '真・' + R.name; R.am = R.mp.map(v => R.id === 'human' ? 1.25 : (1 + (v > 0 ? v * 2 : v * .5) / 100) * 1.15); R.ares = {}; Object.keys(R.res).forEach(k => { const r = R.res[k]; R.ares[k] = r < 1 ? Math.max(.1, Math.round((1 - (1 - r) * 1.5) * 100) / 100) : Math.round((1 + (r - 1) * .5) * 100) / 100; }); });
+// 覚醒の行い:極めた職が覚醒するのは、その職業らしい行動を重ねたとき。[数えるもの, 1回の点, 説明]
+// (戦いの中での行動。このほかに、その職業の「仕事」(Work)も そのまま数える)
+const AW_DEED = {
+  W: [['kill', .6, '敵にとどめを刺す'], ['bosswin', 3, 'ボス戦に勝つ'], ['dmgp', .15, '敵の攻撃を受け止める']],
+  F: [['crit', .7, '会心の一撃を出す'], ['kill', .4, '敵にとどめを刺す'], ['evade', .4, '攻撃をかわす']],
+  M: [['cast', .5, '攻撃呪文を唱える'], ['mp', .02, 'MPを使う']],
+  P: [['heal', 1, '回復呪文を使う'], ['revive', 3, '仲間を生き返らせる']],
+  T: [['t1k', .6, '1ターン目に敵を倒す'], ['evade', .4, '攻撃をかわす'], ['kill', .3, '敵にとどめを刺す']],
+  C: [], K: [],
+  N: [['kinds', 2, '初めて出会う種類の魔物を倒す'], ['nightw', .4, '夜の戦いに勝つ'], ['btl', .2, '戦いに勝つ']],
+  A: [['evade', .5, '攻撃をかわす'], ['btl', .25, '戦いに勝つ']],
+  B: [['mon', .6, '魔物の仲間といっしょに勝つ']],
+  D: [['kill', .5, '敵にとどめを刺す'], ['low', 1.5, '追いつめられてから勝つ'], ['cast', .4, '攻撃呪文を唱える']],
+  S: [['bosswin', 3, 'ボス戦に勝つ'], ['btl', .3, '戦いに勝つ'], ['kill', .3, '敵にとどめを刺す']]
+};
+const AW_DEED_SET = {
+  shot: [['t1k', .6, '1ターン目に敵を倒す'], ['crit', .5, '会心の一撃を出す'], ['kill', .5, '敵にとどめを刺す']],
+  wall: [['dmgp', .25, '敵の攻撃を受け止める'], ['btl', .3, '戦いに勝つ'], ['kill', .3, '敵にとどめを刺す']],
+  rage: [['low', 1.5, '追いつめられてから勝つ'], ['kill', .6, '敵にとどめを刺す']],
+  blade: [['crit', .6, '会心の一撃を出す'], ['kill', .5, '敵にとどめを刺す']],
+  spell: [['cast', .4, '攻撃呪文を唱える'], ['kill', .5, '敵にとどめを刺す']],
+  dark: [['t1k', 1, '1ターン目に敵を倒す'], ['crit', .5, '会心の一撃を出す']],
+  holy: [['dmgp', .2, '敵の攻撃を受け止める'], ['heal', .5, '回復呪文を使う'], ['kill', .3, '敵にとどめを刺す']],
+  hero: [['bosswin', 4, 'ボス戦に勝つ'], ['kill', .4, '敵にとどめを刺す'], ['heal', .3, '回復呪文を使う']],
+  folk: [['btl', .3, '戦いに勝つ']]
+};
+const AW_DEED_JOB = { archer: 'shot', sniper: 'shot', magicshooter: 'shot', guard: 'wall', royalguard: 'wall', berserker: 'rage', warlord: 'rage', conqueror: 'rage', samurai: 'blade', blademaster: 'blade', swordsaint: 'blade', skyblade: 'blade', magicknight: 'spell', assassin: 'dark', ninja: 'dark', jonin: 'dark', paladin: 'holy', holycommander: 'holy', templar: 'holy', hero: 'hero', truehero: 'hero', starhero: 'hero', eternalhero: 'hero', commoner: 'folk', legendcommoner: 'folk' };
 const Awake = {
   PERM: 30, RLV: 30,
+  deeds(j) { return j._ad || (j._ad = AW_DEED_SET[AW_DEED_JOB[j.id]] || AW_DEED[j.cat] || []); },
+  deedText(j) { const d = this.deeds(j), w = typeof Work !== 'undefined' ? Work.tags(j).map(t => WORK[t][0] + WORK[t][1]) : []; return (d.length ? '⚔️戦いの中で:' + d.map(x => x[2]).join('・') : '⚔️戦いでは進まない') + (w.length ? '<br>仕事で:' + w.join(' ') : ''); },
+  // 戦いの前に、それぞれの「行動の数」を写しておく(戦いのあと、その戦いのぶんだけを数える)
+  snap() { if (!G) return; P().forEach(c => { if (c.kind !== 'monster') c._ad = Object.assign({}, c.ft || {}); }); },
+  unsnap() { if (!G) return; for (const id in G.chars) delete G.chars[id]._ad; },
+  // この戦いでの、その職業らしい行動の点
+  battle(c, j) {
+    const now = c.ft || {}, base = c._ad || now, u = typeof B !== 'undefined' && B ? B.al.find(a => a.c === c) : null; let v = 0;
+    this.deeds(j).forEach(([k, w]) => { let n; if (k === 'btl') n = 1; else if (k === 'bosswin') n = B && B.o && B.o.boss ? 1 : 0; else if (k === 'nightw') n = isNight() ? 1 : 0; else if (k === 'low') n = u && u.wasLow ? 1 : 0; else if (k === 'mon') n = B && B.al.some(a => !a.dead && a.c && a.c.kind === 'monster') ? 1 : 0; else n = Math.max(0, (now[k] || 0) - (base[k] || 0)); v += n * w; });
+    return v;
+  },
   /* ---- 職業 ---- */
   need(j) { return Math.ceil(60 * JOBTM[j.tier]); },
   jobOn(c, id) { if (!c || c.kind === 'monster' || !c.jobs) return false; const r = c.jobs[id || c.job]; return !!(r && r.aw); },
@@ -7172,8 +7223,10 @@ const Awake = {
   // 種族の補正 × 覚醒した職についているあいだの+15% × 覚醒させた職の数だけ+1%
   rmul(c) { const rm = Race.mul(c); if (!c || c.kind === 'monster') return rm; const on = this.jobOn(c), n = this.count(c); if (!on && !n) return rm; const k = (on ? 1.15 : 1) * (1 + Math.min(this.PERM, n) / 100); return rm.map(v => v * k); },
   jpm(c) { return this.jobOn(c) ? 1.5 : 1; },
-  gain(c, j, r, pts, msgs) {
-    if (r.aw) return msgs; r.ap = (r.ap || 0) + pts * (1 + pasC(c, 'job') / 100);
+  // src:'battle'(戦い)・'weak'(ずっと格下との戦い)・'work'(その職業の仕事)・'side'(同じ系統の、ほかの職の仕事。覚醒には数えない)
+  gain(c, j, r, pts, msgs, src) {
+    if (r.aw || src === 'side') return msgs; if (src === 'battle' || src === 'weak') pts = this.battle(c, j) * (src === 'weak' ? .34 : 1); if (!(pts > 0)) return msgs;
+    r.ap = (r.ap || 0) + pts * (1 + pasC(c, 'job') / 100);
     if (r.ap >= this.need(j)) {
       r.aw = G.day || 1; delete r.ap; const sk = AW_JOB[j.cat], nw = sk && DB.skills[sk] && learn(c, sk);
       msgs.push(`🌟 ${c.name}の${j.name}が <b>覚醒</b>した!\n<small>${j.name}でいるあいだ、能力と特性が大きく上がる。</small>`); if (nw) msgs.push(`　${c.name}は 覚醒技「${DB.skills[sk].name}」を覚えた!`);
@@ -7206,14 +7259,14 @@ const Awake = {
   open(s) {
     UI.open(sc => {
       sc.head('🌟 覚醒', fmt(G.gold) + 'G');
-      sc.p('<small><b>職業の覚醒</b>:極めた(★10)職業でさらに戦いつづけると、その職業が覚醒する。覚醒した職についているあいだ、能力と特性が大きく上がり、系統ごとの覚醒技を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+' + this.PERM + '%)。<br><b>種族の覚醒</b>:Lv' + this.RLV + '以上で「祖霊の試練」に勝つと、種族の真の力に目覚める(ずっと続く)。同族の里なら お布施はいらない。</small>');
+      sc.p('<small><b>職業の覚醒</b>:極めた(★10)職業で、<b>その職業らしい行い</b>(戦いの中での行動と、その職業の仕事)を重ねると、その職業が覚醒する。ただ戦うだけでは進まない。覚醒した職についているあいだ、能力と特性が大きく上がり、系統ごとの覚醒技を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+' + this.PERM + '%)。<br><b>種族の覚醒</b>:Lv' + this.RLV + '以上で「祖霊の試練」に勝つと、種族の真の力に目覚める(ずっと続く)。同族の里なら お布施はいらない。</small>');
       allChars().filter(c => c.kind !== 'monster').forEach(c => {
         const j = jobOf(c), r = c.jobs[c.job] || { lv: 1 }, R = Race.of(c), n = this.count(c), need = this.need(j);
-        const jt = r.aw ? '<span class="good">覚醒ずみ ✦</span>' : r.lv >= 10 ? `覚醒まで あと <b>${this.left(c)}</b>戦ぶん <small>(${Math.floor(r.ap || 0)}/${need})</small>` : `<small>まず極める(いま★${r.lv})</small>`;
+        const jt = r.aw ? '<span class="good">覚醒ずみ ✦</span>' : r.lv >= 10 ? `覚醒まで あと <b>${this.left(c)}</b> <small>(${Math.floor(r.ap || 0)}/${need})</small>` : `<small>まず極める(いま★${r.lv})</small>`;
         const rt = c.raw ? `<span class="good">覚醒ずみ:${R.an}</span>` : c.lv >= this.RLV ? '試練を受けられる' : `<small>Lv${this.RLV}から(いまLv${c.lv})</small>`;
         sc.card(`${ic(c)} <b>${esc(c.name)}</b> <small>Lv${c.lv}${G.party.includes(c.id) ? '' : '・ひかえ'}</small><br>職業 ${esc(j.name)}:${jt}<br>種族 ${R.name}:${rt}<br><small>覚醒させた職 ${n}(全能力+${Math.min(this.PERM, n)}%)</small>`);
         if (!c.raw) sc.btn(`🌟 ${esc(c.name)}:祖霊の試練を受ける`, () => this.raceTrial(c, s), { r: this.cost(c, s) ? fmt(this.cost(c, s)) + 'G' : '無料', sub: `勝てば ${R.an} に`, dis: c.lv < this.RLV || !G.party.includes(c.id) || G.gold < this.cost(c, s), cls: 'ok' });
-        if (!r.aw && r.lv >= 10) sc.p(`<small>${esc(j.name)}が覚醒すると:${this.jobText(j)}</small>`);
+        if (!r.aw) sc.p(`<small><b>${esc(j.name)}の覚醒の行い</b><br>${this.deedText(j)}${r.lv >= 10 ? '<br>覚醒すると:' + this.jobText(j) : ''}</small>`);
       });
     });
   }
@@ -7225,6 +7278,8 @@ const Awake = {
 { const f0 = Race.time; Race.time = function (c) { if (!Awake.raceOn(c) || !G) return f0.call(this, c); const t = this.of(c).tm; if (!t) return 1; return isNight() ? 1 + t[0] * 1.5 / 100 : 1; }; }
 { const f0 = Race.regen; Race.regen = function (c) { const v = f0.call(this, c); return Awake.raceOn(c) ? Math.round(v * 1.6) + 2 : v; }; }
 { const f0 = Race.name; Race.name = function (c) { return Awake.raceOn(c) ? this.of(c).an : f0.call(this, c); }; }
+// 戦いのたびに、行動の数を写す
+{ const f0 = Battle.start; Battle.start = async function (ids, o) { Awake.snap(); try { return await f0.call(this, ids, o); } finally { Awake.unsnap(); } }; }
 
 /* ===================== スキル盤(レベルアップでもらえるSPで、能力を自由に解放する) ===================== */
 /* 解放した能力は、転職しても転生しても残る。データは DB.perks(エディタで追加・編集できる) */
@@ -7630,7 +7685,7 @@ Perk.open = function (i0) {
       const now = Object.keys(tot).map(q => { const [t, kk] = q.split('.'); return perkEffText([t, kk, Math.round(tot[q] * 10) / 10]); }).join('、'), lab = n => same && parts[n][0] === base ? parts[n][1] : esc(ln[n].name);
       box.appendChild(el('div', 'ttitle', `<b>${esc(same ? base : ln[0].name + ' → ' + ln[ln.length - 1].name)}</b> <small>${k}/${ln.length}${now ? '・いま:' + now : ''}</small>`));
       box.appendChild(Tree.chain(ln.map((P, n) => ({ label: lab(n), pip: same && parts[n][0] === base, st: this.has(c, P.id) ? 'on' : P === nx ? 'nx' : '', tap: P === nx && left >= P.cost ? () => buy(P) : () => say(`<b>${esc(P.name)}</b> <span class="tag">SP${P.cost}</span>\n${P.desc}${this.has(c, P.id) ? '\n<span class="good">解放ずみ</span>' : P === nx ? (left >= P.cost ? '' : '\n<span class="note">SPが足りない</span>') : '\n<span class="note">手前のものを先に解放する</span>'}`) }))));
-      if (nx) { const row = el('div', 'tnext'); row.appendChild(el('span', '', `<small>つぎ <b>${lab(ln.indexOf(nx))}</b>:${nx.desc}</small>`)); row.appendChild(Tree.mini(`解放 <b>SP${nx.cost}</b>`, () => buy(nx), left < nx.cost)); box.appendChild(row); } else box.appendChild(el('div', 'tnext', '<small class="good">✔ この列は すべて解放した</small>'));
+      if (nx) { const row = el('div', 'tnext'); row.appendChild(el('span', '', `<small>つぎ <b>${lab(ln.indexOf(nx))}</b>:${nx.desc}</small>`)); row.appendChild(Tree.mini(`${Art.ui('unlocked', 16)}解放 <b>SP${nx.cost}</b>`, () => buy(nx), left < nx.cost)); box.appendChild(row); } else box.appendChild(el('div', 'tnext', '<small class="good">✔ この列は すべて解放した</small>'));
       s.add(box);
     });
     const sum = this.sumText(c); if (sum) { s.h('いまの合計(会得スキルもふくむ)'); s.card(`<small>${sum}</small>`); }
@@ -7784,6 +7839,7 @@ const Art = {
 }; }
 { const f0 = Battle.refresh; Battle.refresh = function (cur) {
   f0.call(this, cur); if (!B || !B.dom || !Art.on()) return;
+  B.en.forEach((e, i) => { const d = B.dom.es[i]; if (!d) return; const h = e.dead || e.gone ? '' : Object.keys(e.st || {}).filter(k => ST_JP[k]).map(k => '<span class="ech">' + Art.ui('status_' + k, 16) + ST_JP[k] + '</span>').join('') + (Art.bufIcons(e, 16) ? '<span class="ech">' + Art.bufIcons(e, 16) + '</span>' : ''); if (d._est !== h) { d._est = h; let s = d.querySelector('.est'); if (!s) { s = el('span', 'est'); d.appendChild(s); } s.innerHTML = h; } });
   B.en.forEach((e, i) => { const d = B.dom.es[i]; if (!d || d._art) return; d._art = 1; const id = Art.bossId(e) || (i === 0 && B.o.eart && ART_B64[B.o.eart] ? B.o.eart : null); if (!id) return; const sp = d.querySelector('.sp'); if (!sp) return;
     const dm = ART_DIM[id], h = clamp(Math.round(parseFloat(sp.style.height) || 150), 132, 196), u = Art.url(id); sp.classList.add('artsp'); sp.style.height = h + 'px'; sp.style.width = Math.round(h * dm[0] / dm[1]) + 'px'; sp.querySelectorAll('img').forEach(im => { im.src = u; }); });
 }; }
@@ -7837,8 +7893,23 @@ Art.fxCss = function () { if (this._fx || typeof document === 'undefined') retur
 { const f0 = Battle.tryStatus; Battle.tryStatus = async function (u, t, k, p) { const r = await f0.call(this, u, t, k, p); if (r && B && FX.on() && Art.on() && FX_ST[k] && t && !t.gone) FX.sheet(t, FX_ST[k]); return r; }; }
 
 /* ---- ボタンの絵文字を、UIアイコンに ---- */
-const ART_EMO = [['⚔️ こうげき', 'attack'], ['🛡️ ぼうぎょ', 'guard'], ['✨ とくぎ・魔法', 'magic'], ['🎒 どうぐ', 'items'], ['🗡️ そうび', 'equipment'], ['📜 依頼', 'quests'], ['🔷 スキル盤', 'skillboard'], ['🍳 製作', 'craft'], ['🏠 資産', 'estate'], ['📖 図鑑', 'journal'], ['⚙️ 設定', 'settings']];
-Art.emo = function (label) { if (typeof label !== 'string' || !this.on()) return label; for (const [p, id] of ART_EMO) if (label.startsWith(p)) return this.ui(id, 22) + label.slice(p.indexOf(' ') + 1); return label; };
+const ART_EMO = [['⚔️ こうげき', 'attack'], ['🛡️ ぼうぎょ', 'guard'], ['✨ とくぎ・魔法', 'magic'], ['🎒 どうぐ', 'items'], ['🗡️ そうび', 'equipment'], ['📜 依頼', 'quests'], ['🔷 スキル盤', 'skillboard'], ['🍳 製作', 'craft'], ['🏠 資産', 'estate'], ['📖 図鑑', 'journal'], ['⚙️ 設定', 'settings'],
+  // メニュー
+  ['👥 仲間', 'party'], ['🌳 職業ツリー', 'jobs'], ['📜 会得スキル', 'feats'], ['🗒️ 噂', 'treasure'], ['🗺️ 歩いた地図', 'map'], ['🗺️ 地図', 'map'], ['💾 セーブ', 'save'], ['✨ 系統', 'skills'],
+  // 町の施設・できること
+  ['🍺 酒場', 'tavern'], ['🏛️ 転職の神殿', 'temple'], ['🏛️ 博物館', 'museum'], ['🏟️ 闘技場', 'arena'], ['⚓ 港', 'boat'], ['⛵ 自分の船', 'boat'], ['📜 冒険者ギルド', 'quest_new'], ['🎒 道具屋', 'shop'],
+  ['🌱 畑', 'farm'], ['🌘 黒い扉', 'abyss'], ['🕵️ お尋ね者を追う', 'target'], ['💍 結婚式', 'family'], ['👶 赤ちゃん', 'family'], ['🌟 祖霊の試練', 'race'],
+  // フィールドでの行動(絵文字だけで見分ける)
+  ['⛏️ ', 'mining'], ['🎣 ', 'fishing'], ['⛺ ', 'camp'], ['🔒 ', 'locked'], ['🔓 ', 'unlocked']];
+// 絵文字のないラベル(頭に絵を足す)
+const ART_PRE = [['噂話を聞く', 'rumor'], ['ここで記録する', 'save'], ['おいのりをする', 'save']];
+Art.emo = function (label) { if (typeof label !== 'string' || !this.on()) return label; for (const [p, id] of ART_EMO) if (label.startsWith(p)) return this.ui(id, 22) + label.slice(p.indexOf(' ') + 1); for (const [p, id] of ART_PRE) if (label.startsWith(p)) return this.ui(id, 22) + label; return label; };
+// 状態異常と強化を、絵つきで出す(絵がOFFのときは、これまでどおりの文字)
+Art.stHtml = function (st) { const ks = Object.keys(st || {}).filter(k => ST_JP[k]); return this.on() ? ks.map(k => this.ui('status_' + k, 14) + ST_JP[k]).join(' ') : ks.map(k => ST_JP[k]).join(' '); };
+// 強化・弱体・守りの効果の印。能力の上下は1つずつ(下がっているものは暗く)、そのほかは同じ絵をまとめる
+Art.bufIcons = function (u, px) { const seen = {}; let h = ''; Object.keys(u.buf || {}).forEach(k => { if (UI_ICON['buff_' + k] === undefined) return; const down = u.buf[k] && u.buf[k].v < 0; h += down ? '<span class="deb">' + this.ui('buff_' + k, px) + '</span>' : this.ui('buff_' + k, px); }); Object.keys(u.fx || {}).forEach(k => { const i = UI_ICON['buff_' + k]; if (i === undefined || seen[i]) return; seen[i] = 1; h += this.ui('buff_' + k, px); }); return h; };
+Art.bufHtml = function (u) { const n = Object.keys(u.buf || {}).length + Object.keys(u.fx || {}).length; if (!n) return ''; if (!this.on()) return ' ✦'; return ' ' + (this.bufIcons(u, 14) || '✦'); };
+Art.tab = function (id, t) { return this.on() ? this.ui(id, 16) + t : t; };
 // 道具の名前の前に絵をつける
 function iname(it) { return it ? Art.item(it.id) + esc(it.name) : ''; }
 
@@ -7895,12 +7966,14 @@ const Reso = {
   },
   // 追加ダメージは、ほかの倍率(くずし・研究・スキルなど)をかけずに そのまま与える(上限を守るため)
   async raw(u, t, d) { if (!B || !t || t.dead || t.gone) return; d = Math.max(1, Math.floor(d)); t.hp = Math.max(0, t.hp - d); Battle.refresh(); if (FX.on()) { FX.cls(t, 'hit', 360); FX.num(t, d); } await Battle.log(`${t.name}に ${d} の追加ダメージ!`, 'dm'); if (t.hp <= 0) await Battle.kill(t, u); },
+  // 共鳴連携の瞬間:戦場いっぱいに共鳴の光景と紋章を出す
+  flash(side) { if (!FX.on() || !Art.on() || !B || !B.dom || !B.dom.en) return; const w = el('div', 'rxflash' + (side === 'A' ? '' : ' foe'), `<img class="bg" src="${Art.url('exp_bg_resonance')}" alt=""><img class="seal" src="${Art.url('exp_resonance_resonance_seal')}" alt="">`); B.dom.en.appendChild(w); setTimeout(() => w.remove(), 1150); },
   pop(t, art) { if (!FX.on() || !Art.on()) return; const e = FX.elOf(t); if (!e) return; const b = el('img', 'rxpop'); b.src = Art.url(art); b.alt = ''; e.appendChild(b); setTimeout(() => b.remove(), 760); },
   // 共鳴連携:動ける全員の力を合わせて、相手の全員へ
   async unleash(u) {
     const side = u.side, mine = (side === 'A' ? B.al : B.en).filter(x => !x.dead && !x.gone && !x.st.sleep && !x.st.para && !x.st.stun), foes = Battle.alive(side === 'A' ? 'E' : 'A');
     if (!this.ready(side) || !foes.length) { if (foes.length) await Battle.normalAttack(u, pick(foes)); return; }
-    this.set(side, 0); B.inReso = 1; const pe = B.fe; B.fe = '';
+    this.set(side, 0); B.inReso = 1; const pe = B.fe; B.fe = ''; this.flash(side);
     try {
       await Battle.log(side === 'A' ? `🌈 <b>共鳴連携!</b> ${mine.map(x => x.name).join('・')}の力が ひとつになった!` : '⚠️ <b>魔の共鳴!</b> 敵の力が ひとつになって襲いかかる!', side === 'A' ? 'hl' : 'dm');
       if (side === 'A') G.stat.resoB = (G.stat.resoB || 0) + 1;
@@ -7910,10 +7983,10 @@ const Reso = {
   // 図鑑:反応の記録
   book() {
     UI.open(s => {
-      s.head('🌈 属性の反応'); const g = G.reso || {};
+      s.head('🌈 属性の反応'); const g = G.reso || {}; if (Art.on()) s.add(el('div', 'festban', `<img src="${Art.url('exp_bg_resonance')}" alt="">`));
       s.card(`${Art.html('exp_resonance_reaction_log', 54)} <small>属性の攻撃を当てると、相手に2ターンのあいだ「属性の印」が残る。相性のよい別の属性を重ねると<b>反応</b>。<br>・反応は、1体につき1ターンに1回。追加ダメージには上限があり、金属の魔物には起きない<br>・反応を起こすたびに共鳴ゲージ+${this.GAIN}。満ちると、全員でたたみかける<b>共鳴連携</b>が使える。ゲージは戦闘が終わっても残る(いま ${G.rg || 0}%)<br>・敵も同じ決まりで、こちらに印をつけて反応を起こしてくる</small>`);
       Object.keys(RESO).forEach(k => { const R = RESO[k], n = g[k] || 0; s.card(`${Art.html(R.art, 46)} <b>${n ? R.jp : '???'}</b> <span class="tag">${LOCK_IC[R.a]}${ELEM[R.a]} + ${LOCK_IC[R.b]}${ELEM[R.b]}</span>${n ? ` <small>起こした回数 ${n}</small>` : ''}<br><small>${n ? R.d + `(追加ダメージ:与えた分の${Math.round(R.rate * 100)}%)` : 'まだ起こしたことがない'}</small>`); });
-      s.p(`<small>反応を起こした回数 <b>${G.stat.reso || 0}</b>・共鳴連携を放った回数 <b>${G.stat.resoB || 0}</b></small>`);
+      s.p(`${Art.html('exp_resonance_resonance_seal', 34)} <small>反応を起こした回数 <b>${G.stat.reso || 0}</b>・共鳴連携を放った回数 <b>${G.stat.resoB || 0}</b></small>`);
     });
   }
 };
@@ -8636,7 +8709,7 @@ const Work = {
   // 仕事をした。pts:もとの点。o.quiet:ふだんは知らせない(★が上がったときだけ知らせる)
   gain(tag, pts, o) {
     if (!G || !(pts > 0)) return []; o = o || {}; const out = [], who = [], t0 = Array.isArray(tag) ? tag[0] : tag;
-    P().forEach(c => { if (c.dead || c.kind === 'monster') return; const j = jobOf(c), w = this.rate(j, tag, o); if (!w) return; const v = pts * w; out.push(...gainJob(c, v)); who.push(`${c.name}(${j.name})+${this.num(v * (1 + pasC(c, 'job') / 100))}`); });
+    P().forEach(c => { if (c.dead || c.kind === 'monster') return; const j = jobOf(c), w = this.rate(j, tag, o), r = c.jobs[c.job]; if (!w) return; const top = r && r.lv >= 10; if (top && (r.aw || w < 1)) return; const v = pts * w; out.push(...gainJob(c, v, top ? 'work' : undefined)); who.push(`${c.name}(${j.name}${top ? '・覚醒へ' : ''})+${this.num(v * (1 + pasC(c, 'job') / 100))}`); });
     if (who.length) { G.stat.work = (G.stat.work || 0) + 1; if (!o.quiet) toast(`${WORK[t0][0]} 仕事で熟練度が上がった:${who.slice(0, 3).join('、')}`); out.slice(0, 4).forEach(m => toast(m.replace(/<[^>]+>/g, ''))); }
     return out;
   },
@@ -9124,7 +9197,7 @@ const Title = {
       H('会得スキル', '・<b>行動のつみ重ねで、ひとりでに身につくスキル</b>。条件を満たすと、戦闘のあとに〈天の声〉が知らせてくれる。転職しても消えない。メニューの「📜 会得スキル」で、いまの育ちぐあいを見られる<br>・<b>耐性スキル</b>:同じ属性の攻撃や状態異常を受けつづけると身につく。火耐性 → 火大耐性 → 火無効、毒慣れ → 毒克服 のように<b>進化</b>する<br>・<b>資質スキル</b>:戦いぶりから芽ばえる。「逆境」(HPが3割以下で与えるダメージが上がる)、「孤高」(1人で戦うと強い)、「格上殺し」、「七転八起」(倒れても1回起き上がる)など18種。それぞれ「・改」「・極」へ進化する<br>・<b>固有スキル</b>:並はずれた経験を積むと宿る。倒した魔物の特技を写し取る「喰らい写し」、2回行動の「刹那」、味方全員を守る「守護者」、耐性スキルを集めると宿る「調和の器」など12種。さらに条件を満たすと<b>極致</b>へ進化する<br>・以前のセーブでは、これまでに倒した魔物の数などを主人公が引きつぐ<br>・エディタで、会得スキルの追加・変更ができる');
       H('ツリー表示', '・<b>🌳 職業ツリー</b>(メニュー・神殿・図鑑から):系統ごとに、それぞれの職を「前提の職」の下にぶら下げた枝わかれの木(たて長で、画面の幅におさまる)。<b>＋</b>は あわせて必要な職や条件。職をタップすると、その場に条件の達成ぐあいが開き、そこまでの道すじが光る。「全体図」に切りかえると、基本職から超越職までを段ごとに並べ、前提をすべて線でつないだ横に広い図になる。神殿から開けば そのまま転職できる<br>・<b>✨ 魔法・特技の系統</b>(とくぎ・魔法から):火の魔法、回復、居合…と つながりごとに並び、覚えているものが光る。タップで、どの職やスキル盤で覚えられるかがわかる<br>・<b>🔷 スキル盤</b>と<b>📜 会得スキル</b>も、Ⅰ→Ⅱ→Ⅲ のつながりを玉の列で表示する');
       H('スキル盤', '・メニューの<b>🔷 スキル盤</b>で、レベルアップでもらえる<b>SP</b>(1レベルにつき2)を使って能力を解放できる。解放した能力は<b>転職しても転生しても消えない</b><br>・能力は約560種。能力値(HP・ちから など)、特性(会心率・経験値 など)、属性の極意と守り、状態異常よけ、武器の心得、魔物の系統への特効、攻撃魔法・回復・補助・特技の習得、奥義(戦闘中の回復・根性 など)<br>・Ⅰ→Ⅱ→Ⅲ…と順に解放していく。上の段ほど必要なSPが多い。職業を極めると+1、職業の覚醒で+2、種族の覚醒で+5、転生するとレベルを上げなおしたぶんだけ さらにもらえる<br>・<b>ふりなおし</b>(お金がかかる)で、能力値や特性は選びなおせる。特技・魔法の習得だけは戻せない(忘れないかわりにSPも戻らない)<br>・タイトルやメニューの<b>エディタ</b>で、スキル盤の能力を追加・変更できる');
-      H('覚醒', '・<b>職業の覚醒</b>:職業を極めた(★10)あとも その職で戦いつづけると、やがて<b>覚醒</b>する(必要な戦闘は基本職で約60戦、上の段階ほど多い)。覚醒した職についているあいだ、その職の能力補正が1.5倍・全能力+15%・特性1.5倍になり、系統ごとの<b>覚醒技</b>を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+30%)<br>・<b>種族の覚醒</b>:Lv30以上で<b>祖霊の試練</b>(強い祖霊との戦い)に勝つと、種族の真の力に目覚める。長所の補正が2倍・短所は半分・全能力+15%、特性1.5倍、耐性の強化、戦闘中のHP回復がつき、種族の系統ごとの覚醒技を覚える。呼び名も変わる(エルフ → ハイエルフ など)<br>・試練は、各国の都の<b>転職の神殿</b>(お布施が必要)か、同じ種族の<b>里</b>(無料)で受けられる。負けても命は取られず、何度でも挑める<br>・覚醒のぐあいは 神殿の「🌟 覚醒」や つよさの画面で見られる');
+      H('覚醒', '・<b>職業の覚醒</b>:職業を極めた(★10)あと、<b>その職業らしい行い</b>を重ねると<b>覚醒</b>する(基本職で60点ぶん、上の段階ほど多い)。ただ戦うだけでは進まない。<br>　戦いの中での行い:戦士=とどめを刺す・ボス戦に勝つ・攻撃を受け止める/武闘=会心の一撃・かわす/魔法=攻撃呪文を唱える・MPを使う/聖職=回復呪文・蘇生/盗賊=1ターン目に倒す・かわす/旅・自然=初めての魔物を倒す・夜の戦い/芸能=かわす・勝ち戦/魔物使い=魔物の仲間といっしょに勝つ/闇=とどめ・追いつめられてから勝つ(弓や侍、聖騎士など、職ごとに少し違う)<br>　仕事での行い:その職業の仕事(鍛冶師なら武具づくり、商人なら商い…)は そのまま数える。<b>職人と商人は、戦いでは進まず、仕事だけ</b>で覚醒する。同じ系統でも、ほかの職の仕事は数えない<br>　何が数えられるかは、<b>つよさ</b>・職業の「くわしく」・神殿の「覚醒」に出る。覚醒した職についているあいだ、その職の能力補正が1.5倍・全能力+15%・特性1.5倍になり、系統ごとの<b>覚醒技</b>を覚える。覚醒させた職が1つ増えるごとに、どの職のときも全能力+1%(最大+30%)<br>・<b>種族の覚醒</b>:Lv30以上で<b>祖霊の試練</b>(強い祖霊との戦い)に勝つと、種族の真の力に目覚める。長所の補正が2倍・短所は半分・全能力+15%、特性1.5倍、耐性の強化、戦闘中のHP回復がつき、種族の系統ごとの覚醒技を覚える。呼び名も変わる(エルフ → ハイエルフ など)<br>・試練は、各国の都の<b>転職の神殿</b>(お布施が必要)か、同じ種族の<b>里</b>(無料)で受けられる。負けても命は取られず、何度でも挑める<br>・覚醒のぐあいは 神殿の「🌟 覚醒」や つよさの画面で見られる');
       H('国境', '・外を歩いていると、国と国の境目に<b>それぞれの国の色の線</b>が見える。境目の近くでは、画面上の地名に「⇄となりの国」と出る<br>・国境を越えると「🚩 国境を越えた」と知らせが出る。国が変わると魔物の強さも変わるので注意<br>・<b>地図</b>は国ごとに色がつき、白い線が国境、国名も入る(地図の下のボタンで切りかえ)');
       H('種族(全' + RACES.length + '種)', '・はじめるときに、主人公の<b>種族</b>を選ぶ。人間系・妖精系・獣人系・鱗と水の民・巨人と鬼・精霊と異形の6系統<br>・種族ごとに<b>能力の伸び</b>(HPやかしこさなど)、<b>特性</b>(会心率・回避率・製作の腕など)、<b>属性の耐性と弱点</b>、効かない状態異常がちがう。夜に強い種族、戦闘中に体力が戻る種族もいる<br>・町の住民は国や町によって種族の割合がちがい、酒場で仲間になる冒険者も その町の住民にあわせた種族になる<br>・<b>種族の里</b>:ひとつの種族だけが暮らす村が各地にある(最初の国には かならずハーフリングの里がある)。その種族を仲間にしたいときは里の酒場へ。主人公が同じ種族なら、里の店は1割引き<br>・訪れた里は 手帳 →「探索」に記録される。前からのセーブデータの主人公は、メニュー → 仲間 → 主人公 から1回だけ種族を選べる');
       H('生き方いろいろ', '・<b>冒険者</b>:ギルドの依頼をこなしてランクを上げる<br>・<b>商人</b>:交易所で安く仕入れて他国で高く売る。店を買えば毎日収入<br>・<b>職人</b>:採掘・採集した素材で武具や薬、料理を作る。装備の強化も<br>・<b>旅人</b>:8つの国と魔王領を巡る。船や飛竜を手に入れよう<br>・<b>暮らし</b>:家を買って畑を耕し、結婚して子供を育てる<br>・<b>悪党</b>:盗みで稼ぐ。賞金首になり、闇の職業への道が開く<br>・<b>闘士</b>:闘技場でランク30を目指す<br>・<b>探索者</b>:底なしの「深淵の大穴」に挑む');
